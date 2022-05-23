@@ -15,3 +15,11 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.header_background_image{
+  background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-1.jpg);
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
