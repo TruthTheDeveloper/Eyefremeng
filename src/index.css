@@ -23,3 +23,11 @@ code {
   background-position:center;
   background-repeat: no-repeat;
 }
+
+
+.mission_background_image{
+  background: linear-gradient(to right, #f1b1b1 , #82e6e8),url(https://eyeframeng.com/wp-content/uploads/2021/02/2020-eyewear-eyeglass-color-style-trends-david-kind.jpg);
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}

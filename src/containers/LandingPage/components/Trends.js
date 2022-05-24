@@ -29,6 +29,9 @@ const Trends = () => {
                     <p className="text-orange-600 font-semibold py-2 text-xl">#20000</p>
                 </div>
             </div>
+            <div className="w-64 h-16 my-12 bg-red-500 text-white mx-auto rounded-md cursor-pointer" style={{backgroundColor:'#002365'}}>
+                <p className="text-center text-2xl pt-3">Shop Trends</p>
+            </div>
         </section>
     )
 }
