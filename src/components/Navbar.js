@@ -1,30 +1,70 @@
-import React from 'react';
-import cart from '../assets/carts.png'
+// Assets
+import cart from '../assets/carts.png';
+
+//Icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+
+//React Componenets
+import { useState } from 'react';
+
+
 
 const Navbar = () => {
+
+    const [closeNav, setCloseNav] = useState(true)
+
         return(
-            <nav className="flex my-2">
-            <div className="w-48 my-1 mx-4">
-                <img src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png"/>
-            </div>
-            <ul className="flex ml-auto my-5 mr-10 text-lg font-semibold" style={{color:"#002265"}}>
-                <li className="mx-4">
-                    <a href="#">Home</a>
-                </li>
-                <li className="mx-4">
-                    <a href="#">Men's Glasses</a>
-                </li>
-                <li className="mx-4">
-                    <a href="#">Women's Glasses</a>
-                </li>
-                <li className="mx-4">
-                    <a href="#">Children Glasses</a>
-                </li>
-                <li>
-                    <img src={cart} className="w-10 mx-4 cursor-pointer"/>
-                </li>
-            </ul>
-        </nav>
+            <nav className="my-2">
+                <div className="flex">
+                    <div className="w-36 md:w-40 lg:w-44 my-1 mx-4">
+                        <img src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png"/>
+                    </div>
+                    <div className="flex  ml-auto mr-2 lg:hidden">
+                        <img src={cart} className="w-10 my-1 cursor-pointer h-10 mx-4"/>
+                        {closeNav ? <div className="bg-orange-400 px-4 rounded-full" onClick={() => setCloseNav(false)}>
+                            <FontAwesomeIcon icon={faBars} className=" text-2xl my-3 m"/>
+                        </div>:<div className=" px-4 rounded-full" onClick={() => setCloseNav(true)}>
+                            <FontAwesomeIcon icon={faClose} className=" text-3xl my-2 "/>
+                        </div>}
+                    </div>
+                    <ul className="ml-auto my-5 mr-10 text-lg font-semibold hidden lg:flex" style={{color:"#002265"}}>
+                        <li className="mx-4">
+                            <a href="#">Home</a>
+                        </li>
+                        <li className="mx-4">
+                            <a href="#">Men's Glasses</a>
+                        </li>
+                        <li className="mx-4">
+                            <a href="#">Women's Glasses</a>
+                        </li>
+                        <li className="mx-4">
+                            <a href="#">Children Glasses</a>
+                        </li>
+                        <li>
+                            <img src={cart} className="w-10 mx-4 cursor-pointer"/>
+                        </li>
+                    </ul>
+                    
+                </div>
+                {!closeNav ? <div>
+                <ul className=" flex flex-col ml-auto my-3 mr-10 text-lg font-semibold text-md lg:hidden" style={{color:"#002265"}}>
+                            <li className="my-1 ml-4">
+                                <a href="#">Home</a>
+                            </li>
+                            <li className="my-1 ml-4">
+                                <a href="#">Men's Glasses</a>
+                            </li>
+                            <li className="my-1 ml-4">
+                                <a href="#">Women's Glasses</a>
+                            </li>
+                            <li className="my-1 ml-4">
+                                <a href="#">Children Glasses</a>
+                            </li>
+                    </ul>
+                </div>: null}
+            </nav>
         )
 }
 export default Navbar;

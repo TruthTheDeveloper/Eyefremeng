@@ -4,16 +4,18 @@ import Guide from './components/Guide';
 import Trends from './components/Trends';
 import Mission from './components/Mission';
 import InfoGuide from './components/InfoGuide';
+import ContactUs from './components/ContactUs';
 
 const LandingPage = () => {
     return(
-        <>
+        <section className="overflow-x-hidden">
             <Header/>
             <Guide/>
             <Trends/>
             <Mission/>
             <InfoGuide/>
-        </>
+            <ContactUs/>
+        </section>
     )
 }
 

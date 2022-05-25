@@ -4,10 +4,10 @@ const Trends = () => {
     return (
         <section>
             <div className="text-center my-6" style={{color:'#002365'}}>
-                <h1 className="my-5 text-6xl font-semibold ">Quality Assurance</h1>
-                <p className="text-2xl py-5">We are committed to providing a Quality eyewear and a safe shopping</p>
+                <h1 className="my-5 lg:text-6xl font-semibold text-4xl">Quality Assurance</h1>
+                <p className="lg:text-2xl py-5 text-xl">We are committed to providing a Quality eyewear and a safe shopping</p>
             </div>
-            <div className="flex mx-24">
+            <div className="flex flex-col md:flex-row md:mx-12 lg:mx-24">
                 <div className="text-center">
                     <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
                     <p>Eyeglasses Theo WD9511</p>
