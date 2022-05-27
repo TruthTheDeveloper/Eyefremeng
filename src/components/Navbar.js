@@ -16,7 +16,7 @@ const Navbar = () => {
     const [closeNav, setCloseNav] = useState(true)
 
         return(
-            <nav className="my-2">
+            <nav className=" fixed bg-white w-full z-50">
                 <div className="flex">
                     <div className="w-36 md:w-40 lg:w-44 my-1 mx-4">
                         <img src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png"/>

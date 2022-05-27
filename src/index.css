@@ -32,3 +32,17 @@ code {
   background-position:center;
   background-repeat: no-repeat;
 }
+
+.cart_banner{
+  background: url(https://eyeframeng.com/wp-content/uploads/2021/02/IMG_0241-1-scaled.jpg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.cart_banne_man{
+  background: url(https://eyeframeng.com/wp-content/uploads/2021/02/IMG_0121-1-scaled.jpg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}

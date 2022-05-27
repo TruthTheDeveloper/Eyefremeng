@@ -6,6 +6,7 @@ import Mission from './components/Mission';
 import InfoGuide from './components/InfoGuide';
 import ContactUs from './components/ContactUs';
 
+
 const LandingPage = () => {
     return(
         <section className="overflow-x-hidden">
