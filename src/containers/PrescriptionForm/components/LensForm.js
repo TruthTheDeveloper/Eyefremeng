@@ -1,6 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';//
 
+import { Collapse } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
+
+const { Panel } = Collapse;
+
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.`
+
 const LensForm = () => {
 
     return(
@@ -12,6 +22,23 @@ const LensForm = () => {
                 </div>
                 <h1 className="text-white text-xs">All lenses includes Anti-Scratch and Anti-Reflective Coating</h1>
             </div>
+            <Collapse
+                showArrow={false}
+                bordered={false}
+                defaultActiveKey={['1']}
+                // expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+                className="site-collapse-custom-collapse"
+            >
+                <Panel header="Clear" key="1" className="site-collapse-custom-panel">
+                <p>{text}</p>
+                </Panel>
+                <Panel header="PhotoChromic" key="2" className="site-collapse-custom-panel">
+                <p>{text}</p>
+                </Panel>
+                <Panel header="Polarized" key="3" className="site-collapse-custom-panel">
+                <p>{text}</p>
+                </Panel>
+            </Collapse>
         </form>
     )
 }
