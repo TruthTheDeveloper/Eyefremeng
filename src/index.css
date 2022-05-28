@@ -46,3 +46,14 @@ code {
   background-position:center;
   background-repeat:no-repeat;
 }
+
+
+.img-hover-zoom--point-zoom{
+  transform-origin: 65% 75%;
+  transition: transform 1s, filter .5s ease-out;
+}
+
+/* The Transformation */
+.img-hover-zoom--point-zoom:hover img {
+  transform: scale(5);
+}
