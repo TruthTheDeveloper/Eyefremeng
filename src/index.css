@@ -48,12 +48,11 @@ code {
 }
 
 
-.img-hover-zoom--point-zoom{
-  transform-origin: 65% 75%;
-  transition: transform 1s, filter .5s ease-out;
-}
-
-/* The Transformation */
-.img-hover-zoom--point-zoom:hover img {
-  transform: scale(5);
+[data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: #f7f7f7;
+  border: 0px;
+  border-radius: 2px;
 }
