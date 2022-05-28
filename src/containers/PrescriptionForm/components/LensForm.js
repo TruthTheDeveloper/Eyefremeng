@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';//
 
-import { CaretRightOutlined } from '@ant-design/icons';
 import { Collapse } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
+
 const { Panel } = Collapse;
 const text = `
   A dog is a type of domesticated animal.
