@@ -5,6 +5,7 @@ import WomenCart from './containers/WomenCart/WomenCart';
 import MenCart from './containers/MenCart/MenCart';
 import PrescriptionForm from './containers/PrescriptionForm/PrescriptionForm';
 import Cart from './containers/Cart/Cart';
+import CheckoutForm from './containers/'
 
 import { Routes, Route} from "react-router-dom";
 

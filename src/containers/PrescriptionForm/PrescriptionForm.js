@@ -13,7 +13,7 @@ const PrescriptionForm = () => {
                         <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
                         
                     </div>
-                    <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3">
+                    <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
                     
                         <div>
                             <h1>Rectangle TR90 Glasses Frames</h1>
