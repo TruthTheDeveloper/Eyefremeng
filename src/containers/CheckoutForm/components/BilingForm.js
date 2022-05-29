@@ -3,7 +3,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const BilingForm = () => {
-
+        
         return(
             <>
                 <div className="flex my-3">

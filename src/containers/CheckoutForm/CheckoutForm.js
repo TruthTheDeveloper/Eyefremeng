@@ -1,5 +1,6 @@
 import BilingForm from "./components/BilingForm";
 import ShipmentMethodForm from "./components/ShipmentMethodForm";
+import SuccessTransaction from "./components/SuccessTransaction";
 
 const CheckoutForm = () => {
 
@@ -9,7 +10,8 @@ const CheckoutForm = () => {
                 <h1>CheckOut</h1>
             </div>
             {/* <BilingForm/> */}
-            <ShipmentMethodForm/>
+            {/* <ShipmentMethodForm/> */}
+            <SuccessTransaction/>
         </section>
     )
 

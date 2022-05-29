@@ -1,7 +1,29 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
+
 const ShipmentMethodForm = () => {
+
+    const config = {
+        public_key: 'FLWPUBK_TEST-0c42e13ec815f2e5ac5a6f338dd605a5-X',
+        tx_ref: Date.now(),
+        amount: 100,
+        currency: 'NGN',
+        payment_options: 'card,mobilemoney,ussd',
+        customer: {
+          email: 'user@gmail.com',
+          phonenumber: '07064586146',
+          name: 'joel ugwumadu',
+        },
+        customizations: {
+          title: 'my Payment Title',
+          description: 'Payment for items in cart',
+          logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+        },
+      };
+    
+      const handleFlutterPayment = useFlutterwave(config);
 
     return(
         <div>
@@ -38,7 +60,16 @@ const ShipmentMethodForm = () => {
                 </div>
             </div>
             <div>
-                <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md">
+                <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={() => {
+                        handleFlutterPayment({
+                            callback: (response) => {
+                            console.log(response);
+                                closePaymentModal() // this will close the modal programmatically
+                            },
+                            onClose: () => {},
+                        });
+                        }}
+                >
                     Continue
                     <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
                 </button>
