@@ -5,7 +5,7 @@ import WomenCart from './containers/WomenCart/WomenCart';
 import MenCart from './containers/MenCart/MenCart';
 import PrescriptionForm from './containers/PrescriptionForm/PrescriptionForm';
 import Cart from './containers/Cart/Cart';
-import CheckoutForm from './containers/'
+import CheckoutForm from './containers/CheckoutForm/CheckoutForm';
 
 import { Routes, Route} from "react-router-dom";
 
@@ -19,6 +19,7 @@ const App = () => {
         <Route path="/mencart" element={<MenCart />} />
         <Route path="/prescriptionForm" element={<PrescriptionForm/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/checkoutForm" element={<CheckoutForm/>} />
       </Routes>
     </Layout>
   )
