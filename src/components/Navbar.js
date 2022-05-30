@@ -9,6 +9,9 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 //React Componenets
 import { useState } from 'react';
 
+//React router
+import { NavLink } from "react-router-dom";
+
 
 
 const Navbar = () => {
@@ -31,16 +34,24 @@ const Navbar = () => {
                     </div>
                     <ul className="ml-auto my-5 mr-10 text-lg font-semibold hidden lg:flex" style={{color:"#002265"}}>
                         <li className="mx-4">
-                            <a href="#">Home</a>
+                            <NavLink to="/" exact="true">
+                                Home
+                            </NavLink>
                         </li>
                         <li className="mx-4">
-                            <a href="#">Men's Glasses</a>
+                            <NavLink to="/mencart" exact="true">
+                                Men's Glasses
+                            </NavLink>
                         </li>
                         <li className="mx-4">
-                            <a href="#">Women's Glasses</a>
+                            <NavLink to="/womencart" exact>
+                                Women's Glasses
+                            </NavLink>
                         </li>
-                        <li className="mx-4">
-                            <a href="#">Children Glasses</a>
+                        <li>
+                            <NavLink className="mx-4" to="/" exact>
+                                Children Glasses
+                            </NavLink>
                         </li>
                         <li>
                             <img src={cart} className="w-10 mx-4 cursor-pointer"/>

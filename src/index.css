@@ -25,6 +25,15 @@ code {
   background-repeat: no-repeat;
 }
 
+/* media queries */
+@media (min-width: 600px) {
+  .header_background_image{
+    background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-1.jpg);
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+  }
+}
 
 .mission_background_image{
   background: linear-gradient(to right, #f1b1b1 , #82e6e8),url(https://eyeframeng.com/wp-content/uploads/2021/02/2020-eyewear-eyeglass-color-style-trends-david-kind.jpg);

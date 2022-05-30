@@ -6,6 +6,9 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
+//React router
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
 
     return(
@@ -14,27 +17,70 @@ const Footer = () => {
                 <div className="basis-1/4 mx-4 lg:mx-8">
                     <h1 className="text-2xl font-semibold my-4">SHOP</h1>
                     <ul className=" font-semibold">
-                        <li>MEN'S GLASSES</li>
-                        <li>WOMEN'S GLASSES</li>
-                        <li>SUNGLASSES</li>
-                        <li>CHILDREN'S GLASSES</li>
+                        <li><NavLink to="/mencart" exact='true'>
+                                MEN's GLASSES
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/womencart" exact='true'>
+                                WOMEN'S GLASSES
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/" exact='true'>
+                                SUNGLASSES
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/" exact='true'>
+                                SUNGLASSES
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="basis-1/4 mx-4 lg:mx-8">
                     <h2 className="text-2xl font-semibold my-4">TIPS AND SELF-HELP</h2>
                     <ul className=" font-semibold">
-                        <li>WHAT'S MY FACE SHAPE?</li>
-                        <li>HOW TO MEASURE YOUR PUPILLARY DISTANCE(PD)</li>
-                        <li>HOW TO FIND YOUR EYEGLASEES FRAMES SIZE</li>
+                        <li>
+                            <NavLink to="/faceshape"  activeStyle={{ color: 'red' }} exact='true'>
+                                WHAT'S MY FACE SHAPE?
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/pd" exact='true'>
+                            HOW TO MEASURE YOUR PUPILLARY DISTANCE(PD)
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/framesize" exact='true'>
+                                HOW TO FIND YOUR EYEGLASEES FRAMES SIZE
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="basis-1/4 mx-4 lg:mx-8">
                     <h1 className="text-2xl font-semibold my-4">ABOUT</h1>
                     <ul className=" font-semibold">
-                        <li>Contact Us</li>
-                        <li>Return and Exchange</li>
-                        <li>Privacy Policy</li>
-                        <li>Terms and Condition of Use</li>
+                        <li>
+                            <NavLink to="/contactus" exact='true'>
+                                Contact Us
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/returnexchange" exact='true'>
+                                Return and Exchange
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/privacypolicy" exact='true'>
+                                Privacy Policy
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/termsuse" exact='true'>
+                                Terms and Condition of Use
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="flex lg:justify-center justify-start mx-4 basis-1/4" style={{color:"white"}}>
