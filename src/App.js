@@ -17,6 +17,7 @@ import ContactUs from './containers/AboutUs/ContactUs';
 import PrivacyPolicy from './containers/AboutUs/PrivacyPolicy';
 import ReturnExchange from './containers/AboutUs/ReturnExchange';
 import TermsUse from './containers/AboutUs/TermsUse';
+import ShipmentForm from './containers/CheckoutForm/ShipmentForm';
 
 import { Routes, Route} from "react-router-dom";
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/prescriptionForm" element={<PrescriptionForm/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/checkoutForm" element={<CheckoutForm/>} />
+        <Route path="/shipmentform" element={<ShipmentForm/>} />
 
         {/* Tips and Link Route */}
         <Route path="/faceshape" element={<FaceShape/>} />

@@ -1,8 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate  } from "react-router-dom";
 
 const BilingForm = () => {
+    let navigate = useNavigate();
+
+    const shipment = (e) => {
+        e.preventDefault()
+        navigate("/shipmentForm")
+    }
         
         return(
             <>
@@ -54,7 +61,7 @@ const BilingForm = () => {
                         <div><input  type="radio"/></div>
                         <p className="mx-2">Different Shipping Address</p>
                     </div>
-                    <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md">
+                    <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={shipment}>
                         Continue
                         <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
                     </button>
