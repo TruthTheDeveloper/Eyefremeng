@@ -11,10 +11,10 @@ const CheckoutForm = () => {
                     <h1>CheckOut</h1>
                 </div>
                 {/* <BilingForm/> */}
-                {/* <ShipmentMethodForm/> */}
+                <ShipmentMethodForm/>
             </div>
              
-                <SuccessTransaction/>
+                {/* <SuccessTransaction/> */}
                
         </section>
     )
