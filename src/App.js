@@ -19,6 +19,10 @@ import ReturnExchange from './containers/AboutUs/ReturnExchange';
 import TermsUse from './containers/AboutUs/TermsUse';
 import ShipmentForm from './containers/CheckoutForm/ShipmentForm';
 
+
+//Admin
+import Dashboard from './containers/Admin/Dashboard';
+
 import { Routes, Route} from "react-router-dom";
 
 const App = () => {
@@ -44,6 +48,9 @@ const App = () => {
         <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
         <Route path="/returnexchange" element={<ReturnExchange/>} />
         <Route path="/termsuse" element={<TermsUse/>} />
+
+        {/*admin */}
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </Layout>
   )
