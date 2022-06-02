@@ -65,3 +65,20 @@ code {
   border: 0px;
   border-radius: 2px;
 }
+
+
+
+.rsd_anime{
+  animation: slide-right 0.5s ease forwards;
+}
+@keyframes slide-right {
+  0%{transform: translateX(-200px);}
+  100%{transform: translateX(0px);}
+}
+.lsd_anime{
+  animation: slide-left 0.5s ease forwards;
+}
+@keyframes slide-left {
+  0%{transform: translateX(200px);}
+  100%{transform: translateX(0px);}
+}
