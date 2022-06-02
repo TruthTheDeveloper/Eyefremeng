@@ -1,5 +1,7 @@
 import MenItem from "./components/MenItem";
 import Banner from "./components/Banner";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 const MenCart = () => {
     return(
         <section className="py-12 lg:py-16 lg:mx-24">

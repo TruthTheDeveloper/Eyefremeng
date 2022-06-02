@@ -20,10 +20,10 @@ const FrameSize = () => {
                 <h1 className="text-orange-500 text-2xl font-semibold">LARGE</h1>
                 <p className="text-xl">For those who have a wide forehead and narrow chin.</p>
             </div>
-            <div className="text-orange-500 text-3xl font-bold  md:mx-12">
+            <div className="text-orange-500 text-3xl font-bold w-full  md:mx-12">
                 <h1>Find your current frame size</h1>
-                <div>
-                    <img />
+                <div className="flex justify-center my-12 w-96 mx-auto ">
+                    <img src="https://eyeframeng.com/wp-content/uploads/2021/02/frame-measurements-1.png"/>
                 </div>
             </div>
             <p className="text-xl md:mx-12 lg:mx-24 xl:mx-44">"To find out your frame size is by using a pair of your current glasses. The frame sizes are usually printed on the inside of the temple. If the glasses were previously fitted by an optician or the glasses sit well on your face then you can use the measurements on the temple to purchase your new pair of glasses"</p>

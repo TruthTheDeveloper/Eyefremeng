@@ -1,5 +1,7 @@
 import Form from "./components/Form";
 import LensForm from "./components/LensForm";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 //Icons
 
 

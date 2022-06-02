@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../../components/Footer';
 const ContactUs = () => {
 
     return(

@@ -14,17 +14,23 @@ const FaceShape = () => {
                     <div className="my-8">
                         <p className="text-orange-500 text-2xl py-3">1. Look in Mirror</p>
                         <p className="lg:text-2xl">What do you see? Most of us will assume that our face may resemble a heart, an oval, a round or even a square shape. But how can you be absolutely sure?</p>
-                        <div>
-                            <img />
+                        <div className="flex justify-center my-12">
+                            <img src="https://eyeframeng.com/wp-content/uploads/2021/02/faceshape-mirror.jpg" />
                         </div>
                     </div>
                     <div className="my-8">
                         <p className="text-orange-500 text-2xl py-3">2. Outline your face</p>
                         <p className="lg:text-2xl">What do you see? Most of us will assume that our face may resemble a heart, an oval, a round or even a square shape. But how can you be absolutely sure?</p>
+                        <div className="flex justify-center my-12">
+                            <img src="https://eyeframeng.com/wp-content/uploads/2021/02/faceshape-soap.jpg" />
+                        </div>
                     </div>
                     <div className="my-8">
                         <p className="text-orange-500 text-2xl py-3">3. Match your shape</p>
                         <p className="lg:text-2xl">Once you've done this, step back and look at the shape you've just drawn. Think about how what you've seen measures up to the common face shapes.</p>
+                        <div className="flex justify-center my-12">
+                            <img src="https://eyeframeng.com/wp-content/uploads/2021/02/faceshape-match.jpg" />
+                        </div>
                     </div>
                     <div className="my-8">
                         <p className="text-orange-500 text-2xl py-3">4. Choose your Glasses</p>
@@ -35,8 +41,8 @@ const FaceShape = () => {
                     <h1 className="underline text-2xl font-semibold text-indigo-800 text-center lg:text-4xl">How to pick glasses for your face shape?</h1>
                     <section>
                         <div>
-                            <div>
-                                <img />
+                            <div className="flex justify-center my-12">
+                                <img src="https://eyeframeng.com/wp-content/uploads/2021/02/glasses-for-oval-face.jpg"/>
                             </div>
                         </div>
                         <div>
@@ -59,8 +65,8 @@ const FaceShape = () => {
                     </section>
                     <section>
                         <div>
-                            <div>
-                                <img />
+                            <div className="flex justify-center my-12">
+                                <img src="https://eyeframeng.com/wp-content/uploads/2021/02/glasses-for-square-face.jpg"/>
                             </div>
                         </div>
                         <div>
@@ -82,8 +88,8 @@ const FaceShape = () => {
                     </section>
                     <section>
                         <div>
-                            <div>
-                                <img />
+                            <div className="flex justify-center my-12">
+                                <img src="https://eyeframeng.com/wp-content/uploads/2021/02/glasses-for-round-face.jpg"/>
                             </div>
                         </div>
                         <div>
@@ -104,8 +110,8 @@ const FaceShape = () => {
                     </section>
                     <section>
                         <div>
-                            <div>
-                                <img />
+                            <div className="flex justify-center my-12">
+                                <img src="https://eyeframeng.com/wp-content/uploads/2021/02/glasses-for-heart-face.jpg"/>
                             </div>
                         </div>
                         <div>

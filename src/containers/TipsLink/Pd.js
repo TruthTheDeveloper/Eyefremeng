@@ -31,7 +31,7 @@ const Pd = () => {
             </div>
             <div className="md:mx-16 lg:mx-40 mx-3 my-6 font-semibold">
                 <div>
-                    <img />
+                    <img src="https://eyeframeng.com/wp-content/uploads/2021/02/face-size.jpeg"/>
                 </div>
                 <div>
                     <h1 className="text-orange-500 text-2xl lg:text-3xl  py-2">That's it, your PD is ready.</h1>
