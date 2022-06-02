@@ -1,5 +1,5 @@
 
-const Form = () => {
+const Form = ({formText}) => {
 
     return(
 
@@ -16,7 +16,7 @@ const Form = () => {
                 <label>Product Image</label>
                 <input type="file" className="mt-1"/>
             </div>
-            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white">Add Product</button>
+            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white">{formText}</button>
         </form>
     )
 }

@@ -5,7 +5,7 @@ const AddProduct = () => {
     return(
         <DashboardHoc>
             <section className="w-full my-6 mx-6">
-                <Form/>
+                <Form formText={'Add Product'}/>
             </section>
         </DashboardHoc>
     )
