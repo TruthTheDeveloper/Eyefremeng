@@ -22,6 +22,12 @@ import ShipmentForm from './containers/CheckoutForm/ShipmentForm';
 
 //Admin
 import Dashboard from './containers/Admin/Dashboard';
+import AddProduct from './containers/Admin/AddProduct';
+import OrderedProduct from './containers/Admin/OrderedProduct';
+import Orders from './containers/Admin/Orders';
+import Product from './containers/Admin/Product';
+import Subscriber from './containers/Admin/Subscriber';
+import UpdateProduct from './containers/Admin/UpdateProduct';
 
 import { Routes, Route} from "react-router-dom";
 
@@ -51,6 +57,12 @@ const App = () => {
 
         {/*admin */}
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard/addProduct" element={<AddProduct/>}/>
+        <Route path="/dashboard/orderedProduct" element={<OrderedProduct/>}/>
+        <Route path="/dashboard/orders" element={<Orders/>} />
+        <Route path="/dashboard/product" element={<Product/>}/>
+        <Route path="/dashboard/subscriber" element={<Subscriber/>}/>
+        <Route path="/dashboard/updateproduct" element={<UpdateProduct/>}/>
       </Routes>
     </Layout>
   )
