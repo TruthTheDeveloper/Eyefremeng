@@ -3,6 +3,7 @@ import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBiking } from '@fortawesome/free-solid-svg-icons';
 import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import DashboardHoc from '../../hoc/Dashboard';
 import RightSideDrawer from "../../components/admin/RightSideDrawer";
@@ -15,7 +16,9 @@ const Dashboard = () => {
         <DashboardHoc>
             
             <section className="w-full">
-            
+                <div className="md:mx-12 mx-5 my-8">
+                    <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl"/>
+                </div>
                 <div className=" md:grid lg:mx-0 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 md:grid-rows-2">
                     <div className="border-2 mx-auto  xl:mx-4 w-72 my-12 p-5 shadow-lg rounded-lg cursor-pointer">
                         <h1 className="py-2 text-xl ">Orders</h1>
@@ -44,7 +47,7 @@ const Dashboard = () => {
                         </div>
                     </div>  
                 </div>
-                <RightSideDrawer/>
+                {/* <RightSideDrawer/> */}
             </section>
         </DashboardHoc>
             

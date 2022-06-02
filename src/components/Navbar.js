@@ -61,17 +61,17 @@ const Navbar = () => {
                 </div>
                 {!closeNav ? <div>
                 <ul className=" flex flex-col ml-auto my-3 mr-10 text-lg font-semibold text-md lg:hidden" style={{color:"#002265"}}>
-                            <li className="my-1 ml-4">
-                                <a href="#">Home</a>
+                            <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
+                                <NavLink to="/" exact="true">Home</NavLink>
                             </li>
-                            <li className="my-1 ml-4">
-                                <a href="#">Men's Glasses</a>
+                            <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
+                                <NavLink to="/mencart" exact="true">Men's Glasses</NavLink>
                             </li>
-                            <li className="my-1 ml-4">
-                                <a href="#">Women's Glasses</a>
+                            <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
+                                <NavLink to="/womencart" exact>Women's Glasses</NavLink>
                             </li>
-                            <li className="my-1 ml-4">
-                                <a href="#">Children Glasses</a>
+                            <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
+                                <NavLink  to="/" exact>Children Glasses</NavLink>
                             </li>
                     </ul>
                 </div>: null}
