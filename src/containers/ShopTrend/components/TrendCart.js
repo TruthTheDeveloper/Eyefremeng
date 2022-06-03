@@ -1,6 +1,6 @@
 import { useNavigate  } from "react-router-dom";
+const TrendCart = () => {
 
-const MenItem = () => {
     let navigate = useNavigate();
     
     const itemInfo = () => {
@@ -15,5 +15,6 @@ const MenItem = () => {
             <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
         </div>
     )
+
 }
-export default MenItem;
+export default TrendCart;

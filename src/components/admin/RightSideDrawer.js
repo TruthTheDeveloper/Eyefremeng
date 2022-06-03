@@ -36,7 +36,7 @@ const RightSideDrawer = () => {
                     <section className="bg-indigo-800 text-white basis-1/6   lg:hidden mt-14 ">
                         <div className="flex py-3  text-center  cursor-pointer mx-3" onClick={dashboardNav}>
                             <div className="bg-white text-indigo-800 flex p-3 w-full">
-                                <FontAwesomeIcon icon={faDashboard} className="mx-4 text-2xl"/>
+                                <FontAwesomeIcon icon={faDashboard} className="mx-4  text-2xl"/>
                                 <h1>Dashboard</h1>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import DashboardHoc from '../../hoc/Dashboard';
+import Item from '../../components/admin/Item';
 
 import { useNavigate  } from "react-router-dom";
 
@@ -28,31 +29,11 @@ const Product = () => {
                         <p>Eyeglasses Mitch</p>
                         <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
                     </div>
-                    <div className="text-center cursor-pointer border hover:shadow-lg m-5">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <p>Eyeglasses Mitch</p>
-                        <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
-                    </div>
-                    <div className="text-center cursor-pointer border hover:shadow-lg m-5">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <p>Eyeglasses Mitch</p>
-                        <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
-                    </div>
-                    <div className="text-center cursor-pointer border hover:shadow-lg m-5">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <p>Eyeglasses Mitch</p>
-                        <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
-                    </div>
-                    <div className="text-center cursor-pointer border hover:shadow-lg m-5">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <p>Eyeglasses Mitch</p>
-                        <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
-                    </div>
-                    <div className="text-center cursor-pointer border hover:shadow-lg m-5">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <p>Eyeglasses Mitch</p>
-                        <p className="text-indigo-800 font-semibold py-2 text-xl">#15000</p>
-                    </div>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
                 </div>
                 <div className="flex justify-center">
                         <div className="flex py-8 justify-center  text-white">

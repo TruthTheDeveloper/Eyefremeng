@@ -34,22 +34,24 @@ const Navbar = () => {
                     </div>
                     <ul className="ml-auto my-5 mr-10 text-lg font-semibold hidden lg:flex" style={{color:"#002265"}}>
                         <li className="mx-4">
-                            <NavLink to="/" exact="true">
+                            <NavLink
+                            className = {(navData) => `${navData.isActive ? "bg-active text-black" : "text-inActive"}`} 
+                            to="/" exact="true">
                                 Home
                             </NavLink>
                         </li>
                         <li className="mx-4">
-                            <NavLink to="/mencart" exact="true">
+                            <NavLink to="/mencart" className = {(navData) => `${navData.isActive ? "bg-active text-black" : "text-inActive"}`}  exact="true">
                                 Men's Glasses
                             </NavLink>
                         </li>
                         <li className="mx-4">
-                            <NavLink to="/womencart" exact>
+                            <NavLink to="/womencart" className = {(navData) => `${navData.isActive ? "bg-active text-black" : "text-inActive"}`}  exact>
                                 Women's Glasses
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="mx-4" to="/" exact>
+                            <NavLink className="mx-4"  to="/" exact>
                                 Children Glasses
                             </NavLink>
                         </li>

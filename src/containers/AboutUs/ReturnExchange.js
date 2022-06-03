@@ -4,8 +4,7 @@ import Navbar from '../../components/Navbar';
 const ReturnExchange = () => {
 
     return(
-        <>
-            <Navbar/>
+       
             <section className="py-24 text-indigo-800 font-semibold md:text-lg">
             <div className="bg-indigo-800 text-center py-12">
                 <h1 className="text-white text-xl font-semibold">RETURN AND EXCHANGE</h1>
@@ -44,8 +43,6 @@ const ReturnExchange = () => {
                 </div>
             </div>
         </section>
-        <Footer/>
-        </>
     )
 
 }

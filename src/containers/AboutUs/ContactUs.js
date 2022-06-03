@@ -44,7 +44,7 @@ const ContactUs = () => {
                         <input className="w-full p-2 border-2 outline-none" placeholder="Subject"/> 
                     </div>
                     <div className="py-1">
-                       <textarea className="w-full h-28 border-2 outline-none"> </textarea>
+                       <textarea className="w-full p-2 h-28 border-2 outline-none" placeholder="Message" />
                     </div>
                     <button className="bg-orange-500 py-3 my-4 px-8 rounded-full text-white">send message</button>
                 </form>

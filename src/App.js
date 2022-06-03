@@ -6,6 +6,7 @@ import MenCart from './containers/MenCart/MenCart';
 import PrescriptionForm from './containers/PrescriptionForm/PrescriptionForm';
 import Cart from './containers/Cart/Cart';
 import CheckoutForm from './containers/CheckoutForm/CheckoutForm';
+import ShopTrend from './containers/ShopTrend/ShopTrend';
 
 // Tips and Link Route
 import FaceShape from './containers/TipsLink/FaceShape';
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/checkoutForm" element={<CheckoutForm/>} />
         <Route path="/shipmentform" element={<ShipmentForm/>} />
+        <Route path="/shopTrend" element={<ShopTrend/>}/>
 
         {/* Tips and Link Route */}
         <Route path="/faceshape" element={<FaceShape/>} />

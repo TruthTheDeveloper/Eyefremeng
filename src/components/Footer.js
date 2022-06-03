@@ -85,13 +85,13 @@ const Footer = () => {
                 </div>
                 <div className="flex lg:justify-center justify-start mx-4 basis-1/4" style={{color:"white"}}>
                     <div  className="mx-2">
-                        <FontAwesomeIcon icon={faTwitter} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/>
+                        <a href=""><FontAwesomeIcon icon={faTwitter} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
                     </div>
                     <div  className="mx-2">
-                        <FontAwesomeIcon icon={faInstagram} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/>
+                       <a href="https://www.instagram.com/eyeframeng/"> <FontAwesomeIcon icon={faInstagram} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
                     </div>
                     <div  className="mx-2">
-                        <FontAwesomeIcon icon={faFacebook} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/>
+                        <a href="https://web.facebook.com/eyeframeng"><FontAwesomeIcon icon={faFacebook} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
                     </div>
                 </div>
             </div>

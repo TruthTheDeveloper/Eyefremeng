@@ -6,28 +6,62 @@ import { faDashboard } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate  } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+
 
 const Dashboard = ({children}) => {
+
+    const [active, setActive] = useState({
+        dashboard:true,
+        orders:false,
+        products:false,
+        subscribers:false
+
+    })
+
+    useEffect(() => {
+        console.log('jsjsjs')
+    },[])
+
+    // console.log(active)
+
     let navigate = useNavigate();
 
     const dashboardNav = (e) => {
         e.preventDefault()
         navigate("/dashboard")
+
+    
+
+        // setActive({...active, dashboard:true, orders:false, products:false, subscribers:false})
     }
 
     const orderNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/orders")
+
+        // const updatedState = {
+        //     ...active,
+        //     dashboard:false,
+        //      orders:true,
+        //       products:false, 
+        //       subscribers:false
+        // }
+        // setActive(updatedState)
     }
 
     const productNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/product")
+
+        // setActive({...active, dashboard:false, orders:false, products:true, subscribers:false})
     }
 
     const subscriberNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/subscriber")
+
+        // setActive({...active, dashboard:false, orders:false, products:false, subscribers:true})
     }
 
     return(
@@ -36,26 +70,26 @@ const Dashboard = ({children}) => {
                 <div className="bg-white shadow-lg rounded-lg xl:mx-24 flex z-50">
                 <section className="bg-indigo-800 text-white basis-1/6 hidden lg:block">
                     <div className="flex py-3  text-center  cursor-pointer mx-3" onClick={dashboardNav}>
-                        <div className="bg-white text-indigo-800 flex p-3 w-full">
+                        <div className = {active.dashboard ? 'bg-white text-indigo-800 flex p-3 w-full ' : ' hover:text-indigo-800 text-white flex hover:bg-white p-3 w-full'}>
                             <FontAwesomeIcon icon={faDashboard} className="mx-4 text-2xl"/>
                             <h1>Dashboard</h1>
                         </div>
                     </div>
                     <div className="flex py-3 text-center  cursor-pointer mx-3">
-                        <div className="flex p-3 w-full hover:bg-white hover:text-indigo-800 " onClick={orderNav}>
+                        <div className={active.orders ? 'flex p-3 w-full bg-white text-indigo-800' : 'flex p-3 w-full hover:bg-white hover:text-indigo-800' } onClick={orderNav}>
                             <FontAwesomeIcon icon={faBagShopping} className="mx-4 text-2xl"/>
                             <h1 className="">Orders</h1>
                             <div className="bg-red-400 px-2 mx-2 text-lg rounded-full text-white">3</div>
                         </div>
                     </div>
                     <div className="flex py-3  text-center  cursor-pointer mx-3">
-                        <div className="flex p-3 w-full hover:bg-white hover:text-indigo-800" onClick={productNav}>
+                        <div className={active.products? 'flex p-3 w-full bg-white text-indigo-800' : 'flex p-3 w-full hover:bg-white hover:text-indigo-800' } onClick={productNav}>
                             <FontAwesomeIcon icon={faGift} className="mx-4 text-2xl"/>
                             <h1>Products</h1>
                         </div>
                     </div>
                     <div className="flex py-3   cursor-pointer mx-3">
-                        <div className="flex p-3 w-full hover:bg-white hover:text-indigo-800" onClick={subscriberNav}>
+                        <div className={active.subscribers ? 'flex p-3 w-full bg-white text-indigo-800' : 'flex p-3 w-full hover:bg-white hover:text-indigo-800' } onClick={subscriberNav}>
                             <FontAwesomeIcon icon={faMessage} className="mx-4 text-2xl hover:bg-white hover:text-indigo-800"/>
                             <h1>Subscribers</h1>
                         </div>

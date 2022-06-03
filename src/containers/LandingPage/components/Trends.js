@@ -1,7 +1,15 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { useNavigate  } from "react-router-dom";
 
 const Trends = () => {
+    let navigate = useNavigate();
+
+    const itemInfo = () => {
+        console.log('psis')
+        navigate("/shopTrend")
+    }
+
     return (
         <>
             <div className="text-center my-6" style={{color:'#002365'}}>
@@ -76,7 +84,7 @@ const Trends = () => {
                     </div>
                 </div>
             </Carousel>
-            <div className="w-64 h-16 my-12 bg-red-500 text-white mx-auto rounded-md cursor-pointer" style={{backgroundColor:'#002365'}}>
+            <div className="w-64 h-16 my-12 bg-red-500 text-white mx-auto rounded-md cursor-pointer" style={{backgroundColor:'#002365'}} onClick={itemInfo}>
                 <p className="text-center text-2xl pt-3">Shop Trends</p>
             </div>
         </>

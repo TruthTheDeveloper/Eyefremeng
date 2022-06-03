@@ -1,5 +1,6 @@
 import Form from "./components/Form";
 import LensForm from "./components/LensForm";
+import Item from "../../components/admin/Item";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 //Icons
@@ -57,42 +58,12 @@ const PrescriptionForm = () => {
             <div >
                 <h1 className="ml-6 mt-8 md:ml-0 md:text-center text-2xl font-semibold">Related Product</h1>
                 <div className="md:grid md:grid-cols-2 lg:grid-cols-3">
-                    <div className="text-center cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
-                    <div className="text-center cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
-                    <div className="text-center cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
-                    <div className="text-center cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
-                    <div className="text-center hidden lg:block cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
-                    <div className="text-center hidden lg:block cursor-pointer">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
-                        <p className="text-indigo-800  text-2xl font-semibold my-6">#15,000.00</p>
-                    </div>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
                 </div>
             </div>
         </section>
