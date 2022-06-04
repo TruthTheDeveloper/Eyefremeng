@@ -3,10 +3,11 @@ import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faDashboard } from '@fortawesome/free-solid-svg-icons';
+import { faClose} from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate  } from "react-router-dom";
 
-const RightSideDrawer = () => {
+const RightSideDrawer = ({open, close}) => {
     let navigate = useNavigate();
 
     const dashboardNav = (e) => {
@@ -31,9 +32,10 @@ const RightSideDrawer = () => {
 
     return(
         <>
-            <section className="fixed top-0 left-0 h-screen  w-full z-40  lg:hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}}>
+            {open ? <section className="fixed top-0 left-0 h-screen  w-full z-40 rsd_anime  lg:hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}}>
                 <div className=" shadow-lg rounded-lg h-full flex z-50">
                     <section className="bg-indigo-800 text-white basis-1/6   lg:hidden mt-14 ">
+                        <FontAwesomeIcon icon={faClose} className="ml-48 mb-8  text-white text-2xl mx-3 mt-3" onClick={close}/>
                         <div className="flex py-3  text-center  cursor-pointer mx-3" onClick={dashboardNav}>
                             <div className="bg-white text-indigo-800 flex p-3 w-full">
                                 <FontAwesomeIcon icon={faDashboard} className="mx-4  text-2xl"/>
@@ -61,7 +63,7 @@ const RightSideDrawer = () => {
                         </div>
                     </section>
                 </div>
-            </section>
+            </section>: null}
         </>
     )
 }
