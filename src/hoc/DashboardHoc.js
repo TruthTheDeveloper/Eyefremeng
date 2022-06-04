@@ -4,12 +4,12 @@ import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faDashboard } from '@fortawesome/free-solid-svg-icons';
 
-import { useNavigate  } from "react-router-dom";
+import { useNavigate, Outlet  } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
 
-const Dashboard = ({children}) => {
+const DashboardHoc = ({children}) => {
 
     const [active, setActive] = useState({
         dashboard:true,
@@ -19,11 +19,6 @@ const Dashboard = ({children}) => {
 
     })
 
-    useEffect(() => {
-        console.log('jsjsjs')
-    },[])
-
-    // console.log(active)
 
     let navigate = useNavigate();
 
@@ -33,35 +28,35 @@ const Dashboard = ({children}) => {
 
     
 
-        // setActive({...active, dashboard:true, orders:false, products:false, subscribers:false})
+        setActive({...active, dashboard:true, orders:false, products:false, subscribers:false})
     }
 
     const orderNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/orders")
 
-        // const updatedState = {
-        //     ...active,
-        //     dashboard:false,
-        //      orders:true,
-        //       products:false, 
-        //       subscribers:false
-        // }
-        // setActive(updatedState)
+        const updatedState = {
+            ...active,
+            dashboard:false,
+             orders:true,
+              products:false, 
+              subscribers:false
+        }
+        setActive(updatedState)
     }
 
     const productNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/product")
 
-        // setActive({...active, dashboard:false, orders:false, products:true, subscribers:false})
+        setActive({...active, dashboard:false, orders:false, products:true, subscribers:false})
     }
 
     const subscriberNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/subscriber")
 
-        // setActive({...active, dashboard:false, orders:false, products:false, subscribers:true})
+        setActive({...active, dashboard:false, orders:false, products:false, subscribers:true})
     }
 
     return(
@@ -95,10 +90,10 @@ const Dashboard = ({children}) => {
                         </div>
                     </div>
                 </section>
-                {children}
+                <Outlet/>
             </div>
         </section>
     )
 
 }
-export default Dashboard;
+export default DashboardHoc;

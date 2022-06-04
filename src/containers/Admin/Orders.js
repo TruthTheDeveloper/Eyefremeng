@@ -1,5 +1,6 @@
-import DashboardHoc from '../../hoc/Dashboard';
 import BuyerDetail from '../../components/admin/BuyerDetail';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate  } from "react-router-dom";
 
 const Orders = () => {
@@ -11,8 +12,11 @@ const Orders = () => {
     }
     
     return(
-        <DashboardHoc>
+       
             <section className="w-full overflow-x-auto  ">
+                <div className="md:mx-12 mx-5 my-8">
+                    <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
+                </div>
                 <div className="grid grid-cols-7 justify-center my-6 text-center shadow-md border mx-4 rounded-lg w-[68rem]">
                     <div className=" font-semibold p-2">
                         Full Name
@@ -108,7 +112,6 @@ const Orders = () => {
                 </div>
                 <BuyerDetail/>
                 </section>
-        </DashboardHoc>
     )
 }
 

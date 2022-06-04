@@ -5,7 +5,7 @@ import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-import DashboardHoc from '../../hoc/Dashboard';
+// import DashboardHoc from '../../hoc/DashboardHoc';
 import RightSideDrawer from "../../components/admin/RightSideDrawer";
 
 
@@ -13,11 +13,10 @@ import RightSideDrawer from "../../components/admin/RightSideDrawer";
 const Dashboard = () => {
 
     return(
-        <DashboardHoc>
             
             <section className="w-full">
                 <div className="md:mx-12 mx-5 my-8">
-                    <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl hidden"/>
+                    <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
                 </div>
                 <div className=" md:grid lg:mx-0 lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 md:grid-rows-2">
                     <div className="border-2 mx-auto  xl:mx-4 w-72 my-12 p-5 shadow-lg rounded-lg cursor-pointer">
@@ -49,7 +48,6 @@ const Dashboard = () => {
                 </div>
                 {/* <RightSideDrawer/> */}
             </section>
-        </DashboardHoc>
             
     )
 

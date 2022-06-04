@@ -29,45 +29,51 @@ import Orders from './containers/Admin/Orders';
 import Product from './containers/Admin/Product';
 import Subscriber from './containers/Admin/Subscriber';
 import UpdateProduct from './containers/Admin/UpdateProduct';
+import DashboardHoc from './hoc/DashboardHoc'
 
 import { Routes, Route} from "react-router-dom";
 
 const App = () => {
 
   return( 
-    <Layout>
-      <Routes>
-        <Route path="/" element={<LandingPage/>}/>
-        <Route path="/womencart" element={<WomenCart />} />
-        <Route path="/mencart" element={<MenCart />} />
-        <Route path="/prescriptionForm" element={<PrescriptionForm/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/checkoutForm" element={<CheckoutForm/>} />
-        <Route path="/shipmentform" element={<ShipmentForm/>} />
-        <Route path="/shopTrend" element={<ShopTrend/>}/>
 
-        {/* Tips and Link Route */}
-        <Route path="/faceshape" element={<FaceShape/>} />
-        <Route path="/framesize" element={<FrameSize/>} />
-        <Route path="/pd" element={<Pd/>} />
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<LandingPage/>}/>
+            <Route path="womencart" element={<WomenCart />} />
+            <Route path="mencart" element={<MenCart />} />
+            <Route path="prescriptionForm" element={<PrescriptionForm/>} />
+            <Route path="cart" element={<Cart/>} />
+            <Route path="checkoutForm" element={<CheckoutForm/>} />
+            <Route path="shipmentform" element={<ShipmentForm/>} />
+            <Route path="shopTrend" element={<ShopTrend/>}/>
 
-        {/* About US */}
-        <Route path="/contactus" element={<ContactUs/>} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
-        <Route path="/returnexchange" element={<ReturnExchange/>} />
-        <Route path="/termsuse" element={<TermsUse/>} />
+            {/* Tips and Link Route */}
+            <Route path="faceshape" element={<FaceShape/>} />
+            <Route path="framesize" element={<FrameSize/>} />
+            <Route path="pd" element={<Pd/>} />
 
-        {/*admin */}
-        <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/dashboard/addProduct" element={<AddProduct/>}/>
-        <Route path="/dashboard/orderedProduct" element={<OrderedProduct/>}/>
-        <Route path="/dashboard/orders" element={<Orders/>} />
-        <Route path="/dashboard/product" element={<Product/>}/>
-        <Route path="/dashboard/subscriber" element={<Subscriber/>}/>
-        <Route path="/dashboard/updateproduct" element={<UpdateProduct/>}/>
-      </Routes>
-    </Layout>
+            {/* About US */}
+            <Route path="contactus" element={<ContactUs/>} />
+            <Route path="privacypolicy" element={<PrivacyPolicy/>} />
+            <Route path="returnexchange" element={<ReturnExchange/>} />
+            <Route path="termsuse" element={<TermsUse/>} />
+
+            {/*admin */}
+            <Route path="/" element={<DashboardHoc/>}>
+              <Route path="dashboard" element={<Dashboard/>}/>
+              <Route path="dashboard/addProduct" element={<AddProduct/>}/>
+              <Route path="dashboard/orderedProduct" element={<OrderedProduct/>}/>
+              <Route path="dashboard/orders" element={<Orders/>} />
+              <Route path="dashboard/product" element={<Product/>}/>
+              <Route path="dashboard/subscriber" element={<Subscriber/>}/>
+              <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
+            </Route>
+          </Route>
+          
+        </Routes>
   )
+  
 }
 
 export default App;

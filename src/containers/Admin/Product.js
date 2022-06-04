@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
-import DashboardHoc from '../../hoc/Dashboard';
 import Item from '../../components/admin/Item';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate  } from "react-router-dom";
+
 
 const Product = () => {
 
@@ -20,8 +21,10 @@ const Product = () => {
 
 
     return(
-        <DashboardHoc>
             <section className="md:pr-5">
+                <div className="md:mx-12 mx-5 my-8">
+                    <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
+                </div>
                 <button className="bg-indigo-800 py-2 rounded-md px-6 text-white  m-5 mx-auto md:mx-0  md:ml-auto text-center flex" onClick={addProductHandler}>Add Product <FontAwesomeIcon icon={faAdd} className="p-1 mx-1"/></button>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 ">
                     <div className="text-center cursor-pointer border hover:shadow-lg m-5" onClick={updateProductHandler}>
@@ -54,7 +57,6 @@ const Product = () => {
                         </div>
                     </div>
             </section>
-        </DashboardHoc>
     )
 
 }
