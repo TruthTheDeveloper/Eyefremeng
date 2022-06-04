@@ -31,9 +31,16 @@ import Subscriber from './containers/Admin/Subscriber';
 import UpdateProduct from './containers/Admin/UpdateProduct';
 import DashboardHoc from './hoc/DashboardHoc'
 
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 const App = () => {
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return( 
 
