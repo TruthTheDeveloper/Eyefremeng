@@ -42,7 +42,7 @@ const Footer = () => {
                     <h2 className="text-2xl font-semibold my-4">TIPS AND SELF-HELP</h2>
                     <ul className=" font-semibold">
                         <li>
-                            <NavLink to="/faceshape"  activeStyle={{ color: 'red' }} exact='true'>
+                            <NavLink to="/faceshape"  yle={{ color: 'red' }} exact='true'>
                                 WHAT'S MY FACE SHAPE?
                             </NavLink>
                         </li>

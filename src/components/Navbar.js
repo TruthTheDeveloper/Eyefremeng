@@ -46,12 +46,12 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li className="mx-4">
-                            <NavLink to="/womencart" className = {(navData) => `${navData.isActive ? "bg-active text-black" : "text-inActive"}`}  exact>
+                            <NavLink to="/womencart" className = {(navData) => `${navData.isActive ? "bg-active text-black" : "text-inActive"}`}  exact="true">
                                 Women's Glasses
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="mx-4"  to="/" exact>
+                            <NavLink className="mx-4"  to="/" exact="true">
                                 Children Glasses
                             </NavLink>
                         </li>
