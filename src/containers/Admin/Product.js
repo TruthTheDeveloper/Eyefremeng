@@ -21,7 +21,7 @@ const Product = () => {
 
 
     return(
-            <section className="md:pr-5">
+            <section className="md:pr-5 h-[35rem]  overflow-y-auto">
                 <div className="md:mx-12 mx-5 my-8">
                     <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
                 </div>

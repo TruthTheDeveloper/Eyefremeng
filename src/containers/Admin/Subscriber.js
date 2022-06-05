@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const Subscribers = () => {
 
     return (
-            <section className="w-full overflow-x-auto  ">
+            <section className="w-full overflow-x-auto  h-[35rem]  overflow-y-auto">
                 <div className="md:mx-12 mx-5 my-8">
                     <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
                 </div>

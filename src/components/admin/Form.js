@@ -21,16 +21,25 @@ const Form = ({formText}) => {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [image, setImage] = useState(null);
+    const [description, setDescription] = useState('')
+    const [framesize, setFramesize] = useState('')
+    const [frontMaterial, setFrontMaterial] = useState('')
+    const [lensWidth, setlensWidth] = useState('')
+    const [lensHeight, setLensHeight] = useState('')
+    const [bridgeWidth, setbridgeWidth] = useState('')
+    const [templeWidth, setTempleWidth] = useState('')
+    const [rimType, setRimType] = useState('')
+    const [shape, setShape] = useState('')
 
 
 
     const addProductSubmitHandler = async(e) => {
         e.preventDefault();
         // console.log(productName, productPrice, image, category)
-        const file = await uploadAFile(image) 
+        const file = image ? await uploadAFile(image) : null
 
        
-        if(productName === '' || productPrice === null || image === null || category === null){
+        if(productName === '' || productPrice === null || image === null || category === null || description === '', framesize === '', frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === '', templeWidth === '', rimType === '', shape === ''){
             return;
         }
 
@@ -40,7 +49,17 @@ const Form = ({formText}) => {
             productName,
             productPrice,
             image:file,
-            category
+            category:category.value,
+            description,
+            framesize, 
+            frontMaterial,
+            lensWidth,
+            lensHeight, 
+            bridgeWidth,
+            templeWidth,
+            rimType,
+            shape
+
         }
 
         console.log(newProduct)
@@ -70,7 +89,11 @@ const Form = ({formText}) => {
             </div>
             <div className=" my-4">
                 <label>Product Price</label>
-                <input className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" type="number" onChange={(e) => setProductPrice(e.target.value)} value={productPrice}/>
+                <input className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" type="text" onChange={(e) => setProductPrice(e.target.value)} value={productPrice}/>
+            </div>
+            <div>
+                <label>Description</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setDescription(e.target.value)}/>
             </div>
             <div className=" my-4">
                 <label>Select Category</label>
@@ -80,6 +103,38 @@ const Form = ({formText}) => {
                     onChange={setCategory}
                     options={options}
                 />
+            </div>
+            <div>
+                <label>FrameSize</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFramesize(e.target.value)}/>
+            </div>
+            <div>
+                <label>Front Material</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFrontMaterial(e.target.value)}/>
+            </div>
+            <div>
+                <label>lens Width</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setlensWidth(e.target.value)}/>
+            </div>
+            <div>
+                <label>lens Height</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setLensHeight(e.target.value)}/>
+            </div>
+            <div>
+                <label>Bridge Width</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setbridgeWidth(e.target.value)}/>
+            </div>
+            <div>
+                <label>temple Width</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleWidth(e.target.value)}/>
+            </div>
+            <div>
+                <label>Rim Type</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setRimType(e.target.value)}/>
+            </div>
+            <div>
+                <label>Shape</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setShape(e.target.value)}/>
             </div>
             <div className=" my-4">
                 <label>Product Image</label>

@@ -60,7 +60,7 @@ const DashboardHoc = ({children}) => {
     }
 
     return(
-        <section className="py-24">
+        <section className="py-24 ">
             <h1 className="text-center md:text-2xl text-xl text-indigo-800">Welcome to the Admin Panel</h1>
                 <div className="bg-white shadow-lg rounded-lg xl:mx-24 flex z-50">
                 <section className="bg-indigo-800 text-white basis-1/6 hidden lg:block">

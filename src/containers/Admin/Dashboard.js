@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     return(
             
-            <section className="w-full">
+            <section className="w-full h-[35rem]  overflow-y-auto">
                 <div className="md:mx-12 mx-5 my-8" onClick={() => setOpenRightSideDrawer(true)}>
                     <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>
                 </div>
