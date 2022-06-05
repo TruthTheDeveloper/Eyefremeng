@@ -1,7 +1,11 @@
 import Form from '../../components/admin/Form';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+// import { useState } from 'react';
+
 const AddProduct = () => {
+
+    // const [] = useState()
 
     return(
             <section className="w-full my-6 mx-6">
