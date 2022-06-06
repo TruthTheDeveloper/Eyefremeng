@@ -12,11 +12,8 @@ const MenCart = () => {
 
     useEffect(() => {
 
-        const result = async () => {
-            return await ProductServices.getMenCart()
-        }
+        
 
-        setMenProduct(result())
 
         console.log(result())
 
@@ -24,17 +21,25 @@ const MenCart = () => {
         
     },[])
 
+    const result = async () => {
+        const data = await ProductServices.getMenCart()
+        setMenProduct(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+    }
+
     return(
         <section className="py-12 lg:py-16 lg:mx-24">
             <Banner/>
             <div className="grid md:grid-cols-2 lg:grid-cols-3">
-                {menProduct.map( item => (
-                    <Item
-                        name={item.productName}
-                        image={item.image}
-                        price={item.price}
-                    />
-                ))}
+                {menProduct.map((item, index ) => { 
+                    return(
+                        <Item
+                            key={index + 1 }
+                            name={item.productName}
+                            image={item.image}
+                            price={item.productPrice}
+                        />
+                    )
+                })}
             </div>
             <button className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg">Load More</button>
         </section>
