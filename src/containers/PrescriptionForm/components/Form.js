@@ -2,18 +2,42 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
+import { category } from '../options/options'; 
+import DoublePdForm from './DoublePdForm';
+import SinglePdForm from './SinglePdForm';
+// import RightOd from './singleVision/RightOd';
+// import LeftOd from './singleVision/LeftOd';
 
-const options = [
-    { value: 'Single Vision', label: 'Single Vision' },
-    { value: 'Bifocal(with line)', label: 'Bifocal(with line)' },
-    { value: 'Progressive', label: 'Progressive' },
-    { value: 'Non Prescription', label: 'Non Prescription' },
-    { value: 'Frames Only', label: 'Frames Only' },
-  ];
+import RightOd from './otherVision/RightOd';
+import LeftOd from './otherVision/LeftOd';
+import SingleVision from './SingleVision';
+import Bifocal from './Bifocal';
+import Progressive from './Progressive';
+import NonPrescriptional from './NonPrescriptional';
+import FramesOnly from './FramesOnly';
+
+
 
 
 const Form = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedPrescriptionOption, setSelectedPrescriptionOption] = useState({value:null});
+    
+    let formDetail = null
+
+
+    if(selectedPrescriptionOption.value === 'Single Vision'){
+        formDetail = <SingleVision/>
+    }else if(selectedPrescriptionOption.value === 'Bifocal(with line)'){
+        formDetail = <Bifocal/>
+    }else if(selectedPrescriptionOption.value === 'Progressive'){
+        formDetail = <Progressive/>
+    }else if(selectedPrescriptionOption.value === 'Non Prescription'){
+        formDetail = <NonPrescriptional/>
+
+    }else if(selectedPrescriptionOption.value === 'Frames Only'){
+        formDetail= <FramesOnly/>
+    }
+    
     
     return(
         <form className="mx-3 md:mx-16">
@@ -24,132 +48,13 @@ const Form = () => {
             <div className="px-3 border-2 py-3">
                 <Select
                     placeholder={"--- Please Select --"}
-                    defaultValue={selectedOption}
-                    onChange={setSelectedOption}
-                    options={options}
+                    defaultValue={selectedPrescriptionOption.value}
+                    onChange={setSelectedPrescriptionOption}
+                    options={category}
                 />
             </div>
-            <div className="my-4">
-                <div className="px-3 border-2 py-3">
-                    <p className="text-red-500 text-xs">*Please pay attention to the signs of the values, positive(+) and negative(-) values, positive(+) and negative(-) values are different</p>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="my-4">
-                        <h1>Right(OD)</h1>
-                    </div>
-                    <div className="flex justify-center">
-                        <div className="w-full">
-                            <label>Sphere</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                        <div className="mx-2 w-full">
-                            <label>Cylinder</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label>Axis</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="my-4">
-                        <h1>Left(OD)</h1>
-                    </div>
-                    <div className="flex justify-center">
-                        <div className="w-full">
-                            <label>Sphere</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                        <div className="mx-2 w-full">
-                            <label>Cylinder</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label>Axis</label>
-                            <Select
-                                placeholder={"0.00"}
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>PD*</label>
-                    <div>
-                        <Select
-                            placeholder={"--- Please Select ---"}
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={options}
-                        />
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="px-3 border-2 py-3">
-                        <div className="flex  border-b-2 py-3">
-                            <input type="checkbox" className="m-2"/>
-                            <label>i have 2 single PDS</label>
-                        </div>
-                        <div className="flex border-t-2 border-b-2 py-3">
-                            <input type="checkbox" className="m-2"/>
-                            <label>i have Prism <span className="text-red-500">+#3000</span></label>
-                        </div>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>Usage*</label>
-                    <div>
-                        <Select
-                            placeholder={"--- Please Select ---"}
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={options}
-                        />
-                    </div>
-                    <div className="my-8">
-                        <label className="">Remark*</label>
-                        <textarea className="h-24 w-full border-2 border-slate-400 outline-none my-2 rounded-sm p-2"/>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>Prescription Paper(Optional)</label><br/>
-                    <input type="file" className="my-3"/>
-                    <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
-                    <p className="text-red-500 text-xs">Max file size:16M</p>
-                    <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>
-                    <button className="my-6 border-2  py-2 px-6  rounded">
-                        Confirm
-                    </button>
-                </div>
-            </div>
+            {formDetail}
+            
         </form>
     )
 }

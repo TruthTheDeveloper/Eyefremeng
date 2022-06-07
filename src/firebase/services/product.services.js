@@ -8,7 +8,10 @@ import {
     deleteDoc,
     doc,
     query,
-    where 
+    where,
+    limit,
+    getDoc,
+    startAfter
 } from "firebase/firestore";
 
 const productCollectionRef = collection(db, "products");
@@ -34,24 +37,37 @@ class ProductDataService {
 
     getProduct = (id) => {
         const productDoc = doc(db, "products", id);
-        return getDocs(productDoc)
+        return getDoc(productDoc)
         
     };
 
-    getMenCart = () => {
-        const q = query(productCollectionRef, where('category',  "==",  "Men Cartegory"))
-        return getDocs(q)
+    getMenCart = (lastVisible) => {
+        if(lastVisible){
+            const q = query(productCollectionRef, where('category',  "==",  "Men Cartegory"), limit(9), startAfter(lastVisible))
+        
+            return getDocs(q)
+        }else{
+            const q = query(productCollectionRef, where('category',  "==",  "Men Cartegory"), limit(9))
+        
+            return getDocs(q)
+        }
     };
 
-    getWomenCart = () => {
-        const q = query(productCollectionRef, where('category', "==", "Women Cartegory"))
-        return getDocs(q)
+    getWomenCart = (lastVisible) => {
+        if(lastVisible){
+            const q = query(productCollectionRef, where('category', "==", "Women Category"), limit(9), startAfter(lastVisible))
+            return getDocs(q)
+        }else{
+            const q = query(productCollectionRef, where('category', "==", "Women Category"), limit(9))
+            return getDocs(q)
+        }
     };
 
     getChildrenCart = () => {
         const q =  query(productCollectionRef, where('category', "==", "Children Cartegory"))
         return getDocs(q)
     };
+
 }
 
 export default new ProductDataService();

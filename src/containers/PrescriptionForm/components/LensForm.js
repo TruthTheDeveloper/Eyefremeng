@@ -36,7 +36,7 @@ const LensForm = () => {
     }
 
     return(
-        <form className="mx-3 md:mx-16">
+        <form className="">
             <div className=" text-xl my-3 font-semibold bg-indigo-900 py-3 px-3">
                 <div className="flex">
                     <FontAwesomeIcon icon={faCircle} className="text-orange-500 mr-2 text-2xl"/>

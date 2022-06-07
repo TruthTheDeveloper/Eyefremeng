@@ -29,6 +29,7 @@ const Form = ({formText}) => {
     const [bridgeWidth, setbridgeWidth] = useState('')
     const [templeWidth, setTempleWidth] = useState('')
     const [rimType, setRimType] = useState('')
+    const [templeMaterial, setTempleMaterial] = useState('')
     const [shape, setShape] = useState('')
 
 
@@ -38,12 +39,12 @@ const Form = ({formText}) => {
         // console.log(productName, productPrice, image, category)
         const file = image ? await uploadAFile(image) : null
 
+
        
-        if(productName === '' || productPrice === null || image === null || category === null || description === '', framesize === '', frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === '', templeWidth === '', rimType === '', shape === ''){
+        if(productName === '' || productPrice === null || image === null || category === null || description === '', framesize === '', frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === '', templeWidth === '', rimType === '', shape === '', templeMaterial === ''){
             return;
         }
 
-        console.log(file, '----')
 
         const newProduct = {
             productName,
@@ -58,24 +59,33 @@ const Form = ({formText}) => {
             bridgeWidth,
             templeWidth,
             rimType,
-            shape
+            shape,
+            templeMaterial
 
         }
 
-        console.log(newProduct)
-
         try{
-
-                console.log('file')
-                await ProductDataService.addProduct(newProduct)
+            await ProductDataService.addProduct(newProduct)
         }catch(err){
             console.log(err)
         }
+
 
         setCategory('')
         setProductName('')
         setProductPrice('')
         setImage()
+        setDescription('')
+        setFramesize('')
+        setFrontMaterial('')
+        setlensWidth('')
+        setLensHeight('')
+        setbridgeWidth('')
+        setTempleWidth('')
+        setRimType('')
+        setShape('')
+        setTempleMaterial('')
+
         
     }
     
@@ -111,6 +121,10 @@ const Form = ({formText}) => {
             <div>
                 <label>Front Material</label>
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFrontMaterial(e.target.value)}/>
+            </div>
+            <div>
+                <label>Temple Material</label>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleMaterial(e.target.value)}/>
             </div>
             <div>
                 <label>lens Width</label>

@@ -1,5 +1,7 @@
+/* eslint-disable default-case */
 import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase-config';
+import {v4} from 'uuid'
 
 
 const fileStorage = storage
@@ -12,12 +14,14 @@ export const uploadAFile = async imageUri => {
 
   try {
 
-    const storageRef = ref(fileStorage, `media/${uploadUri.name + }`);
-    uploadBytes(storageRef, uploadUri).then((snapshot) => {
+    const storageRef = ref(fileStorage, `media/${uploadUri.name + v4()}`);
+    const result = uploadBytes(storageRef, uploadUri).then((snapshot) => {
         console.log('Uploaded a raw string!');
+        return storageRef
       });
 
-     const result =  getDownloadURL(storageRef)
+
+     return getDownloadURL(await result)
       .then((url) => {
         return url
         // Insert url into an <img> tag to "download"
@@ -35,17 +39,18 @@ export const uploadAFile = async imageUri => {
           case 'storage/canceled':
             // User canceled the upload
             break;
-    
+
           // ...
-    
+
           case 'storage/unknown':
             // Unknown error occurred, inspect the server response
             break;
         }
       });
 
-      return result
+     
 
+// 
     // const uploadTask = uploadBytesResumable(storageRef, uploadUri);
     
 

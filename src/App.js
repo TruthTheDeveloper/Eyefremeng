@@ -34,7 +34,14 @@ import DashboardHoc from './hoc/DashboardHoc'
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
+import { useState } from 'react';
+import AuthContext from './context/auth-context';
+
 const App = () => {
+
+  const [initialState, setInitialState] = useState({
+    id:''
+  })
 
   const { pathname } = useLocation();
 
@@ -42,14 +49,23 @@ const App = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+
+  const prescriptionForm = <AuthContext.Provider value={{initialState, setInitialState}}>
+      <PrescriptionForm/>
+  </AuthContext.Provider>
+
+  const menCart = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <MenCart/>
+  </AuthContext.Provider>
+
   return( 
 
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="womencart" element={<WomenCart />} />
-            <Route path="mencart" element={<MenCart />} />
-            <Route path="prescriptionForm" element={<PrescriptionForm/>} />
+            <Route path="mencart" element={menCart} />
+            <Route path="prescriptionForm" element={prescriptionForm} />
             <Route path="cart" element={<Cart/>} />
             <Route path="checkoutForm" element={<CheckoutForm/>} />
             <Route path="shipmentform" element={<ShipmentForm/>} />
