@@ -7,7 +7,7 @@ const MiniCartDetailPd = ({pdType,
     rightSphere,
     rightCylinder,
     rightAxis,
-    pD
+    pD,
 }) => {
 
     console.log(pdType, 'pd')

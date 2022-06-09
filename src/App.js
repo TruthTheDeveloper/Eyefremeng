@@ -40,7 +40,9 @@ import AuthContext from './context/auth-context';
 const App = () => {
 
   const [initialState, setInitialState] = useState({
-    items:[]
+    items:[],
+    subTotal:15000,
+    grandTotal:1500
   })
 
   const { pathname } = useLocation();

@@ -38,14 +38,15 @@ const NonPrescriptional = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Non Prescriptional',
             qty:qty,
-            unitPrice:'',
-            amount:'',
-            subTotal:'',
-            grandTotal:'',
+            unitPrice:5000,
+            amount:15000,
+            subTotal:15000,
+            grandTotal:15000,
             pdType:'single',
-            lenseType:lenseType
+            lenseType:lenseType,
+            twoSinglePd:null,
 
         }
         setInputValid(true)

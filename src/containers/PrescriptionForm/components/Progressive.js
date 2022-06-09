@@ -87,12 +87,12 @@ const Progressive = ({productName, productDescription, productPrice}) => {
             },
             usageOption:usageOption.value,
             qty:qty,
-            unitPrice:'',
-            amount:'',
-            subTotal:'',
-            grandTotal:'',
+            unitPrice:5000,
+            amount:15000,
+            subTotal:15000,
+            grandTotal:15000,
             pdType:'double',
-            twosinglePd:twoSinglePD,
+            twoSinglePd:twoSinglePD,
             lenseType:lenseType
 
         }
@@ -110,7 +110,7 @@ const Progressive = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
@@ -131,7 +131,7 @@ const Progressive = ({productName, productDescription, productPrice}) => {
             subTotal:'',
             grandTotal:'',
             pdType:'single',
-            twosinglePd:twoSinglePD,
+            twoSinglePd:twoSinglePD,
             lenseType:lenseType
 
         }

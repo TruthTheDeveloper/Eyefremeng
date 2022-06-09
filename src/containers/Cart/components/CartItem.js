@@ -16,14 +16,14 @@ const CartItem = () => {
                             productPrice={item.productPrice}
                             productDescription={item.productDescription}
                             prescriptionType={item.prescriptionType}
-                            leftSphere={item.leftOD.sphere}
-                            leftAxis={item.leftOD.axis}
-                            leftCylinder={item.leftOD.cylinder}
-                            leftAdd={item.leftOD.add}
-                            rightSphere={item.leftOD.sphere}
-                            rightAxis={item.rightOD.axis}
-                            rightCylinder={item.rightOD.cylinder}
-                            rightAdd={item.rightOD.add}
+                            leftSphere={item?.leftOD?.sphere}
+                            leftAxis={item?.leftOD?.axis}
+                            leftCylinder={item?.leftOD?.cylinder}
+                            leftAdd={item?.leftOD?.add}
+                            rightSphere={item?.leftOD?.sphere}
+                            rightAxis={item?.rightOD?.axis}
+                            rightCylinder={item?.rightOD?.cylinder}
+                            rightAdd={item?.rightOD?.add}
                             subTotal={item.subTotal}
                             unitPrice={item.unitPrice}
                             usageOption={item.usageOption}
@@ -31,7 +31,7 @@ const CartItem = () => {
                             pD={item.pD}
                             lenseType={item.lenseType}
                             qty={item.qty}
-                            twoSinglePd={item.twoSinglePd}
+                            Add={item.Add}
                         />
                     )
                 })}
@@ -49,11 +49,11 @@ const CartItem = () => {
                 <p className="border py-3 text-right font-semibold text-lg pr-2">Total</p>
                 <div className="flex justify-between border py-4 px-2">
                     <p>Subtotal</p>
-                    <p>$99.68</p>
+                    <p>#{initialState.subTotal}</p>
                 </div>
                 <div className="flex justify-between border py-4 px-2">
                     <p>GrandTotal</p>
-                    <p>$99.68</p>
+                    <p>#{initialState.grandTotal}</p>
                 </div>
                 <button className="border py-3 bg-slate-800 w-full text-orange-500">
                     <p>Proceed to Checkout</p>

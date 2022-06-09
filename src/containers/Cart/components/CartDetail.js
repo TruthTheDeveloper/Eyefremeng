@@ -26,10 +26,48 @@ const CartDetail = ({
     pdType,
     pD,
     qty,
-    twoSinglePd
+    Add
 }) => {
 
     const navigate = useNavigate();
+
+    console.log(Add, 'add')
+
+    let displayPrescriptionDetail = null
+
+    if(Add){
+        displayPrescriptionDetail = <MiniCartDetailAdd 
+        pdType={pdType} 
+        leftSphere={leftSphere}
+        leftAxis={leftAxis}
+        leftCylinder={leftCylinder}
+        
+        rightSphere={rightSphere}
+        rightCylinder={rightCylinder}
+        rightAxis={rightAxis}
+        pD={pD}
+        
+
+    />
+
+    }else if(Add === false){
+        displayPrescriptionDetail = <MiniCartDetailPd
+        pdType={pdType} 
+        leftSphere={leftSphere}
+        leftAxis={leftAxis}
+        leftCylinder={leftCylinder}
+        leftAdd={leftAdd}
+        
+        rightSphere={rightSphere}
+        rightCylinder={rightCylinder}
+        rightAxis={rightAxis}
+        rightAdd={rightAdd}
+        pD={pD}
+        />
+
+    }else{
+        displayPrescriptionDetail = null
+    }
     
     return(
             <>
@@ -55,31 +93,7 @@ const CartDetail = ({
                         </div>
                     </div>
                 </div>
-                {twoSinglePd ? <MiniCartDetailAdd 
-                    pdType={pdType} 
-                    leftSphere={leftSphere}
-                    leftAxis={leftAxis}
-                    leftCylinder={leftCylinder}
-                    
-                    rightSphere={rightSphere}
-                    rightCylinder={rightCylinder}
-                    rightAxis={rightAxis}
-                    pD={pD}
-                    
-
-                />: <MiniCartDetailPd
-                pdType={pdType} 
-                leftSphere={leftSphere}
-                leftAxis={leftAxis}
-                leftCylinder={leftCylinder}
-                leftAdd={leftAdd}
-                
-                rightSphere={rightSphere}
-                rightCylinder={rightCylinder}
-                rightAxis={rightAxis}
-                rightAdd={rightAdd}
-                pD={pD}
-                />}
+                {displayPrescriptionDetail}
                 <div className="">
                     <div className="grid grid-cols-3 font-semibold py-6 border text-center">
                         <div>
@@ -97,10 +111,10 @@ const CartDetail = ({
                             <p className="border-2 p-2 mx-4 text-center ">{qty}</p>
                         </div>
                         <div>
-                        <p className="text-indigo-800 font-semibold text-center my-2">#5,000</p>
+                        <p className="text-indigo-800 font-semibold text-center my-2">#{unitPrice}</p>
                         </div>
                         <div>
-                        <p className="text-orange-500 font-semibold text-center my-2">#15,000</p>
+                        <p className="text-orange-500 font-semibold text-center my-2">#{productPrice}</p>
                         </div>
                     </div>
                 </div>

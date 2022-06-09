@@ -19,14 +19,15 @@ const FramesOnly = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'FramesOnly',
             qty:qty,
-            unitPrice:'',
-            amount:'',
-            subTotal:'',
-            grandTotal:'',
+            unitPrice:5000,
+            amount:15000,
+            subTotal:15000,
+            grandTotal:15000,
             pdType:'single',
             singlePd:false,
+            twoSinglePd:null
 
         }
 

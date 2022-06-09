@@ -8,7 +8,7 @@ const MiniCartDetailAdd = ({
     rightCylinder,
     rightAxis,
     rightAdd,
-    pD
+    pD,
 }) => {
 
     return(
