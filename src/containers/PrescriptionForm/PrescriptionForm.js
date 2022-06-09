@@ -2,8 +2,9 @@ import Form from "./components/Form";
 import LensForm from "./components/LensForm";
 import Item from "../../components/admin/Item";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ProductServices from "../../firebase/services/product.services";
+import AuthContext from "../../context/auth-context";
 //Icons
 
 
@@ -12,10 +13,14 @@ const PrescriptionForm = () => {
     const [productDetail, setProductDetail] = useState({})
     const [relatedProduct, setRelatedProduct] = useState([])
 
+    
+
     useEffect(() => {
         getProductDetail()
         result()
     },[])
+
+
 
     const result = async () => {
         if(JSON.parse(localStorage.getItem('cart')) === 'men'){
@@ -53,7 +58,7 @@ const PrescriptionForm = () => {
                             <p className="text-indigo-800  text-2xl font-semibold my-6"># {productDetail.productPrice}</p>
                         </div>
                     </div>
-                    <Form/>
+                    <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.price}/>
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';//
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';//
@@ -6,16 +6,34 @@ import { useNavigate  } from "react-router-dom";
 
 import Collapse from "react-collapsible-wrapper";
 
-const LensForm = () => {
+const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler}) => {
     const [isOpenClear, setIsOpenClear] = useState(false);
     const [isOpenphotoChromic, setIsOpenphotoChromic] = useState(false);
     const [isOpenphotoPolarized, setIsOpenphotoPolarized] = useState(false);
+    const [isOpenAntiReflective, setIsOpenAntiReflective] = useState(false)
+
+    
+    const [lenseValidationError, setlenseValidationError] = useState(false)
     
     let navigate = useNavigate();
+
+    useEffect(() => {
+        if(inputValid && lenseType !== ''){
+            navigate("/cart")
+        }
+
+    },[inputValid, lenseType, navigate])
+
+    
     
     const clearButtonHandler= (e) => {
         e.preventDefault()
         setIsOpenClear(!isOpenClear)
+    }
+
+    const antiReflectiveButtonHandler = (e) => {
+        e.preventDefault()
+        setIsOpenAntiReflective(!isOpenAntiReflective)
     }
 
 
@@ -30,9 +48,17 @@ const LensForm = () => {
         setIsOpenphotoPolarized(!isOpenphotoPolarized)
     }
 
-    const CheckOut = (e) => {
+    const addToCart = (e) => {
         e.preventDefault()
-        navigate("/checkoutForm")
+        validateInput()
+        console.log(lenseType, inputValid, 'theirvalue')
+
+        if(inputValid && lenseType !== ''){
+            navigate("/cart")
+        }else if(lenseType === ''){
+            setlenseValidationError(true)
+        }
+        
     }
 
     return(
@@ -51,92 +77,87 @@ const LensForm = () => {
             </button>
             <Collapse isOpen={isOpenClear}>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Clear lense')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
-                    </label>
-                </div>
-                <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
-                    <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
-                    </label>
-                </div>
-                <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
-                    <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
-                    </label>
-                </div>
-                <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
-                    <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                        Clear lens
                     </label>
                 </div>
             </Collapse>
             </article>
             <article>
 
-            <button onClick={photoChromicButtonHandler} className="py-6 mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold ">PhotoChromic</button>
+            <button onClick={photoChromicButtonHandler} className="py-6 mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold ">PhotoChromic/anti reflective</button>
             <Collapse isOpen={isOpenphotoChromic}>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('PhotoChromic/ anti reflective lens')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                        PhotoChromic/ anti reflective lens
                     </label>
                 </div>
+            </Collapse>
+            </article>
+            <article>
+
+            <button onClick={antiReflectiveButtonHandler} className="py-6 mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold ">anti reflective</button>
+            <Collapse isOpen={isOpenAntiReflective}>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('anti reflective lens')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
-                    </label>
-                </div>
-                <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
-                    <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
-                    </label>
-                </div>
-                <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
-                    <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                         anti reflective lens
                     </label>
                 </div>
             </Collapse>
             </article>
 
             <article>
-            <button onClick={polarizedButtonHandler} className="py-6  mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold">Polarized</button>
+            <button onClick={polarizedButtonHandler} className="py-6  mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold">Tinted</button>
             <Collapse isOpen={isOpenphotoPolarized}>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('blue lense')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                        blue lense
                     </label>
                 </div>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense"  className="mx-2" onChange={() => lenseTypeHandler('gray lense')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                        gray lense
                     </label>
                 </div>
                 <div className="border-2 py-4">
-                    <input type="radio" className="mx-2"/>
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('pink lense')}/>
                     <label>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, 
+                       pink lense
+                    </label>
+                </div>
+                <div className="border-2 py-4">
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('brown lense')}/>
+                    <label>
+                       brown lense
+                    </label>
+                </div>
+                <div className="border-2 py-4">
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('yellow lense')}/>
+                    <label>
+                       yellow lense
+                    </label>
+                </div>
+                <div className="border-2 py-4">
+                    <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('blue block')}/>
+                    <label>
+                       blue block
                     </label>
                 </div>
             </Collapse>
             </article>
+            {lenseValidationError && <p className="text-red-500 text-sm font-semibold my-2">Please select one of the above field</p>}
             <div className="my-4">
                 <p className="my-8 text-2xl font-semibold text-indigo-800">#15,000</p>
                 <div className="flex">
-                    <button className="border py-1 px-4 lg:text-2xl font-semibold">-</button>
-                    <button className="border border-black py-1 px-4 lg:text-2xl mx-2">1</button>
-                    <button className="border py-1 px-4 lg:text-2xl font-semibold">+</button>
-                    <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={CheckOut}>
+                    <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={decrementQty}>-</button>
+                    <button className="border border-black py-1 px-4 lg:text-2xl mx-2">{qty}</button>
+                    <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={incrementQty}>+</button>
+                    <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={addToCart}>
                         <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
                         <p>Add to Cart</p>
                     </button>

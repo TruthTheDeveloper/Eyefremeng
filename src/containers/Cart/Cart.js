@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 const Cart = () => {
 
     return(
-        <section class="py-24">
+        <section className="py-24">
             {/* <EmptyCart/> */}
             <CartItem/>
         </section>

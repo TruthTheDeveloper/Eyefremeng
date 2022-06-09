@@ -1,13 +1,43 @@
-
-import CartDetail from './CartDetail'
+import {useContext, useState} from 'react';
+import CartDetail from './CartDetail';
+import AuthContext from './../../../context/auth-context';
 const CartItem = () => {
+    const {initialState, } = useContext(AuthContext)
+
 
     return(
         <div className="mx-4 md:mx-12 lg:grid grid-cols-3">
             <div className="col-span-2 xl:mx-12">
-                <CartDetail/>
-                <CartDetail/>
-                <CartDetail/>
+                {initialState.items.map((item, index) => {
+                    return(
+                        <CartDetail 
+                            key={index}
+                            productName={item.productName}
+                            productPrice={item.productPrice}
+                            productDescription={item.productDescription}
+                            prescriptionType={item.prescriptionType}
+                            leftSphere={item.leftOD.sphere}
+                            leftAxis={item.leftOD.axis}
+                            leftCylinder={item.leftOD.cylinder}
+                            leftAdd={item.leftOD.add}
+                            rightSphere={item.leftOD.sphere}
+                            rightAxis={item.rightOD.axis}
+                            rightCylinder={item.rightOD.cylinder}
+                            rightAdd={item.rightOD.add}
+                            subTotal={item.subTotal}
+                            unitPrice={item.unitPrice}
+                            usageOption={item.usageOption}
+                            pdType={item.pdType}
+                            pD={item.pD}
+                            lenseType={item.lenseType}
+                            qty={item.qty}
+                            twoSinglePd={item.twoSinglePd}
+                        />
+                    )
+                })}
+                
+                {/* <CartDetail/>
+                <CartDetail/> */}
             </div>
              <div className="my-12 lg:h-[28rem] lg:my-0 border p-3 xl:mx-12">
                 <div className="">

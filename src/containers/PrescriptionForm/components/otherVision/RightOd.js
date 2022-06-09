@@ -4,12 +4,17 @@ const RightOd = ({
     selectedRightOdOption,
     selectedRightAxisOption,
     selectedRightCylinderOption,
-    setSelectedRightAxisOdOption,
+    setSelectedRightAxisOption,
     setSelectedRightOdOption,
     rightOd,
     setSelectedRightCylinderOption,
-    leftCylinder,
-    rightAxis
+    rightCylinder,
+    rightAxis,
+
+    selectedRightOdOptionValidationError,
+    selectedRightAxisOptionValidationError,
+    selectedRightCylinderOptionValidationError,
+    selectedRightADDValidationError
     }) => {
 
         return(
@@ -22,6 +27,7 @@ const RightOd = ({
                         onChange={setSelectedRightOdOption}
                         options={rightOd}
                     />
+                    {selectedRightOdOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                 </div>
                 <div className="mx-2 w-full">
                     <label>Cylinder</label>
@@ -29,26 +35,29 @@ const RightOd = ({
                         placeholder={"0.00"}
                         defaultValue={selectedRightCylinderOption}
                         onChange={setSelectedRightCylinderOption}
-                        options={leftCylinder}
+                        options={rightCylinder}
                     />
+                    {selectedRightAxisOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                 </div>
                 <div className="mx-2 w-full">
                     <label>Axis</label>
                     <Select
                         placeholder={"0.00"}
                         defaultValue={selectedRightAxisOption}
-                        onChange={setSelectedRightAxisOdOption}
+                        onChange={setSelectedRightAxisOption}
                         options={rightAxis}
                     />
+                    {selectedRightCylinderOptionValidationError&& <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                 </div>
                 <div className="w-full">
                     <label>ADD</label>
                     <Select
                         placeholder={"0.00"}
                         defaultValue={selectedRightAxisOption}
-                        onChange={setSelectedRightAxisOdOption}
+                        onChange={setSelectedRightAxisOption}
                         options={rightAxis}
                     />
+                    {selectedRightADDValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                 </div>     
             </div>
         )

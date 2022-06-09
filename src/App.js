@@ -40,7 +40,7 @@ import AuthContext from './context/auth-context';
 const App = () => {
 
   const [initialState, setInitialState] = useState({
-    id:''
+    items:[]
   })
 
   const { pathname } = useLocation();
@@ -54,8 +54,8 @@ const App = () => {
       <PrescriptionForm/>
   </AuthContext.Provider>
 
-  const menCart = <AuthContext.Provider value={{initialState, setInitialState}}>
-    <MenCart/>
+  const cart = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <Cart/>
   </AuthContext.Provider>
 
   return( 
@@ -64,9 +64,9 @@ const App = () => {
           <Route path="/" element={<Layout/>}>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="womencart" element={<WomenCart />} />
-            <Route path="mencart" element={menCart} />
+            <Route path="mencart" element={<MenCart/>} />
             <Route path="prescriptionForm" element={prescriptionForm} />
-            <Route path="cart" element={<Cart/>} />
+            <Route path="cart" element={cart} />
             <Route path="checkoutForm" element={<CheckoutForm/>} />
             <Route path="shipmentform" element={<ShipmentForm/>} />
             <Route path="shopTrend" element={<ShopTrend/>}/>

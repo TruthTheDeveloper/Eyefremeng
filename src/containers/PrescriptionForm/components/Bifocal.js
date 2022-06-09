@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  useContext } from 'react';
 import Select from 'react-select';
 import { Pd,doublePD, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage, RightADD, LeftADD  } from '../options/options';
 import DoublePdForm from './DoublePdForm';
@@ -6,28 +6,206 @@ import SinglePdForm from './SinglePdForm';
 import RightOd from './otherVision/RightOd';
 import LeftOd from './otherVision/LeftOd';
 import LensForm from './LensForm';
+import AuthContext from '../../../context/auth-context';
 
-const Bifocal = () => {
-    const [selectedRightOdOption, setSelectedRightOdOption] = useState(null);
-    const [selectedRightAxisOption, setSelectedRightAxisOdOption] = useState(null);
-    const [selectedRightCylinderOption, setSelectedRightCylinderOption] = useState(null)
+const Bifocal = ({productName, productDescription, productPrice}) => {
+    const {initialState, } = useContext(AuthContext)
+    const [selectedRightOdOption, setSelectedRightOdOption] = useState({value:null});
+    const [selectedRightOdOptionValidationError, setSelectedRightOdOptionValidationError] = useState(false)
+
+    const [selectedRightAxisOption, setSelectedRightAxisOption] = useState({value:null});
+    const [selectedRightAxisOptionValidationError, setSelectedRightAxisOptionValidationError] = useState(false);
 
 
-    const [selectedLeftOdOption, setSelectedLeftOdOption] = useState(null);
-    const [selectedLeftAxisOption, setSelectedLeftAxisOdOption] = useState(null);
-    const [selectedLeftCylinderOption, setSelectedLeftCylinderOption] = useState(null)
+    const [selectedRightCylinderOption, setSelectedRightCylinderOption] = useState({value:null})
+    const [selectedRightCylinderOptionValidationError, setSelectedRightCylinderOptionValidationError] = useState(false)
 
 
-    const [singlePD, setSinglePd] = useState(null)
-    const [firstPd, setFirstPd] = useState(null)
-    const [secondPd, setSecondPd] = useState(null)
-    const [usageOption, setUsageOption] = useState(null)
+    const [selectedLeftOdOption, setSelectedLeftOdOption] = useState({value:null});
+    const [selectedLeftOdOptionValidationError, setSelectedLeftOdOptionValidationError] = useState(false);
 
-    const [selectedRightADD, setSelectedRightADD] = useState(null)
 
-    const [selectedLeftADD, setSelectedLeftADD] = useState(null)
+
+    const [selectedLeftAxisOption, setSelectedLeftAxisOdOption] = useState({value:null});
+    const [selectedLeftAxisOptionValidationError, setSelectedLeftAxisOdOptionValidationError] = useState(false);
+
+
+    const [selectedLeftCylinderOption, setSelectedLeftCylinderOption] = useState({value:null})
+    const [selectedLeftCylinderOptioValidationError, setSelectedLeftCylinderOptionValidationError] = useState(false)
+    
+
+    const [singlePD, setSinglePd] = useState({value:null})
+    const [singlePDValidationError, setSinglePdValidationError] = useState(false)
+
+    const [firstPd, setFirstPd] = useState({value:null})
+    const [firstPdValidationError, setFirstPdValidationError] = useState(false)
+
+    const [secondPd, setSecondPd] = useState({value:null})
+    const [secondPdValidationError, setSecondPdValidationError] = useState(false)
+
+
+    const [usageOption, setUsageOption] = useState({value:null})
+    const [usageOptionValidationError, setUsageOptionValidationError] = useState(false)
+
+    const [selectedRightADD, setSelectedRightADD] = useState({value:null})
+    const [selectedRightADDValidationError, setSelectedRightADDValidationError] = useState(false)
+
+    const [selectedLeftADD, setSelectedLeftADD] = useState({value:null})
+    const [selectedLeftADDValidationError, setSelectedLeftADDValidationError] = useState(false)
 
     const [twoSinglePD, setTwoSinglePd] = useState(false)
+
+    const [inputValid, setInputValid] = useState(false)
+    const [qty, setQty] = useState(1)
+
+    const [lenseType, setlensType] = useState('')
+
+
+
+    const addToCartTwoPD = () => {
+        const prescription = {
+            id:'',
+            productName:productName,
+            productDescription:productDescription,
+            productPrice:productPrice,
+            prescriptionType:'Single Vision',
+            rightOD:{
+            sphere:selectedRightOdOption.value,
+            cylinder:selectedRightCylinderOption.value,
+            axis:selectedRightAxisOption.value,
+            add:''
+            },
+            leftOD:{
+            sphere:selectedLeftAxisOption.value,
+            cylinder:selectedLeftCylinderOption.value,
+            axis:selectedLeftAxisOption.value,
+            add:''
+            },
+            pD:{
+            first:firstPd.value,
+            second:secondPd.value
+            },
+            usageOption:usageOption.value,
+            qty:qty,
+            unitPrice:'',
+            amount:'',
+            subTotal:'',
+            grandTotal:'',
+            pdType:'double',
+            twosinglePd:twoSinglePD,
+            lenseType:lenseType
+
+        }
+
+        setInputValid(true)
+
+        initialState.items.push(prescription)
+
+    }
+
+
+    const addToCartOnePD = () => {
+        const prescription = {
+            id:'',
+            productName:productName,
+            productDescription:productDescription,
+            productPrice:productPrice,
+            prescriptionType:'Single Vision',
+            rightOD:{
+            sphere:selectedRightOdOption.value,
+            cylinder:selectedRightCylinderOption.value,
+            axis:selectedRightAxisOption.value,
+            add:''
+            },
+            leftOD:{
+            sphere:selectedLeftAxisOption.value,
+            cylinder:selectedLeftCylinderOption.value,
+            axis:selectedLeftAxisOption.value,
+            add:''
+            },
+            pD:singlePD.value,
+            usageOption:usageOption.value,
+            qty:qty,
+            unitPrice:'',
+            amount:'',
+            subTotal:'',
+            grandTotal:'',
+            pdType:'single',
+            twosinglePd:twoSinglePD,
+            lenseType:lenseType
+
+        }
+         setInputValid(true)
+
+        initialState.items.push(prescription)
+
+    }
+
+
+    const validateInput = () => {
+        selectedRightOdOption.value === null && setSelectedRightOdOptionValidationError(true)
+        selectedRightAxisOption.value === null && setSelectedRightAxisOptionValidationError(true)
+        selectedRightCylinderOption.value === null && setSelectedRightCylinderOptionValidationError(true)
+        selectedLeftOdOption.value === null && setSelectedLeftOdOptionValidationError(true)
+        selectedLeftAxisOption.value === null && setSelectedLeftAxisOdOptionValidationError(true)
+        selectedLeftCylinderOption.value === null && setSelectedLeftCylinderOptionValidationError(true)
+        singlePD.value === null && setSinglePdValidationError(true)
+        firstPd.value === null && setFirstPdValidationError(true)
+        secondPd.value === null && setSecondPdValidationError(true)
+        usageOption.value === null && setUsageOptionValidationError(true)
+        selectedRightADD.value === null && setSelectedRightADDValidationError(true)
+        selectedLeftADD.value === null && setSelectedLeftADDValidationError(true)
+
+        if(twoSinglePD === true){
+            selectedRightOdOption.value !== null
+            && selectedRightAxisOption.value !== null
+            && selectedRightCylinderOption.value !== null
+            && selectedLeftOdOption.value !== null
+            && selectedLeftAxisOption.value !== null
+            && selectedLeftCylinderOption.value !== null
+            && selectedRightADD.value !== null
+            && selectedLeftADD.value !== null
+            && firstPd.value !== null
+            && secondPd.value !== null
+            && usageOption.value !== null
+            && addToCartTwoPD()
+            
+        }else{
+            selectedRightOdOption.value !== null
+            && selectedRightAxisOption.value !== null
+            && selectedRightCylinderOption.value !== null
+            && selectedLeftOdOption.value !== null
+            && selectedLeftAxisOption.value !== null
+            && selectedLeftCylinderOption.value !== null
+            && selectedRightADD.value !== null
+            && selectedLeftADD.value !== null
+            && singlePD.value !== null
+            && usageOption.value !== null
+            && addToCartOnePD()
+            
+        }
+
+
+    }
+
+    const incrementQty = (e) => {
+        e.preventDefault()
+        setQty(prev => prev + 1)
+
+    }
+
+    const decrementQty = (e) => {
+        e.preventDefault()
+
+        if(qty > 1){
+            setQty(prev => prev-1)
+        }
+
+    }
+
+    const lenseTypeHandler = (select) => {
+        setlensType(select)
+    }
 
     return(
         <>
@@ -39,18 +217,28 @@ const Bifocal = () => {
                     <div className="my-4">
                         <h1>Right(OD)</h1>
                     </div>
-                    <RightOd selectedRightOdOption={selectedRightOdOption}
-                        selectedRightAxisOption={selectedRightAxisOption}
-                        selectedRightCylinderOption={selectedRightCylinderOption}
-                        setSelectedRightAxisOdOption={setSelectedRightAxisOdOption}
-                        setSelectedRightOdOption={setSelectedRightOdOption}
-                        rightOd={rightOd}
-                        setSelectedRightCylinderOption={setSelectedRightCylinderOption}
-                        rightCylinder={rightCylinder}
-                        rightAxis={rightAxis}
-                        rightADD={RightADD}
-                        selectedRightADD={selectedRightADD}
-                        setSelectedRightADD={setSelectedRightADD}
+                    <RightOd selectedRightOdOption={selectedRightOdOption.value}
+                            selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
+
+                            selectedRightAxisOption={selectedRightAxisOption.value}
+                            selectedRightAxisOptionValidationError={selectedRightAxisOptionValidationError}
+
+                            selectedRightCylinderOption={selectedRightCylinderOption.value}
+                            selectedRightCylinderOptionValidationError={selectedRightCylinderOptionValidationError}
+
+                            setSelectedRightAxisOption={setSelectedRightAxisOption}
+                            setSelectedRightOdOption={setSelectedRightOdOption}
+                            setSelectedRightCylinderOption={setSelectedRightCylinderOption}
+
+                            rightOd={rightOd}
+                            rightCylinder={rightCylinder}
+                            rightAxis={rightAxis}
+                            rightADD={RightADD}
+
+                            selectedRightADD={selectedRightADD}
+                            selectedRightADDValidationError={selectedRightADDValidationError}
+
+                            setSelectedRightADD={setSelectedRightADD}
 
                         />
                 </div>
@@ -58,24 +246,49 @@ const Bifocal = () => {
                     <div className="my-4">
                         <h1>Left(OD)</h1>
                     </div>
-                    <LeftOd selectedLeftOdOption={selectedLeftOdOption}
-                        selectedLeftAxisOption={selectedLeftAxisOption}
-                        selectedLeftCylinderOption={selectedLeftCylinderOption}
-                        setSelectedLeftAxisOdOption={setSelectedLeftAxisOdOption}
-                        setSelectedLeftOdOption={setSelectedLeftOdOption}
-                        leftOd={leftOd}
-                        setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
-                        leftCylinder={leftCylinder}
-                        leftAxis={leftAxis}
-                        leftADD={LeftADD}
-                        selectedLeftADD={selectedLeftADD}
-                        setSelectedLeftADD={setSelectedLeftADD}
+                    <LeftOd selectedLeftOdOption={selectedLeftOdOption.value}
+                            selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
+
+                            selectedLeftAxisOption={selectedLeftAxisOption.value}
+                            selectedLeftAxisOptionValidationError={selectedLeftAxisOptionValidationError}
+
+                            selectedLeftCylinderOption={selectedLeftCylinderOption.value}
+                            selectedLeftCylinderOptioValidationError={selectedLeftCylinderOptioValidationError}
+
+                            setSelectedLeftAxisOdOption={setSelectedLeftAxisOdOption}
+                            setSelectedLeftOdOption={setSelectedLeftOdOption}
+                            setSelectedLeftADD={setSelectedLeftADD}
+
+                            leftOd={leftOd}
+                            setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
+                            leftCylinder={leftCylinder}
+                            leftAxis={leftAxis}
+                            leftADD={LeftADD}
+
+                            selectedLeftADD={selectedLeftADD}
+                            selectedLeftADDValidationError={selectedLeftADDValidationError}
                         
                         />
                 </div>
                 <div className="px-3 border-2 py-3">
                     <label>PD*</label>
-                    {twoSinglePD ? <DoublePdForm firstPd={firstPd} secondPd={secondPd} setFirstPd={setFirstPd} setSecondPd={setSecondPd} options={doublePD} /> : <SinglePdForm defaultValue={singlePD} options={Pd} onChange={setSinglePd}/>}
+                    {twoSinglePD ? <DoublePdForm 
+                                    firstPd={firstPd.value} 
+                                    firstPdValidationError={firstPdValidationError}
+
+                                    secondPd={secondPd.value}
+                                    secondPdValidationError={secondPdValidationError}
+
+                                    setFirstPd={setFirstPd}
+                                    setSecondPd={setSecondPd} 
+                                    options={doublePD} /> : 
+
+                                    <SinglePdForm 
+                                    singlePD={singlePD.value}
+                                    singlePDValidationError={singlePDValidationError}
+                                    options={Pd} 
+                                    onChange={setSinglePd}
+                    />}
                 </div>
                 <div className="px-3 border-2 py-3">
                     <div className="px-3 border-2 py-3">
@@ -90,10 +303,11 @@ const Bifocal = () => {
                     <div>
                         <Select
                             placeholder={"--- Please Select ---"}
-                            defaultValue={usageOption}
+                            defaultValue={usageOption.value}
                             onChange={setUsageOption}
                             options={usage}
                         />
+                        {usageOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                     </div>
                     <div className="my-8">
                         <label className="">Remark*</label>
@@ -111,7 +325,7 @@ const Bifocal = () => {
                     </button>
                 </div>
             </div>
-            <LensForm/>
+            <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler}/>
         </>
     )
 

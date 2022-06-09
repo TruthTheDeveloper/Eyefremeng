@@ -1,7 +1,15 @@
 import Select from 'react-select';
 
 
-const DoublePdForm = ({firstPd, secondPd, setFirstPd, setSecondPd, options}) => {
+const DoublePdForm = ({
+        firstPd, 
+        secondPd, 
+        setFirstPd,
+        setSecondPd,
+        options,
+        firstPdValidationError,
+        secondPdValidationError
+    }) => {
 
     return(
         <div className="md:flex justify-between">
@@ -12,6 +20,7 @@ const DoublePdForm = ({firstPd, secondPd, setFirstPd, setSecondPd, options}) => 
                     onChange={setFirstPd}
                     options={options}
                 />
+                {firstPdValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
             <div className="w-64">
                 <Select
@@ -20,6 +29,7 @@ const DoublePdForm = ({firstPd, secondPd, setFirstPd, setSecondPd, options}) => 
                     onChange={setSecondPd}
                     options={options}
                 />
+                {secondPdValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
         </div>
     )

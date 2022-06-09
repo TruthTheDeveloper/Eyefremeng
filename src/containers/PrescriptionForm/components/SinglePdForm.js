@@ -1,14 +1,21 @@
 import Select from 'react-select';
-const SinglePdForm = ({defaultValue, onChange, options}) => {
+
+const SinglePdForm = ({
+    singlePD,
+    onChange,
+    options,
+    singlePDValidationError
+}) => {
 
         return(
             <div className="">
                 <Select
                     placeholder={"--- Please Select ---"}
-                    defaultValue={defaultValue}
+                    defaultValue={singlePD}
                     onChange={onChange}
                     options={options}
                 />
+                {singlePDValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
         )
 }

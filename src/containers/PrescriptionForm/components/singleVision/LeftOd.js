@@ -8,7 +8,12 @@ const LeftOd = ({
     selectedLeftAxisOption,
     leftOd,
     leftCylinder,
-    leftAxis
+    leftAxis,
+
+    selectedLeftOdOptionValidationError,
+    selectedLeftAxisOptionValidationError,
+    selectedLeftCylinderOptioValidationError
+
 }) => {
 
     return(
@@ -21,6 +26,7 @@ const LeftOd = ({
                     onChange={setSelectedLeftOdOption}
                     options={leftOd}
                 />
+                {selectedLeftOdOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
             <div className="mx-2 w-full">
                 <label>Cylinder</label>
@@ -30,6 +36,7 @@ const LeftOd = ({
                     onChange={setSelectedLeftCylinderOption}
                     options={leftCylinder}
                 />
+                {selectedLeftAxisOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
             <div className="w-full">
                 <label>Axis</label>
@@ -39,6 +46,7 @@ const LeftOd = ({
                     onChange={setSelectedLeftAxisOdOption}
                     options={leftAxis}
                 />
+                {selectedLeftCylinderOptioValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
         </div>
     )

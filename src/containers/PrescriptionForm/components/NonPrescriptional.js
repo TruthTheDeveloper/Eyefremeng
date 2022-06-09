@@ -1,32 +1,62 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-import { Pd, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage, RightADD, LeftADD  } from '../options/options';
-import DoublePdForm from './DoublePdForm';
-import RightOd from './otherVision/RightOd';
-import LeftOd from './otherVision/LeftOd';
+import React, { useState, useContext } from 'react';
 import LensForm from './LensForm';
+import AuthContext from '../../../context/auth-context';
 
-const NonPrescriptional = () => {
-    const [selectedRightOdOption, setSelectedRightOdOption] = useState(null);
-    const [selectedRightAxisOption, setSelectedRightAxisOdOption] = useState(null);
-    const [selectedRightCylinderOption, setSelectedRightCylinderOption] = useState(null)
+const NonPrescriptional = ({productName, productDescription, productPrice}) => {
+    
+    const {initialState, } = useContext(AuthContext)
+
+    const [inputValid, setInputValid] = useState(false)
+
+    const [qty, setQty] = useState(1)
+    const [lenseType, setlensType] = useState('')
 
 
-    const [selectedLeftOdOption, setSelectedLeftOdOption] = useState(null);
-    const [selectedLeftAxisOption, setSelectedLeftAxisOdOption] = useState(null);
-    const [selectedLeftCylinderOption, setSelectedLeftCylinderOption] = useState(null)
+    const incrementQty = (e) => {
+        e.preventDefault()
+        setQty(prev => prev + 1)
+
+    }
+
+    const decrementQty = (e) => {
+        e.preventDefault()
+
+        if(qty > 1){
+            setQty(prev => prev-1)
+        }
+
+    }
+
+    const lenseTypeHandler = (select) => {
+        setlensType(select)
+    }
 
 
-    const [pD, setPd] = useState(null)
-    const [usageOption, setUsageOption] = useState(null)
+    const validateInput = () => {
+        const prescription = {
+            id:'',
+            productName:productName,
+            productDescription:productDescription,
+            productPrice:productPrice,
+            prescriptionType:'Single Vision',
+            qty:qty,
+            unitPrice:'',
+            amount:'',
+            subTotal:'',
+            grandTotal:'',
+            pdType:'single',
+            lenseType:lenseType
 
-    const [selectedRightADD, setSelectedRightADD] = useState(null)
+        }
+        setInputValid(true)
 
-    const [selectedLeftADD, setSelectedLeftADD] = useState(null)
+        initialState.items.push(prescription)
+
+    }
 
     return(
         <>
-        <LensForm/>
+        <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler}/>
         </>
     )
 

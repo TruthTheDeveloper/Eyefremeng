@@ -1,54 +1,85 @@
+import { useNavigate  } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-const CartDetail = () => {
+import MiniCartDetailPd from './MiniCartDetailPd';
+import MiniCartDetailAdd from './MiniCartDetailAdd';
+
+
+const CartDetail = ({
+    lenseType,
+    productName,
+    productPrice,
+    productDescription,
+    prescriptionType,
+    leftSphere, 
+    leftAxis, 
+    leftCylinder,
+    leftAdd,
+    rightSphere,
+    rightAxis,
+    rightCylinder,
+    rightAdd,
+    subTotal,
+    unitPrice,
+    usageOption,
+    pdType,
+    pD,
+    qty,
+    twoSinglePd
+}) => {
+
+    const navigate = useNavigate();
+    
     return(
             <>
             <div className=" ">
                 <div className="md:grid grid-cols-2">
                     <div className="text-center py-4 text-indigo-800">
                         <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
-                        <h1>Rectangle TR90 Glasses Frames</h1>
-                        <p># 8061-Gray</p>
+                        <h1>{productName}</h1>
+                        <p>{productDescription}</p>
                     </div>
                     <div>
                         <div className="py-4 border border-2">
-                            <p className="px-4">-Color:Gray</p>
+                            <p className="px-4">-Color:None</p>
                         </div>
                         <div className="py-4 border border-2">
-                            <p className="px-4">-Single Vision</p>
+                            <p className="px-4">-lenseType:{lenseType}</p>
                         </div>
                         <div className="py-4 border border-2">
-                            <p className="px-4">-Usage:Distance</p>
+                            <p className="px-4">-{prescriptionType}</p>
                         </div>
                         <div className="py-4 border border-2">
-                            <p className="px-4">-156 index Lenses</p>
+                            <p className="px-4">-Usage:{usageOption}</p>
                         </div>
                     </div>
                 </div>
-                <div className=" border border-2 my-4">
-                    <div className="grid grid-cols-5">
-                        <div className="border p-2 font-semibold"></div>
-                        <div className="border p-2 font-semibold">SPH</div>
-                        <div className="border p-2 font-semibold">CYL</div>
-                        <div className="border p-2 font-semibold">Axis</div>
-                        <div className="border p-2 font-semibold">PD</div>
-                    </div>
-                    <div className="grid grid-cols-5">
-                        <div className="border p-2">R</div>
-                        <div className="border p-2">-2.50</div>
-                        <div className="border p-2">-3.50</div>
-                        <div className="border p-2">12</div>
-                        <div className="border p-2">25</div>
-                    </div>
-                    <div className="grid grid-cols-5">
-                        <div className="border p-2">L</div>
-                        <div className="border p-2">-1.75</div>
-                        <div className="border p-2">-2.25</div>
-                        <div className="border p-2">10</div>
-                        <div className="border p-2">27</div>
-                    </div>
-                </div> 
+                {twoSinglePd ? <MiniCartDetailAdd 
+                    pdType={pdType} 
+                    leftSphere={leftSphere}
+                    leftAxis={leftAxis}
+                    leftCylinder={leftCylinder}
+                    
+                    rightSphere={rightSphere}
+                    rightCylinder={rightCylinder}
+                    rightAxis={rightAxis}
+                    pD={pD}
+                    
+
+                />: <MiniCartDetailPd
+                pdType={pdType} 
+                leftSphere={leftSphere}
+                leftAxis={leftAxis}
+                leftCylinder={leftCylinder}
+                leftAdd={leftAdd}
+                
+                rightSphere={rightSphere}
+                rightCylinder={rightCylinder}
+                rightAxis={rightAxis}
+                rightAdd={rightAdd}
+                pD={pD}
+                />}
                 <div className="">
                     <div className="grid grid-cols-3 font-semibold py-6 border text-center">
                         <div>
@@ -63,7 +94,7 @@ const CartDetail = () => {
                     </div>
                     <div className="grid grid-cols-3 border my-3 py-6 text-center">
                         <div className="">
-                            <p className="border-2 p-2 mx-4 text-center ">2</p>
+                            <p className="border-2 p-2 mx-4 text-center ">{qty}</p>
                         </div>
                         <div>
                         <p className="text-indigo-800 font-semibold text-center my-2">#5,000</p>
@@ -75,7 +106,7 @@ const CartDetail = () => {
                 </div>
             </div>
             <div className="flex justify-end border py-4 pr-4  lg:mb-24">
-                <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md">
+                <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md" onClick={() => navigate(-1)}>
                     <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
                     <p>Edit</p>
                 </button>
