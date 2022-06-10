@@ -7,6 +7,7 @@ import RightOd from './otherVision/RightOd';
 import LeftOd from './otherVision/LeftOd';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
+import MiniCartDetailAdd from './MiniCartAddDetail';
 
 const Bifocal = ({productName, productDescription, productPrice}) => {
     const {initialState, } = useContext(AuthContext)
@@ -93,6 +94,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             grandTotal:15000,
             pdType:'double',
             twoSinglePd:twoSinglePD,
+            Add:true,
             lenseType:lenseType
 
         }
@@ -132,7 +134,8 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             grandTotal:'',
             pdType:'single',
             twoSinglePd:twoSinglePD,
-            lenseType:lenseType
+            lenseType:lenseType,
+            Add:true,
 
         }
          setInputValid(true)

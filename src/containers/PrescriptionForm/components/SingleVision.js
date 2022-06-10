@@ -7,8 +7,7 @@ import SinglePdForm from './SinglePdForm';
 import DoublePdForm from './DoublePdForm';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
-import MiniCartDetailAdd from '../../Cart/components/MiniCartDetailAdd';
-import MiniCartDetailPd from '../../Cart/components/MiniCartDetailPd';
+import MiniCartDetailPd from './MiniCartDetailPd';
 
 
 
@@ -226,6 +225,10 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
     }
 
 
+    const confirmedHandler = () => {
+        console.log('clicked')
+        setConfirmed(false)
+    }
     
 
 
@@ -334,6 +337,7 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
 
 
 
+
 if(confirmed){
     if(twoSinglePD === true){
             console.log('got')
@@ -348,25 +352,27 @@ if(confirmed){
                 rightCylinder={selectedRightCylinderOption.value}
                 rightAxis={selectedRightAxisOption.value}
                 rightAdd={''}
-                pD={singlePD.value}
-                doublePD={doublePD}
+                pD={''}
+                firstPd={firstPd.value}
+                secondPd={secondPd.value}
+                setConfirm={confirmedHandler}
                 />
-        }else{
-            prescriptionFormSummary = <MiniCartDetailPd
-                pdType={'single'} 
-                leftSphere={selectedLeftAxisOption.value}
-                leftAxis={selectedLeftAxisOption.value}
-                leftCylinder={selectedLeftCylinderOption.value}
-                leftAdd={''}
-                
-                rightSphere={selectedRightOdOption.value}
-                rightCylinder={selectedRightCylinderOption.value}
-                rightAxis={selectedRightAxisOption.value}
-                rightAdd={''}
-                pD={singlePD.value}
-                doublePD={doublePD}
-                />
-        }
+    }else{
+        prescriptionFormSummary = <MiniCartDetailPd
+            pdType={'single'} 
+            leftSphere={selectedLeftAxisOption.value}
+            leftAxis={selectedLeftAxisOption.value}
+            leftCylinder={selectedLeftCylinderOption.value}
+            leftAdd={''}
+            
+            rightSphere={selectedRightOdOption.value}
+            rightCylinder={selectedRightCylinderOption.value}
+            rightAxis={selectedRightAxisOption.value}
+            rightAdd={''}
+            pD={singlePD.value}
+            setConfirm={confirmedHandler}
+            />
+    }
 
 
 }
