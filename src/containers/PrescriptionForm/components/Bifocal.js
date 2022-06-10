@@ -60,6 +60,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
     const [qty, setQty] = useState(1)
 
     const [lenseType, setlensType] = useState('')
+    const [confirmed, setConfirmed] = useState(false)
 
 
 
@@ -69,7 +70,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Bifocal',
             rightOD:{
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
@@ -210,6 +211,13 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
         setlensType(select)
     }
 
+    const confirmedHandler = () => {
+        console.log('clicked')
+        setConfirmed(false)
+    }
+
+    let prescriptionFormSummary
+
     return(
         <>
         <div className="my-4">
@@ -220,7 +228,8 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
                     <div className="my-4">
                         <h1>Right(OD)</h1>
                     </div>
-                    <RightOd selectedRightOdOption={selectedRightOdOption.value}
+                    <RightOd 
+                            selectedRightOdOption={selectedRightOdOption.value}
                             selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
 
                             selectedRightAxisOption={selectedRightAxisOption.value}
@@ -249,7 +258,8 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
                     <div className="my-4">
                         <h1>Left(OD)</h1>
                     </div>
-                    <LeftOd selectedLeftOdOption={selectedLeftOdOption.value}
+                    <LeftOd 
+                            selectedLeftOdOption={selectedLeftOdOption.value}
                             selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
 
                             selectedLeftAxisOption={selectedLeftAxisOption.value}
@@ -260,7 +270,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
 
                             setSelectedLeftAxisOdOption={setSelectedLeftAxisOdOption}
                             setSelectedLeftOdOption={setSelectedLeftOdOption}
-                            setSelectedLeftADD={setSelectedLeftADD}
+                            
 
                             leftOd={leftOd}
                             setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
@@ -269,6 +279,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
                             leftADD={LeftADD}
 
                             selectedLeftADD={selectedLeftADD}
+                            setSelectedLeftADD={setSelectedLeftADD}
                             selectedLeftADDValidationError={selectedLeftADDValidationError}
                         
                         />

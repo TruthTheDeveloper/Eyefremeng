@@ -9,6 +9,7 @@ import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailPd from './MiniCartDetailPd';
 
+import PrescriptionDetailForm from './PrescriptionDetailForm';
 
 
 
@@ -233,15 +234,8 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
 
 
 
-    let prescriptionFormSummary = <div className="my-4">
-    <div className="px-3 border-2 py-3">
-        <p className="text-red-500 text-xs">*Please pay attention to the signs of the values, positive(+) and negative(-) values, positive(+) and negative(-) values are different</p>
-    </div>
-    <div className="px-3 border-2 py-3">
-        <div className="my-4">
-            <h1>Right(OD)</h1>
-        </div>
-        <RightOd selectedRightOdOption={selectedRightOdOption.value}
+    let prescriptionFormSummary = <PrescriptionDetailForm
+                selectedRightOdOption={selectedRightOdOption.value}
                 selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
 
                 selectedRightAxisOption={selectedRightAxisOption.value}
@@ -254,18 +248,7 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
                 setSelectedRightOdOption={setSelectedRightOdOption}
                 setSelectedRightCylinderOption={setSelectedRightCylinderOption}
 
-                rightOd={rightOd}
-                rightCylinder={rightCylinder}
-                rightAxis={rightAxis}
-                rightADD={RightADD}
-            
-            />
-    </div>
-    <div className="px-3 border-2 py-3">
-        <div className="my-4">
-            <h1>Left(OD)</h1>
-        </div>
-        <LeftOd selectedLeftOdOption={selectedLeftOdOption.value}
+                selectedLeftOdOption={selectedLeftOdOption.value}
                 selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
 
                 selectedLeftAxisOption={selectedLeftAxisOption.value}
@@ -278,71 +261,53 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
                 setSelectedLeftOdOption={setSelectedLeftOdOption}
                 
                 setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
+
+                singlePD={singlePD.value}
+                singlePDValidationError={singlePDValidationError}
+                setSinglePd={setSinglePd}
+
+                secondPd={secondPd.value}
+                setSecondPd={setSecondPd}
+                secondPdValidationError={secondPdValidationError}
+
+                twoSinglePD={twoSinglePD}
+                setTwoSinglePd={setTwoSinglePd}
+
+                firstPd={firstPd.value}
+                setFirstPd={setFirstPd}
+                firstPdValidationError={firstPdValidationError}
+                // leftADD={''}
+                // rightAdd={''}
+
                 
-                leftOd={leftOd}
-                leftCylinder={leftCylinder}
-                leftAxis={leftAxis}
-                leftADD={LeftADD}
                 
-            />
-    </div>
-    <div className="px-3 border-2 py-3">
-        <label>PD*</label>
-        {twoSinglePD ? <DoublePdForm 
-                        firstPd={firstPd.value} 
-                        firstPdValidationError={firstPdValidationError}
-
-                        secondPd={secondPd.value}
-                        secondPdValidationError={secondPdValidationError}
-
-                        setFirstPd={setFirstPd}
-                        setSecondPd={setSecondPd} 
-                        options={doublePD} /> : 
-
-                        <SinglePdForm 
-                        singlePD={singlePD.value}
-                        singlePDValidationError={singlePDValidationError}
-                        options={Pd} 
-                        onChange={setSinglePd}
-        />}
-        {/* <DoublePdForm defaultValue={pD} options={Pd} onChange={setPd}/> */}
-        
-    </div>
-    <div className="px-3 border-2 py-3">
-        <div className="px-3 border-2 py-3">
-            <div className="flex  border-b-2 py-3">
-                <input type="checkbox" className="m-2" onChange={() => setTwoSinglePd(prev => !prev)}/>
-                <label>i have 2 single PDS</label>
-            </div>
-        </div>
-    </div>
-    <div className="px-3 border-2 py-3">
-        <label>Usage*</label>
-        <div>
-            <Select
-                placeholder={"--- Please Select ---"}
-                defaultValue={usageOption.value}
-                onChange={setUsageOption}
-                options={usage}
-            />
-            {usageOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
-        </div>
-        <div className="my-8">
-            <label className="">Remark*</label>
-            <textarea className="h-24 w-full border-2 border-slate-400 outline-none my-2 rounded-sm p-2"/>
-        </div>
-    </div>
-    
-</div>
+    />
 
 
 
 
-if(confirmed){
-    if(twoSinglePD === true){
-            console.log('got')
+    if(confirmed){
+        if(twoSinglePD === true){
+                console.log('got')
+                prescriptionFormSummary = <MiniCartDetailPd
+                    pdType={'double'} 
+                    leftSphere={selectedLeftAxisOption.value}
+                    leftAxis={selectedLeftAxisOption.value}
+                    leftCylinder={selectedLeftCylinderOption.value}
+                    leftAdd={''}
+                    
+                    rightSphere={selectedRightOdOption.value}
+                    rightCylinder={selectedRightCylinderOption.value}
+                    rightAxis={selectedRightAxisOption.value}
+                    rightAdd={''}
+                    pD={''}
+                    firstPd={firstPd.value}
+                    secondPd={secondPd.value}
+                    setConfirm={confirmedHandler}
+                    />
+        }else{
             prescriptionFormSummary = <MiniCartDetailPd
-                pdType={'double'} 
+                pdType={'single'} 
                 leftSphere={selectedLeftAxisOption.value}
                 leftAxis={selectedLeftAxisOption.value}
                 leftCylinder={selectedLeftCylinderOption.value}
@@ -352,33 +317,13 @@ if(confirmed){
                 rightCylinder={selectedRightCylinderOption.value}
                 rightAxis={selectedRightAxisOption.value}
                 rightAdd={''}
-                pD={''}
-                firstPd={firstPd.value}
-                secondPd={secondPd.value}
+                pD={singlePD.value}
                 setConfirm={confirmedHandler}
                 />
-    }else{
-        prescriptionFormSummary = <MiniCartDetailPd
-            pdType={'single'} 
-            leftSphere={selectedLeftAxisOption.value}
-            leftAxis={selectedLeftAxisOption.value}
-            leftCylinder={selectedLeftCylinderOption.value}
-            leftAdd={''}
-            
-            rightSphere={selectedRightOdOption.value}
-            rightCylinder={selectedRightCylinderOption.value}
-            rightAxis={selectedRightAxisOption.value}
-            rightAdd={''}
-            pD={singlePD.value}
-            setConfirm={confirmedHandler}
-            />
+        }
+
+
     }
-
-
-}
-
-
-
 
 
     const prescriptionSummary = (e) => {
@@ -389,12 +334,7 @@ if(confirmed){
        setConfirmed(true)
         
         
-
-
     }
-
-
-
 
 
 
@@ -412,7 +352,16 @@ if(confirmed){
                     Confirm
                 </button>
             </div>
-            <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler}/>
+
+            <LensForm 
+                validateInput={validateInput} 
+                inputValid={inputValid} 
+                qty={qty} 
+                incrementQty={incrementQty} 
+                decrementQty={decrementQty} 
+                lenseType={lenseType} 
+                lenseTypeHandler={lenseTypeHandler}
+            />
         </>
     )
 
