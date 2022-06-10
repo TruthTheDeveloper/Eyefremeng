@@ -1,13 +1,9 @@
 import React, { useState,  useContext } from 'react';
-import Select from 'react-select';
-import { Pd,doublePD, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage, RightADD, LeftADD  } from '../options/options';
-import DoublePdForm from './DoublePdForm';
-import SinglePdForm from './SinglePdForm';
-import RightOd from './otherVision/RightOd';
-import LeftOd from './otherVision/LeftOd';
+
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailAdd from './MiniCartAddDetail';
+import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 
 const Bifocal = ({productName, productDescription, productPrice}) => {
     const {initialState, } = useContext(AuthContext)
@@ -216,130 +212,141 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
         setConfirmed(false)
     }
 
-    let prescriptionFormSummary
+    let prescriptionFormSummary = <PrescriptionDetailForm
+    selectedRightOdOption={selectedRightOdOption.value}
+    selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
+
+    selectedRightAxisOption={selectedRightAxisOption.value}
+    selectedRightAxisOptionValidationError={selectedRightAxisOptionValidationError}
+
+    selectedRightCylinderOption={selectedRightCylinderOption.value}
+    selectedRightCylinderOptionValidationError={selectedRightCylinderOptionValidationError}
+
+    setSelectedRightAxisOption={setSelectedRightAxisOption}
+    setSelectedRightOdOption={setSelectedRightOdOption}
+    setSelectedRightCylinderOption={setSelectedRightCylinderOption}
+
+    selectedLeftOdOption={selectedLeftOdOption.value}
+    selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
+
+    selectedLeftAxisOption={selectedLeftAxisOption.value}
+    selectedLeftAxisOptionValidationError={selectedLeftAxisOptionValidationError}
+
+    selectedLeftCylinderOption={selectedLeftCylinderOption.value}
+    selectedLeftCylinderOptioValidationError={selectedLeftCylinderOptioValidationError}
+
+    setSelectedLeftAxisOdOption={setSelectedLeftAxisOdOption}
+    setSelectedLeftOdOption={setSelectedLeftOdOption}
+    
+    setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
+
+    singlePD={singlePD.value}
+    singlePDValidationError={singlePDValidationError}
+    setSinglePd={setSinglePd}
+
+    secondPd={secondPd.value}
+    setSecondPd={setSecondPd}
+    secondPdValidationError={secondPdValidationError}
+
+    twoSinglePD={twoSinglePD}
+    setTwoSinglePd={setTwoSinglePd}
+
+    firstPd={firstPd.value}
+    setFirstPd={setFirstPd}
+    firstPdValidationError={firstPdValidationError}
+
+    selectedRightADD={selectedRightADD}
+    selectedRightADDValidationError={selectedRightADDValidationError}
+
+    setSelectedRightADD={setSelectedRightADD}
+
+    selectedLeftADD={selectedLeftADD}
+    setSelectedLeftADD={setSelectedLeftADD}
+    selectedLeftADDValidationError={selectedLeftADDValidationError}
+
+    usageOption={usageOption.value}
+    setUsageOption={setUsageOption}
+    usageOptionValidationError={usageOptionValidationError}
+
+    
+    
+    />
+
+
+    if(confirmed){
+        if(twoSinglePD === true){
+                console.log('got')
+                prescriptionFormSummary = <MiniCartDetailAdd
+                    pdType={'double'} 
+                    leftSphere={selectedLeftAxisOption.value}
+                    leftAxis={selectedLeftAxisOption.value}
+                    leftCylinder={selectedLeftCylinderOption.value}
+                    leftAdd={''}
+                    
+                    rightSphere={selectedRightOdOption.value}
+                    rightCylinder={selectedRightCylinderOption.value}
+                    rightAxis={selectedRightAxisOption.value}
+                    rightAdd={''}
+                    pD={''}
+                    firstPd={firstPd.value}
+                    secondPd={secondPd.value}
+                    setConfirm={confirmedHandler}
+                    />
+        }else{
+            prescriptionFormSummary = <MiniCartDetailAdd
+                pdType={'single'} 
+                leftSphere={selectedLeftAxisOption.value}
+                leftAxis={selectedLeftAxisOption.value}
+                leftCylinder={selectedLeftCylinderOption.value}
+                leftAdd={''}
+                
+                rightSphere={selectedRightOdOption.value}
+                rightCylinder={selectedRightCylinderOption.value}
+                rightAxis={selectedRightAxisOption.value}
+                rightAdd={''}
+                pD={singlePD.value}
+                setConfirm={confirmedHandler}
+                />
+        }
+
+
+    }
+
+    const prescriptionSummary = (e) => {
+        e.preventDefault()
+
+        console.log('prescription', twoSinglePD)
+
+       setConfirmed(true)
+        
+        
+    }
 
     return(
         <>
-        <div className="my-4">
-                <div className="px-3 border-2 py-3">
-                    <p className="text-red-500 text-xs">*Please pay attention to the signs of the values, positive(+) and negative(-) values, positive(+) and negative(-) values are different</p>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="my-4">
-                        <h1>Right(OD)</h1>
-                    </div>
-                    <RightOd 
-                            selectedRightOdOption={selectedRightOdOption.value}
-                            selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
+        
+        {prescriptionFormSummary}
 
-                            selectedRightAxisOption={selectedRightAxisOption.value}
-                            selectedRightAxisOptionValidationError={selectedRightAxisOptionValidationError}
+        <div className="px-3 border-2 py-3">
+            <label>Prescription Paper(Optional)</label><br/>
+            <input type="file" className="my-3"/>
+            <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
+            <p className="text-red-500 text-xs">Max file size:16M</p>
+            <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>
+            <button className="my-6 border-2  py-2 px-6  rounded" onClick={(e) => prescriptionSummary(e)}>
+                Confirm
+            </button>
+        </div>
 
-                            selectedRightCylinderOption={selectedRightCylinderOption.value}
-                            selectedRightCylinderOptionValidationError={selectedRightCylinderOptionValidationError}
-
-                            setSelectedRightAxisOption={setSelectedRightAxisOption}
-                            setSelectedRightOdOption={setSelectedRightOdOption}
-                            setSelectedRightCylinderOption={setSelectedRightCylinderOption}
-
-                            rightOd={rightOd}
-                            rightCylinder={rightCylinder}
-                            rightAxis={rightAxis}
-                            rightADD={RightADD}
-
-                            selectedRightADD={selectedRightADD}
-                            selectedRightADDValidationError={selectedRightADDValidationError}
-
-                            setSelectedRightADD={setSelectedRightADD}
-
-                        />
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="my-4">
-                        <h1>Left(OD)</h1>
-                    </div>
-                    <LeftOd 
-                            selectedLeftOdOption={selectedLeftOdOption.value}
-                            selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
-
-                            selectedLeftAxisOption={selectedLeftAxisOption.value}
-                            selectedLeftAxisOptionValidationError={selectedLeftAxisOptionValidationError}
-
-                            selectedLeftCylinderOption={selectedLeftCylinderOption.value}
-                            selectedLeftCylinderOptioValidationError={selectedLeftCylinderOptioValidationError}
-
-                            setSelectedLeftAxisOdOption={setSelectedLeftAxisOdOption}
-                            setSelectedLeftOdOption={setSelectedLeftOdOption}
-                            
-
-                            leftOd={leftOd}
-                            setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
-                            leftCylinder={leftCylinder}
-                            leftAxis={leftAxis}
-                            leftADD={LeftADD}
-
-                            selectedLeftADD={selectedLeftADD}
-                            setSelectedLeftADD={setSelectedLeftADD}
-                            selectedLeftADDValidationError={selectedLeftADDValidationError}
-                        
-                        />
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>PD*</label>
-                    {twoSinglePD ? <DoublePdForm 
-                                    firstPd={firstPd.value} 
-                                    firstPdValidationError={firstPdValidationError}
-
-                                    secondPd={secondPd.value}
-                                    secondPdValidationError={secondPdValidationError}
-
-                                    setFirstPd={setFirstPd}
-                                    setSecondPd={setSecondPd} 
-                                    options={doublePD} /> : 
-
-                                    <SinglePdForm 
-                                    singlePD={singlePD.value}
-                                    singlePDValidationError={singlePDValidationError}
-                                    options={Pd} 
-                                    onChange={setSinglePd}
-                    />}
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <div className="px-3 border-2 py-3">
-                        <div className="flex  border-b-2 py-3">
-                            <input type="checkbox" className="m-2" onChange={() => setTwoSinglePd(prev => !prev)}/>
-                            <label>i have 2 single PDS</label>
-                        </div>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>Usage*</label>
-                    <div>
-                        <Select
-                            placeholder={"--- Please Select ---"}
-                            defaultValue={usageOption.value}
-                            onChange={setUsageOption}
-                            options={usage}
-                        />
-                        {usageOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
-                    </div>
-                    <div className="my-8">
-                        <label className="">Remark*</label>
-                        <textarea className="h-24 w-full border-2 border-slate-400 outline-none my-2 rounded-sm p-2"/>
-                    </div>
-                </div>
-                <div className="px-3 border-2 py-3">
-                    <label>Prescription Paper(Optional)</label><br/>
-                    <input type="file" className="my-3"/>
-                    <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
-                    <p className="text-red-500 text-xs">Max file size:16M</p>
-                    <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>
-                    <button className="my-6 border-2  py-2 px-6  rounded">
-                        Confirm
-                    </button>
-                </div>
-            </div>
-            <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler}/>
+        <LensForm 
+            validateInput={validateInput} 
+            inputValid={inputValid} 
+            qty={qty} 
+            incrementQty={incrementQty} 
+            decrementQty={decrementQty} 
+            lenseType={lenseType} 
+            lenseTypeHandler={lenseTypeHandler}
+        />
         </>
     )
 

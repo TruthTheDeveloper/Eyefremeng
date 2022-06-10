@@ -1,8 +1,19 @@
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import CartDetail from './CartDetail';
 import AuthContext from './../../../context/auth-context';
+import {useNavigate} from "react-router-dom"
 const CartItem = () => {
     const {initialState, } = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
+    const continueShoppingHandler = () => {
+        navigate('/prescriptionForm')
+    }
+
+    const navigateToCheckout = () => {
+        navigate('/checkoutForm')
+    }
 
 
     return(
@@ -12,6 +23,7 @@ const CartItem = () => {
                     return(
                         <CartDetail 
                             key={index}
+                            id={item.id}
                             productName={item.productName}
                             productPrice={item.productPrice}
                             productDescription={item.productDescription}
@@ -55,10 +67,10 @@ const CartItem = () => {
                     <p>GrandTotal</p>
                     <p>#{initialState.grandTotal}</p>
                 </div>
-                <button className="border py-3 bg-slate-800 w-full text-orange-500">
+                <button className="border py-3 bg-slate-800 w-full text-orange-500" onClick={navigateToCheckout}>
                     <p>Proceed to Checkout</p>
                 </button>
-                <button className="border py-3 my-2 px-3 border-slate-500 rounded-sm flex ml-auto">Continue to shopping</button>
+                <button className="border py-3 my-2 px-3 border-slate-500 rounded-sm flex ml-auto" onClick={continueShoppingHandler}>Continue to shopping</button>
              </div>
         </div>
     )

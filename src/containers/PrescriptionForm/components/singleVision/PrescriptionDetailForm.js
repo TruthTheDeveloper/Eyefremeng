@@ -1,9 +1,10 @@
 import Select from 'react-select';
-import { Pd,doublePD, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage } from '../options/options'; 
-import RightOd from './singleVision/RightOd';
-import LeftOd from './singleVision/LeftOd';
-import SinglePdForm from './SinglePdForm';
-import DoublePdForm from './DoublePdForm';
+import { Pd,doublePD, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage } from '../../options/options'; 
+import RightOd from './RightOd';
+import LeftOd from './LeftOd';
+import SinglePdForm from '../SinglePdForm';
+import DoublePdForm from '../DoublePdForm';
+
 const PrescriptionDetailForm = ({
     selectedRightOdOption,
     selectedRightAxisOption,
@@ -26,13 +27,6 @@ const PrescriptionDetailForm = ({
     selectedLeftAxisOptionValidationError,
     selectedLeftCylinderOptioValidationError,
 
-    selectedLeftADD,
-    selectedLeftADDValidationError,
-    setSelectedLeftADD,
-
-    selectedRightADD,
-    setSelectedRightADD,
-    selectedRightADDValidationError,
 
 
     twoSinglePD,
@@ -51,21 +45,19 @@ const PrescriptionDetailForm = ({
     usageOptionValidationError,
 
     usageOption,
-    leftADD,
-    rightAdd
     
 
 }) => {
 
     return(
         <div className="my-4">
-    <div className="px-3 border-2 py-3">
-        <p className="text-red-500 text-xs">*Please pay attention to the signs of the values, positive(+) and negative(-) values, positive(+) and negative(-) values are different</p>
-    </div>
-    <div className="px-3 border-2 py-3">
-        <div className="my-4">
-            <h1>Right(OD)</h1>
-        </div>
+            <div className="px-3 border-2 py-3">
+                <p className="text-red-500 text-xs">*Please pay attention to the signs of the values, positive(+) and negative(-) values, positive(+) and negative(-) values are different</p>
+            </div>
+        <div className="px-3 border-2 py-3">
+            <div className="my-4">
+                <h1>Right(OD)</h1>
+            </div>
         <RightOd selectedRightOdOption={selectedRightOdOption}
                 selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
 
@@ -79,14 +71,10 @@ const PrescriptionDetailForm = ({
                 setSelectedRightOdOption={setSelectedRightOdOption}
                 setSelectedRightCylinderOption={setSelectedRightCylinderOption}
 
-                selectedRightADD={selectedRightADD}
-                selectedRightADDValidationError={selectedRightADDValidationError}
-                setSelectedRightADD={setSelectedRightADD}
 
                 rightOd={rightOd}
                 rightCylinder={rightCylinder}
                 rightAxis={rightAxis}
-                rightAdd={rightAdd}
                 
             
             />
@@ -109,14 +97,9 @@ const PrescriptionDetailForm = ({
                 
                 setSelectedLeftCylinderOption={setSelectedLeftCylinderOption}
 
-                selectedLeftADD={selectedLeftADD}
-                setSelectedLeftADD={setSelectedLeftADD}
-                selectedLeftADDValidationError={selectedLeftADDValidationError}
-                
                 leftOd={leftOd}
                 leftCylinder={leftCylinder}
                 leftAxis={leftAxis}
-                leftADD={leftADD}
                 
             />
     </div>

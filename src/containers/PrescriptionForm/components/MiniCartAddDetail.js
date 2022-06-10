@@ -1,3 +1,6 @@
+import { rightAxis } from "../../PrescriptionForm/options/options";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 const MiniCartDetailAdd = ({
     pdType,
     leftSphere,
@@ -9,10 +12,13 @@ const MiniCartDetailAdd = ({
     rightAxis,
     rightAdd,
     pD,
+    firstPd,
+    secondPd,
+    setConfirm
 }) => {
 
     return(
-        <>{ pdType === 'double' ? <div className=" border border-2 my-4">
+        <>{ pdType === 'double' ? <><div className=" border border-2 my-4">
         <div className="grid grid-cols-6">
             <div className="border p-2 font-semibold"></div>
             <div className="border p-2 font-semibold">SPH</div>
@@ -26,7 +32,7 @@ const MiniCartDetailAdd = ({
             <div className="border p-2">{rightSphere}</div>
             <div className="border p-2">{rightCylinder}</div>
             <div className="border p-2">{rightAxis}</div>
-            <div className="border p-2">{pD.first}</div>
+            <div className="border p-2">{firstPd}</div>
             <div className="border p-2">{rightAdd}</div>
         </div>
         <div className="grid grid-cols-6">
@@ -34,10 +40,13 @@ const MiniCartDetailAdd = ({
             <div className="border p-2">{leftSphere}</div>
             <div className="border p-2">{leftCylinder}</div>
             <div className="border p-2">{leftAxis}</div>
-            <div className="border p-2">{pD.second}</div>
+            <div className="border p-2">{secondPd}</div>
             <div className="border p-2">{leftAdd}</div>
         </div>
-    </div>: <div className=" border border-2 my-4">
+    </div><button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md my-4" onClick={setConfirm}>
+                    <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
+                    <p>Edit</p>
+                </button> </>:<> <div className=" border border-2 my-4">
             <div className="grid grid-cols-5">
                 <div className="border p-2 font-semibold"></div>
                 <div className="border p-2 font-semibold">SPH</div>
@@ -67,7 +76,10 @@ const MiniCartDetailAdd = ({
                 <div className="border p-2 col-span-4">{pD}</div>
                 {/* <div className="border p-2">27</div> */}
             </div>
-        </div> }</>
+        </div><button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md my-4" onClick={setConfirm}>
+                    <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
+                    <p>Edit</p>
+                </button></> }</>
     )
 
 }

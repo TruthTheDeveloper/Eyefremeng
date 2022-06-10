@@ -9,7 +9,8 @@ import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailPd from './MiniCartDetailPd';
 
-import PrescriptionDetailForm from './PrescriptionDetailForm';
+import PrescriptionDetailForm from './singleVision/PrescriptionDetailForm';
+import {v4} from 'uuid'
 
 
 
@@ -78,9 +79,10 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
     },[initialState,  inputValid])
 
 
+
     const addToCartTwoPD = () => {
         const prescription = {
-            id:'',
+            id:v4(),
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
@@ -123,7 +125,7 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
 
     const addToCartOnePD = () => {
         const prescription = {
-            id:'',
+            id:v4(),
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
@@ -276,6 +278,9 @@ const SingleVision = ({productName, productDescription, productPrice}) => {
                 firstPd={firstPd.value}
                 setFirstPd={setFirstPd}
                 firstPdValidationError={firstPdValidationError}
+                usageOption={usageOption.value}
+                setUsageOption={setUsageOption}
+                usageOptionValidationError={usageOptionValidationError}
                 // leftADD={''}
                 // rightAdd={''}
 

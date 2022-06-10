@@ -15,7 +15,6 @@ const MiniCartDetailPd = ({pdType,
     setConfirm
 }) => {
 
-    console.log(pdType, 'pd')
 
     // const confirmedHandler = () => {
     //     setConfirmed()

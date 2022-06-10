@@ -1,13 +1,16 @@
 import EmptyCart from './components/EmptyCart';
 import CartItem from './components/CartItem';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+import { useContext } from 'react';
+import AuthContext from '../../context/auth-context';
+
 const Cart = () => {
+
+    const {initialState, setInitialState} = useContext(AuthContext)
 
     return(
         <section className="py-24">
             {/* <EmptyCart/> */}
-            <CartItem/>
+            {initialState.items.length === 0 ? <EmptyCart/>: <CartItem/>}
         </section>
     )
 }

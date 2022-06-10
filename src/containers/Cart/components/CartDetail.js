@@ -1,12 +1,15 @@
+import {useContext, useEffect} from 'react';
 import { useNavigate  } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import MiniCartDetailPd from './MiniCartDetailPd';
 import MiniCartDetailAdd from './MiniCartDetailAdd';
+import AuthContext from "../../../context/auth-context";
 
 
 const CartDetail = ({
+    id,
     lenseType,
     productName,
     productPrice,
@@ -31,7 +34,13 @@ const CartDetail = ({
 
     const navigate = useNavigate();
 
+    const {initialState,setInitialState} = useContext(AuthContext)
+
     console.log(Add, 'add')
+
+    useEffect(() => {
+        console.log(initialState.items)
+    },[initialState])
 
     let displayPrescriptionDetail = null
 
@@ -67,6 +76,12 @@ const CartDetail = ({
 
     }else{
         displayPrescriptionDetail = null
+    }
+
+    const deleteItem = () => {
+      const remove =   initialState.items.filter(el => el.id !== id)
+      console.log(remove, 'remove')
+      setInitialState({...initialState, items:remove})
     }
     
     return(
@@ -124,7 +139,7 @@ const CartDetail = ({
                     <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
                     <p>Edit</p>
                 </button>
-                <button className="border border-red-500 py-1 px-4 flex mx-1 rounded-md">
+                <button className="border border-red-500 py-1 px-4 flex mx-1 rounded-md" onClick={deleteItem}>
                     <FontAwesomeIcon icon={faTrash} className="text-red-500 mr-2 my-1  text-lg"/>
                     <p>Delete</p>
                 </button>

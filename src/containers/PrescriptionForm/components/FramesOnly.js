@@ -12,7 +12,7 @@ const FramesOnly = ({productName, productDescription, productPrice}) => {
 
     const CheckOut = (e) => {
         e.preventDefault()
-        navigate("/checkoutForm")
+        navigate("/cart")
 
         const prescription = {
             id:'',
