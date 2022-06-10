@@ -9,6 +9,9 @@ const LeftOd = ({
     leftOd,
     leftCylinder,
     leftAxis,
+    leftADD,
+    selectedLeftADD,
+    setSelectedLeftADD,
 
     selectedLeftOdOptionValidationError,
     selectedLeftAxisOptionValidationError,
@@ -52,9 +55,9 @@ const LeftOd = ({
                 <label>ADD</label>
                 <Select
                     placeholder={"0.00"}
-                    defaultValue={selectedLeftAxisOption}
-                    onChange={setSelectedLeftAxisOdOption}
-                    options={leftAxis}
+                    defaultValue={selectedLeftADD}
+                    onChange={setSelectedLeftADD}
+                    options={leftADD}
                 />
                 {selectedLeftADDValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>

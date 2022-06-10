@@ -6,10 +6,15 @@ const RightOd = ({
     selectedRightCylinderOption,
     setSelectedRightAxisOption,
     setSelectedRightOdOption,
+    selectedRightADD,
+    setSelectedRightADD,
+
     rightOd,
     setSelectedRightCylinderOption,
     rightCylinder,
     rightAxis,
+    rightAdd,
+    
 
     selectedRightOdOptionValidationError,
     selectedRightAxisOptionValidationError,
@@ -53,9 +58,9 @@ const RightOd = ({
                     <label>ADD</label>
                     <Select
                         placeholder={"0.00"}
-                        defaultValue={selectedRightAxisOption}
-                        onChange={setSelectedRightAxisOption}
-                        options={rightAxis}
+                        defaultValue={selectedRightADD}
+                        onChange={setSelectedRightADD}
+                        options={rightAdd}
                     />
                     {selectedRightADDValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
                 </div>     

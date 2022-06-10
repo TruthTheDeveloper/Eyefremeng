@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
@@ -16,17 +16,38 @@ import Progressive from './Progressive';
 import NonPrescriptional from './NonPrescriptional';
 import FramesOnly from './FramesOnly';
 
+import { useParams  } from "react-router-dom";
 
+import AuthContext from '../../../context/auth-context';
 
 
 
 
 const Form = ({productName, productDescription, productPrice}) => {
 
+    const {initialState, setInitialState} = useContext(AuthContext)
+
+    let {formId} = useParams()
+
+    let formEditDetail = null
+
+    const remove =   initialState.items.filter(el => el.id !== formId)
+        formEditDetail = remove
+
+
+    // useEffect(() => {
+        
+
+    //   console.log(remove, 'remove')
+    // },[])
+
 
     const [selectedPrescriptionOption, setSelectedPrescriptionOption] = useState({value:null});
     
     let formDetail = null
+
+
+    console.log(formEditDetail[0]?.prescriptionType, 'edit')
     
 
 
@@ -46,6 +67,20 @@ const Form = ({productName, productDescription, productPrice}) => {
 
     }else if(selectedPrescriptionOption.value === 'Frames Only'){
         formDetail = <FramesOnly/>
+
+    }else if(formEditDetail[0]?.prescriptionType === 'Single Vision'){
+        formDetail = <SingleVision productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+
+    }else if(formEditDetail[0]?.prescriptionType === 'Bifocal(with line)'){
+        formDetail = <Bifocal productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+
+    }else if(formEditDetail[0]?.prescriptionType === 'Progressive'){
+        formDetail = <Progressive productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+
+    }else if(formEditDetail[0]?.prescriptionType === 'Non Prescription'){
+        formDetail = <NonPrescriptional productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+    }else if(formEditDetail[0]?.prescriptionType === 'Frames Only'){
+        formDetail = <FramesOnly/>
     }
     
     
@@ -55,14 +90,21 @@ const Form = ({productName, productDescription, productPrice}) => {
                 <FontAwesomeIcon icon={faEdit} className="text-orange-400 mr-2 text-2xl"/>
                 <h1 className="text-white">Add a Prescription</h1>
             </div>
-            <div className="px-3 border-2 py-3">
+            {formEditDetail ? <div className="px-3 border-2 py-3">
+                <Select
+                    placeholder={formEditDetail[0]?.prescriptionType}
+                    defaultValue={formEditDetail[0]?.prescriptionType}
+                    onChange={setSelectedPrescriptionOption}
+                    options={category}
+                />
+            </div>:<div className="px-3 border-2 py-3">
                 <Select
                     placeholder={"--- Please Select --"}
                     defaultValue={selectedPrescriptionOption.value}
                     onChange={setSelectedPrescriptionOption}
                     options={category}
                 />
-            </div>
+            </div>}
             {formDetail}
             
         </div>

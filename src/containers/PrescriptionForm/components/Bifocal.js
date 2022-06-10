@@ -66,7 +66,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Bifocal',
+            prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
@@ -109,7 +109,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Bifocal',
+            prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
@@ -255,12 +255,12 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
     setFirstPd={setFirstPd}
     firstPdValidationError={firstPdValidationError}
 
-    selectedRightADD={selectedRightADD}
+    selectedRightADD={selectedRightADD.value}
     selectedRightADDValidationError={selectedRightADDValidationError}
 
     setSelectedRightADD={setSelectedRightADD}
 
-    selectedLeftADD={selectedLeftADD}
+    selectedLeftADD={selectedLeftADD.value}
     setSelectedLeftADD={setSelectedLeftADD}
     selectedLeftADDValidationError={selectedLeftADDValidationError}
 

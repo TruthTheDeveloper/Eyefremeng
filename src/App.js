@@ -63,26 +63,27 @@ const App = () => {
   return( 
 
         <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<LandingPage/>}/>
-            <Route path="womencart" element={<WomenCart />} />
-            <Route path="mencart" element={<MenCart/>} />
-            <Route path="prescriptionForm" element={prescriptionForm} />
-            <Route path="cart" element={cart} />
-            <Route path="checkoutForm" element={<CheckoutForm/>} />
-            <Route path="shipmentform" element={<ShipmentForm/>} />
-            <Route path="shopTrend" element={<ShopTrend/>}/>
+            <Route path="/" element={<Layout/>}>
+              <Route path="/" element={<LandingPage/>}/>
+              <Route path="womencart" element={<WomenCart />} />
+              <Route path="mencart" element={<MenCart/>} />
+              <Route path="prescriptionForm" element={prescriptionForm} />
+              <Route path="cart" element={cart} />
+              <Route path="checkoutForm" element={<CheckoutForm/>} />
+              <Route path="shipmentform" element={<ShipmentForm/>} />
+              <Route path="shopTrend" element={<ShopTrend/>}/>
 
-            {/* Tips and Link Route */}
-            <Route path="faceshape" element={<FaceShape/>} />
-            <Route path="framesize" element={<FrameSize/>} />
-            <Route path="pd" element={<Pd/>} />
+              {/* Tips and Link Route */}
+              <Route path="faceshape" element={<FaceShape/>} />
+              <Route path="framesize" element={<FrameSize/>} />
+              <Route path="pd" element={<Pd/>} />
 
-            {/* About US */}
-            <Route path="contactus" element={<ContactUs/>} />
-            <Route path="privacypolicy" element={<PrivacyPolicy/>} />
-            <Route path="returnexchange" element={<ReturnExchange/>} />
-            <Route path="termsuse" element={<TermsUse/>} />
+              {/* About US */}
+              <Route path="contactus" element={<ContactUs/>} />
+              <Route path="privacypolicy" element={<PrivacyPolicy/>} />
+              <Route path="returnexchange" element={<ReturnExchange/>} />
+              <Route path="termsuse" element={<TermsUse/>} />
+            </Route>
 
             {/*admin */}
             <Route path="/" element={<DashboardHoc/>}>
@@ -94,7 +95,10 @@ const App = () => {
               <Route path="dashboard/subscriber" element={<Subscriber/>}/>
               <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
             </Route>
-          </Route>
+
+            <Route path="prescriptionForm/" element={prescriptionForm}>
+              <Route path=":formId" element={prescriptionForm}/>
+            </Route>
           
         </Routes>
   )

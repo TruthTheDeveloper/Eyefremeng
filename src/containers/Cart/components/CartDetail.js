@@ -1,5 +1,5 @@
 import {useContext, useEffect} from 'react';
-import { useNavigate  } from "react-router-dom";
+import { useNavigate, useParams  } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -35,6 +35,8 @@ const CartDetail = ({
     const navigate = useNavigate();
 
     const {initialState,setInitialState} = useContext(AuthContext)
+
+    let {formId} = useParams()
 
     console.log(Add, 'add')
 
@@ -82,6 +84,10 @@ const CartDetail = ({
       const remove =   initialState.items.filter(el => el.id !== id)
       console.log(remove, 'remove')
       setInitialState({...initialState, items:remove})
+    }
+
+    const editItem = () => {
+        navigate(`prescriptionForm/${id}`)
     }
     
     return(

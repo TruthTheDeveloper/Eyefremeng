@@ -15,7 +15,7 @@ import {v4} from 'uuid'
 
 
 
-const SingleVision = ({productName, productDescription, productPrice}) => {
+const SingleVision = ({productName, productDescription, productPrice, data}) => {
 
     const {initialState, } = useContext(AuthContext)
 

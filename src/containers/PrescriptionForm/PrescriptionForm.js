@@ -8,10 +8,14 @@ import AuthContext from "../../context/auth-context";
 //Icons
 
 
+
+
 const PrescriptionForm = () => {
 
     const [productDetail, setProductDetail] = useState({})
     const [relatedProduct, setRelatedProduct] = useState([])
+
+    
 
     
 
