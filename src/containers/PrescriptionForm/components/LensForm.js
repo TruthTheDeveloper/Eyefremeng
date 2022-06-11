@@ -6,7 +6,7 @@ import { useNavigate  } from "react-router-dom";
 
 import Collapse from "react-collapsible-wrapper";
 
-const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler}) => {
+const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler, data, validateUpdate}) => {
     const [isOpenClear, setIsOpenClear] = useState(false);
     const [isOpenphotoChromic, setIsOpenphotoChromic] = useState(false);
     const [isOpenphotoPolarized, setIsOpenphotoPolarized] = useState(false);
@@ -60,6 +60,19 @@ const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, l
         }
         
     }
+
+    const updateItem = () => {
+        console.log('update')
+        validateUpdate()
+
+        if(inputValid && lenseType !== ''){
+            navigate("/cart")
+        }else if(lenseType === ''){
+            setlenseValidationError(true)
+        }
+    }
+
+    console.log(data, 'data', 'data')
 
     return(
         <form className="">
@@ -157,10 +170,13 @@ const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, l
                     <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={decrementQty}>-</button>
                     <button className="border border-black py-1 px-4 lg:text-2xl mx-2">{qty}</button>
                     <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={incrementQty}>+</button>
-                    <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={addToCart}>
+                    {data ? <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={updateItem}>
+                        <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
+                        <p>Update Item</p>
+                    </button>:<button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={addToCart}>
                         <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
                         <p>Add to Cart</p>
-                    </button>
+                    </button>}
                 </div>
             </div>
         </form>

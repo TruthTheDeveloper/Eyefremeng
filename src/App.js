@@ -83,7 +83,7 @@ const App = () => {
               <Route path="privacypolicy" element={<PrivacyPolicy/>} />
               <Route path="returnexchange" element={<ReturnExchange/>} />
               <Route path="termsuse" element={<TermsUse/>} />
-            </Route>
+            
 
             {/*admin */}
             <Route path="/" element={<DashboardHoc/>}>
@@ -99,7 +99,7 @@ const App = () => {
             <Route path="prescriptionForm/" element={prescriptionForm}>
               <Route path=":formId" element={prescriptionForm}/>
             </Route>
-          
+          </Route>
         </Routes>
   )
   

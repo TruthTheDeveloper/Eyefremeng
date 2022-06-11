@@ -31,9 +31,11 @@ const Form = ({productName, productDescription, productPrice}) => {
 
     let formEditDetail = null
 
-    const remove =   initialState.items.filter(el => el.id !== formId)
+    const remove =   initialState.items.filter(el => el.id === formId)
         formEditDetail = remove
 
+
+        // console.log(initialState.items[0].id, 'formId', formId)
 
     // useEffect(() => {
         

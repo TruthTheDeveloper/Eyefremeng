@@ -12,7 +12,8 @@ const MiniCartDetailPd = ({pdType,
     pD,
     firstPd,
     secondPd,
-    setConfirm
+    setConfirm,
+    remark
 }) => {
 
 
@@ -73,10 +74,13 @@ const MiniCartDetailPd = ({pdType,
                 <div className="border p-2">{leftAxis}</div>
             <div className="border p-2">{secondPd}</div>
         </div>
-    </div><button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md my-4" onClick={setConfirm}>
-                    <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
-                    <p>Edit</p>
-                </button></>}</>
+    </div>
+    <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md my-4" onClick={setConfirm}>
+        <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
+        <p>Edit</p>
+    </button>
+    <p className="text-sm">{remark}</p>
+    </>}</>
     )
 
 }

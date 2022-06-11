@@ -15,7 +15,7 @@ const DoublePdForm = ({
         <div className="md:flex justify-between">
             <div className="w-64">
                 <Select
-                    placeholder={"--- Please Select ---"}
+                    placeholder={firstPd || "--- Please Select ---"}
                     defaultValue={firstPd}
                     onChange={setFirstPd}
                     options={options}
@@ -24,7 +24,7 @@ const DoublePdForm = ({
             </div>
             <div className="w-64">
                 <Select
-                    placeholder={"--- Please Select ---"}
+                    placeholder={secondPd || "--- Please Select ---"}
                     defaultValue={secondPd}
                     onChange={setSecondPd}
                     options={options}

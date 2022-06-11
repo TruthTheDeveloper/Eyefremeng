@@ -44,6 +44,7 @@ const CartItem = () => {
                             lenseType={item.lenseType}
                             qty={item.qty}
                             Add={item.Add}
+                            remark={item.remark}
                         />
                     )
                 })}

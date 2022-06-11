@@ -1,5 +1,5 @@
 import {useContext, useEffect} from 'react';
-import { useNavigate, useParams  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -29,14 +29,14 @@ const CartDetail = ({
     pdType,
     pD,
     qty,
-    Add
+    Add,
+    remark,
 }) => {
 
     const navigate = useNavigate();
 
     const {initialState,setInitialState} = useContext(AuthContext)
 
-    let {formId} = useParams()
 
     console.log(Add, 'add')
 
@@ -87,7 +87,7 @@ const CartDetail = ({
     }
 
     const editItem = () => {
-        navigate(`prescriptionForm/${id}`)
+        navigate(`/prescriptionForm/${id}`)
     }
     
     return(
@@ -141,7 +141,8 @@ const CartDetail = ({
                 </div>
             </div>
             <div className="flex justify-end border py-4 pr-4  lg:mb-24">
-                <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md" onClick={() => navigate(-1)}>
+                <p className="text-sm my-3">{remark}</p>
+                <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md" onClick={editItem}>
                     <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
                     <p>Edit</p>
                 </button>

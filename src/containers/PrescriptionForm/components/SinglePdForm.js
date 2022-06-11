@@ -10,7 +10,7 @@ const SinglePdForm = ({
         return(
             <div className="">
                 <Select
-                    placeholder={"--- Please Select ---"}
+                    placeholder={singlePD || "--- Please Select ---"}
                     defaultValue={singlePD}
                     onChange={onChange}
                     options={options}

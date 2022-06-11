@@ -1,4 +1,4 @@
-import { rightAxis } from "../../PrescriptionForm/options/options";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 const MiniCartDetailAdd = ({
@@ -14,7 +14,8 @@ const MiniCartDetailAdd = ({
     pD,
     firstPd,
     secondPd,
-    setConfirm
+    setConfirm,
+    remark
 }) => {
 
     return(
@@ -79,7 +80,7 @@ const MiniCartDetailAdd = ({
         </div><button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md my-4" onClick={setConfirm}>
                     <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
                     <p>Edit</p>
-                </button></> }</>
+                </button> <p className="text-sm">{remark}</p></> }</>
     )
 
 }

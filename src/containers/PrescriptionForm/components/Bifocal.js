@@ -3,10 +3,12 @@ import React, { useState,  useContext } from 'react';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailAdd from './MiniCartAddDetail';
+import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 
-const Bifocal = ({productName, productDescription, productPrice}) => {
-    const {initialState, } = useContext(AuthContext)
+const Bifocal = ({productName, productDescription, productPrice,data}) => {
+
+    const {initialState, setInitialState} = useContext(AuthContext)
     const [selectedRightOdOption, setSelectedRightOdOption] = useState({value:null});
     const [selectedRightOdOptionValidationError, setSelectedRightOdOptionValidationError] = useState(false)
 
@@ -57,12 +59,60 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
 
     const [lenseType, setlensType] = useState('')
     const [confirmed, setConfirmed] = useState(false)
+    const [remark, setRemark] = useState('')
+
+
+    //////////////UPDATE////////////////////////
+
+    const [selectedDataRightOdOption, setSelectedDataRightOdOption] = useState({value:data?.rightOD.sphere || null});
+    const [selectedDataRightOdOptionValidationError, setSelectedDataRightOdOptionValidationError] = useState(false)
+
+    const [selectedDataRightAxisOption, setSelectedDataRightAxisOption] = useState({value:data?.rightOD.axis || null});
+    const [selectedDataRightAxisOptionValidationError, setSelectedDataRightAxisOptionValidationError] = useState(false);
+
+
+    const [selectedDataRightCylinderOption, setSelectedDataRightCylinderOption] = useState({value:data?.rightOD.cylinder || null})
+    const [selectedDataRightCylinderOptionValidationError, setSelectedDataRightCylinderOptionValidationError] = useState(false)
+
+
+    const [selectedDataLeftOdOption, setSelectedDataLeftOdOption] = useState({value:data?.leftOD.sphere || null});
+    const [selectedDataLeftOdOptionValidationError, setSelectedDataLeftOdOptionValidationError] = useState(false);
+
+
+
+    const [selectedDataLeftAxisOption, setSelectedDataLeftAxisOdOption] = useState({value:data?.leftOD.axis || null});
+    const [selectedDataLeftAxisOptionValidationError, setSelectedDataLeftAxisOdOptionValidationError] = useState(false);
+
+
+    const [selectedDataLeftCylinderOption, setSelectedDataLeftCylinderOption] = useState({value:data?.leftOD.cylinder || null})
+    const [selectedDataLeftCylinderOptioValidationError, setSelectedDataLeftCylinderOptionValidationError] = useState(false)
+    
+
+    const [singlePDData, setSinglePdData] = useState({value:data?.pD || null})
+    const [singlePDDataValidationError, setSinglePdDataValidationError] = useState(false)
+
+    const [firstPdData, setFirstPdData] = useState({value:data?.pD || null})
+    const [firstPdDataValidationError, setFirstPdDataValidationError] = useState(false)
+
+    const [secondPdData, setSecondPdData] = useState({value:data?.pD || null})
+    const [secondPdDataValidationError, setSecondPdDataValidationError] = useState(false)
+
+    const [usageOptionData, setUsageOptionData] = useState({value:data?.usageOption || null})
+    const [usageOptionDataValidationError, setUsageOptionDataValidationError] = useState(false)
+
+    const [remarkData, setRemarkData] = useState({value:data?.remarkData || null})
+
+    const [selectedDataRightADD, setSelectedDataRightADD] = useState({value:null})
+    const [selectedDataRightADDValidationError, setSelectedDataRightADDValidationError] = useState(false)
+
+    const [selectedDataLeftADD, setSelectedDataLeftADD] = useState({value:null})
+    const [selectedDataLeftADDValidationError, setSelectedDataLeftADDValidationError] = useState(false)
 
 
 
     const addToCartTwoPD = () => {
         const prescription = {
-            id:'',
+            id:v4(),
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
@@ -71,13 +121,13 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
             axis:selectedRightAxisOption.value,
-            add:''
+            add:selectedRightADD.value
             },
             leftOD:{
             sphere:selectedLeftAxisOption.value,
             cylinder:selectedLeftCylinderOption.value,
             axis:selectedLeftAxisOption.value,
-            add:''
+            add:selectedLeftADD.value
             },
             pD:{
             first:firstPd.value,
@@ -105,7 +155,7 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
 
     const addToCartOnePD = () => {
         const prescription = {
-            id:'',
+            id:v4(),
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
@@ -114,13 +164,13 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
             axis:selectedRightAxisOption.value,
-            add:''
+            add:selectedRightADD.value
             },
             leftOD:{
             sphere:selectedLeftAxisOption.value,
             cylinder:selectedLeftCylinderOption.value,
             axis:selectedLeftAxisOption.value,
-            add:''
+            add:selectedLeftADD.value
             },
             pD:singlePD.value,
             usageOption:usageOption.value,
@@ -186,6 +236,148 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
         }
 
 
+    }
+
+
+    const updateToCartTwoPD = () => {
+
+        const prescription = {
+            id:v4(),
+            productName:productName,
+            productDescription:productDescription,
+            productPrice:productPrice,
+            prescriptionType:'Single Vision',
+            rightOD:{
+            sphere:selectedDataRightOdOption.value,
+            cylinder:selectedDataRightCylinderOption.value,
+            axis:selectedDataRightAxisOption.value,
+            add:''
+            },
+            leftOD:{
+            sphere:selectedDataLeftAxisOption.value,
+            cylinder:selectedDataLeftCylinderOption.value,
+            axis:selectedDataLeftAxisOption.value,
+            add:''
+            },
+            pD:{
+                first:firstPdData.value,
+                second:secondPdData.value
+            },
+            usageOption:usageOptionData.value,
+            qty:qty,
+            unitPrice:'',
+            amount:'',
+            subTotal:'',
+            grandTotal:'',
+            pdType:'double',
+            twoSinglePd:twoSinglePD,
+            lenseType:lenseType,
+            Add:false,
+            remark:remark
+
+        }
+
+        setInputValid(true)
+        const remove =   initialState.items.filter(el => el.id !== data.id)
+        console.log(remove, 'remove')
+        setInitialState({...initialState, items:remove})
+
+        initialState.items.push(prescription)
+
+        
+
+    }
+
+    const updateToCartOnePD = () => {
+
+        const prescription = {
+            id:v4(),
+            productName:productName,
+            productDescription:productDescription,
+            productPrice:productPrice,
+            prescriptionType:'Single Vision',
+            rightOD:{
+            sphere:selectedDataRightOdOption.value,
+            cylinder:selectedDataRightCylinderOption.value,
+            axis:selectedDataRightAxisOption.value,
+            add:''
+            },
+            leftOD:{
+            sphere:selectedDataLeftAxisOption.value,
+            cylinder:selectedDataLeftCylinderOption.value,
+            axis:selectedDataLeftAxisOption.value,
+            add:''
+            },
+            pD:singlePDData.value,
+            doublePd:'',
+            usageOption:usageOptionData.value,
+            qty:qty,
+            unitPrice:5000,
+            amount:15000,
+            subTotal:15000,
+            grandTotal:15000,
+            pdType:'single',
+            Add:false,
+            lenseType:lenseType,
+            remark:remark,
+
+        }
+
+        setInputValid(true)
+        const remove =   initialState.items.filter(el => el.id !== data.id)
+        console.log(remove, 'remove')
+        setInitialState({...initialState, items:remove})
+
+        initialState.items.push(prescription)
+        
+    }
+
+
+
+    const validateUpdate = () => {
+        selectedDataRightOdOption.value === null && setSelectedRightOdOptionValidationError(true)
+        selectedDataRightAxisOption.value === null && setSelectedRightAxisOptionValidationError(true)
+        selectedDataRightCylinderOption.value === null && setSelectedRightCylinderOptionValidationError(true)
+        selectedDataLeftOdOption.value === null && setSelectedLeftOdOptionValidationError(true)
+        selectedDataLeftAxisOption.value === null && setSelectedLeftAxisOdOptionValidationError(true)
+        selectedDataLeftCylinderOption.value === null && setSelectedLeftCylinderOptionValidationError(true)
+        singlePDData.value === null && setSinglePdValidationError(true)
+        firstPdData.value === null && setFirstPdValidationError(true)
+        secondPdData.value === null && setSecondPdValidationError(true)
+        usageOptionData.value === null && setUsageOptionValidationError(true)
+        selectedDataRightADD.value === null && setSelectedRightADDValidationError(true)
+        selectedDataLeftADD.value === null && setSelectedLeftADDValidationError(true)
+
+
+        console.log(twoSinglePD)
+        if(twoSinglePD === true){
+            selectedDataRightOdOption.value !== null
+            && selectedDataRightAxisOption.value !== null
+            && selectedDataRightCylinderOption.value !== null
+            && selectedDataLeftOdOption.value !== null
+            && selectedDataLeftAxisOption.value !== null
+            && selectedDataLeftCylinderOption.value !== null
+            && selectedDataRightADD.value !== null
+            && selectedDataLeftADD.value !== null
+            && firstPdData.value !== null
+            && secondPdData.value !== null
+            && usageOptionData.value !== null
+            && updateToCartTwoPD()
+            
+        }else{
+            selectedDataRightOdOption.value !== null
+            && selectedDataRightAxisOption.value !== null
+            && selectedDataRightCylinderOption.value !== null
+            && selectedDataLeftOdOption.value !== null
+            && selectedDataLeftAxisOption.value !== null
+            && selectedDataLeftCylinderOption.value !== null
+            && selectedDataRightADD.value !== null
+            && selectedDataLeftADD.value !== null
+            && singlePDData.value !== null
+            && usageOptionData.value !== null
+            && updateToCartOnePD()
+            
+        }
     }
 
     const incrementQty = (e) => {
@@ -268,9 +460,76 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
     setUsageOption={setUsageOption}
     usageOptionValidationError={usageOptionValidationError}
 
-    
-    
+    remark={remark}
+    setRemark={setRemark}
+
     />
+
+
+    if(data){
+        prescriptionFormSummary = <PrescriptionDetailForm
+        selectedRightOdOption={selectedDataRightOdOption.value}
+        selectedRightOdOptionValidationError={selectedRightOdOptionValidationError}
+    
+        selectedRightAxisOption={selectedDataRightAxisOption.value}
+        selectedRightAxisOptionValidationError={selectedRightAxisOptionValidationError}
+    
+        selectedRightCylinderOption={selectedDataRightCylinderOption.value}
+        selectedRightCylinderOptionValidationError={selectedRightCylinderOptionValidationError}
+    
+        setSelectedRightAxisOption={setSelectedDataRightAxisOption}
+        setSelectedRightOdOption={setSelectedDataRightOdOption}
+        setSelectedRightCylinderOption={setSelectedDataRightCylinderOption}
+    
+        selectedLeftOdOption={selectedDataLeftOdOption.value}
+        selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
+
+        selectedLeftAxisOption={selectedDataLeftAxisOption.value}
+        selectedLeftAxisOptionValidationError={selectedLeftAxisOptionValidationError}
+    
+        selectedLeftCylinderOption={selectedDataLeftCylinderOption.value}
+        selectedLeftCylinderOptioValidationError={selectedLeftCylinderOptioValidationError}
+
+    
+        setSelectedLeftAxisOdOption={setSelectedDataLeftAxisOdOption}
+        setSelectedLeftOdOption={setSelectedDataLeftOdOption}
+        
+        setSelectedLeftCylinderOption={setSelectedDataLeftCylinderOption}
+    
+        singlePD={singlePDData.value}
+        singlePDValidationError={singlePDValidationError}
+        setSinglePd={setSinglePd}
+    
+        secondPd={secondPdData.value.secondPd}
+        setSecondPd={setSecondPdData}
+        secondPdValidationError={secondPdValidationError}
+    
+        twoSinglePD={twoSinglePD}
+        setTwoSinglePd={setTwoSinglePd}
+    
+        firstPd={firstPdData.value.firstPd}
+        setFirstPd={setFirstPdData}
+        firstPdValidationError={firstPdValidationError}
+    
+        selectedRightADD={selectedDataRightADD.value}
+        selectedRightADDValidationError={selectedRightADDValidationError}
+    
+        setSelectedRightADD={setSelectedDataRightADD}
+    
+        selectedLeftADD={selectedDataLeftADD.value}
+        setSelectedLeftADD={setSelectedDataLeftADD}
+        selectedLeftADDValidationError={selectedLeftADDValidationError}
+    
+        usageOption={usageOptionData.value}
+        setUsageOption={setUsageOptionData}
+        usageOptionValidationError={usageOptionValidationError}
+        remark={remarkData.value}
+        setRemrk={setRemarkData}
+    
+        
+        
+        />
+    }
 
 
     if(confirmed){
@@ -346,6 +605,8 @@ const Bifocal = ({productName, productDescription, productPrice}) => {
             decrementQty={decrementQty} 
             lenseType={lenseType} 
             lenseTypeHandler={lenseTypeHandler}
+            data={data}
+            validateUpdate={validateUpdate}
         />
         </>
     )

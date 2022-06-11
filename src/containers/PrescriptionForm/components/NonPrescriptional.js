@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
+import {v4} from 'uuid';
 
-const NonPrescriptional = ({productName, productDescription, productPrice}) => {
+const NonPrescriptional = ({productName, productDescription, productPrice, data}) => {
     
     const {initialState, } = useContext(AuthContext)
 
@@ -34,7 +35,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice}) => {
 
     const validateInput = () => {
         const prescription = {
-            id:'',
+            id:v4(),
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
@@ -57,7 +58,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice}) => {
 
     return(
         <>
-        <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler}/>
+        <LensForm validateInput={validateInput} inputValid={inputValid} qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} lenseType={lenseType} lenseTypeHandler={lenseTypeHandler} data={data}/>
         </>
     )
 

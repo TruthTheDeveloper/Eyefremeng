@@ -24,7 +24,7 @@ const LeftOd = ({
             <div className="w-full">
                 <label>Sphere</label>
                 <Select
-                    placeholder={"0.00"}
+                    placeholder={selectedLeftOdOption || "0.00"}
                     defaultValue={selectedLeftOdOption}
                     onChange={setSelectedLeftOdOption}
                     options={leftOd}
@@ -34,7 +34,7 @@ const LeftOd = ({
             <div className="mx-2 w-full">
                 <label>Cylinder</label>
                 <Select
-                    placeholder={"0.00"}
+                    placeholder={selectedLeftCylinderOption || "0.00"}
                     defaultValue={selectedLeftCylinderOption}
                     onChange={setSelectedLeftCylinderOption}
                     options={leftCylinder}
@@ -44,7 +44,7 @@ const LeftOd = ({
             <div className="mx-2 w-full">
                 <label>Axis</label>
                 <Select
-                    placeholder={"0.00"}
+                    placeholder={selectedLeftAxisOption || "0.00"}
                     defaultValue={selectedLeftAxisOption}
                     onChange={setSelectedLeftAxisOdOption}
                     options={leftAxis}
@@ -54,7 +54,7 @@ const LeftOd = ({
             <div className="w-full">
                 <label>ADD</label>
                 <Select
-                    placeholder={"0.00"}
+                    placeholder={selectedLeftADD || "0.00"}
                     defaultValue={selectedLeftADD}
                     onChange={setSelectedLeftADD}
                     options={leftADD}

@@ -26,6 +26,9 @@ const PrescriptionDetailForm = ({
     selectedLeftAxisOptionValidationError,
     selectedLeftCylinderOptioValidationError,
 
+    remark,
+    setRemark,
+
     selectedLeftADD,
     selectedLeftADDValidationError,
     setSelectedLeftADD,
@@ -151,7 +154,7 @@ const PrescriptionDetailForm = ({
         <label>Usage*</label>
         <div>
             <Select
-                placeholder={"--- Please Select ---"}
+                placeholder={usageOption || "--- Please Select ---"}
                 defaultValue={usageOption}
                 onChange={setUsageOption}
                 options={usage}
@@ -160,7 +163,7 @@ const PrescriptionDetailForm = ({
         </div>
         <div className="my-8">
             <label className="">Remark*</label>
-            <textarea className="h-24 w-full border-2 border-slate-400 outline-none my-2 rounded-sm p-2"/>
+            <textarea className="h-24 w-full border-2 border-slate-400 outline-none my-2 rounded-sm p-2" value={remark} onChange={(e) => setRemark(e.target.value)}/>
         </div>
     </div>
     
