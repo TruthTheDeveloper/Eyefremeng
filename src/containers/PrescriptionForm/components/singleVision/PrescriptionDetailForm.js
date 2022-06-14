@@ -47,8 +47,12 @@ const PrescriptionDetailForm = ({
 
     usageOption,
     
+    
 
 }) => {
+
+    
+    console.log(twoSinglePD, 'twoSingle', singlePD, 'single', firstPd, 'firstPd', secondPd, 'secondPd')
 
 
     return(
@@ -124,14 +128,14 @@ const PrescriptionDetailForm = ({
                         singlePD={singlePD}
                         singlePDValidationError={singlePDValidationError}
                         options={Pd} 
-                        onChange={setSinglePd}
+                        setSinglePd={setSinglePd}
         />}
         
     </div>
     <div className="px-3 border-2 py-3">
         <div className="px-3 border-2 py-3">
             <div className="flex  border-b-2 py-3">
-                <input type="checkbox" className="m-2" onChange={() => setTwoSinglePd(prev => !prev)}/>
+                <input type="checkbox" className="m-2" value={twoSinglePD} onChange={() => setTwoSinglePd(prev => !prev)}/>
                 <label>i have 2 single PDS</label>
             </div>
         </div>

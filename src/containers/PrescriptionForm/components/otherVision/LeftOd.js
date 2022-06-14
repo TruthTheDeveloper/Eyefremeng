@@ -19,6 +19,8 @@ const LeftOd = ({
     selectedLeftADDValidationError,
 }) => {
 
+    console.log(selectedLeftADD, 'feftadd')
+
     return(
         <div className="flex justify-center">
             <div className="w-full">

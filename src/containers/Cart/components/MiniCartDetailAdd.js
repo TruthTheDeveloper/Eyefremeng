@@ -9,6 +9,7 @@ const MiniCartDetailAdd = ({
     rightAxis,
     rightAdd,
     pD,
+    pDD
 }) => {
 
     return(
@@ -26,7 +27,7 @@ const MiniCartDetailAdd = ({
             <div className="border p-2">{rightSphere}</div>
             <div className="border p-2">{rightCylinder}</div>
             <div className="border p-2">{rightAxis}</div>
-            <div className="border p-2">{pD.first}</div>
+            <div className="border p-2">{pDD?.first}</div>
             <div className="border p-2">{rightAdd}</div>
         </div>
         <div className="grid grid-cols-6">
@@ -34,7 +35,7 @@ const MiniCartDetailAdd = ({
             <div className="border p-2">{leftSphere}</div>
             <div className="border p-2">{leftCylinder}</div>
             <div className="border p-2">{leftAxis}</div>
-            <div className="border p-2">{pD.second}</div>
+            <div className="border p-2">{pDD?.second}</div>
             <div className="border p-2">{leftAdd}</div>
         </div>
     </div>: <div className=" border border-2 my-4">

@@ -1,10 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Select from 'react-select';
-import { Pd,doublePD, rightOd, leftOd,  rightAxis, rightCylinder, leftAxis, leftCylinder, usage, RightADD, LeftADD  } from '../options/options'; 
-import RightOd from './singleVision/RightOd';
-import LeftOd from './singleVision/LeftOd';
-import SinglePdForm from './SinglePdForm';
-import DoublePdForm from './DoublePdForm';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailPd from './MiniCartDetailPd';
@@ -12,14 +6,16 @@ import MiniCartDetailPd from './MiniCartDetailPd';
 import PrescriptionDetailForm from './singleVision/PrescriptionDetailForm';
 import {v4} from 'uuid';
 
+import { useNavigate  } from "react-router-dom";
+
 
 
 
 const SingleVision = ({productName, productDescription, productPrice, data}) => {
 
-    const {initialState, setInitialState} = useContext(AuthContext)
+    let navigate = useNavigate();
 
-    // const {product, } = useContext(AuthContext)
+    const {initialState, setInitialState} = useContext(AuthContext)
 
     const [selectedRightOdOption, setSelectedRightOdOption] = useState({value:null});
     const [selectedRightOdOptionValidationError, setSelectedRightOdOptionValidationError] = useState(false)
@@ -36,7 +32,6 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     const [selectedLeftOdOptionValidationError, setSelectedLeftOdOptionValidationError] = useState(false);
 
 
-
     const [selectedLeftAxisOption, setSelectedLeftAxisOdOption] = useState({value:null});
     const [selectedLeftAxisOptionValidationError, setSelectedLeftAxisOdOptionValidationError] = useState(false);
 
@@ -48,10 +43,10 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     const [singlePD, setSinglePd] = useState({value:null})
     const [singlePDValidationError, setSinglePdValidationError] = useState(false)
 
-    const [firstPd, setFirstPd] = useState({value:null})
+    const [firstPd, setFirstPd] = useState({value:{first:null}})
     const [firstPdValidationError, setFirstPdValidationError] = useState(false)
 
-    const [secondPd, setSecondPd] = useState({value:null})
+    const [secondPd, setSecondPd] = useState({value:{second:null}})
     const [secondPdValidationError, setSecondPdValidationError] = useState(false)
 
 
@@ -70,9 +65,11 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const [lenseType, setlensType] = useState('')
 
-
     const [confirmed, setConfirmed] = useState(false)
 
+    const [file, setFiles] = useState(false)
+
+    const [clicked, setClicked] = useState(false)
 
     //////////////UPDATE////////////////////////
 
@@ -103,28 +100,56 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     const [singlePDData, setSinglePdData] = useState({value:data?.pD || null})
     const [singlePDDataValidationError, setSinglePdDataValidationError] = useState(false)
 
-    const [firstPdData, setFirstPdData] = useState({value:data?.pD || null})
+    const [firstPdData, setFirstPdData] = useState({value:data?.pDD || null})
     const [firstPdDataValidationError, setFirstPdDataValidationError] = useState(false)
 
-    const [secondPdData, setSecondPdData] = useState({value:data?.pD || null})
+    const [secondPdData, setSecondPdData] = useState({value:data?.pDD || null})
     const [secondPdDataValidationError, setSecondPdDataValidationError] = useState(false)
 
     const [usageOptionData, setUsageOptionData] = useState({value:data?.usageOption || null})
     const [usageOptionDataValidationError, setUsageOptionDataValidationError] = useState(false)
 
-    const [remarkData, setRemarkData] = useState({value:data?.remark || null})
+    const [remarkData, setRemarkData] = useState({value:data?.remark || ''})
+
+    const [twoSinglePDData, setTwoSinglePdData] = useState(data?.twoSinglePd)
+
+    const [dataQty, setDataQty] = useState(data?.qty)
+
+    const [inputValidData, setInputValidData] = useState(false)
 
 
     useEffect(() => {
-        console.log(data, 'data',selectedDataRightOdOption )
-    },[data])
+        // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
+        console.log(inputValidData, lenseType, 'navigate')
+        if(inputValidData && lenseType !== '' && clicked){
+            const remove =   initialState.items.filter(el => el.id !== data?.id)
+            console.log(remove, 'remove')
+            setInitialState({...initialState, items:remove})
+            console.log('navigate')
+            navigate("/cart")
+        }
+        setClicked(false)
+        
+    },[data?.id, initialState, inputValid, inputValidData, lenseType, navigate, setInitialState, clicked])
 
 
+
+    useEffect(() => {
+        // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
+        console.log(inputValid, lenseType, 'navigate')
+        if(inputValid && lenseType !== '' && clicked){
+            navigate("/cart")
+        }
+        setClicked(false)
+        
+    },[inputValid, lenseType, navigate, clicked])
 
 
 
 
     const addToCartTwoPD = () => {
+        console.log('two single pd')
+        
         const prescription = {
             id:v4(),
             productName:productName,
@@ -138,14 +163,14 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             add:''
             },
             leftOD:{
-            sphere:selectedLeftAxisOption.value,
+            sphere:selectedLeftOdOption.value,
             cylinder:selectedLeftCylinderOption.value,
             axis:selectedLeftAxisOption.value,
             add:''
             },
-            pD:{
-                first:firstPd.value,
-                second:secondPd.value
+            pDD:{
+                first:firstPd.value.first,
+                second:secondPd.value.second
             },
             usageOption:usageOption.value,
             qty:qty,
@@ -157,18 +182,25 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             twoSinglePd:twoSinglePD,
             lenseType:lenseType,
             Add:false,
-            remark:remark
+            remark:remark,
+            file:file
 
         }
 
         setInputValid(true)
 
-        initialState.items.push(prescription)
+        if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
+        
+        
 
     }
 
 
     const addToCartOnePD = () => {
+        console.log('one single pd')
         const prescription = {
             id:v4(),
             productName:productName,
@@ -199,14 +231,19 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             Add:false,
             lenseType:lenseType,
             remark:remark,
+            twoSinglePd:twoSinglePD,
+            file:file
 
         }
          setInputValid(true)
 
-        initialState.items.push(prescription)
+         if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
 
     }
-        
+    
 
 
     const validateInput = () => {
@@ -224,6 +261,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
         console.log(twoSinglePD)
         if(twoSinglePD === true){
+            console.log('two')
             selectedRightOdOption.value !== null
             && selectedRightAxisOption.value !== null
             && selectedRightCylinderOption.value !== null
@@ -234,8 +272,10 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             && secondPd.value !== null
             && usageOption.value !== null
             && addToCartTwoPD()
+
             
         }else{
+            console.log('one')
             selectedRightOdOption.value !== null
             && selectedRightAxisOption.value !== null
             && selectedRightCylinderOption.value !== null
@@ -245,6 +285,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             && singlePD.value !== null
             && usageOption.value !== null
             && addToCartOnePD()
+
             
         }
 
@@ -252,7 +293,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
 
     const updateToCartTwoPD = () => {
-
+        console.log('update two double pd')
         const prescription = {
             id:v4(),
             productName:productName,
@@ -266,42 +307,46 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             add:''
             },
             leftOD:{
-            sphere:selectedDataLeftAxisOption.value,
+            sphere:selectedDataLeftOdOption.value,
             cylinder:selectedDataLeftCylinderOption.value,
             axis:selectedDataLeftAxisOption.value,
             add:''
             },
-            pD:{
-                first:firstPdData.value,
-                second:secondPdData.value
+            pDD:{
+                first:firstPdData.value.first,
+                second:secondPdData.value.second
             },
             usageOption:usageOptionData.value,
-            qty:qty,
+            qty:dataQty,
             unitPrice:'',
             amount:'',
             subTotal:'',
             grandTotal:'',
             pdType:'double',
-            twoSinglePd:twoSinglePD,
+            twoSinglePd:twoSinglePDData,
             lenseType:lenseType,
             Add:false,
-            remark:remark
+            remark:remark,
+            file:file
 
         }
 
-        setInputValid(true)
-        const remove =   initialState.items.filter(el => el.id !== data.id)
-        console.log(remove, 'remove')
-        setInitialState({...initialState, items:remove})
-
+        setInputValidData(true)
         initialState.items.push(prescription)
+        setClicked(true)
 
+
+
+        // const remove =   initialState.items.filter(el => el.id !== data?.id)
+        // console.log(remove, 'remove')
+        // setInitialState({...initialState, items:remove})
         
 
     }
 
-    const updateToCartOnePD = () => {
 
+    const updateToCartOnePD = () => {
+        console.log('update one single pd')
         const prescription = {
             id:v4(),
             productName:productName,
@@ -315,7 +360,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             add:''
             },
             leftOD:{
-            sphere:selectedDataLeftAxisOption.value,
+            sphere:selectedDataLeftOdOption.value,
             cylinder:selectedDataLeftCylinderOption.value,
             axis:selectedDataLeftAxisOption.value,
             add:''
@@ -323,7 +368,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             pD:singlePDData.value,
             doublePd:'',
             usageOption:usageOptionData.value,
-            qty:qty,
+            qty:dataQty,
             unitPrice:5000,
             amount:15000,
             subTotal:15000,
@@ -332,15 +377,22 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             Add:false,
             lenseType:lenseType,
             remark:remark,
+            twoSinglePd:twoSinglePDData,
+            file:file
 
         }
 
-        setInputValid(true)
-        const remove =   initialState.items.filter(el => el.id !== data.id)
-        console.log(remove, 'remove')
-        setInitialState({...initialState, items:remove})
+        setInputValidData(true)
 
         initialState.items.push(prescription)
+        setClicked(true)
+        
+        
+
+        
+        
+
+        
         
     }
 
@@ -359,7 +411,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
 
         console.log(twoSinglePD)
-        if(twoSinglePD === true){
+        if(twoSinglePDData === true){
+            console.log('update two pd was true')
             selectedDataRightOdOption.value !== null
             && selectedDataRightAxisOption.value !== null
             && selectedDataRightCylinderOption.value !== null
@@ -372,6 +425,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             && updateToCartTwoPD()
             
         }else{
+            console.log('update one pd has false')
             selectedDataRightOdOption.value !== null
             && selectedDataRightAxisOption.value !== null
             && selectedDataRightCylinderOption.value !== null
@@ -415,7 +469,9 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     }
 
 
-    
+
+
+
 
 
 
@@ -451,14 +507,15 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 singlePDValidationError={singlePDValidationError}
                 setSinglePd={setSinglePd}
 
-                secondPd={secondPd.value}
+                secondPd={secondPd?.value?.second}
                 setSecondPd={setSecondPd}
                 secondPdValidationError={secondPdValidationError}
 
                 twoSinglePD={twoSinglePD}
                 setTwoSinglePd={setTwoSinglePd}
+                
 
-                firstPd={firstPd.value}
+                firstPd={firstPd?.value?.first}
                 setFirstPd={setFirstPd}
                 firstPdValidationError={firstPdValidationError}
                 usageOption={usageOption.value}
@@ -507,14 +564,14 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 singlePDValidationError={singlePDValidationError}
                 setSinglePd={setSinglePdData}
 
-                secondPd={secondPdData.value.secondPd}
+                secondPd={secondPdData?.value?.second}
                 setSecondPd={setSecondPdData}
                 secondPdValidationError={secondPdValidationError}
 
-                twoSinglePD={twoSinglePD}
-                setTwoSinglePd={setTwoSinglePd}
+                twoSinglePD={twoSinglePDData}
+                setTwoSinglePd={setTwoSinglePdData}
 
-                firstPd={firstPdData.value.firstPd}
+                firstPd={firstPdData?.value?.first}
                 setFirstPd={setFirstPdData}
                 firstPdValidationError={firstPdValidationError}
 
@@ -523,6 +580,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 usageOptionValidationError={usageOptionValidationError}
                 remark={remarkData.value}
                 setRemark={setRemarkData}
+                
                 // leftADD={''}
                 // rightAdd={''}  
                 
@@ -530,27 +588,65 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     }
 
 
+    console.log(confirmed && data, 'confirmed && data')
 
-
-    if(confirmed){
-        if(twoSinglePD === true){
+    if(confirmed && data){
+        if(twoSinglePDData === true){
                 console.log('got')
                 prescriptionFormSummary = <MiniCartDetailPd
                     pdType={'double'} 
-                    leftSphere={selectedLeftAxisOption.value}
-                    leftAxis={selectedLeftAxisOption.value}
-                    leftCylinder={selectedLeftCylinderOption.value}
+                    leftSphere={selectedDataLeftAxisOption.value}
+                    leftAxis={selectedDataLeftAxisOption.value}
+                    leftCylinder={selectedDataLeftCylinderOption.value}
                     leftAdd={''}
                     
-                    rightSphere={selectedRightOdOption.value}
-                    rightCylinder={selectedRightCylinderOption.value}
-                    rightAxis={selectedRightAxisOption.value}
+                    rightSphere={selectedDataRightOdOption.value}
+                    rightCylinder={selectedDataRightCylinderOption.value}
+                    rightAxis={selectedDataRightAxisOption.value}
                     rightAdd={''}
                     pD={''}
-                    firstPd={firstPd.value}
-                    secondPd={secondPd.value}
+                    firstPd={firstPdData.value.first}
+                    secondPd={secondPdData.value.second}
                     setConfirm={confirmedHandler}
                     />
+        }else{
+            prescriptionFormSummary = <MiniCartDetailPd
+                pdType={'single'} 
+                leftSphere={selectedDataLeftAxisOption.value}
+                leftAxis={selectedDataLeftAxisOption.value}
+                leftCylinder={selectedDataLeftCylinderOption.value}
+                leftAdd={''}
+                
+                rightSphere={selectedDataRightOdOption.value}
+                rightCylinder={selectedDataRightCylinderOption.value}
+                rightAxis={selectedDataRightAxisOption.value}
+                rightAdd={''}
+                pD={singlePDData.value}
+                setConfirm={confirmedHandler}
+                />
+        }
+
+
+    }else if(confirmed){
+
+        if(twoSinglePD === true){
+            console.log('got')
+            prescriptionFormSummary = <MiniCartDetailPd
+                pdType={'double'} 
+                leftSphere={selectedLeftAxisOption.value}
+                leftAxis={selectedLeftAxisOption.value}
+                leftCylinder={selectedLeftCylinderOption.value}
+                leftAdd={''}
+                
+                rightSphere={selectedRightOdOption.value}
+                rightCylinder={selectedRightCylinderOption.value}
+                rightAxis={selectedRightAxisOption.value}
+                rightAdd={''}
+                pD={''}
+                firstPd={firstPd.value.first}
+                secondPd={secondPd.value.second}
+                setConfirm={confirmedHandler}
+                />
         }else{
             prescriptionFormSummary = <MiniCartDetailPd
                 pdType={'single'} 
@@ -566,8 +662,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 pD={singlePD.value}
                 setConfirm={confirmedHandler}
                 />
-        }
-
+    }
 
     }
 
@@ -582,6 +677,23 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
         
     }
 
+    const decrementDataQty = (e) => {
+        e.preventDefault()
+         
+
+        if(dataQty > 1){
+            setDataQty(prev => prev-1)
+        }
+
+
+
+    }
+
+    const incrementDataQty = (e) => {
+        e.preventDefault()
+        setDataQty(prev => prev + 1)
+    }
+
 
 
     return(
@@ -590,7 +702,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
             <div className="px-3 border-2 py-3">
                 <label>Prescription Paper(Optional)</label><br/>
-                <input type="file" className="my-3"/>
+                <input type="file" className="my-3" onChange={(e) => setFiles(e.target.files[0])}/>
                 <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
                 <p className="text-red-500 text-xs">Max file size:16M</p>
                 <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>
@@ -599,7 +711,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 </button>
             </div>
 
-            <LensForm 
+            {confirmed && <LensForm 
                 validateInput={validateInput} 
                 inputValid={inputValid} 
                 qty={qty} 
@@ -608,8 +720,12 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 lenseType={lenseType} 
                 lenseTypeHandler={lenseTypeHandler}
                 data={data}
+                dataQty={dataQty}
                 validateUpdate={validateUpdate}
-            />
+                decrementDataQty={decrementDataQty}
+                incrementDataQty={incrementDataQty}
+                inputValidData={inputValidData}
+            />}
         </>
     )
 

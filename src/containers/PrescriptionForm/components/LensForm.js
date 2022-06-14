@@ -6,7 +6,7 @@ import { useNavigate  } from "react-router-dom";
 
 import Collapse from "react-collapsible-wrapper";
 
-const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler, data, validateUpdate}) => {
+const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler, data, validateUpdate, decrementDataQty, incrementDataQty, inputValidData, dataQty}) => {
     const [isOpenClear, setIsOpenClear] = useState(false);
     const [isOpenphotoChromic, setIsOpenphotoChromic] = useState(false);
     const [isOpenphotoPolarized, setIsOpenphotoPolarized] = useState(false);
@@ -17,12 +17,17 @@ const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, l
     
     let navigate = useNavigate();
 
-    useEffect(() => {
-        if(inputValid && lenseType !== ''){
-            navigate("/cart")
-        }
+    // useEffect(() => {
 
-    },[inputValid, lenseType, navigate])
+    //     console.log(inputValidData, 'inputvalid')
+    //     if(inputValid && lenseType !== ''){
+    //         navigate("/cart")
+    //     }else if(lenseType === ''){
+    //         setlenseValidationError(true)
+    //     }
+
+
+    // },[inputValid, lenseType, navigate,inputValidData ])
 
     
     
@@ -53,26 +58,37 @@ const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, l
         validateInput()
         console.log(lenseType, inputValid, 'theirvalue')
 
-        if(inputValid && lenseType !== ''){
-            navigate("/cart")
-        }else if(lenseType === ''){
+        if(lenseType === ''){
+            console.log('lense field is needed', lenseType)
             setlenseValidationError(true)
         }
+
+        // if(inputValid && lenseType !== ''){
+        //     navigate("/cart")
+        // }else if(lenseType === ''){
+        //     setlenseValidationError(true)
+        // }
         
     }
 
-    const updateItem = () => {
+    const updateItem = (e) => {
+        e.preventDefault()
         console.log('update')
+        
+
+
+        console.log(inputValid, 'validinput' , lenseType)
         validateUpdate()
 
-        if(inputValid && lenseType !== ''){
-            navigate("/cart")
-        }else if(lenseType === ''){
+        if(lenseType === ''){
+            console.log('lense field is needed', lenseType)
             setlenseValidationError(true)
         }
     }
 
-    console.log(data, 'data', 'data')
+
+    console.log(data, 'other data')
+
 
     return(
         <form className="">
@@ -167,16 +183,26 @@ const LensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, l
             <div className="my-4">
                 <p className="my-8 text-2xl font-semibold text-indigo-800">#15,000</p>
                 <div className="flex">
-                    <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={decrementQty}>-</button>
-                    <button className="border border-black py-1 px-4 lg:text-2xl mx-2">{qty}</button>
-                    <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={incrementQty}>+</button>
-                    {data ? <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={updateItem}>
-                        <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
-                        <p>Update Item</p>
-                    </button>:<button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={addToCart}>
-                        <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
-                        <p>Add to Cart</p>
-                    </button>}
+
+                    
+                    {data ?
+                            <>
+                            <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={decrementDataQty}>-</button>
+                            <button className="border border-black py-1 px-4 lg:text-2xl mx-2">{dataQty}</button>
+                            <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={incrementDataQty}>+</button>
+                            <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={updateItem}>
+                            <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
+                            <p>Update Item</p>
+                            </button>
+                            </>:<><button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={decrementQty}>-</button>
+                            <button className="border border-black py-1 px-4 lg:text-2xl mx-2">{qty}</button>
+                            <button className="border py-1 px-4 lg:text-2xl font-semibold" onClick={incrementQty}>+</button>
+                            <button className="flex bg-indigo-800 text-white  py-2 px-4 mx-2" onClick={addToCart}>
+                            <FontAwesomeIcon icon={faCartShopping} className="md:mr-2 pt-1 md:pt-0 lg:text-2xl"/>
+                            <p>Add to Cart</p>
+                            </button>
+                            </>
+                    }
                 </div>
             </div>
         </form>

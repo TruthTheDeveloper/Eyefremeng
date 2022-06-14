@@ -15,8 +15,10 @@ const MiniCartDetailAdd = ({
     firstPd,
     secondPd,
     setConfirm,
-    remark
+    remark,
 }) => {
+
+    console.log(leftAdd, 'ple')
 
     return(
         <>{ pdType === 'double' ? <><div className=" border border-2 my-4">

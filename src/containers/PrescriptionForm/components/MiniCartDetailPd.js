@@ -2,7 +2,8 @@ import { rightAxis } from "../../PrescriptionForm/options/options";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-const MiniCartDetailPd = ({pdType,
+const MiniCartDetailPd = ({
+    pdType,
     leftSphere,
     leftAxis,
     leftCylinder,

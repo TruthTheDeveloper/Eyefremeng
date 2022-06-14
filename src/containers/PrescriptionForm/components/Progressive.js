@@ -1,12 +1,16 @@
-import React, { useState,  useContext } from 'react';
+import React, { useState,  useContext, useEffect } from 'react';
 
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailAdd from './MiniCartAddDetail';
 import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
+import { useNavigate  } from "react-router-dom";
 
 const Progressive = ({productName, productDescription, productPrice, data}) => {
+
+    let navigate = useNavigate();
+
     const {initialState, setInitialState} = useContext(AuthContext)
     const [selectedRightOdOption, setSelectedRightOdOption] = useState({value:null});
     const [selectedRightOdOptionValidationError, setSelectedRightOdOptionValidationError] = useState(false)
@@ -59,54 +63,89 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     const [lenseType, setlensType] = useState('')
     const [confirmed, setConfirmed] = useState(false)
     const [remark, setRemark] = useState('')
+    const [file, setFiles] = useState(false)
+    const [clicked, setClicked] = useState(false)
 
 
 
-        //////////////UPDATE////////////////////////
+    //////////////UPDATE////////////////////////
 
-        const [selectedDataRightOdOption, setSelectedDataRightOdOption] = useState({value:data?.rightOD.sphere || null});
-        const [selectedDataRightOdOptionValidationError, setSelectedDataRightOdOptionValidationError] = useState(false)
+    const [selectedDataRightOdOption, setSelectedDataRightOdOption] = useState({value:data?.rightOD.sphere || null});
+    const [selectedDataRightOdOptionValidationError, setSelectedDataRightOdOptionValidationError] = useState(false)
+
+    const [selectedDataRightAxisOption, setSelectedDataRightAxisOption] = useState({value:data?.rightOD.axis || null});
+    const [selectedDataRightAxisOptionValidationError, setSelectedDataRightAxisOptionValidationError] = useState(false);
+
+
+    const [selectedDataRightCylinderOption, setSelectedDataRightCylinderOption] = useState({value:data?.rightOD.cylinder || null})
+    const [selectedDataRightCylinderOptionValidationError, setSelectedDataRightCylinderOptionValidationError] = useState(false)
+
+
+    const [selectedDataLeftOdOption, setSelectedDataLeftOdOption] = useState({value:data?.leftOD.sphere || null});
+    const [selectedDataLeftOdOptionValidationError, setSelectedDataLeftOdOptionValidationError] = useState(false);
+
+
+
+    const [selectedDataLeftAxisOption, setSelectedDataLeftAxisOdOption] = useState({value:data?.leftOD.axis || null});
+    const [selectedDataLeftAxisOptionValidationError, setSelectedDataLeftAxisOdOptionValidationError] = useState(false);
+
+
+    const [selectedDataLeftCylinderOption, setSelectedDataLeftCylinderOption] = useState({value:data?.leftOD.cylinder || null})
+    const [selectedDataLeftCylinderOptioValidationError, setSelectedDataLeftCylinderOptionValidationError] = useState(false)
     
-        const [selectedDataRightAxisOption, setSelectedDataRightAxisOption] = useState({value:data?.rightOD.axis || null});
-        const [selectedDataRightAxisOptionValidationError, setSelectedDataRightAxisOptionValidationError] = useState(false);
     
-    
-        const [selectedDataRightCylinderOption, setSelectedDataRightCylinderOption] = useState({value:data?.rightOD.cylinder || null})
-        const [selectedDataRightCylinderOptionValidationError, setSelectedDataRightCylinderOptionValidationError] = useState(false)
-    
-    
-        const [selectedDataLeftOdOption, setSelectedDataLeftOdOption] = useState({value:data?.leftOD.sphere || null});
-        const [selectedDataLeftOdOptionValidationError, setSelectedDataLeftOdOptionValidationError] = useState(false);
-    
-    
-    
-        const [selectedDataLeftAxisOption, setSelectedDataLeftAxisOdOption] = useState({value:data?.leftOD.axis || null});
-        const [selectedDataLeftAxisOptionValidationError, setSelectedDataLeftAxisOdOptionValidationError] = useState(false);
-    
-    
-        const [selectedDataLeftCylinderOption, setSelectedDataLeftCylinderOption] = useState({value:data?.leftOD.cylinder || null})
-        const [selectedDataLeftCylinderOptioValidationError, setSelectedDataLeftCylinderOptionValidationError] = useState(false)
+    const [singlePDData, setSinglePdData] = useState({value:data?.pD || null})
+    const [singlePDDataValidationError, setSinglePdDataValidationError] = useState(false)
+
+    const [firstPdData, setFirstPdData] = useState({value:data?.pDD || null})
+    const [firstPdDataValidationError, setFirstPdDataValidationError] = useState(false)
+
+    const [secondPdData, setSecondPdData] = useState({value:data?.pDD || null})
+    const [secondPdDataValidationError, setSecondPdDataValidationError] = useState(false)
+
+    const [usageOptionData, setUsageOptionData] = useState({value:data?.usageOption || null})
+    const [usageOptionDataValidationError, setUsageOptionDataValidationError] = useState(false)
+
+    const [remarkData, setRemarkData] = useState({value:data?.remark || ''})
+
+    const [selectedDataRightADD, setSelectedDataRightADD] = useState({value:data?.rightOD.add})
+    const [twoSinglePDData, setTwoSinglePdData] = useState(data?.twoSinglePd)
+    const [selectedDataRightADDValidationError, setSelectedDataRightADDValidationError] = useState(false)
+
+    const [dataQty, setDataQty] = useState(data?.qty)
+    const [inputValidData, setInputValidData] = useState(false)
+
+    const [selectedDataLeftADD, setSelectedDataLeftADD] = useState({value:data?.leftOD.add})
+    const [selectedDataLeftADDValidationError, setSelectedDataLeftADDValidationError] = useState(false)
+
         
+
+
+
+
+        useEffect(() => {
+            // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
+            console.log(inputValidData, lenseType, 'navigate')
+            if(inputValidData && lenseType !== '' && clicked){
+                const remove =   initialState.items.filter(el => el.id !== data?.id)
+                console.log(remove, 'remove')
+                setInitialState({...initialState, items:remove})
+                console.log('navigate')
+                navigate("/cart")
+            }
+            setClicked(false)
+            
+        },[data?.id, initialState, inputValid, inputValidData, lenseType, navigate, setInitialState, clicked])
     
-        const [singlePDData, setSinglePdData] = useState({value:data?.pD.singleDataPD || null})
-        const [singlePDDataValidationError, setSinglePdDataValidationError] = useState(false)
-    
-        const [firstPdData, setFirstPdData] = useState({value:data?.pD || null})
-        const [firstPdDataValidationError, setFirstPdDataValidationError] = useState(false)
-    
-        const [secondPdData, setSecondPdData] = useState({value:data?.pD || null})
-        const [secondPdDataValidationError, setSecondPdDataValidationError] = useState(false)
-    
-        const [usageOptionData, setUsageOptionData] = useState({value:data?.usageOption || null})
-        const [usageOptionDataValidationError, setUsageOptionDataValidationError] = useState(false)
-    
-        const [remarkData, setRemarkData] = useState({value:data?.remarkData || null})
-    
-        const [selectedDataRightADD, setSelectedDataRightADD] = useState({value:null})
-        const [selectedDataRightADDValidationError, setSelectedDataRightADDValidationError] = useState(false)
-    
-        const [selectedDataLeftADD, setSelectedDataLeftADD] = useState({value:null})
-        const [selectedDataLeftADDValidationError, setSelectedDataLeftADDValidationError] = useState(false)
+        useEffect(() => {
+            // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
+            console.log(inputValid, lenseType, 'navigate')
+            if(inputValid && lenseType !== '' && clicked){
+                navigate("/cart")
+            }
+            setClicked(false)
+            
+        },[inputValid, lenseType, navigate, clicked])
 
 
 
@@ -116,7 +155,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedRightOdOption.value,
             cylinder:selectedRightCylinderOption.value,
@@ -129,9 +168,9 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             axis:selectedLeftAxisOption.value,
             add:selectedLeftADD.value
             },
-            pD:{
-            first:firstPd.value,
-            second:secondPd.value
+            pDD:{
+                first:firstPd.value.first,
+                second:secondPd.value.second
             },
             usageOption:usageOption.value,
             qty:qty,
@@ -142,13 +181,19 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             pdType:'double',
             twoSinglePd:twoSinglePD,
             lenseType:lenseType,
-            Add:true
+            Add:true,
+            remark:remark,
+            file:file
 
         }
 
         setInputValid(true)
 
-        initialState.items.push(prescription)
+
+        if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
 
     }
 
@@ -183,11 +228,16 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             twoSinglePd:twoSinglePD,
             lenseType:lenseType,
             Add:true,
+            remark:remark,
+            file:file
 
         }
-         setInputValid(true)
+        setInputValidData(true)
 
-        initialState.items.push(prescription)
+        if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
 
     }
 
@@ -243,22 +293,22 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
             cylinder:selectedDataRightCylinderOption.value,
             axis:selectedDataRightAxisOption.value,
-            add:''
+            add:selectedDataLeftADD.value
             },
             leftOD:{
             sphere:selectedDataLeftAxisOption.value,
             cylinder:selectedDataLeftCylinderOption.value,
             axis:selectedDataLeftAxisOption.value,
-            add:''
+            add:selectedDataRightADD.value
             },
-            pD:{
-                first:firstPdData.value,
-                second:secondPdData.value
+            pDD:{
+                first:firstPdData.value.first,
+                second:secondPdData.value.second
             },
             usageOption:usageOptionData.value,
             qty:qty,
@@ -267,19 +317,19 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             subTotal:'',
             grandTotal:'',
             pdType:'double',
-            twoSinglePd:twoSinglePD,
+            twoSinglePd:twoSinglePDData,
             lenseType:lenseType,
-            Add:false,
-            remark:remark
+            Add:true,
+            remark:remark,
+            file:file
 
         }
 
-        setInputValid(true)
-        const remove =   initialState.items.filter(el => el.id !== data.id)
-        console.log(remove, 'remove')
-        setInitialState({...initialState, items:remove})
-
-        initialState.items.push(prescription)
+        setInputValidData(true)
+        if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
 
         
 
@@ -292,18 +342,18 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             productName:productName,
             productDescription:productDescription,
             productPrice:productPrice,
-            prescriptionType:'Single Vision',
+            prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
             cylinder:selectedDataRightCylinderOption.value,
             axis:selectedDataRightAxisOption.value,
-            add:''
+            add:selectedDataRightADD.value
             },
             leftOD:{
             sphere:selectedDataLeftAxisOption.value,
             cylinder:selectedDataLeftCylinderOption.value,
             axis:selectedDataLeftAxisOption.value,
-            add:''
+            add:selectedDataLeftADD.value
             },
             pD:singlePDData.value,
             doublePd:'',
@@ -314,18 +364,19 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             subTotal:15000,
             grandTotal:15000,
             pdType:'single',
-            Add:false,
+            Add:true,
             lenseType:lenseType,
             remark:remark,
+            file:file,
+            twoSinglePd:twoSinglePDData
 
         }
 
-        setInputValid(true)
-        const remove =   initialState.items.filter(el => el.id !== data.id)
-        console.log(remove, 'remove')
-        setInitialState({...initialState, items:remove})
-
-        initialState.items.push(prescription)
+        setInputValidData(true)
+        if(lenseType !== ''){
+            initialState.items.push(prescription)
+        }
+        setClicked(true)
         
     }
 
@@ -347,7 +398,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
 
         console.log(twoSinglePD)
-        if(twoSinglePD === true){
+        if(twoSinglePDData === true){
             selectedDataRightOdOption.value !== null
             && selectedDataRightAxisOption.value !== null
             && selectedDataRightCylinderOption.value !== null
@@ -434,14 +485,14 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     singlePDValidationError={singlePDValidationError}
     setSinglePd={setSinglePd}
 
-    secondPd={secondPd.value}
+    secondPd={secondPd?.value?.second}
     setSecondPd={setSecondPd}
     secondPdValidationError={secondPdValidationError}
 
     twoSinglePD={twoSinglePD}
     setTwoSinglePd={setTwoSinglePd}
 
-    firstPd={firstPd.value}
+    firstPd={firstPd?.value?.first}
     setFirstPd={setFirstPd}
     firstPdValidationError={firstPdValidationError}
 
@@ -463,6 +514,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
     />
 
+    console.log(selectedDataRightADD.value, 'jsjshajas')
 
     if(data){
         prescriptionFormSummary = <PrescriptionDetailForm
@@ -481,7 +533,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     
         selectedLeftOdOption={selectedDataLeftOdOption.value}
         selectedLeftOdOptionValidationError={selectedLeftOdOptionValidationError}
-
+        firstPd={firstPdData?.value?.first}
         selectedLeftAxisOption={selectedDataLeftAxisOption.value}
         selectedLeftAxisOptionValidationError={selectedLeftAxisOptionValidationError}
     
@@ -496,16 +548,15 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     
         singlePD={singlePDData.value}
         singlePDValidationError={singlePDValidationError}
-        setSinglePd={setSinglePd}
+        setSinglePd={setSinglePdData}
     
-        secondPd={secondPdData.value.secondPd}
+        secondPd={secondPdData?.value?.second}
         setSecondPd={setSecondPdData}
         secondPdValidationError={secondPdValidationError}
     
-        twoSinglePD={twoSinglePD}
-        setTwoSinglePd={setTwoSinglePd}
+        twoSinglePD={twoSinglePDData}
+        setTwoSinglePd={setTwoSinglePdData}
     
-        firstPd={firstPdData.value.firstPd}
         setFirstPd={setFirstPdData}
         firstPdValidationError={firstPdValidationError}
     
@@ -530,26 +581,63 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     }
 
 
+    console.log(singlePDData.value, 'value')
 
 
-
-    if(confirmed){
-        if(twoSinglePD === true){
+    if(confirmed  && data){
+        if(twoSinglePDData === true){
                 console.log('got')
                 prescriptionFormSummary = <MiniCartDetailAdd
+                    pdType={'double'} 
+                    leftSphere={selectedDataLeftAxisOption.value}
+                    leftAxis={selectedDataLeftAxisOption.value}
+                    leftCylinder={selectedDataLeftCylinderOption.value}
+                    leftAdd={selectedDataLeftADD.value}
+                    
+                    rightSphere={selectedDataRightOdOption.value}
+                    rightCylinder={selectedDataRightCylinderOption.value}
+                    rightAxis={selectedDataRightAxisOption.value}
+                    rightAdd={selectedDataRightADD.value}
+                    pD={''}
+                    firstPd={firstPdData.value.first}
+                    secondPd={secondPdData.value.second}
+                    setConfirm={confirmedHandler}
+                    />
+        }else{
+            prescriptionFormSummary = <MiniCartDetailAdd
+                pdType={'single'} 
+                leftSphere={selectedDataLeftAxisOption.value}
+                leftAxis={selectedDataLeftAxisOption.value}
+                leftCylinder={selectedLeftCylinderOption.value}
+                leftAdd={selectedDataLeftADD.value}
+                
+                rightSphere={selectedDataRightOdOption.value}
+                rightCylinder={selectedDataRightCylinderOption.value}
+                rightAxis={selectedDataRightAxisOption.value}
+                rightAdd={selectedDataRightADD.value}
+                pD={singlePDData.value}
+                setConfirm={confirmedHandler}
+                />
+        }
+
+
+    }else if(confirmed){
+
+        if(twoSinglePD === true){
+            prescriptionFormSummary = <MiniCartDetailAdd
                     pdType={'double'} 
                     leftSphere={selectedLeftAxisOption.value}
                     leftAxis={selectedLeftAxisOption.value}
                     leftCylinder={selectedLeftCylinderOption.value}
-                    leftAdd={''}
+                    leftAdd={selectedLeftADD.value}
                     
                     rightSphere={selectedRightOdOption.value}
                     rightCylinder={selectedRightCylinderOption.value}
                     rightAxis={selectedRightAxisOption.value}
-                    rightAdd={''}
+                    rightAdd={selectedRightADD.value}
                     pD={''}
-                    firstPd={firstPd.value}
-                    secondPd={secondPd.value}
+                    firstPd={firstPd.value.first}
+                    secondPd={secondPd.value.second}
                     setConfirm={confirmedHandler}
                     />
         }else{
@@ -558,17 +646,17 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
                 leftSphere={selectedLeftAxisOption.value}
                 leftAxis={selectedLeftAxisOption.value}
                 leftCylinder={selectedLeftCylinderOption.value}
-                leftAdd={''}
+                leftAdd={selectedLeftADD.value}
                 
                 rightSphere={selectedRightOdOption.value}
                 rightCylinder={selectedRightCylinderOption.value}
                 rightAxis={selectedRightAxisOption.value}
-                rightAdd={''}
+                rightAdd={selectedRightADD.value}
                 pD={singlePD.value}
                 setConfirm={confirmedHandler}
                 />
-        }
 
+        }
 
     }
 
@@ -580,6 +668,23 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
        setConfirmed(true)
         
         
+    }
+
+    const decrementDataQty = (e) => {
+        e.preventDefault()
+         
+
+        if(dataQty > 1){
+            setDataQty(prev => prev-1)
+        }
+
+
+
+    }
+
+    const incrementDataQty = (e) => {
+        e.preventDefault()
+        setDataQty(prev => prev + 1)
     }
 
     return(
@@ -598,7 +703,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             </button>
         </div>
 
-        <LensForm 
+        {confirmed && <LensForm 
             validateInput={validateInput} 
             inputValid={inputValid} 
             qty={qty} 
@@ -607,8 +712,12 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             lenseType={lenseType} 
             lenseTypeHandler={lenseTypeHandler}
             data={data}
+            dataQty={dataQty}
             validateUpdate={validateUpdate}
-        />
+            decrementDataQty={decrementDataQty}
+            incrementDataQty={incrementDataQty}
+            inputValidData={inputValidData}
+        />}
         </>
     )
 

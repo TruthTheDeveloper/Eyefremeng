@@ -1,4 +1,5 @@
 import Select from 'react-select';
+import { useEffect } from 'react';
 
 
 const DoublePdForm = ({
@@ -11,13 +12,24 @@ const DoublePdForm = ({
         secondPdValidationError
     }) => {
 
+
+
+        const firstValueHandler = (e) => {
+            setFirstPd({...firstPd, value:{first:e.value}})
+
+        }
+
+        const secondValueHandler = (e) => {
+            setSecondPd({...secondPd, value:{second:e.value}})
+        }
+        
     return(
         <div className="md:flex justify-between">
             <div className="w-64">
                 <Select
                     placeholder={firstPd || "--- Please Select ---"}
                     defaultValue={firstPd}
-                    onChange={setFirstPd}
+                    onChange={firstValueHandler}
                     options={options}
                 />
                 {firstPdValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
@@ -26,7 +38,7 @@ const DoublePdForm = ({
                 <Select
                     placeholder={secondPd || "--- Please Select ---"}
                     defaultValue={secondPd}
-                    onChange={setSecondPd}
+                    onChange={secondValueHandler}
                     options={options}
                 />
                 {secondPdValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}

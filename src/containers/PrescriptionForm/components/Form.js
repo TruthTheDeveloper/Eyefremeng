@@ -79,7 +79,8 @@ const Form = ({productName, productDescription, productPrice}) => {
     }else if(formEditDetail[0]?.prescriptionType === 'Progressive'){
         formDetail = <Progressive productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
 
-    }else if(formEditDetail[0]?.prescriptionType === 'Non Prescription'){
+    }else if(formEditDetail[0]?.prescriptionType === 'Non Prescriptional'){
+        
         formDetail = <NonPrescriptional productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
     }else if(formEditDetail[0]?.prescriptionType === 'Frames Only'){
         formDetail = <FramesOnly/>

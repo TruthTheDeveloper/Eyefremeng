@@ -31,7 +31,10 @@ const CartDetail = ({
     qty,
     Add,
     remark,
+    pDD,
 }) => {
+
+    console.log(leftSphere, rightSphere, 'sphere')
 
     const navigate = useNavigate();
 
@@ -39,6 +42,8 @@ const CartDetail = ({
 
 
     console.log(Add, 'add')
+
+    console.log(initialState.items, 'iiiii')
 
     useEffect(() => {
         console.log(initialState.items)
@@ -52,11 +57,14 @@ const CartDetail = ({
         leftSphere={leftSphere}
         leftAxis={leftAxis}
         leftCylinder={leftCylinder}
+        leftAdd={leftAdd}
+        rightAdd={rightAdd}
         
         rightSphere={rightSphere}
         rightCylinder={rightCylinder}
         rightAxis={rightAxis}
         pD={pD}
+        pDD={pDD}
         
 
     />
@@ -67,13 +75,14 @@ const CartDetail = ({
         leftSphere={leftSphere}
         leftAxis={leftAxis}
         leftCylinder={leftCylinder}
-        leftAdd={leftAdd}
+        
         
         rightSphere={rightSphere}
         rightCylinder={rightCylinder}
         rightAxis={rightAxis}
-        rightAdd={rightAdd}
+        
         pD={pD}
+        pDD={pDD}
         />
 
     }else{
@@ -140,8 +149,10 @@ const CartDetail = ({
                     </div>
                 </div>
             </div>
-            <div className="flex justify-end border py-4 pr-4  lg:mb-24">
+            <div>
                 <p className="text-sm my-3">{remark}</p>
+            </div>
+            <div className="flex justify-end border py-4 pr-4  lg:mb-24">
                 <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md" onClick={editItem}>
                     <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
                     <p>Edit</p>

@@ -8,7 +8,7 @@ const CartItem = () => {
     const navigate = useNavigate()
 
     const continueShoppingHandler = () => {
-        navigate('/prescriptionForm')
+        navigate('/')
     }
 
     const navigateToCheckout = () => {
@@ -32,7 +32,7 @@ const CartItem = () => {
                             leftAxis={item?.leftOD?.axis}
                             leftCylinder={item?.leftOD?.cylinder}
                             leftAdd={item?.leftOD?.add}
-                            rightSphere={item?.leftOD?.sphere}
+                            rightSphere={item?.rightOD?.sphere}
                             rightAxis={item?.rightOD?.axis}
                             rightCylinder={item?.rightOD?.cylinder}
                             rightAdd={item?.rightOD?.add}
@@ -41,6 +41,7 @@ const CartItem = () => {
                             usageOption={item.usageOption}
                             pdType={item.pdType}
                             pD={item.pD}
+                            pDD={item.pDD}
                             lenseType={item.lenseType}
                             qty={item.qty}
                             Add={item.Add}
