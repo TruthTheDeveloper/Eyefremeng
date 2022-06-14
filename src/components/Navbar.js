@@ -22,10 +22,12 @@ const Navbar = () => {
             <nav className=" fixed bg-white w-full z-50">
                 <div className="flex">
                     <div className="w-36 md:w-40 lg:w-44 my-1 mx-4">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png"/>
+                        <img src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png" alt="logo"/>
                     </div>
                     <div className="flex  ml-auto mr-2 lg:hidden">
-                        <img src={cart} className="w-10 my-1 cursor-pointer h-10 mx-4"/>
+                    <NavLink to="/cart" >
+                        <img src={cart} className="w-10 my-1 cursor-pointer h-10 mx-4" alt='cart'/>
+                        </NavLink>
                         {closeNav ? <div className="bg-orange-400 px-4 rounded-full" onClick={() => setCloseNav(false)}>
                             <FontAwesomeIcon icon={faBars} className=" text-2xl my-3 m"/>
                         </div>:<div className=" px-4 rounded-full" onClick={() => setCloseNav(true)}>

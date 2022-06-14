@@ -18,7 +18,7 @@ const LeftOd = ({
 }) => {
 
     return(
-        <div className="flex justify-center">
+        <div className="md:flex justify-center">
             <div className="w-full">
                 <label>Sphere</label>
                 <Select
@@ -29,7 +29,7 @@ const LeftOd = ({
                 />
                 {selectedLeftOdOptionValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
-            <div className="mx-2 w-full">
+            <div className="md:mx-2 my-1 md:my-0 w-full">
                 <label>Cylinder</label>
                 <Select
                     placeholder={selectedLeftCylinderOption || "0.00"}

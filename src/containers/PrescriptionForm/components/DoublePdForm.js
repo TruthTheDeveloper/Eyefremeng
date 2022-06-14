@@ -25,7 +25,7 @@ const DoublePdForm = ({
         
     return(
         <div className="md:flex justify-between">
-            <div className="w-64">
+            <div className="md:w-64 my-3 md:my-0">
                 <Select
                     placeholder={firstPd || "--- Please Select ---"}
                     defaultValue={firstPd}
@@ -34,7 +34,7 @@ const DoublePdForm = ({
                 />
                 {firstPdValidationError && <p className="text-red-500 text-xs my-2 font-semibold">This field is required</p>}
             </div>
-            <div className="w-64">
+            <div className="md:w-64 my-3 md:my-0">
                 <Select
                     placeholder={secondPd || "--- Please Select ---"}
                     defaultValue={secondPd}
