@@ -69,40 +69,24 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
     //////////////UPDATE////////////////////////
 
     const [selectedDataRightOdOption, setSelectedDataRightOdOption] = useState({value:data?.rightOD.sphere || null});
-    const [selectedDataRightOdOptionValidationError, setSelectedDataRightOdOptionValidationError] = useState(false)
 
     const [selectedDataRightAxisOption, setSelectedDataRightAxisOption] = useState({value:data?.rightOD.axis || null});
-    const [selectedDataRightAxisOptionValidationError, setSelectedDataRightAxisOptionValidationError] = useState(false);
-
 
     const [selectedDataRightCylinderOption, setSelectedDataRightCylinderOption] = useState({value:data?.rightOD.cylinder || null})
-    const [selectedDataRightCylinderOptionValidationError, setSelectedDataRightCylinderOptionValidationError] = useState(false)
-
 
     const [selectedDataLeftOdOption, setSelectedDataLeftOdOption] = useState({value:data?.leftOD.sphere || null});
-    const [selectedDataLeftOdOptionValidationError, setSelectedDataLeftOdOptionValidationError] = useState(false);
-
-
 
     const [selectedDataLeftAxisOption, setSelectedDataLeftAxisOdOption] = useState({value:data?.leftOD.axis || null});
-    const [selectedDataLeftAxisOptionValidationError, setSelectedDataLeftAxisOdOptionValidationError] = useState(false);
-
 
     const [selectedDataLeftCylinderOption, setSelectedDataLeftCylinderOption] = useState({value:data?.leftOD.cylinder || null})
-    const [selectedDataLeftCylinderOptioValidationError, setSelectedDataLeftCylinderOptionValidationError] = useState(false)
-    
 
     const [singlePDData, setSinglePdData] = useState({value:data?.pD || null})
-    const [singlePDDataValidationError, setSinglePdDataValidationError] = useState(false)
 
     const [firstPdData, setFirstPdData] = useState({value:data?.pDD || null})
-    const [firstPdDataValidationError, setFirstPdDataValidationError] = useState(false)
 
     const [secondPdData, setSecondPdData] = useState({value:data?.pDD || null})
-    const [secondPdDataValidationError, setSecondPdDataValidationError] = useState(false)
 
     const [usageOptionData, setUsageOptionData] = useState({value:data?.usageOption || null})
-    const [usageOptionDataValidationError, setUsageOptionDataValidationError] = useState(false)
 
     const [remarkData, setRemarkData] = useState({value:data?.remark|| ''})
 
@@ -112,10 +96,8 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
     const [inputValidData, setInputValidData] = useState(false)
 
     const [selectedDataRightADD, setSelectedDataRightADD] = useState({value:data?.rightOD.add})
-    const [selectedDataRightADDValidationError, setSelectedDataRightADDValidationError] = useState(false)
 
     const [selectedDataLeftADD, setSelectedDataLeftADD] = useState({value:data?.leftOD.add})
-    const [selectedDataLeftADDValidationError, setSelectedDataLeftADDValidationError] = useState(false)
 
 
     useEffect(() => {
