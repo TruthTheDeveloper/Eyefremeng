@@ -32,7 +32,9 @@ const Form = ({productName, productDescription, productPrice}) => {
     let formEditDetail = null
 
     const remove =   initialState.items.filter(el => el.id === formId)
-        formEditDetail = remove
+    formEditDetail = remove
+
+    
 
 
         // console.log(initialState.items[0].id, 'formId', formId)
@@ -83,7 +85,7 @@ const Form = ({productName, productDescription, productPrice}) => {
         
         formDetail = <NonPrescriptional productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
     }else if(formEditDetail[0]?.prescriptionType === 'Frames Only'){
-        formDetail = <FramesOnly/>
+        formDetail = <FramesOnly productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
     }
     
     
