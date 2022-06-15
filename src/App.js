@@ -5,8 +5,12 @@ import WomenCart from './containers/WomenCart/WomenCart';
 import MenCart from './containers/MenCart/MenCart';
 import PrescriptionForm from './containers/PrescriptionForm/PrescriptionForm';
 import Cart from './containers/Cart/Cart';
-import CheckoutForm from './containers/CheckoutForm/CheckoutForm';
+import CheckoutForm from './containers/CheckoutForm/Hoc/CheckoutForm';
 import ShopTrend from './containers/ShopTrend/ShopTrend';
+import PaymentForm from './containers/CheckoutForm/PaymentForm';
+import BilingForm from './containers/CheckoutForm/BilingForm';
+import ShipmentMethodForm from './containers/CheckoutForm/ShipmentMethodForm';
+import OrderReviewForm from './containers/CheckoutForm/OrderReviewForm';
 
 // Tips and Link Route
 import FaceShape from './containers/TipsLink/FaceShape';
@@ -18,7 +22,6 @@ import ContactUs from './containers/AboutUs/ContactUs';
 import PrivacyPolicy from './containers/AboutUs/PrivacyPolicy';
 import ReturnExchange from './containers/AboutUs/ReturnExchange';
 import TermsUse from './containers/AboutUs/TermsUse';
-import ShipmentForm from './containers/CheckoutForm/ShipmentForm';
 
 
 //Admin
@@ -37,12 +40,22 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import AuthContext from './context/auth-context';
 
+
 const App = () => {
 
   const [initialState, setInitialState] = useState({
     items:[],
     subTotal:15000,
-    grandTotal:1500
+    grandTotal:1500,
+    firstName:'',
+    lastName:'',
+    Address:'',
+    city:'',
+    province:'',
+    postalCode:'',
+    telephone:'',
+    withinLagos:null,
+    paymentMethod:''
   })
 
   const { pathname } = useLocation();
@@ -59,6 +72,25 @@ const App = () => {
   const cart = <AuthContext.Provider value={{initialState, setInitialState}}>
     <Cart/>
   </AuthContext.Provider>
+  const checkoutForm = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <CheckoutForm/>
+  </AuthContext.Provider>
+
+  const shipmentMethod = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <ShipmentMethodForm/>
+  </AuthContext.Provider>
+
+  const paymentForm = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <PaymentForm/>
+  </AuthContext.Provider>
+
+  const billingForm = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <BilingForm/>
+  </AuthContext.Provider>
+
+  const reviewOrder = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <OrderReviewForm/>
+  </AuthContext.Provider>
 
   return( 
 
@@ -69,8 +101,14 @@ const App = () => {
               <Route path="mencart" element={<MenCart/>} />
               <Route path="prescriptionForm" element={prescriptionForm} />
               <Route path="cart" element={cart} />
-              <Route path="checkoutForm" element={<CheckoutForm/>} />
-              <Route path="shipmentform" element={<ShipmentForm/>} />
+
+              <Route path="/checkoutForm" element={checkoutForm}>
+                <Route path="shipmentMethod" element={shipmentMethod} />
+                <Route path="paymentMethod" element={paymentForm} />
+                <Route path="bilingForm" element={billingForm}/>
+                <Route path="review" element={reviewOrder}/>
+              </Route>
+
               <Route path="shopTrend" element={<ShopTrend/>}/>
 
               {/* Tips and Link Route */}
@@ -85,21 +123,21 @@ const App = () => {
               <Route path="termsuse" element={<TermsUse/>} />
             
 
-            {/*admin */}
-            <Route path="/" element={<DashboardHoc/>}>
-              <Route path="dashboard" element={<Dashboard/>}/>
-              <Route path="dashboard/addProduct" element={<AddProduct/>}/>
-              <Route path="dashboard/orderedProduct" element={<OrderedProduct/>}/>
-              <Route path="dashboard/orders" element={<Orders/>} />
-              <Route path="dashboard/product" element={<Product/>}/>
-              <Route path="dashboard/subscriber" element={<Subscriber/>}/>
-              <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
-            </Route>
+              {/*admin */}
+              <Route path="/" element={<DashboardHoc/>}>
+                <Route path="dashboard" element={<Dashboard/>}/>
+                <Route path="dashboard/addProduct" element={<AddProduct/>}/>
+                <Route path="dashboard/orderedProduct" element={<OrderedProduct/>}/>
+                <Route path="dashboard/orders" element={<Orders/>} />
+                <Route path="dashboard/product" element={<Product/>}/>
+                <Route path="dashboard/subscriber" element={<Subscriber/>}/>
+                <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
+              </Route>
 
-            <Route path="prescriptionForm/" element={prescriptionForm}>
-              <Route path=":formId" element={prescriptionForm}/>
+              <Route path="prescriptionForm/" element={prescriptionForm}>
+                <Route path=":formId" element={prescriptionForm}/>
+              </Route>
             </Route>
-          </Route>
         </Routes>
   )
   

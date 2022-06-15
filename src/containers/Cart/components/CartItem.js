@@ -12,7 +12,7 @@ const CartItem = () => {
     }
 
     const navigateToCheckout = () => {
-        navigate('/checkoutForm')
+        navigate('/checkoutForm/bilingForm')
     }
 
 

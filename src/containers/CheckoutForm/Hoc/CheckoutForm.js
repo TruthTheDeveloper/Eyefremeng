@@ -1,6 +1,4 @@
-import BilingForm from "./components/BilingForm";
-import ShipmentMethodForm from "./components/ShipmentMethodForm";
-import SuccessTransaction from "./components/SuccessTransaction";
+import { Outlet } from "react-router-dom";
 
 
 const CheckoutForm = () => {
@@ -13,11 +11,9 @@ const CheckoutForm = () => {
                 <div className=" text-2xl ">
                     <h1>CheckOut</h1>
                 </div>
-                <BilingForm/>
-                {/* <ShipmentMethodForm/> */}
+                <Outlet/>
+
             </div>
-             
-                {/* <SuccessTransaction/> */}
                
         </section>
     )

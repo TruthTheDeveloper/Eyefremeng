@@ -26,6 +26,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex  ml-auto mr-2 lg:hidden">
                     <NavLink to="/cart" >
+                        
                         <img src={cart} className="w-10 my-1 cursor-pointer h-10 mx-4" alt='cart'/>
                         </NavLink>
                         {closeNav ? <div className="bg-orange-400 px-4 rounded-full" onClick={() => setCloseNav(false)}>
@@ -58,7 +59,9 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <img src={cart} className="w-10 mx-4 cursor-pointer"/>
+                            <NavLink to="/cart" >
+                                <img src={cart} className="w-10 mx-4 cursor-pointer"/>
+                            </NavLink>
                         </li>
                     </ul>
                     
