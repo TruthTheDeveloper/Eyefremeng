@@ -7,8 +7,13 @@ import AuthContext from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
 import orderServices from '../../firebase/services/order.services';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const PaymentForm = () => {
     let navigate = useNavigate()
+
+
 
     const [paymentMethod, setPaymentMethod] = useState('')
     const [paymentValidationError, setPaymentValidationError] = useState('')
@@ -51,8 +56,58 @@ const PaymentForm = () => {
                 
                 try{
                     await orderServices.addOrder(initialState)
+                    console.log('tototot')
+                    toast.success('🦄 Congratulations you succesfully place an order!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+
+                    setInitialState({...initialState, 
+                        items:[],
+                        address:'',
+                        subTotal:15000,
+                        grandTotal:1500,
+                        firstName:'',
+                        lastName:'',
+                        Address:'',
+                        city:'',
+                        state:'',
+                        postalCode:'',
+                        telephone:'',
+                        withinLagos:null,
+                        paymentMethod:''
+                    })
                 }catch(err){
-                    console.log(err)
+                    toast.error('🦄 unable to place order, please contact support or try again', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+
+                        setInitialState({...initialState, 
+                            items:[],
+                            address:'',
+                            subTotal:15000,
+                            grandTotal:1500,
+                            firstName:'',
+                            lastName:'',
+                            Address:'',
+                            city:'',
+                            state:'',
+                            postalCode:'',
+                            telephone:'',
+                            withinLagos:null,
+                            paymentMethod:''
+                        })
                 }
             }
         }
@@ -76,7 +131,56 @@ const PaymentForm = () => {
 
             try{
                 await orderServices.addOrder(initialState)
+                toast.success('🦄 Congratulations you succesfully place an order!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                    setInitialState({...initialState, 
+                        items:[],
+                        address:'',
+                        subTotal:15000,
+                        grandTotal:1500,
+                        firstName:'',
+                        lastName:'',
+                        Address:'',
+                        city:'',
+                        state:'',
+                        postalCode:'',
+                        telephone:'',
+                        withinLagos:null,
+                        paymentMethod:''
+                    })
             }catch(err){
+                toast.error('🦄 unable to place order please contact support or try again', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+
+                    setInitialState({...initialState, 
+                        items:[],
+                        address:'',
+                        subTotal:15000,
+                        grandTotal:1500,
+                        firstName:'',
+                        lastName:'',
+                        Address:'',
+                        city:'',
+                        state:'',
+                        postalCode:'',
+                        telephone:'',
+                        withinLagos:null,
+                        paymentMethod:''
+                    })
                 console.log(err)
             }
             
@@ -85,6 +189,19 @@ const PaymentForm = () => {
 
     return(
         <div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    />
+                    {/* Same as */}
+                    <ToastContainer />
             <div>
                 <div className="flex my-3">
                     <p className="p-1 px-2 border-2">1</p>
