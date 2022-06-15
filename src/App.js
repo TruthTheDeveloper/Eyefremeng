@@ -45,13 +45,14 @@ const App = () => {
 
   const [initialState, setInitialState] = useState({
     items:[],
+    address:'',
     subTotal:15000,
     grandTotal:1500,
     firstName:'',
     lastName:'',
     Address:'',
     city:'',
-    province:'',
+    state:'',
     postalCode:'',
     telephone:'',
     withinLagos:null,

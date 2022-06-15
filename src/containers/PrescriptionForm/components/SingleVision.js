@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailPd from './MiniCartDetailPd';
+import { uploadAFile } from '../../../firebase/utils/uploadFile';
 
 import PrescriptionDetailForm from './singleVision/PrescriptionDetailForm';
 import {v4} from 'uuid';
@@ -67,7 +68,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const [confirmed, setConfirmed] = useState(false)
 
-    const [file, setFiles] = useState(false)
+    const [image, setImage] = useState(null)
 
     const [clicked, setClicked] = useState(false)
 
@@ -131,8 +132,9 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
 
 
-    const addToCartTwoPD = () => {
+    const addToCartTwoPD = async () => {
         console.log('two single pd')
+        const file = image ? await uploadAFile(image) : null 
         
         const prescription = {
             id:v4(),
@@ -183,8 +185,11 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     }
 
 
-    const addToCartOnePD = () => {
+    const addToCartOnePD = async () => {
         console.log('one single pd')
+
+        const file = image ? await uploadAFile(image) : null 
+
         const prescription = {
             id:v4(),
             productName:productName,
@@ -276,8 +281,11 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     }
 
 
-    const updateToCartTwoPD = () => {
+    const updateToCartTwoPD = async () => {
         console.log('update two double pd')
+
+        const file = image ? await uploadAFile(image) : null
+
         const prescription = {
             id:v4(),
             productName:productName,
@@ -329,8 +337,11 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     }
 
 
-    const updateToCartOnePD = () => {
+    const updateToCartOnePD = async () => {
         console.log('update one single pd')
+
+        const file = image ? await uploadAFile(image) : null 
+         
         const prescription = {
             id:v4(),
             productName:productName,
@@ -686,7 +697,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
             <div className="px-3 border-2 py-3">
                 <label>Prescription Paper(Optional)</label><br/>
-                <input type="file" className="my-3" onChange={(e) => setFiles(e.target.files[0])}/>
+                <input type="file" className="my-3" onChange={(e) => setImage(e.target.files[0])}/>
                 <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
                 <p className="text-red-500 text-xs">Max file size:16M</p>
                 <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>

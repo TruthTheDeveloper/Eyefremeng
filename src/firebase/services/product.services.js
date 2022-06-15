@@ -41,6 +41,7 @@ class ProductDataService {
         
     };
 
+
     getMenCart = (lastVisible) => {
         if(lastVisible){
             const q = query(productCollectionRef, where('category',  "==",  "Men Cartegory"), limit(9), startAfter(lastVisible))

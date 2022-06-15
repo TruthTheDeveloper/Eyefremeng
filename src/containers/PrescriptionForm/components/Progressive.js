@@ -1,5 +1,7 @@
 import React, { useState,  useContext, useEffect } from 'react';
 
+import { uploadAFile } from '../../../firebase/utils/uploadFile';
+
 import LensForm from './LensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailAdd from './MiniCartAddDetail';
@@ -63,7 +65,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     const [lenseType, setlensType] = useState('')
     const [confirmed, setConfirmed] = useState(false)
     const [remark, setRemark] = useState('')
-    const [file, setFiles] = useState(false)
+    const [image, setImage] = useState(null)
     const [clicked, setClicked] = useState(false)
 
 
@@ -128,7 +130,10 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
 
 
-    const addToCartTwoPD = () => {
+    const addToCartTwoPD = async () => {
+
+        const file = image ? await uploadAFile(image) : null 
+        
         const prescription = {
             id:v4(),
             productName:productName,
@@ -177,7 +182,10 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     }
 
 
-    const addToCartOnePD = () => {
+    const addToCartOnePD = async () => {
+
+        const file = image ? await uploadAFile(image) : null 
+
         const prescription = {
             id:v4(),
             productName:productName,
@@ -265,7 +273,9 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     }
 
 
-    const updateToCartTwoPD = () => {
+    const updateToCartTwoPD = async () => {
+
+        const file = image ? await uploadAFile(image) : null 
 
         const prescription = {
             id:v4(),
@@ -314,7 +324,9 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
     }
 
-    const updateToCartOnePD = () => {
+    const updateToCartOnePD = async () => {
+
+        const file = image ? await uploadAFile(image) : null 
 
         const prescription = {
             id:v4(),
@@ -673,7 +685,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         <div className="px-3 border-2 py-3">
             <label>Prescription Paper(Optional)</label><br/>
-            <input type="file" className="my-3"/>
+            <input type="file" className="my-3" onChange={(e) => setImage(e.target.files[0])}/>
             <p className="text-red-500 text-xs">Supported File Types:jpeg, jpeg, .gif, png, pdf</p>
             <p className="text-red-500 text-xs">Max file size:16M</p>
             <p className="text-xs my-2">Although it's optional, we highly suggest you uploading the prescription paper for double checking.</p>

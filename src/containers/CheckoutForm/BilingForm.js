@@ -28,7 +28,7 @@ const BilingForm = () => {
     const [postalCode, setpostalCode] = useState('')
     const [postalCodeValidationError, setPostalCodeValidationError] = useState('')
 
-    const [telephone, setTelephone] = useState('')
+    const [telephone, setTelephone] = useState(null)
     const [telephoneValidationError, setTelephoneValiadtionError] = useState('')
 
 
@@ -41,7 +41,7 @@ const BilingForm = () => {
         city === "" ? setCityValidationError('Please input city') : setCityValidationError('')
         state === "" ? setStateValidationError('Please input state/province') : setStateValidationError('')
         postalCode === "" ? setPostalCodeValidationError('Please input postal Code') : setPostalCodeValidationError('')
-        telephone === "" ? setTelephoneValiadtionError('Please input teelphone address') : setTelephoneValiadtionError('')
+        telephone === null ? setTelephoneValiadtionError('Please input teelphone address') : setTelephoneValiadtionError('')
 
 
         firstName !== "" &&
@@ -50,14 +50,14 @@ const BilingForm = () => {
         city !== "" && 
         state !== "" &&
         postalCode !== "" &&
-        telephone !== "" &&
+        telephone !== null &&
         addDetailsToState()
 
     }
 
 
     const addDetailsToState = () => {
-        setInitialState({...initialState, firstName, lastName, address, city, state, postalCode})
+        setInitialState({...initialState, address, firstName, lastName, telephone, city, state, postalCode})
         console.log('navigate')
         navigate("/checkoutForm/shipmentMethod")
     }
@@ -108,7 +108,7 @@ const BilingForm = () => {
                     </div>
                     <div className="px-4 py-8">
                         <label>Telephone</label><br/>
-                        <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setTelephone(e.target.value)}/>
+                        <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" type="number" onChange={(e) => setTelephone(e.target.value)}/>
                         {telephoneValidationError && <p className="text-red-500 text-sm">{telephoneValidationError}</p>}
                     </div>
                 </div>

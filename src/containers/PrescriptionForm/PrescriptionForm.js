@@ -46,6 +46,8 @@ const PrescriptionForm = () => {
         setProductDetail(data.data())
     }
 
+    console.log(productDetail.productPrice, 'ppdpppssd')
+
     return(
         <section className=" pt-16">
             <div className=" lg:grid grid-cols-2">
@@ -62,7 +64,7 @@ const PrescriptionForm = () => {
                             <p className="text-indigo-800  text-2xl font-semibold my-6"># {productDetail.productPrice}</p>
                         </div>
                     </div>
-                    <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.price}/>
+                    <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice}/>
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">

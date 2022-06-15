@@ -37,7 +37,7 @@ const Form = ({productName, productDescription, productPrice}) => {
     
 
 
-        // console.log(initialState.items[0].id, 'formId', formId)
+        console.log(productName, productDescription, productPrice, '---------')
 
     // useEffect(() => {
         
@@ -70,7 +70,7 @@ const Form = ({productName, productDescription, productPrice}) => {
         
 
     }else if(selectedPrescriptionOption.value === 'Frames Only'){
-        formDetail = <FramesOnly/>
+        formDetail = <FramesOnly productName={productName} productDescription={productDescription} productPrice={productPrice}/>
 
     }else if(formEditDetail[0]?.prescriptionType === 'Single Vision'){
         formDetail = <SingleVision productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>

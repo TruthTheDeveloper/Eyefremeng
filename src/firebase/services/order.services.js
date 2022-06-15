@@ -7,6 +7,7 @@ import {
     updateDoc,
     doc,
     getDoc,
+    deleteDoc
 } from "firebase/firestore";
 
 
@@ -31,6 +32,11 @@ class orderDataService {
         const orderDoc = doc(db, "orders", id);
         return getDoc(orderDoc)
         
+    };
+
+    deleteOrder = (id) => {
+        const orderDoc = doc(db, "orders", id);
+        return deleteDoc(orderDoc)
     };
 }
 export default new orderDataService();

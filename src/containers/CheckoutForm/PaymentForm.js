@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import orderServices from '../../firebase/services/order.services';
 
 const PaymentForm = () => {
     let navigate = useNavigate()
@@ -33,10 +34,14 @@ const PaymentForm = () => {
     
         const handleFlutterPayment = useFlutterwave(config);
 
+      useEffect(() => {
 
+        console.log(initialState)
+
+      },[initialState])
       
 
-        const payOnDeliveryHandler = () => {
+        const payOnDeliveryHandler = async () => {
             // setDisabledSecondInput(false)
             console.log('papa')
             if(paymentMethod === ''){
@@ -44,24 +49,38 @@ const PaymentForm = () => {
                 setPaymentValidationError('Please select a payment method')
             }else{
                 
-                setInitialState({...initialState, paymentMethod})
+                try{
+                    await orderServices.addOrder(initialState)
+                }catch(err){
+                    console.log(err)
+                }
             }
         }
 
 
         const payOnlineSelector = () => {
             setPaymentMethod("pay Online")
+            setInitialState({...initialState, paymentMethod})
+            
             
         }
 
 
         const paymentOnDeliverySelector = () => {
             setPaymentMethod("pay On Delivery")
+            setInitialState({...initialState, paymentMethod})
+            
         }
 
-        const paymentSuccesful = () => {
+        const paymentSuccesful = async () => {
+
+            try{
+                await orderServices.addOrder(initialState)
+            }catch(err){
+                console.log(err)
+            }
             
-            setInitialState({...initialState, paymentMethod})
+            
         }
 
     return(
