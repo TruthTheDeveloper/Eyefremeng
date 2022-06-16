@@ -3,29 +3,65 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';// <-- import styles
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import emailjs from '@emailjs/browser';
 import emailData from '../../emailKey';
-import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState, useRef } from 'react';
 const ContactUs = () => {
 
-    const [formData, setFormData] = useState({
-        name:"",
-        email:"",
-        subject:'',
-        message:""
+    // const [formData, setFormData] = useState({
+    //     name:"",
+    //     email:"",
+    //     subject:'',
+    //     message:""
 
-    })
+    // })
 
-    const sendEmail = () => {
-        emailjs.sendForm(emailData.PUBLIC_KEY, emailData.TEMPLATE_ID, formData, emailData.USER_ID)
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault()
+        console.log(form.current)
+        emailjs.sendForm(emailData.SERVICE_ID, emailData.TEMPLATE_ID, form.current, emailData.PUBLIC_KEY)
         .then((result) => {
-        alert("Message Sent, We will get back to you shortly", result.text);
+
+        toast.success(' Message Sent Successfully, we wud get back to you shortly', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         },
         (error) => {
-        alert("An error occurred, Please try again", error.text);
+            toast.error('Unable to sende Message, Please try again', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         });
     }
 
     return(
         <section className="py-24">
+            <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    />
+                    {/* Same as */}
+                    <ToastContainer />
             <div className="bg-indigo-800 text-center font-semibold text-3xl py-12 text-white">
                 <h1>CONTACT US</h1>
             </div>
@@ -52,25 +88,19 @@ const ContactUs = () => {
                         </div>
                     </div>
                 </div>
-                <form className=" lg:basis-1/2 xl:basis-1/3 px-8 md:px-14 my-8 lg:my-0">
+                <form className=" lg:basis-1/2 xl:basis-1/3 px-8 md:px-14 my-8 lg:my-0" ref={form} onSubmit={sendEmail}>
                     <h1 className="text-indigo-800 text-2xl md:text-3xl font-semibold py-2">Send Us A Message</h1>
-                    <div className="py-1">
-                        <input className="w-full p-2 border-2 outline-none" placeholder="Name" onChange={
-                            (e) => setFormData({...formData, name:e.target.value})}/>
-                    </div>
-                    <div className="py-1">
-                        <input className="w-full p-2 border-2 outline-none" placeholder="Email" onChange={
-                            (e) => setFormData({...formData, email:e.target.value})}/> 
-                    </div>
-                    <div className="py-1">
-                        <input className="w-full p-2 border-2 outline-none" placeholder="Subject" onChange={
-                            (e) => setFormData({...formData, subject:e.target.value})}/> 
-                    </div>
-                    <div className="py-1">
-                       <textarea className="w-full p-2 h-28 border-2 outline-none" placeholder="Message" onChange={
-                            (e) => setFormData({...formData, message:e.target.value})}/>
-                    </div>
-                    <button className="bg-orange-500 py-3 my-4 px-8 rounded-full text-white" onClick={sendEmail}>send message</button>
+                        <input className="w-full p-2 border-2 outline-none my-1" type="text" name="name" placeholder="Name" />
+                    
+                        <input className="w-full p-2 border-2 outline-none my-1" type="email" name="email" placeholder="Email" /> 
+                    
+                    
+                        <input className="w-full p-2 border-2 outline-none my-1" type="text" name="subject" placeholder="Subject" /> 
+                    
+                    
+                       <textarea className="w-full p-2 h-28 border-2 outline-none my-1" name="message" type="text" placeholder="Message" />
+                    
+                    <button type="submit" className="bg-orange-500 py-3 my-4 px-8 rounded-full text-white" onClick={sendEmail}>send message</button>
                 </form>
             </div>
         </section>
