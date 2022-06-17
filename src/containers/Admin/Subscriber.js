@@ -1,7 +1,35 @@
 import Subscriber from '../../components/admin/Subscriber';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import SubscriberServices from '../../firebase/services/subscriber.services';
+import Pagination from '../../components/Pagination';
+import { useEffect, useState } from 'react';
+
 const Subscribers = () => {
+
+    const [subscribers, setSubscribers] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(9)
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+;
+    const currentPosts = subscribers.slice(indexOfFirstPost, indexOfLastPost)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+    useEffect(() => {
+        result()
+    },[])
+
+    const result = async () => {
+        const data = await SubscriberServices.getAllSubscribers()
+
+        console.log(data.docs.map((doc) => ({...doc.data(), id:doc.id})), 'sub')
+
+        setSubscribers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+        
+    }
 
     return (
             <section className="w-full overflow-x-auto  h-[35rem]  overflow-y-auto">
@@ -13,12 +41,21 @@ const Subscribers = () => {
                         Email
                     </div>
                 </div>
-                <Subscriber/>
-                <Subscriber/>
-                <Subscriber/>
-                <Subscriber/>
-                <Subscriber/>
+                {currentPosts.map((item) => {
+                    return(
+                        <Subscriber
+                            key={item.id}
+                            email={item.email}
+                        />
+                    )
+                })}
+
+                    <div className="flex justify-center">
+                        <Pagination  postsPerPage={postsPerPage} totalPosts={subscribers.length} paginate={paginate}/>
+                    </div>
             </section>
+
+            
     )
 
 }

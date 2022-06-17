@@ -35,6 +35,7 @@ class ProductDataService {
         return getDocs(productCollectionRef)
     };
 
+
     getProduct = (id) => {
         const productDoc = doc(db, "products", id);
         return getDoc(productDoc)

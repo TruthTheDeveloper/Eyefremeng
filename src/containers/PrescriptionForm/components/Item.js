@@ -1,14 +1,21 @@
-import { useNavigate  } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Item = ({id, name,image, price}) => {
     let navigate = useNavigate();
 
     console.log(id, name, image, price, 'prrrr')
 
+    // const { pathname } = useLocation();
+
+    // useEffect(() => {
+    //   window.scrollTo(0, 0);
+    // }, [pathname]);
+
     const itemInfo = () => {
         console.log('psis')
         
-        navigate("/dashboard/updateproduct")
+        navigate(`/prescriptionForm/${id}`)
 
         localStorage.setItem('id', JSON.stringify(id))
 

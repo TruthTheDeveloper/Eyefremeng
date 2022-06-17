@@ -1,14 +1,11 @@
 import { useNavigate  } from "react-router-dom";
-import {useContext} from 'react';
-import AuthContext from "../../../context/auth-context";
 
 const MenItem = ({name,image, price, id}) => {
     let navigate = useNavigate();
     
-    const {initialState, setInitialState} = useContext(AuthContext)
     const itemInfo = () => {
         console.log('psis')
-        navigate("/prescriptionForm")
+        navigate(`/prescriptionForm/${id}`)
 
         localStorage.setItem('id', JSON.stringify(id))
         localStorage.setItem('cart', JSON.stringify('men'))

@@ -35,7 +35,7 @@ const ContactUs = () => {
             });
         },
         (error) => {
-            toast.error('Unable to sende Message, Please try again', {
+            toast.error('Unable to send Message, Please try again', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,

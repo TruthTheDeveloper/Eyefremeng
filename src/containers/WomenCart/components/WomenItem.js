@@ -4,7 +4,7 @@ const WomenItem = ({name,image, price, id}) => {
     let navigate = useNavigate();
     
     const itemInfo = () => {
-        navigate("/prescriptionForm")
+        navigate(`/prescriptionForm/${id}`)
         localStorage.setItem('id', JSON.stringify(id))
         localStorage.setItem('cart', JSON.stringify('Women'))
     }

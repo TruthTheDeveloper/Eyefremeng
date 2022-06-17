@@ -1,6 +1,6 @@
 import { useNavigate  } from "react-router-dom";
 import Select from 'react-select';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductDataService from '../../firebase/services/product.services';
 import { uploadAFile } from "../../firebase/utils/uploadFile";
 
@@ -13,7 +13,8 @@ const options = [
     { value: 'Children Category', label: 'Children Category' },
   ];
 
-const Form = ({formText}) => {
+const Form = ({formText, product, price}) => {
+    console.log(product, price)
 
     const navigate = useNavigate();
 
@@ -32,6 +33,26 @@ const Form = ({formText}) => {
     const [templeMaterial, setTempleMaterial] = useState('')
     const [shape, setShape] = useState('')
 
+    useEffect(() => {
+
+        if(product){
+            setCategory(product.category )
+            setProductName(product.productName)
+            setProductPrice(product.productPrice)
+            setImage(product.image)
+            setDescription(product.description)
+            setFramesize(product.framesize)
+            setFrontMaterial(product.frontMaterial)
+            setlensWidth(product.lensWidth)
+            setLensHeight(product.lensHeight)
+            setbridgeWidth(product.bridgeWidth)
+            setTempleWidth(product.templeWidth)
+            setRimType(product.rimType)
+            setTempleMaterial(product.templeMaterial)
+            setShape(product.shape)
+        }
+
+    },[product])
 
 
     const addProductSubmitHandler = async(e) => {
@@ -88,6 +109,9 @@ const Form = ({formText}) => {
 
         
     }
+
+
+    
     
     return(
 
@@ -95,7 +119,7 @@ const Form = ({formText}) => {
         <form className="xl:w-4/12 lg:w-5/12 md:w-6/12  mx-auto p-3 border border-slate-400 rounded-md">
             <div className=" my-4 ">
                 <label>Product Name</label>
-                <input className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setProductName(e.target.value)} value={productName}/>
+                <input className="h-8 w-full mt-1 border border-slate-400 outline-none p-2"  onChange={(e) => setProductName(e.target.value)} value={productName}/>
             </div>
             <div className=" my-4">
                 <label>Product Price</label>
@@ -103,12 +127,12 @@ const Form = ({formText}) => {
             </div>
             <div>
                 <label>Description</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setDescription(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" value={description} onChange={(e) => setDescription(e.target.value)}/>
             </div>
             <div className=" my-4">
                 <label>Select Category</label>
                 <Select
-                    placeholder={"--- Please Select --"}
+                    placeholder={product?.category || "--- Please Select --"}
                     defaultValue={category}
                     onChange={setCategory}
                     options={options}
@@ -116,39 +140,39 @@ const Form = ({formText}) => {
             </div>
             <div>
                 <label>FrameSize</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFramesize(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFramesize(e.target.value)} value={framesize}/>
             </div>
             <div>
                 <label>Front Material</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFrontMaterial(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFrontMaterial(e.target.value)} value={frontMaterial}/>
             </div>
             <div>
                 <label>Temple Material</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleMaterial(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleMaterial(e.target.value)} value={templeMaterial}/>
             </div>
             <div>
                 <label>lens Width</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setlensWidth(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setlensWidth(e.target.value)} value={lensWidth}/>
             </div>
             <div>
                 <label>lens Height</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setLensHeight(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setLensHeight(e.target.value)} value={lensHeight}/>
             </div>
             <div>
                 <label>Bridge Width</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setbridgeWidth(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setbridgeWidth(e.target.value)} value={bridgeWidth}/>
             </div>
             <div>
                 <label>temple Width</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleWidth(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleWidth(e.target.value)} value={templeWidth}/>
             </div>
             <div>
                 <label>Rim Type</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setRimType(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setRimType(e.target.value)} value={rimType}/>
             </div>
             <div>
                 <label>Shape</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setShape(e.target.value)}/>
+                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setShape(e.target.value)} value={shape}/>
             </div>
             <div className=" my-4">
                 <label>Product Image</label>

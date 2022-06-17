@@ -39,6 +39,13 @@ const PaymentForm = () => {
     
         const handleFlutterPayment = useFlutterwave(config);
 
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+
       useEffect(() => {
 
         console.log(initialState)
@@ -115,7 +122,7 @@ const PaymentForm = () => {
 
         const payOnlineSelector = () => {
             setPaymentMethod("pay Online")
-            setInitialState({...initialState, paymentMethod})
+            setInitialState({...initialState, paymentMethod, date:today})
             
             
         }
@@ -123,7 +130,7 @@ const PaymentForm = () => {
 
         const paymentOnDeliverySelector = () => {
             setPaymentMethod("pay On Delivery")
-            setInitialState({...initialState, paymentMethod})
+            setInitialState({...initialState, paymentMethod, date:today})
             
         }
 

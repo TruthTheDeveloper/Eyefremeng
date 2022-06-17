@@ -1,10 +1,11 @@
 import Form from "./components/Form";
 import LensForm from "./components/LensForm";
-import Item from "../../components/admin/Item";
+import Item from "./components/Item";
 
 import { useEffect, useState, useContext } from "react";
 import ProductServices from "../../firebase/services/product.services";
 import AuthContext from "../../context/auth-context";
+import {useParams} from "react-router-dom"
 //Icons
 
 
@@ -15,6 +16,8 @@ const PrescriptionForm = () => {
     const [productDetail, setProductDetail] = useState({})
     const [relatedProduct, setRelatedProduct] = useState([])
 
+    const formId = useParams()
+
     
 
     
@@ -22,7 +25,8 @@ const PrescriptionForm = () => {
     useEffect(() => {
         getProductDetail()
         result()
-    },[])
+    },[formId])
+
 
 
 
@@ -45,6 +49,11 @@ const PrescriptionForm = () => {
         const data = await ProductServices.getProduct(JSON.parse(localStorage.getItem('id')))
         setProductDetail(data.data())
     }
+
+
+    // const getForm = async () => {
+    //     const data = 
+    // }
 
     console.log(productDetail.productPrice, 'ppdpppssd')
 

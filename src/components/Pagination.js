@@ -11,7 +11,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
     return (
         <div>
               {pageNumbers.map(number => (
-                  <button key={number} className="py-2 px-4 rounded-md mx-2" style={{backgroundColor:"#14A800"}} onClick={() => paginate(number)}>{number}</button> 
+                  <button key={number} className="py-2 px-4 rounded-md mx-2 bg-indigo-800 text-white my-6"  onClick={() => paginate(number)}>{number}</button> 
               ))} 
         </div>
     )

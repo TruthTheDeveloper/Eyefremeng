@@ -35,9 +35,8 @@ import UpdateProduct from './containers/Admin/UpdateProduct';
 import DashboardHoc from './hoc/DashboardHoc'
 
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
-import { useState } from 'react';
 import AuthContext from './context/auth-context';
 
 
@@ -51,13 +50,17 @@ const App = () => {
     firstName:'',
     lastName:'',
     Address:'',
+    productName:'',
     city:'',
     state:'',
     postalCode:'',
     telephone:'',
     withinLagos:null,
-    paymentMethod:''
+    paymentMethod:'',
+    date:null
   })
+
+
 
   const { pathname } = useLocation();
 
