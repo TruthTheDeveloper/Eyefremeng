@@ -12,6 +12,9 @@ import BilingForm from './containers/CheckoutForm/BilingForm';
 import ShipmentMethodForm from './containers/CheckoutForm/ShipmentMethodForm';
 import OrderReviewForm from './containers/CheckoutForm/OrderReviewForm';
 
+import Register from './containers/Auth/Register';
+import Login from './containers/Auth/Login';
+
 // Tips and Link Route
 import FaceShape from './containers/TipsLink/FaceShape';
 import FrameSize from './containers/TipsLink/FrameSize';
@@ -96,6 +99,7 @@ const App = () => {
     <OrderReviewForm/>
   </AuthContext.Provider>
 
+
   return( 
 
         <Routes>
@@ -125,6 +129,10 @@ const App = () => {
               <Route path="privacypolicy" element={<PrivacyPolicy/>} />
               <Route path="returnexchange" element={<ReturnExchange/>} />
               <Route path="termsuse" element={<TermsUse/>} />
+
+
+              <Route path="/register" element={<Register/>} />
+              <Route path="/login" element={<Login/>}/>
             
 
               {/*admin */}

@@ -34,7 +34,7 @@ const ShipmentMethodForm = () => {
               setShipmentValidationError('Please select a shipment location')
           }else{
             setShipmentValidationError('')
-            navigate('/checkoutForm/paymentMethod')
+            navigate('/checkoutForm/review')
           }
           
       }
@@ -84,11 +84,11 @@ const ShipmentMethodForm = () => {
             </div>
             <div className="flex my-3">
                 <p className="p-1 px-2 border-2">3</p>
-                <p className="px-2 py-1 text-lg font-semibold">Make Payment</p>
+                <p className="px-2 py-1 text-lg font-semibold">Order Review</p>
             </div>
             <div className="flex my-3">
                 <p className="p-1 px-2 border-2">4</p>
-                <p className="px-2 py-1 text-lg font-semibold">Order Review</p>
+                <p className="px-2 py-1 text-lg font-semibold">Make Payment</p>
             </div>
         </div>
     )

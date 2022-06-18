@@ -721,6 +721,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 incrementDataQty={incrementDataQty}
                 inputValidData={inputValidData}
             />}
+
+
         </>
     )
 

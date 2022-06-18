@@ -220,6 +220,10 @@ const PaymentForm = () => {
                 </div>
                 <div className="flex my-3">
                     <p className="p-1 px-2 border-2">3</p>
+                    <p className="px-2 py-1 text-lg font-semibold">Order Review</p>
+                </div>
+                <div className="flex my-3">
+                    <p className="p-1 px-2 border-2">4</p>
                     <p className="px-2 py-1 text-lg font-semibold">Make Payment</p>
                 </div>
             </div>
@@ -263,14 +267,10 @@ const PaymentForm = () => {
                     Continue
                     <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
                 </button>}
-                <button className="py-2 my-3 border-2 border-slate-300 px-6 rounded-md mx-3">
+                <button className="py-2 my-3 border-2 border-slate-300 px-6 rounded-md mx-3" onClick={() => navigate(-1)}>
                     back
-                    <FontAwesomeIcon icon={faArrowLeft} className="px-2" onClick={() => navigate(-1)}/>
+                    <FontAwesomeIcon icon={faArrowLeft} className="px-2" />
                 </button>
-            </div>
-            <div className="flex my-3">
-                <p className="p-1 px-2 border-2">4</p>
-                <p className="px-2 py-1 text-lg font-semibold">Order Review</p>
             </div>
         </div>
     )

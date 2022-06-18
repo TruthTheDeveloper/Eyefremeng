@@ -1,11 +1,13 @@
 import Form from "./components/Form";
 import LensForm from "./components/LensForm";
 import Item from "./components/Item";
+import Modal from '../../components/Modal';
 
 import { useEffect, useState, useContext } from "react";
 import ProductServices from "../../firebase/services/product.services";
 import AuthContext from "../../context/auth-context";
-import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom";
+import GlassReview from "./components/GlassReview";
 //Icons
 
 
@@ -74,6 +76,7 @@ const PrescriptionForm = () => {
                         </div>
                     </div>
                     <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice}/>
+                    <GlassReview/>
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">
@@ -120,6 +123,7 @@ const PrescriptionForm = () => {
                 })}
                 </div>
             </div>
+            <Modal/>
         </section>
     )
 }

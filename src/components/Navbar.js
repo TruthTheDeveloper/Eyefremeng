@@ -75,10 +75,10 @@ const Navbar = () => {
                                 <NavLink to="/mencart" exact="true">Men's Glasses</NavLink>
                             </li>
                             <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
-                                <NavLink to="/womencart" exact>Women's Glasses</NavLink>
+                                <NavLink to="/womencart" >Women's Glasses</NavLink>
                             </li>
                             <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
-                                <NavLink  to="/" exact>Children Glasses</NavLink>
+                                <NavLink  to="/" >Children Glasses</NavLink>
                             </li>
                     </ul>
                 </div>: null}
