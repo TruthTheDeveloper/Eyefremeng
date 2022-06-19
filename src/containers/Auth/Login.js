@@ -1,7 +1,7 @@
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -29,6 +29,7 @@ const Login = () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user)
+                localStorage.setItem('token', JSON.stringify(user.accessToken))
 
                 
                 toast.success('Congratulations you ve succesfully Logged In', {

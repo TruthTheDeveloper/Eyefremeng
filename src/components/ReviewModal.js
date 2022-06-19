@@ -1,8 +1,11 @@
 import Select from 'react-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import ReviewDataService from '../firebase/services/reviews.services';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const options = [
     { value: 'Excellent', label: 'Excellent' },
@@ -11,9 +14,14 @@ const options = [
     { value: 'Fair', label: 'Fair' },
     { value: 'Poor', label: 'Poor' },
   ];
-const ReviewModal = ({openReview, openReviewHandler}) => {
+const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
 
     const [category, setCategory] = useState(null);
+
+    const [reviewMessage, setReviewMessage] = useState('')
+
+    
+
 
     let rating = <div>
         <FontAwesomeIcon icon={faStar} className="md:mr-2 text-gray-500 pt-1 md:pt-0 lg:text-sm"/>
@@ -65,8 +73,38 @@ const ReviewModal = ({openReview, openReviewHandler}) => {
     </div>
     }
 
-    const submit = () => {
+    const submitReview = async (e) => {
+        e.preventDefault()
+        console.log(reviewMessage, category.value, firstName, lastName)
+
+        const data = {
+            id:JSON.parse(localStorage.getItem('uid')),
+            review:reviewMessage,
+            rating:category.value,
+            firstName:firstName,
+            lastName:lastName,
+            
+        }
+
+        const payload = await ReviewDataService.checkReview(JSON.parse(localStorage.getItem('id')), JSON.parse(localStorage.getItem('uid')))
+        const exist = payload.docs.map((doc) => ({...doc.data(), id:doc.id}))
+        console.log(exist)
+        if(exist.length === 0){
+            toast.error('you have already reviewed this glass', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }else{
+            const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
+            console.log(result)
+        }
         
+
     }
 
     
@@ -78,8 +116,8 @@ const ReviewModal = ({openReview, openReviewHandler}) => {
             <FontAwesomeIcon icon={faClose} className="md:mr-2 text-gray-500 font-bold pt-1 md:pt-0 lg:text-2xl cursor-pointer absolute top-0 right-0 mt-2" onClick={openReviewHandler}/>
             {rating}
             <div className="my-3 ">
-                <label>Your Review</label><br/>
-                <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300"/>
+                <label>Your Name</label><br/>
+                <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300" value={`${firstName} ${lastName}`} readOnly/>
             </div>
             <div className="my-3 ">
             <label>Rate</label><br/>
@@ -94,10 +132,10 @@ const ReviewModal = ({openReview, openReviewHandler}) => {
             </div>
             <div className="my-3">
                 <label>Review</label><br/>
-                <textarea className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300 h-12"/>
+                <textarea className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300 h-12" onChange={(e) => setReviewMessage(e.target.value)}/>
             </div>
             <div className="my-3">
-                <button className="bg-indigo-800  text-white w-full text-lg py-2 rounded-md" onClick={submit}>Submit Review</button>
+                <button className="bg-indigo-800  text-white w-full text-lg py-2 rounded-md" onClick={submitReview}>Submit Review</button>
             </div>
         </form>
     </section>}</>

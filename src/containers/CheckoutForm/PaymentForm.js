@@ -7,7 +7,7 @@ import AuthContext from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
 import orderServices from '../../firebase/services/order.services';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PaymentForm = () => {
@@ -196,19 +196,6 @@ const PaymentForm = () => {
 
     return(
         <div>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                    {/* Same as */}
-                    <ToastContainer />
             <div>
                 <div className="flex my-3">
                     <p className="p-1 px-2 border-2">1</p>

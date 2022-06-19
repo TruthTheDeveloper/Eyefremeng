@@ -51,6 +51,8 @@ const PrescriptionForm = () => {
     const getProductDetail = async () => {
         const data = await ProductServices.getProduct(JSON.parse(localStorage.getItem('id')))
         setProductDetail(data.data())
+
+        
     }
 
 

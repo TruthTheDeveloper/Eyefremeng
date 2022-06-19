@@ -3,7 +3,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';// <-- import styles
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import emailjs from '@emailjs/browser';
 import emailData from '../../emailKey';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useRef } from 'react';
 const ContactUs = () => {
@@ -49,19 +49,6 @@ const ContactUs = () => {
 
     return(
         <section className="py-24">
-            <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                    {/* Same as */}
-                    <ToastContainer />
             <div className="bg-indigo-800 text-center font-semibold text-3xl py-12 text-white">
                 <h1>CONTACT US</h1>
             </div>

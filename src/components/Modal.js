@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "fir
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Modal = ({loginModal, loginModalHandler}) => {
@@ -35,6 +35,8 @@ const Modal = ({loginModal, loginModalHandler}) => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user)
+                localStorage.setItem('token', JSON.stringify(user.accessToken))
+                localStorage.setItem('uid', JSON.stringify(user.uid))
 
                 
                 toast.success('Congratulations you ve succesfully Logged In', {
@@ -126,8 +128,8 @@ const Modal = ({loginModal, loginModalHandler}) => {
             </div>
             <div className="my-3">
                 <label>Password</label><br/>
-                <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300" onChange={(e) => setPassword(e.target.value)}/>
-                {passwordValidationError && <p className="text-red-500 text-sm">Please input password field</p>}
+                <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                {passwordValidationError && <p className="text-red-500 text-sm" >Please input password field</p>}
                 <button className="text-sm text-indigo-800 font-semibold" onClick={resetPassword}>Forget your password</button>
             </div>
             <div>

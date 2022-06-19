@@ -7,36 +7,36 @@ import {
     updateDoc,
     doc,
     getDoc,
-    deleteDoc
+    deleteDoc,
+    query,
+    where
 } from "firebase/firestore";
 
 
-const reviewCollectionRef = collection(db, "products");
 
 
 class ReviewDataService {
     addReview = (productId, reviews) => {
-        return addDoc(reviewCollectionRef, productId, 'reviews', reviews)
+        const reviewCollectionRef = collection(db, `products/${productId}/reviews`)
+        return addDoc(reviewCollectionRef, reviews)
     };
 
-    updateReview = (id, updatedreview) => {
-        const reviewDoc = doc(db, "reviews", id);
-        return updateDoc(reviewDoc, updatedreview)
-    };
 
-    getAllReview = (productId) => {
+    getReview = (productId) => {
+        const reviewCollectionRef = collection(db, `products/${productId}/reviews`)
         return getDocs(reviewCollectionRef, productId, 'reviews',)
     };
 
-    getReview = (productId, reviewId) => {
-        const reviewDoc = doc(db, "reviews", productId, reviewId);
-        return getDoc(reviewDoc)
+    checkReview = (productId, userId) => {
+        console.log(productId, userId, '---djdjsd')
+        
+        const reviewCollectionRef = collection(db, `products/${productId}/reviews`)
+        const q = query(reviewCollectionRef, where('id',  "==",  `kdlklksdlasd`))
+        return getDocs(q)
         
     };
 
-    deleteReview = (productId, reviewId) => {
-        const reviewDoc = doc(db, "reviews", productId, reviewId);
-        return deleteDoc(reviewDoc)
-    };
+
+
 }
 export default new ReviewDataService();

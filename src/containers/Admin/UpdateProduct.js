@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import ProductServices from '../../firebase/services/product.services';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -48,19 +48,6 @@ const UpdateProduct = () => {
 
     return(
             <>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                    {/* Same as */}
-                    <ToastContainer />
                     <section className="w-full my-6 mx-6 h-[35rem]  overflow-y-auto">
                         <div className="md:mx-12 mx-5 my-8">
                             <FontAwesomeIcon icon={faBars} className="text-indigo-800 text-2xl lg:hidden"/>

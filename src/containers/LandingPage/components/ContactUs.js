@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import subscriberServices from '../../../firebase/services/subscriber.services';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -69,19 +69,6 @@ const ContactUs = () => {
 
     return(
         <section className="lg:w-7/12 w-11/12 md:w-9/12  mx-auto text-center my-24" style={{color:'#002365'}}>
-            <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                    {/* Same as */}
-                    <ToastContainer />
             <div className="my-8">
                 <h1 className="lg:text-6xl text-4xl md:text-5xl py-5 font-semibold">Stay in touch</h1>
                 <p className="text-xl">Keep up to date with our exclusive offer</p>

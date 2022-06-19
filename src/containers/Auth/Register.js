@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../firebase/firebase-config";
 import { doc, setDoc } from "firebase/firestore"; 
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -61,7 +61,7 @@ const Register = () => {
 
                 console.log(user)
 
-                localStorage.setItem('token', JSON.stringify(user.token))
+                localStorage.setItem('token', JSON.stringify(user.accessToken))
                 
                 toast.success('Congratulations you ve succesfully registered', {
                     position: "top-right",
@@ -73,9 +73,7 @@ const Register = () => {
                     progress: undefined,
                     });
 
-                    setTimeout(() => {
                         navigate('/')
-                    },2000)
                 // ...
             })
             .then((res) => {
@@ -134,12 +132,12 @@ const Register = () => {
                 <div className="md:flex my-2">
                     <div className="w-full md:mr-2">
                         <label>Password</label><br/>
-                        <input className="w-full border-2  p-2 text-slate-700 outline-none my-2" onChange={(e) => setPassword(e.target.value)}/>
+                        <input className="w-full border-2  p-2 text-slate-700 outline-none my-2" type="password" onChange={(e) => setPassword(e.target.value)}/>
                         {passwordValidationError && <p className="text-red-500 text-sm">Please input password field</p>}
                     </div>
                     <div className="w-full md:ml-2">
                         <label>Confirm Password</label><br/>
-                        <input className="w-full border-2  p-2 text-slate-700 outline-none my-2" onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        <input className="w-full border-2  p-2 text-slate-700 outline-none my-2" type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
                         {confirmPasswordValidationError && <p className="text-red-500 text-sm">password fields do not match</p>}
                     </div>
                 </div>

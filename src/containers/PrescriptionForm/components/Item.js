@@ -4,7 +4,6 @@ import { useEffect } from "react";
 const Item = ({id, name,image, price}) => {
     let navigate = useNavigate();
 
-    console.log(id, name, image, price, 'prrrr')
 
     // const { pathname } = useLocation();
 
