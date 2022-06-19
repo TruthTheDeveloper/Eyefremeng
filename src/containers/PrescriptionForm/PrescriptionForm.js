@@ -8,6 +8,7 @@ import ProductServices from "../../firebase/services/product.services";
 import AuthContext from "../../context/auth-context";
 import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
+import ReviewModal from "../../components/ReviewModal";
 //Icons
 
 
@@ -76,7 +77,7 @@ const PrescriptionForm = () => {
                         </div>
                     </div>
                     <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice}/>
-                    <GlassReview/>
+                    <GlassReview />
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">
@@ -123,7 +124,8 @@ const PrescriptionForm = () => {
                 })}
                 </div>
             </div>
-            <Modal/>
+            {/* <Modal/> */}
+            {/* <ReviewModal openReview={openReview} closeReviewHandler={closeReviewHandler}/> */}
         </section>
     )
 }

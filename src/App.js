@@ -42,7 +42,7 @@ import { useEffect,useState } from 'react';
 
 import AuthContext from './context/auth-context';
 
-
+import { ToastContainer, toast } from 'react-toastify';
 const App = () => {
 
   const [initialState, setInitialState] = useState({
@@ -101,56 +101,73 @@ const App = () => {
 
 
   return( 
-
-        <Routes>
-            <Route path="/" element={<Layout/>}>
-              <Route path="/" element={<LandingPage/>}/>
-              <Route path="womencart" element={<WomenCart />} />
-              <Route path="mencart" element={<MenCart/>} />
-              <Route path="prescriptionForm" element={prescriptionForm} />
-              <Route path="cart" element={cart} />
-
-              <Route path="/checkoutForm" element={checkoutForm}>
-                <Route path="shipmentMethod" element={shipmentMethod} />
-                <Route path="paymentMethod" element={paymentForm} />
-                <Route path="bilingForm" element={billingForm}/>
-                <Route path="review" element={reviewOrder}/>
-              </Route>
-
-              <Route path="shopTrend" element={<ShopTrend/>}/>
-
-              {/* Tips and Link Route */}
-              <Route path="faceshape" element={<FaceShape/>} />
-              <Route path="framesize" element={<FrameSize/>} />
-              <Route path="pd" element={<Pd/>} />
-
-              {/* About US */}
-              <Route path="contactus" element={<ContactUs/>} />
-              <Route path="privacypolicy" element={<PrivacyPolicy/>} />
-              <Route path="returnexchange" element={<ReturnExchange/>} />
-              <Route path="termsuse" element={<TermsUse/>} />
+    <>
+    <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+                {/* Same as */}
+                <ToastContainer />
 
 
-              <Route path="/register" element={<Register/>} />
-              <Route path="/login" element={<Login/>}/>
-            
+                <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="/" element={<LandingPage/>}/>
+          <Route path="womencart" element={<WomenCart />} />
+          <Route path="mencart" element={<MenCart/>} />
+          <Route path="prescriptionForm" element={prescriptionForm} />
+          <Route path="cart" element={cart} />
 
-              {/*admin */}
-              <Route path="/" element={<DashboardHoc/>}>
-                <Route path="dashboard" element={<Dashboard/>}/>
-                <Route path="dashboard/addProduct" element={<AddProduct/>}/>
-                <Route path="dashboard/orderedProduct" element={<OrderedProduct/>}/>
-                <Route path="dashboard/orders" element={<Orders/>} />
-                <Route path="dashboard/product" element={<Product/>}/>
-                <Route path="dashboard/subscriber" element={<Subscriber/>}/>
-                <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
-              </Route>
+          <Route path="/checkoutForm" element={checkoutForm}>
+            <Route path="shipmentMethod" element={shipmentMethod} />
+            <Route path="paymentMethod" element={paymentForm} />
+            <Route path="bilingForm" element={billingForm}/>
+            <Route path="review" element={reviewOrder}/>
+          </Route>
 
-              <Route path="prescriptionForm/" element={prescriptionForm}>
-                <Route path=":formId" element={prescriptionForm}/>
-              </Route>
-            </Route>
-        </Routes>
+          <Route path="shopTrend" element={<ShopTrend/>}/>
+
+          {/* Tips and Link Route */}
+          <Route path="faceshape" element={<FaceShape/>} />
+          <Route path="framesize" element={<FrameSize/>} />
+          <Route path="pd" element={<Pd/>} />
+
+          {/* About US */}
+          <Route path="contactus" element={<ContactUs/>} />
+          <Route path="privacypolicy" element={<PrivacyPolicy/>} />
+          <Route path="returnexchange" element={<ReturnExchange/>} />
+          <Route path="termsuse" element={<TermsUse/>} />
+
+
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login/>}/>
+        
+
+          {/*admin */}
+          <Route path="/" element={<DashboardHoc/>}>
+            <Route path="dashboard" element={<Dashboard/>}/>
+            <Route path="dashboard/addProduct" element={<AddProduct/>}/>
+            <Route path="dashboard/orderedProduct" element={<OrderedProduct/>}/>
+            <Route path="dashboard/orders" element={<Orders/>} />
+            <Route path="dashboard/product" element={<Product/>}/>
+            <Route path="dashboard/subscriber" element={<Subscriber/>}/>
+            <Route path="dashboard/updateproduct" element={<UpdateProduct/>}/>
+          </Route>
+
+          <Route path="prescriptionForm/" element={prescriptionForm}>
+            <Route path=":formId" element={prescriptionForm}/>
+          </Route>
+        </Route>
+    </Routes>
+    </>
+    
   )
   
 }

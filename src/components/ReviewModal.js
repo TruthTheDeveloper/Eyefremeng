@@ -1,11 +1,9 @@
+import Select from 'react-select';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-import Select from 'react-select';
-import Modal from '../../../components/Modal';
-import ReviewModal from '../../../components/ReviewModal';
-import AllReviews from '../../../components/AllReviews';
+
 const options = [
     { value: 'Excellent', label: 'Excellent' },
     { value: 'Very Good', label: 'Very Good' },
@@ -13,12 +11,7 @@ const options = [
     { value: 'Fair', label: 'Fair' },
     { value: 'Poor', label: 'Poor' },
   ];
-
-const GlassReview = () => {
-
-    const [reviews, setReviews] = useState(false)
-    const [openReview, setOpenReview] = useState(false)
-    const [loginModal, setLoginModal] = useState(false)
+const ReviewModal = ({openReview, openReviewHandler}) => {
 
     const [category, setCategory] = useState(null);
 
@@ -72,41 +65,43 @@ const GlassReview = () => {
     </div>
     }
 
-    const reviewHandler = () => {
-        if(JSON.parse(localStorage.getItem('token'))){
-            setOpenReview(true)
-        }else{
-            setLoginModal(true)
-        }
-
-    }
-
-    const submitReview = () => {
+    const submit = () => {
         
     }
 
-    const loginModalHandler = () => {
-        setLoginModal(prev => !prev)
-    }
-
-    const openReviewHandler = () => {
-        setOpenReview(prev => !prev)
-    }
-
+    
 
     return(
-        <div className="mx-3 md:mx-16">
-            <div className="my-8">
-                <button className="py-3 border-2 font-semibold px-5 text-lg rounded-md" onClick={() => setReviews(prev => !prev)}>Reviews</button>
+        <>{openReview && <section className=" fixed top-0 left-0 h-screen w-full z-50 overflow-y-hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}}>
+        <form className="bg-white w-96 mx-auto mt-44 p-5 rounded-md relative">
+            <h1 className="text-slate-700 my-2 text-xl font-semibold">Overall Rating</h1>
+            <FontAwesomeIcon icon={faClose} className="md:mr-2 text-gray-500 font-bold pt-1 md:pt-0 lg:text-2xl cursor-pointer absolute top-0 right-0 mt-2" onClick={openReviewHandler}/>
+            {rating}
+            <div className="my-3 ">
+                <label>Your Review</label><br/>
+                <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300"/>
             </div>
-            <button className="border py-2 px-2 border-2 rounded-md" onClick={reviewHandler}>Write a review</button>
-            <AllReviews reviews={reviews}/>
-            <ReviewModal openReview={openReview} openReviewHandler={openReviewHandler}/>
-            <Modal loginModal={loginModal} loginModalHandler={loginModalHandler}/>
-        </div>
-
+            <div className="my-3 ">
+            <label>Rate</label><br/>
+                <div className=" w-full h-10  outline-none my-2 rounded-md border-slate-300">
+                <Select
+                    placeholder={"--- Please Select --"}
+                    defaultValue={category}
+                    onChange={setCategory}
+                    options={options}
+                />
+                </div>
+            </div>
+            <div className="my-3">
+                <label>Review</label><br/>
+                <textarea className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300 h-12"/>
+            </div>
+            <div className="my-3">
+                <button className="bg-indigo-800  text-white w-full text-lg py-2 rounded-md" onClick={submit}>Submit Review</button>
+            </div>
+        </form>
+    </section>}</>
     )
 
 }
-
-export default GlassReview;
+export default ReviewModal;

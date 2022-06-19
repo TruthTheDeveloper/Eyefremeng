@@ -5,8 +5,7 @@ import Trends from './components/Trends';
 import Mission from './components/Mission';
 import InfoGuide from './components/InfoGuide';
 import ContactUs from './components/ContactUs';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LandingPage = () => {
     return(
