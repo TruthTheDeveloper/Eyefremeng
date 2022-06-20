@@ -25,9 +25,10 @@ const AllReviews = ({reviews}) => {
     
 
     return(
-        <>{reviews && allReviews.map((item) => {
+        <>{reviews && allReviews.map((item, index) => {
             return(
                 <ReviewMessage
+                    key={item.id}
                     firstName={item.firstName}
                     lastName={item.lastName}
                     rating={item.rating}

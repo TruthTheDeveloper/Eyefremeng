@@ -31,7 +31,7 @@ class ReviewDataService {
         console.log(productId, userId, '---djdjsd')
         
         const reviewCollectionRef = collection(db, `products/${productId}/reviews`)
-        const q = query(reviewCollectionRef, where('id',  "==",  `kdlklksdlasd`))
+        const q = query(reviewCollectionRef, where('id',  "==",  `${userId}`))
         return getDocs(q)
         
     };

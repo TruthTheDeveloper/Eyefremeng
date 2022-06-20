@@ -99,12 +99,27 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
             
         }
 
-        if(reviewMessage === "" && category.value === null && firstName === "" && lastName === ""){
+        if(reviewMessage !== "" && category.value !== null && firstName !== "" && lastName !== ""){
             const payload = await ReviewDataService.checkReview(JSON.parse(localStorage.getItem('id')), JSON.parse(localStorage.getItem('uid')))
             const exist = payload.docs.map((doc) => ({...doc.data(), id:doc.id}))
             console.log(exist)
             if(exist.length === 0){
                 setSpinner(false)
+                const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
+                console.log(result)
+                toast.success('your review was submitted ', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                setSpinner(false)
+                
+            }else{
+                const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
                 toast.error('you have already reviewed this glass', {
                     position: "top-right",
                     autoClose: 5000,
@@ -114,10 +129,8 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
                     draggable: true,
                     progress: undefined,
                     });
-            }else{
-                const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
-                console.log(result)
-                setSpinner(false)
+               
+                
             }
         }
 
