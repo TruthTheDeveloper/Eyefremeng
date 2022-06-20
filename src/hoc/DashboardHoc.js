@@ -74,7 +74,7 @@ const DashboardHoc = ({children}) => {
                         <div className={active.orders ? 'flex p-3 w-full bg-white text-indigo-800' : 'flex p-3 w-full hover:bg-white hover:text-indigo-800' } onClick={orderNav}>
                             <FontAwesomeIcon icon={faBagShopping} className="mx-4 text-2xl"/>
                             <h1 className="">Orders</h1>
-                            <div className="bg-red-400 px-2 mx-2 text-lg rounded-full text-white">3</div>
+                            {/* <div className="bg-red-400 px-2 mx-2 text-lg rounded-full text-white">3</div> */}
                         </div>
                     </div>
                     <div className="flex py-3  text-center  cursor-pointer mx-3">

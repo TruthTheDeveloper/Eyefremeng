@@ -10,7 +10,7 @@ import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
 import ReviewModal from "../../components/ReviewModal";
 
-import { TailSpin } from  'react-loader-spinner'
+import { TailSpin } from  'react-loader-spinner';
 //Icons
 
 

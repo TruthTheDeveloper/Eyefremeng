@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TailSpin } from  'react-loader-spinner';
 
 const Login = () => {
 
@@ -11,6 +12,7 @@ const Login = () => {
 
     const [password, setPassword] = useState('')
     const [passwordValidationError, setPaswordValidationError] = useState(false)
+    const [spinner, setSpinner] = useState(false)
 
 
     const navigate = useNavigate()
@@ -19,6 +21,8 @@ const Login = () => {
     const auth = getAuth();
 
     const navigateToDashboard = () => {
+
+        setSpinner(true)
 
         email === '' ? setEmailValidationError(true) : setEmailValidationError(false)
         password === '' ? setPaswordValidationError(true) : setPaswordValidationError(false)
@@ -34,6 +38,8 @@ const Login = () => {
                 console.log(user)
                 localStorage.setItem('token', JSON.stringify(user.accessToken))
 
+                setSpinner(false)
+
                 
                 toast.success('Congratulations you ve succesfully Logged In', {
                     position: "top-right",
@@ -48,8 +54,10 @@ const Login = () => {
                     navigate('/')
             })
             .catch((error) => {
+                setSpinner(false)
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                setSpinner(false)
                 toast.error('unable to register please confirm authentication credentials', {
                     position: "top-right",
                     autoClose: 5000,
@@ -62,6 +70,8 @@ const Login = () => {
             });
             
 
+        }else{
+            setSpinner(false)
         }
         
 
@@ -133,7 +143,7 @@ const Login = () => {
                 </div>
                 <div className="my-4 ">
                     <button className="py-3 bg-indigo-800 text-white py-2 px-6 rounded-md" onClick={navigateToRegister}>Create an account</button>
-                    <button className="py-3 py-2 px-6 mx-3 border rounded-md border-indigo-800 my-3 sm:my-0 text-indigo-800" onClick={navigateToDashboard}>Login</button>
+                    <button className="py-3 py-2 px-6 mx-3 border rounded-md border-indigo-800 my-3 sm:my-0 text-indigo-800" onClick={navigateToDashboard}>{spinner ? <div className="py-1"><TailSpin color="#3730A3" height={20} width={40} /></div> : 'Login'}</button>
                     <button className="text-sm text-indigo-800 font-semibold block md:inline" onClick={resetPassword}>Forget your password</button>
                 </div>
             </div>

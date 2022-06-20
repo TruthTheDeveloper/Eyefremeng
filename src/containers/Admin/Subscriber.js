@@ -4,6 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SubscriberServices from '../../firebase/services/subscriber.services';
 import Pagination from '../../components/Pagination';
 import { useEffect, useState } from 'react';
+import { TailSpin } from  'react-loader-spinner';
 
 const Subscribers = () => {
 
@@ -41,6 +42,7 @@ const Subscribers = () => {
                         Email
                     </div>
                 </div>
+                {subscribers.length === 0 && <div className="  mx-auto my-24 flex justify-center w-full "><TailSpin color="#3730A3" height={80} width={80} /></div>}
                 {currentPosts.map((item) => {
                     return(
                         <Subscriber
@@ -51,7 +53,7 @@ const Subscribers = () => {
                 })}
 
                     <div className="flex justify-center">
-                        <Pagination  postsPerPage={postsPerPage} totalPosts={subscribers.length} paginate={paginate}/>
+                    {subscribers.length !== 0 && <Pagination  postsPerPage={postsPerPage} totalPosts={subscribers.length} paginate={paginate}/>}
                     </div>
             </section>
 

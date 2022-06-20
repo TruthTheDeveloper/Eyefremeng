@@ -5,6 +5,7 @@ import { useNavigate  } from "react-router-dom";
 import OrderServices from '../../firebase/services/order.services';
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination';
+import { TailSpin } from  'react-loader-spinner';
 
 const Orders = () => {
 
@@ -62,7 +63,7 @@ const Orders = () => {
                         Status
                     </div>
                 </div>
-                
+                {allOrder.length === 0 && <div className=" mx-auto my-24 flex justify-center "><TailSpin color="#3730A3" height={80} width={80} /></div>}
                 {currentPosts.map((item) => {
                     return(
                         <BuyerDetail
@@ -81,7 +82,7 @@ const Orders = () => {
                     )
                 })}
                 <div className="justify-center flex">
-                    <Pagination  postsPerPage={postsPerPage} totalPosts={allOrder.length} paginate={paginate}/>
+                    {allOrder.length !== 0 && <Pagination  postsPerPage={postsPerPage} totalPosts={allOrder.length} paginate={paginate}/>}
                 </div>
                 </section>
     )

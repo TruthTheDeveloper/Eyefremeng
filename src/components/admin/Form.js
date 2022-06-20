@@ -3,6 +3,7 @@ import Select from 'react-select';
 import React, { useEffect, useState } from 'react';
 import ProductDataService from '../../firebase/services/product.services';
 import { uploadAFile } from "../../firebase/utils/uploadFile";
+import { TailSpin } from  'react-loader-spinner';
 
 
 
@@ -32,6 +33,7 @@ const Form = ({formText, product, price}) => {
     const [rimType, setRimType] = useState('')
     const [templeMaterial, setTempleMaterial] = useState('')
     const [shape, setShape] = useState('')
+    const [spinner, setSpinner] = useState(false)
 
     useEffect(() => {
 
@@ -57,12 +59,13 @@ const Form = ({formText, product, price}) => {
 
     const addProductSubmitHandler = async(e) => {
         e.preventDefault();
+        setSpinner(true)
         // console.log(productName, productPrice, image, category)
         const file = image ? await uploadAFile(image) : null
 
 
        
-        if(productName === '' || productPrice === null || image === null || category === null || description === '', framesize === '', frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === '', templeWidth === '', rimType === '', shape === '', templeMaterial === ''){
+        if(productName === '' || productPrice === null || image === null || category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
             return;
         }
 
@@ -87,8 +90,10 @@ const Form = ({formText, product, price}) => {
 
         try{
             await ProductDataService.addProduct(newProduct)
+            setSpinner(false)
         }catch(err){
             console.log(err)
+            setSpinner(false)
         }
 
 
@@ -106,6 +111,7 @@ const Form = ({formText, product, price}) => {
         setRimType('')
         setShape('')
         setTempleMaterial('')
+        setSpinner(false)
 
         
     }
@@ -178,7 +184,9 @@ const Form = ({formText, product, price}) => {
                 <label>Product Image</label>
                 <input type="file" className="mt-1" onChange={(e) => setImage(e.target.files[0])} />
             </div>
-            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{formText}</button>
+            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="mx-32"><TailSpin color="white" height={30} width={80} /></div> : formText}
+            </button>
+            
         </form>
         <button className="py-2 px-12 rounded-md border border-slate-700  mx-auto flex my-5" onClick={() => navigate(-1)}>Back</button>
         </>

@@ -5,6 +5,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TailSpin } from  'react-loader-spinner';
 
 const Modal = ({loginModal, loginModalHandler}) => {
     const [email, setEmail] = useState('')
@@ -12,6 +13,8 @@ const Modal = ({loginModal, loginModalHandler}) => {
 
     const [password, setPassword] = useState('')
     const [passwordValidationError, setPaswordValidationError] = useState(false)
+
+    const [spinner, setSpinner] = useState(false)
 
     const navigate = useNavigate()
     const auth = getAuth();
@@ -23,12 +26,16 @@ const Modal = ({loginModal, loginModalHandler}) => {
 
     const loginHandler = (e) => {
         e.preventDefault()
-        setEmailValidationError(false)
-        setPaswordValidationError(false)
+
+        setSpinner(true)
 
         console.log(email, password, 'email password')
+        email === '' ? setEmailValidationError(true) : setEmailValidationError(false) 
+        password === '' ? setPaswordValidationError(true) : setPaswordValidationError(false)
 
         if(email !== '' && password !== ''){
+
+            
 
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -37,6 +44,7 @@ const Modal = ({loginModal, loginModalHandler}) => {
                 console.log(user)
                 localStorage.setItem('token', JSON.stringify(user.accessToken))
                 localStorage.setItem('uid', JSON.stringify(user.uid))
+                setSpinner(false)
 
                 
                 toast.success('Congratulations you ve succesfully Logged In', {
@@ -54,6 +62,7 @@ const Modal = ({loginModal, loginModalHandler}) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                setSpinner(false)
                 toast.error('unable to register please confirm authentication credentials', {
                     position: "top-right",
                     autoClose: 5000,
@@ -67,8 +76,7 @@ const Modal = ({loginModal, loginModalHandler}) => {
             
 
         }else{
-            setEmailValidationError(true)
-            setPaswordValidationError(true)
+            setSpinner(false)
         }
 
 
@@ -76,8 +84,8 @@ const Modal = ({loginModal, loginModalHandler}) => {
     }
     const resetPassword = (e) => {
         e.preventDefault()
-        setEmailValidationError(false)
-        setPaswordValidationError(false)
+        email === '' ? setEmailValidationError(true) : setEmailValidationError(false)
+        password === '' ? setPaswordValidationError(true) : setPaswordValidationError(false)
 
         if(email === ""){
             toast.error('please input your email in the email field then click on reset password', {
@@ -133,7 +141,9 @@ const Modal = ({loginModal, loginModalHandler}) => {
                 <button className="text-sm text-indigo-800 font-semibold" onClick={resetPassword}>Forget your password</button>
             </div>
             <div>
-                <button className="text-white bg-indigo-800 w-full py-2 rounded-md text-lg" onClick={loginHandler}>Login</button>
+                <button className="text-white bg-indigo-800 w-full py-2 rounded-md text-lg text-center" onClick={loginHandler}>
+                    {spinner ? <div className="mx-32"><TailSpin color="white" height={30} width={80} /></div> : 'Login'}
+                </button>
             </div>
             <div className="my-3">
                 <button className="border-indigo-800 border-2 text-indigo-800 w-full text-lg py-2 rounded-md" onClick={createAccountHandler}>Create Account</button>

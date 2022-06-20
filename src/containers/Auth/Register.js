@@ -5,6 +5,7 @@ import { db } from "../../firebase/firebase-config";
 import { doc, setDoc } from "firebase/firestore"; 
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TailSpin } from  'react-loader-spinner';
 
 
 const Register = () => {
@@ -25,6 +26,7 @@ const Register = () => {
 
     const [confirmPassword, setConfirmPassword] = useState('')
     const [confirmPasswordValidationError, setConfirmPasswordValidationError] = useState(false)
+    const [spinner, setSpinner] = useState(false)
 
     const auth = getAuth();
 
@@ -42,9 +44,14 @@ const Register = () => {
 
         console.log(email, password, firstName, lastName, 'lastname')
 
+        setSpinner(true)
+
         if(password !== confirmPassword){
             setConfirmPasswordValidationError(true)
+            setSpinner(false)
             return
+        }else{
+            setConfirmPasswordValidationError(false)
         }
 
         if(email !== '' && password !== '' && firstName !== '' && lastName){
@@ -53,6 +60,8 @@ const Register = () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user.uid)
+
+                setSpinner(false)
             
                 setDoc(doc(db, 'users', user.uid), {
                     firstName:firstName,
@@ -81,6 +90,7 @@ const Register = () => {
                 console.log('successs')
             })
             .catch((error) => {
+                setSpinner(false)
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 toast.error('unable to register please confirm authentication credentials', {
@@ -95,6 +105,8 @@ const Register = () => {
                 // ..
             });
 
+        }else{
+            setSpinner(false)
         }
 
         
@@ -137,7 +149,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="my-4">
-                    <button className="py-3 bg-indigo-800 text-white py-2 px-6 rounded-md" onClick={registerHandler}>Submit</button>
+                    <button className="py-3 bg-indigo-800 text-white py-2 px-6 rounded-md" onClick={registerHandler}>{spinner ? <div className="py-1"><TailSpin color="white" height={20} width={80} /></div> : 'Register'}</button>
                     <button className="py-3 py-2 px-6 mx-3 border rounded-md border-indigo-800 text-indigo-800" onClick={navigateToLogin}>Login</button>
                 </div>
             </div>

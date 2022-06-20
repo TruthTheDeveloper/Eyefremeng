@@ -6,6 +6,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import ReviewDataService from '../firebase/services/reviews.services';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TailSpin } from  'react-loader-spinner';
 
 const options = [
     { value: 'Excellent', label: 'Excellent' },
@@ -17,8 +18,13 @@ const options = [
 const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
 
     const [category, setCategory] = useState(null);
+    const [categoryValidationError, setCategoryValidationError] = useState()
 
     const [reviewMessage, setReviewMessage] = useState('')
+    const [reviewMessageValidationError, setReviewMessageValidationError] = useState('')
+    const [firstNameValidationError, setFirstNameValidationError] = useState('')
+    const [lastNameValidationError, setLastNameValidationError] = useState('')
+    const [spinner, setSpinner] = useState(false)
 
     
 
@@ -77,6 +83,13 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
         e.preventDefault()
         console.log(reviewMessage, category.value, firstName, lastName)
 
+        reviewMessage === "" ? setReviewMessageValidationError(true) : setReviewMessageValidationError(false)
+        category.value === null ? setCategoryValidationError(true) : setCategoryValidationError(false)
+        firstName === "" ? setFirstNameValidationError(true) : setFirstNameValidationError(false)
+        lastName === "" ? setLastNameValidationError(true) : setLastNameValidationError(false)
+
+        setSpinner(true)
+
         const data = {
             id:JSON.parse(localStorage.getItem('uid')),
             review:reviewMessage,
@@ -86,23 +99,29 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
             
         }
 
-        const payload = await ReviewDataService.checkReview(JSON.parse(localStorage.getItem('id')), JSON.parse(localStorage.getItem('uid')))
-        const exist = payload.docs.map((doc) => ({...doc.data(), id:doc.id}))
-        console.log(exist)
-        if(exist.length === 0){
-            toast.error('you have already reviewed this glass', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }else{
-            const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
-            console.log(result)
+        if(reviewMessage === "" && category.value === null && firstName === "" && lastName === ""){
+            const payload = await ReviewDataService.checkReview(JSON.parse(localStorage.getItem('id')), JSON.parse(localStorage.getItem('uid')))
+            const exist = payload.docs.map((doc) => ({...doc.data(), id:doc.id}))
+            console.log(exist)
+            if(exist.length === 0){
+                setSpinner(false)
+                toast.error('you have already reviewed this glass', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }else{
+                const result = await ReviewDataService.addReview(JSON.parse(localStorage.getItem('id')), data)
+                console.log(result)
+                setSpinner(false)
+            }
         }
+
+        setSpinner(false)
         
 
     }
@@ -135,7 +154,9 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
                 <textarea className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300 h-12" onChange={(e) => setReviewMessage(e.target.value)}/>
             </div>
             <div className="my-3">
-                <button className="bg-indigo-800  text-white w-full text-lg py-2 rounded-md" onClick={submitReview}>Submit Review</button>
+                <button className="bg-indigo-800  text-white w-full text-lg py-2 rounded-md" onClick={submitReview}>
+                {spinner ? <div className="mx-32"><TailSpin color="white" height={30} width={80} /></div> : 'Submit Review'}
+                </button>
             </div>
         </form>
     </section>}</>
