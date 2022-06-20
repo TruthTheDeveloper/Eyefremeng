@@ -2,6 +2,7 @@ import WomenItem from "./components/WomenItem";
 import Banner from "./components/Banner";
 import {useState, useEffect } from "react";
 import ProductServices from "../../firebase/services/product.services";
+import { TailSpin } from  'react-loader-spinner';
 const WomenCart = () => {
 
     const [womenProduct, setWomenProduct] = useState([])
@@ -37,6 +38,7 @@ const WomenCart = () => {
     return(
         <section className="py-12 lg:py-16 lg:mx-24">
             <Banner/>
+            {womenProduct.length === 0 && <div className="mx-auto my-24 flex justify-center"><TailSpin color="#3730A3" height={80} width={80} /></div>}
             {/* <div className="bg-orange-300 text-center font-semibold text-lg py-6 lg:py-3 lg:text-2xl">
                 <h1>WomenCart</h1>
             </div> */}

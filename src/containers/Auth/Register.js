@@ -35,10 +35,10 @@ const Register = () => {
     }
 
     const registerHandler = () => {
-        setEmailValidationError(false)
-        setPaswordValidationError(false)
-        setFirstNameValidationError(false)
-        setLastnameValidationError(false)
+        firstName === '' ? setFirstNameValidationError(true) : setFirstNameValidationError(false)
+        lastName === '' ? setLastnameValidationError(true) : setLastnameValidationError(false)
+        email === '' ? setEmailValidationError(true) : setEmailValidationError(false)
+        password === '' ? setPaswordValidationError(true) : setPaswordValidationError(false)
 
         console.log(email, password, firstName, lastName, 'lastname')
 
@@ -95,11 +95,6 @@ const Register = () => {
                 // ..
             });
 
-        }else{
-            setEmailValidationError(true)
-            setPaswordValidationError(true)
-            setFirstNameValidationError(true)
-            setLastnameValidationError(true)
         }
 
         

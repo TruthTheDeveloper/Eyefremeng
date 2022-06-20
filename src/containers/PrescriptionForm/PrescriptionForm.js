@@ -9,6 +9,8 @@ import AuthContext from "../../context/auth-context";
 import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
 import ReviewModal from "../../components/ReviewModal";
+
+import { TailSpin } from  'react-loader-spinner'
 //Icons
 
 
@@ -67,7 +69,8 @@ const PrescriptionForm = () => {
             <div className=" lg:grid grid-cols-2">
                 <div className="">
                     <div className="flex justify-center">
-                        <img src={productDetail.image} className="w-96 h-72"/>
+                    {productDetail.image ? <img src={productDetail.image} className="w-96 h-72"/> :<TailSpin color="#3730A3" height={80} width={80} />}
+                        
                         
                     </div>
                     <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
@@ -112,6 +115,7 @@ const PrescriptionForm = () => {
             </div>
             <div >
                 <h1 className="ml-6 mt-8 md:ml-0 md:text-center text-2xl font-semibold">Related Product</h1>
+                {relatedProduct.length === 0 && <div className="mx-auto my-24 flex justify-center"><TailSpin color="#3730A3" height={80} width={80} /></div>}
                 <div className="md:grid md:grid-cols-2 lg:grid-cols-3">
                     {relatedProduct.map((item, index ) => { 
                     return(

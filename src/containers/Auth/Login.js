@@ -20,6 +20,9 @@ const Login = () => {
 
     const navigateToDashboard = () => {
 
+        email === '' ? setEmailValidationError(true) : setEmailValidationError(false)
+        password === '' ? setPaswordValidationError(true) : setPaswordValidationError(false)
+
         console.log(email, password, 'email password')
 
         if(email !== '' && password !== ''){
@@ -42,9 +45,7 @@ const Login = () => {
                     progress: undefined,
                     });
 
-                    setTimeout(() => {
-                        navigate('/')
-                    },2000)
+                    navigate('/')
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -61,9 +62,6 @@ const Login = () => {
             });
             
 
-        }else{
-            setEmailValidationError(true)
-            setPaswordValidationError(true)
         }
         
 
