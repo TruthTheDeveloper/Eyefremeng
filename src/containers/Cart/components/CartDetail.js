@@ -47,7 +47,10 @@ const CartDetail = ({
 
     useEffect(() => {
         console.log(initialState.items)
-    },[initialState])
+
+        setInitialState({...initialState, grandTotal:initialState.grandTotal + productPrice, subTotal:initialState.subTotal + productPrice})
+        
+    },[setInitialState])
 
     let displayPrescriptionDetail = null
 

@@ -48,8 +48,8 @@ const App = () => {
   const [initialState, setInitialState] = useState({
     items:[],
     address:'',
-    subTotal:15000,
-    grandTotal:1500,
+    subTotal:0,
+    grandTotal:0,
     firstName:'',
     lastName:'',
     Address:'',

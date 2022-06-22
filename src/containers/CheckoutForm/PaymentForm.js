@@ -20,9 +20,9 @@ const PaymentForm = () => {
     const {initialState, setInitialState} = useContext(AuthContext)
 
     const config = {
-        public_key: 'FLWPUBK_TEST-0c42e13ec815f2e5ac5a6f338dd605a5-X',
+        public_key: 'FLWPUBK-4eba292c06879c74ecdfe47c09fe8ac2-X',
         tx_ref: Date.now(),
-        amount: 100,
+        amount: initialState.grandTotal,
         currency: 'NGN',
         payment_options: 'card,mobilemoney,ussd',
         customer: {

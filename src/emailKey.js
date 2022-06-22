@@ -5,4 +5,4 @@ const emailData = {
     SERVICE_ID:`service_knmrk5a` 
 }
 
-export default emailData
+export default emailData;
