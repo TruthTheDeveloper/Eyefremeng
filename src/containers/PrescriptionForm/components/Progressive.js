@@ -8,6 +8,7 @@ import MiniCartDetailAdd from './MiniCartAddDetail';
 import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 import { useNavigate  } from "react-router-dom";
+import ProgressiveVisionLensForm from './otherVision/ProgressiveVisionLensForm';
 
 const Progressive = ({productName, productDescription, productPrice, data}) => {
 
@@ -67,6 +68,8 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     const [remark, setRemark] = useState('')
     const [image, setImage] = useState(null)
     const [clicked, setClicked] = useState(false)
+    const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [lensePrice, setLensePrice] = useState(null)
 
 
 
@@ -138,7 +141,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -167,7 +170,8 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             lenseType:lenseType,
             Add:true,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -190,7 +194,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -216,7 +220,8 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             lenseType:lenseType,
             Add:true,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
         setInputValidData(true)
@@ -281,7 +286,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -310,7 +315,8 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             lenseType:lenseType,
             Add:true,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -332,7 +338,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Progressive',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -359,7 +365,8 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             lenseType:lenseType,
             remark:remark,
             file:file,
-            twoSinglePd:twoSinglePDData
+            twoSinglePd:twoSinglePDData,
+            lensePrice:lensePrice
 
         }
 
@@ -435,8 +442,10 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
     }
 
-    const lenseTypeHandler = (select) => {
+    const lenseTypeHandler = (select, price) => {
         setlensType(select)
+        setLensePrice(price)
+        setTotalPrice(productPrice + price)
     }
 
     const confirmedHandler = () => {
@@ -694,7 +703,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             </button>
         </div>
 
-        {confirmed && <LensForm 
+        {confirmed && <ProgressiveVisionLensForm
             validateInput={validateInput} 
             inputValid={inputValid} 
             qty={qty} 
@@ -708,6 +717,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             decrementDataQty={decrementDataQty}
             incrementDataQty={incrementDataQty}
             inputValidData={inputValidData}
+            productPrice={totalPrice}
         />}
         </>
     )

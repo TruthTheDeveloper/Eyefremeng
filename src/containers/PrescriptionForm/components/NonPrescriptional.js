@@ -4,6 +4,7 @@ import AuthContext from '../../../context/auth-context';
 import {v4} from 'uuid';
 
 import { useNavigate  } from "react-router-dom";
+import NonPrescriptionalVisionLensForm from './otherVision/NonPresctiptionalVisionLensForm';
 
 const NonPrescriptional = ({productName, productDescription, productPrice, data}) => {
 
@@ -18,6 +19,8 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
 
     const [dataQty, setDataQty] = useState(data?.qty)
     const [clicked, setClicked] = useState(false)
+    const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [lensePrice, setLensePrice] = useState(null)
 
 
     useEffect(() => {
@@ -61,8 +64,10 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
 
     }
 
-    const lenseTypeHandler = (select) => {
+    const lenseTypeHandler = (select, price) => {
         setlensType(select)
+        setLensePrice(price)
+        setTotalPrice(productPrice + price)
     }
 
 
@@ -71,7 +76,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Non Prescriptional',
             qty:qty,
             unitPrice:5000,
@@ -81,6 +86,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
             pdType:'single',
             lenseType:lenseType,
             twoSinglePd:null,
+            lensePrice:lensePrice
 
         }
         setInputValid(true)
@@ -99,7 +105,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Non Prescriptional',
             qty:dataQty,
             unitPrice:5000,
@@ -109,6 +115,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
             pdType:'single',
             lenseType:lenseType,
             twoSinglePd:null,
+            lensePrice:lensePrice
 
         }
         setInputValid(true)
@@ -145,7 +152,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
 
     return(
         <>
-        <LensForm 
+        <NonPrescriptionalVisionLensForm
                 validateInput={validateInput}
                 validateUpdate={validateUpdate}
                 inputValid={inputValid} 
@@ -158,6 +165,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
                 dataQty={dataQty}
                 decrementDataQty={decrementDataQty}
                 incrementDataQty={incrementDataQty}
+                productPrice={totalPrice}
             />
         </>
     )

@@ -11,6 +11,7 @@ import RightSideDrawer from "../../components/admin/RightSideDrawer";
 import ProductServices from "../../firebase/services/product.services";
 import OrderServices from "../../firebase/services/order.services";
 import SubscribersDataService from "../../firebase/services/subscriber.services";
+import UserDataService from "../../firebase/services/auth.services";
 
 import {useState, useEffect} from 'react'
 
@@ -21,6 +22,7 @@ const Dashboard = () => {
     const [product, setProduct] = useState([])
     const [order, setOrder] = useState([])
     const [subscriber, setSubscriber] = useState([])
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         
@@ -37,6 +39,9 @@ const Dashboard = () => {
 
         const subData = await SubscribersDataService.getAllSubscribers()
         setSubscriber(subData.docs.map((doc) => ({...doc.data(), id:doc.id})))
+
+        const userData = await UserDataService.getAlluser()
+        setUser(userData.docs.map((doc) => ({...doc.data(), id:doc.id})))
     }
 
     
@@ -57,13 +62,13 @@ const Dashboard = () => {
                         <div className="flex  my-2"><h1 className="text-lg">{order.length}</h1>
                         <FontAwesomeIcon icon={faBagShopping} className="mx-4 text-3xl text-indigo-800 font-semibold"/></div>
                     </div>
-                    {/* <div className="border-2 mx-auto  xl:mx-4 w-72 m-12 p-5 shadow-lg rounded-lg cursor-pointer">
+                    <div className="border-2 mx-auto  xl:mx-4 w-72 m-12 p-5 shadow-lg rounded-lg cursor-pointer">
                         <h1 className=" py-2 text-xl">Users</h1>
                         <div className="flex my-2">
-                            <h1 className="text-lg font-semibold">100</h1>
+                            <h1 className="text-lg font-semibold">{user.length}</h1>
                             <FontAwesomeIcon icon={faBiking} className="mx-4 text-3xl text-indigo-800 font-semibold"/>
                         </div>
-                    </div> */}
+                    </div>
                     <div className="border-2 mx-auto  xl:mx-4 w-72 m-12 p-5 shadow-lg rounded-lg cursor-pointer">
                         <h1 className=" py-2 text-xl ">Subscribers</h1>
                         <div className="flex my-2">

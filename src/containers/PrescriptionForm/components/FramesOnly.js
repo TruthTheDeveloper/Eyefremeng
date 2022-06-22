@@ -14,6 +14,8 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
     const [dataQty, setDataQty] = useState(data?.qty)
     const [clicked, setClicked] = useState(false)
     const [updateClicked, setUpdateClicked] = useState(false)
+    const [totalPrice, setTotalPrice] = useState(productPrice)
+
 
     useEffect(() => {
         // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
@@ -51,7 +53,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Frames Only',
             qty:qty,
             unitPrice:5000,
@@ -60,7 +62,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
             grandTotal:15000,
             pdType:'single',
             singlePd:false,
-            twoSinglePd:null
+            twoSinglePd:null,
 
         }
 
@@ -77,7 +79,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Frames Only',
             qty:dataQty,
             unitPrice:5000,
@@ -132,7 +134,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
 
     return(
         <div className="my-4">
-                <p className="my-8 text-2xl font-semibold text-indigo-800">#15,000</p>
+                <p className="my-8 text-2xl font-semibold text-indigo-800">#{totalPrice}</p>
                 <div className="flex">
                 {data ?
                             <>

@@ -6,7 +6,9 @@ import AuthContext from '../../../context/auth-context';
 import MiniCartDetailAdd from './MiniCartAddDetail';
 import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
+import BifocalVisionLensForm from './otherVision/BifocalVisionLensForm';
 import { useNavigate  } from "react-router-dom";
+
 
 const Bifocal = ({productName, productDescription, productPrice,data}) => {
     let navigate = useNavigate();
@@ -65,6 +67,9 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
     const [remark, setRemark] = useState('')
     const [image, setImage] = useState(null)
     const [clicked, setClicked] = useState(false)
+
+    const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [lensePrice, setLensePrice] = useState(null)
 
 
     //////////////UPDATE////////////////////////
@@ -135,7 +140,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -164,7 +169,8 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             Add:true,
             lenseType:lenseType,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -184,7 +190,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -210,7 +216,8 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             lenseType:lenseType,
             Add:true,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
          setInputValid(true)
@@ -278,7 +285,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -307,7 +314,8 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             lenseType:lenseType,
             Add:true,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -329,7 +337,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Bifocal(with line)',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -356,7 +364,8 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             lenseType:lenseType,
             remark:remark,
             file:file,
-            twoSinglePd:twoSinglePDData
+            twoSinglePd:twoSinglePDData,
+            lensePrice:lensePrice
 
         }
 
@@ -431,8 +440,10 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
 
     }
 
-    const lenseTypeHandler = (select) => {
+    const lenseTypeHandler = (select, price) => {
         setlensType(select)
+        setLensePrice(price)
+        setTotalPrice(productPrice + price)
     }
 
     const confirmedHandler = () => {
@@ -646,6 +657,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
 
     }
 
+
     const prescriptionSummary = (e) => {
         e.preventDefault()
 
@@ -689,7 +701,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             </button>
         </div>
 
-        {confirmed && <LensForm 
+        {confirmed && <BifocalVisionLensForm
             validateInput={validateInput} 
             inputValid={inputValid} 
             qty={qty} 
@@ -703,6 +715,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
             decrementDataQty={decrementDataQty}
             incrementDataQty={incrementDataQty}
             inputValidData={inputValidData}
+            productPrice={totalPrice}
         />}
         </>
     )

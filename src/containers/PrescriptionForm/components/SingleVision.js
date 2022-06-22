@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import LensForm from './LensForm';
+import SingleVisionLensForm from './singleVision/SingleVisionLensForm';
 import AuthContext from '../../../context/auth-context';
 import MiniCartDetailPd from './MiniCartDetailPd';
 import { uploadAFile } from '../../../firebase/utils/uploadFile';
@@ -72,6 +73,11 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const [clicked, setClicked] = useState(false)
 
+    const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [lensePrice, setLensePrice] = useState(null)
+
+    // const [price, setPrice] = useState(null)
+
     //////////////UPDATE////////////////////////
 
     const [selectedDataRightOdOption, setSelectedDataRightOdOption] = useState({value:data?.rightOD.sphere || null});
@@ -140,7 +146,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Single Vision',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -169,7 +175,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             lenseType:lenseType,
             Add:false,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -194,7 +201,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Single Vision',
             rightOD:{
             sphere:selectedRightOdOption.value,
@@ -221,7 +228,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             lenseType:lenseType,
             remark:remark,
             twoSinglePd:twoSinglePD,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
          setInputValid(true)
@@ -290,7 +298,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Single Vision',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -319,7 +327,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             lenseType:lenseType,
             Add:false,
             remark:remark,
-            file:file
+            file:file,
+            lensePrice:lensePrice
 
         }
 
@@ -346,7 +355,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             id:v4(),
             productName:productName,
             productDescription:productDescription,
-            productPrice:productPrice,
+            productPrice:totalPrice,
             prescriptionType:'Single Vision',
             rightOD:{
             sphere:selectedDataRightOdOption.value,
@@ -373,7 +382,9 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             lenseType:lenseType,
             remark:remark,
             twoSinglePd:twoSinglePDData,
-            file:file
+            file:file,
+            lensePrice:lensePrice
+
 
         }
 
@@ -453,8 +464,13 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     }
 
-    const lenseTypeHandler = (select) => {
+
+    const lenseTypeHandler = ( select, price) => {
+        // console.log(e.target.value, 'value')
+        setTotalPrice(productPrice + price)
         setlensType(select)
+        setLensePrice(price)
+        
     }
 
 
@@ -462,10 +478,6 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
         console.log('clicked')
         setConfirmed(false)
     }
-
-
-
-
 
 
 
@@ -706,7 +718,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 </button>
             </div>
 
-            {confirmed && <LensForm 
+            {confirmed && <SingleVisionLensForm 
                 validateInput={validateInput} 
                 inputValid={inputValid} 
                 qty={qty} 
@@ -720,6 +732,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
                 decrementDataQty={decrementDataQty}
                 incrementDataQty={incrementDataQty}
                 inputValidData={inputValidData}
+                productPrice={totalPrice}
             />}
 
 
