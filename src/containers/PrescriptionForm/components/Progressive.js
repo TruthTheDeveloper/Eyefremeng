@@ -70,6 +70,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     const [clicked, setClicked] = useState(false)
     const [totalPrice, setTotalPrice] = useState(productPrice)
     const [lensePrice, setLensePrice] = useState(null)
+    const [unitPrice, setUnitPrice] = useState(totalPrice)
 
 
 
@@ -131,6 +132,11 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             
         },[inputValid, lenseType, navigate, clicked])
 
+        useEffect(() => {
+            setUnitPrice(totalPrice)
+    
+        },[totalPrice])
+
 
 
     const addToCartTwoPD = async () => {
@@ -161,7 +167,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             },
             usageOption:usageOption.value,
             qty:qty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -211,7 +217,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             pD:singlePD.value,
             usageOption:usageOption.value,
             qty:qty,
-            unitPrice:'',
+            unitPrice:unitPrice,
             amount:'',
             subTotal:'',
             grandTotal:'',
@@ -306,7 +312,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             },
             usageOption:usageOptionData.value,
             qty:qty,
-            unitPrice:'',
+            unitPrice:unitPrice,
             amount:'',
             subTotal:'',
             grandTotal:'',
@@ -356,7 +362,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
             doublePd:'',
             usageOption:usageOptionData.value,
             qty:qty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -430,6 +436,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
     const incrementQty = (e) => {
         e.preventDefault()
         setQty(prev => prev + 1)
+        setTotalPrice(prev => prev * 2)
 
     }
 
@@ -438,6 +445,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         if(qty > 1){
             setQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
     }
@@ -676,6 +684,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         if(dataQty > 1){
             setDataQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
 
@@ -684,6 +693,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
     const incrementDataQty = (e) => {
         e.preventDefault()
+        setTotalPrice(prev => prev * 2)
         setDataQty(prev => prev + 1)
     }
 

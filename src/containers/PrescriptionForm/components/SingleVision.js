@@ -75,6 +75,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const [totalPrice, setTotalPrice] = useState(productPrice)
     const [lensePrice, setLensePrice] = useState(null)
+    const [unitPrice, setUnitPrice] = useState(totalPrice)
 
     // const [price, setPrice] = useState(null)
 
@@ -136,6 +137,12 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
     },[inputValid, lenseType, navigate, clicked])
 
 
+    useEffect(() => {
+        setUnitPrice(totalPrice)
+
+    },[totalPrice])
+
+
 
 
     const addToCartTwoPD = async () => {
@@ -166,7 +173,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             },
             usageOption:usageOption.value,
             qty:qty,
-            unitPrice:'',
+            unitPrice:unitPrice,
             amount:'',
             subTotal:'',
             grandTotal:'',
@@ -219,7 +226,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             doublePd:'',
             usageOption:usageOption.value,
             qty:qty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -318,7 +325,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             },
             usageOption:usageOptionData.value,
             qty:dataQty,
-            unitPrice:'',
+            unitPrice:unitPrice,
             amount:'',
             subTotal:'',
             grandTotal:'',
@@ -373,7 +380,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
             doublePd:'',
             usageOption:usageOptionData.value,
             qty:dataQty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -453,6 +460,8 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
         e.preventDefault()
         setQty(prev => prev + 1)
 
+        setTotalPrice(prev => prev * 2)
+
     }
 
     const decrementQty = (e) => {
@@ -460,6 +469,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
         if(qty > 1){
             setQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
     }
@@ -470,6 +480,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
         setTotalPrice(productPrice + price)
         setlensType(select)
         setLensePrice(price)
+       
         
     }
 
@@ -689,7 +700,9 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
          
 
         if(dataQty > 1){
+
             setDataQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
 
@@ -698,6 +711,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const incrementDataQty = (e) => {
         e.preventDefault()
+        setTotalPrice(prev => prev * 2)
         setDataQty(prev => prev + 1)
     }
 

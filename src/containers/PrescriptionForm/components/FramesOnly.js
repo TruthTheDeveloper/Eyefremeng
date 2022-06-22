@@ -15,6 +15,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
     const [clicked, setClicked] = useState(false)
     const [updateClicked, setUpdateClicked] = useState(false)
     const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [unitPrice, setUnitPrice] = useState(totalPrice)
 
 
     useEffect(() => {
@@ -46,6 +47,12 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
     },[data?.id, initialState, navigate, setInitialState, updateClicked])
 
 
+    useEffect(() => {
+        setUnitPrice(totalPrice)
+
+    },[totalPrice])
+
+
     const addToCart = (e) => {
         e.preventDefault()
 
@@ -56,7 +63,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
             productPrice:totalPrice,
             prescriptionType:'Frames Only',
             qty:qty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -82,7 +89,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
             productPrice:totalPrice,
             prescriptionType:'Frames Only',
             qty:dataQty,
-            unitPrice:5000,
+            unitPrice:unitPrice,
             amount:15000,
             subTotal:15000,
             grandTotal:15000,
@@ -101,6 +108,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
     const incrementQty = (e) => {
         e.preventDefault()
         setQty(prev => prev + 1)
+        setTotalPrice(prev => prev * 2)
 
     }
 
@@ -109,6 +117,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
 
         if(qty > 1){
             setQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
     }
@@ -118,6 +127,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
         console.log('increment')
         
         setDataQty(prev => prev + 1)
+        setTotalPrice(prev => prev * 2)
     }
 
 
@@ -127,6 +137,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
 
         if(dataQty > 1){
             setDataQty(prev => prev-1)
+            setTotalPrice(prev => prev / 2)
         }
 
     }
