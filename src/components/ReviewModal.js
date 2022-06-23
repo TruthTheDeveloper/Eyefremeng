@@ -143,7 +143,7 @@ const ReviewModal = ({firstName, lastName, openReview, openReviewHandler}) => {
 
     return(
         <>{openReview && <section className=" fixed top-0 left-0 h-screen w-full z-50 overflow-y-hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}}>
-        <form className="bg-white w-96 mx-auto mt-44 p-5 rounded-md relative">
+        <form className="bg-white w-96 mx-auto mt-44 p-5 w-72 lg:w-96  rounded-md relative">
             <h1 className="text-slate-700 my-2 text-xl font-semibold">Overall Rating</h1>
             <FontAwesomeIcon icon={faClose} className="md:mr-2 text-gray-500 font-bold pt-1 md:pt-0 lg:text-2xl cursor-pointer absolute top-0 right-0 mt-2" onClick={openReviewHandler}/>
             {rating}

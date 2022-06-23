@@ -7,7 +7,7 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from  'react-loader-spinner';
 
-const Modal = ({loginModal, loginModalHandler}) => {
+const Modal = ({loginModal, loginModalHandler, backdropHandler}) => {
     const [email, setEmail] = useState('')
     const [emailValidationError, setEmailValidationError] = useState(false)
 
@@ -125,10 +125,10 @@ const Modal = ({loginModal, loginModalHandler}) => {
     }
 
     return (
-        <>{loginModal && <section className=" fixed top-0 left-0 h-screen w-full z-50 overflow-y-hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}}>
-        <form className="bg-white w-96 mx-auto mt-44 p-5 rounded-md relative">
+        <>{loginModal && <section className=" fixed top-0 left-0 h-screen w-full z-50 overflow-y-hidden" style={{backgroundColor:'rgba(0, 0, 0, 0.774)'}} onClick={backdropHandler}>
+        <form className="bg-white w-72 lg:w-96 mx-auto mt-44 p-5 rounded-md relative">
             <h1 className="text-slate-700 my-5 text-xl font-semibold">Login</h1>
-            <FontAwesomeIcon icon={faClose} className="md:mr-2 text-gray-500 font-bold pt-1 md:pt-0 lg:text-2xl cursor-pointer absolute top-0 right-0 mt-2" onClick={loginModalHandler}/>
+            <FontAwesomeIcon icon={faClose} className="mr-2 text-gray-500 font-bold pt-1 md:pt-0 text-xl lg:text-2xl cursor-pointer absolute top-0 right-0 mt-2" onClick={loginModalHandler}/>
             <div className="my-3 ">
                 <label>Email Address</label><br/>
                 <input className="border-2 w-full h-10 p-2 outline-none my-2 rounded-md border-slate-300" onChange={(e) => setEmail(e.target.value)}/>

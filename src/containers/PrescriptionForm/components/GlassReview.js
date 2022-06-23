@@ -40,6 +40,10 @@ const GlassReview = () => {
 
     }
 
+    const backdropHandler = () => {
+        setLoginModal(prev => !prev)
+    }
+
 
     const loginModalHandler = () => {
         setLoginModal(prev => !prev)
@@ -63,7 +67,7 @@ const GlassReview = () => {
             <button className="border py-2 px-2 border-2 rounded-md" onClick={reviewHandler}>Write a review</button>
             <AllReviews reviews={reviews}/>
             <ReviewModal firstName={firstName} lastName={lastName} openReview={openReview} openReviewHandler={openReviewHandler}/>
-            <Modal  loginModal={loginModal} loginModalHandler={loginModalHandler}/>
+            <Modal backdropHandler={backdropHandler}  loginModal={loginModal} loginModalHandler={loginModalHandler}/>
         </div>
 
     )
