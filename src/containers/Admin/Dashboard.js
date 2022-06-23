@@ -4,6 +4,7 @@ import { faBiking } from '@fortawesome/free-solid-svg-icons';
 import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 // import DashboardHoc from '../../hoc/DashboardHoc';
 import RightSideDrawer from "../../components/admin/RightSideDrawer";
@@ -66,7 +67,7 @@ const Dashboard = () => {
                         <h1 className=" py-2 text-xl">Users</h1>
                         <div className="flex my-2">
                             <h1 className="text-lg font-semibold">{user.length}</h1>
-                            <FontAwesomeIcon icon={faBiking} className="mx-4 text-3xl text-indigo-800 font-semibold"/>
+                            <FontAwesomeIcon icon={faUser} className="mx-4 text-3xl text-indigo-800 font-semibold"/>
                         </div>
                     </div>
                     <div className="border-2 mx-auto  xl:mx-4 w-72 m-12 p-5 shadow-lg rounded-lg cursor-pointer">

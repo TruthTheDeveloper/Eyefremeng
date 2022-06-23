@@ -1,8 +1,8 @@
 const emailData = {
-    USER_ID: `xCoY2Mm8nGaVz31ma`, //userID
-    TEMPLATE_ID: `template_hlryd5t`,
-    PUBLIC_KEY:`xCoY2Mm8nGaVz31ma` ,
-    SERVICE_ID:`service_knmrk5a` 
+    USER_ID: `4TVHi8r73vlDIa2CZ`, //userID
+    TEMPLATE_ID: `template_ebq4tk8`,
+    PUBLIC_KEY:`4TVHi8r73vlDIa2CZ` ,
+    SERVICE_ID:`service_jhng15k` 
 }
 
 export default emailData;

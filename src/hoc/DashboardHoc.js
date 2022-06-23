@@ -3,6 +3,7 @@ import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { faGift } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faDashboard } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate, Outlet  } from "react-router-dom";
 
@@ -15,7 +16,8 @@ const DashboardHoc = ({children}) => {
         dashboard:true,
         orders:false,
         products:false,
-        subscribers:false
+        subscribers:false,
+        users:false
 
     })
 
@@ -28,7 +30,7 @@ const DashboardHoc = ({children}) => {
 
     
 
-        setActive({...active, dashboard:true, orders:false, products:false, subscribers:false})
+        setActive({...active, dashboard:true, orders:false, products:false, subscribers:false, users:false})
     }
 
     const orderNav = (e) => {
@@ -40,7 +42,8 @@ const DashboardHoc = ({children}) => {
             dashboard:false,
              orders:true,
               products:false, 
-              subscribers:false
+              subscribers:false,
+              users:false
         }
         setActive(updatedState)
     }
@@ -49,15 +52,22 @@ const DashboardHoc = ({children}) => {
         e.preventDefault()
         navigate("/dashboard/product")
 
-        setActive({...active, dashboard:false, orders:false, products:true, subscribers:false})
+        setActive({...active, dashboard:false, orders:false, products:true, subscribers:false, users:false})
     }
 
     const subscriberNav = (e) => {
         e.preventDefault()
         navigate("/dashboard/subscriber")
 
-        setActive({...active, dashboard:false, orders:false, products:false, subscribers:true})
+        setActive({...active, dashboard:false, orders:false, products:false, subscribers:true, users:false})
     }
+
+
+    // const usersNav = (e) => {
+    //     e.preventDefault()
+    //     navigate("/dashboard/user")
+    //     setActive({...active, dashboard:false, orders:false, products:false, subscribers:false, users:true})
+    // }
 
     return(
         <section className="py-24 ">
@@ -89,6 +99,12 @@ const DashboardHoc = ({children}) => {
                             <h1>Subscribers</h1>
                         </div>
                     </div>
+                    {/* <div className="flex py-3   cursor-pointer mx-3">
+                        <div className={active.users ? 'flex p-3 w-full bg-white text-indigo-800' : 'flex p-3 w-full hover:bg-white hover:text-indigo-800' } onClick={usersNav}>
+                            <FontAwesomeIcon icon={faUser} className="mx-4 text-2xl hover:bg-white hover:text-indigo-800"/>
+                            <h1>Users</h1>
+                        </div>
+                    </div> */}
                 </section>
                 <Outlet/>
             </div>
