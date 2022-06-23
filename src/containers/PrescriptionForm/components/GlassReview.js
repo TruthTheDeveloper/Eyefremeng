@@ -16,13 +16,19 @@ const options = [
     { value: 'Poor', label: 'Poor' },
   ];
 
-const GlassReview = () => {
+const GlassReview = ({relatedProductClick}) => {
 
     const [reviews, setReviews] = useState(false)
     const [openReview, setOpenReview] = useState(false)
     const [loginModal, setLoginModal] = useState(false)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+
+    useEffect(() => {
+        if(relatedProductClick && reviews){
+            setReviews(prev => !prev)
+        }
+    },[relatedProductClick])
 
 
     const reviewHandler = async () => {
@@ -56,6 +62,7 @@ const GlassReview = () => {
     const showReview = () => {
         
         setReviews(prev => !prev)
+        
     }
 
 
@@ -65,7 +72,7 @@ const GlassReview = () => {
                 <button className="py-3 border-2 font-semibold px-5 text-lg rounded-md" onClick={showReview}>Reviews</button>
             </div>
             <button className="border py-2 px-2 border-2 rounded-md" onClick={reviewHandler}>Write a review</button>
-            <AllReviews reviews={reviews}/>
+            <AllReviews reviews={reviews} />
             <ReviewModal firstName={firstName} lastName={lastName} openReview={openReview} openReviewHandler={openReviewHandler}/>
             <Modal backdropHandler={backdropHandler}  loginModal={loginModal} loginModalHandler={loginModalHandler}/>
         </div>

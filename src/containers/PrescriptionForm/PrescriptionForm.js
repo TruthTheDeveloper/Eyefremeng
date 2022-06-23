@@ -21,6 +21,8 @@ const PrescriptionForm = () => {
     const [productDetail, setProductDetail] = useState({})
     const [relatedProduct, setRelatedProduct] = useState([])
 
+    const [relatedProductClick, setRelatedProductClick] = useState(false)
+
     const formId = useParams()
 
     
@@ -57,6 +59,10 @@ const PrescriptionForm = () => {
         
     }
 
+    const relatedProductClickHandler = () => {
+        setRelatedProductClick(prev => !prev)
+    }
+
 
     // const getForm = async () => {
     //     const data = 
@@ -82,7 +88,7 @@ const PrescriptionForm = () => {
                         </div>
                     </div>
                     <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice}/>
-                    <GlassReview />
+                    <GlassReview relatedProductClick={relatedProductClick} />
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">
@@ -125,6 +131,7 @@ const PrescriptionForm = () => {
                             name={item.productName}
                             image={item.image}
                             price={item.productPrice}
+                            relatedProductClickHandler={relatedProductClickHandler}
                         />
                     )
                 })}

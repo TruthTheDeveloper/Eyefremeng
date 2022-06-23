@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const Item = ({id, name,image, price}) => {
+const Item = ({id, name,image, price, relatedProductClickHandler}) => {
     let navigate = useNavigate();
 
 
@@ -17,6 +17,7 @@ const Item = ({id, name,image, price}) => {
         navigate(`/prescriptionForm/${id}`)
 
         localStorage.setItem('id', JSON.stringify(id))
+        relatedProductClickHandler()
 
         // setInitialState({...initialState, id:id})
     }
