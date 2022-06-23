@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import ReviewDataService from '../firebase/services/reviews.services';
 import ReviewMessage from './ReviewMessage';
+import { TailSpin } from  'react-loader-spinner';
 const AllReviews = ({reviews}) => {
 
     const [allReviews, setAllReviews] = useState('')
@@ -25,7 +26,7 @@ const AllReviews = ({reviews}) => {
     
 
     return(
-        <>{reviews && allReviews.map((item, index) => {
+        <>{reviews ? allReviews.map((item, index) => {
             return(
                 <ReviewMessage
                     key={item.id}
@@ -35,7 +36,7 @@ const AllReviews = ({reviews}) => {
                     review={item.review}
                 />
             )
-        })}
+        }) : <div className="mx-auto my-24 flex justify-center"><TailSpin color="#3730A3" height={80} width={80} /></div>}
     </>
     )
 
