@@ -67,7 +67,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
     const lenseTypeHandler = (select, price) => {
         setlensType(select)
         setLensePrice(price)
-        setTotalPrice(productPrice + price)
+        setTotalPrice(parseFloat(productPrice) + price)
     }
 
 

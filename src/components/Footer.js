@@ -18,22 +18,22 @@ const Footer = () => {
                     <h1 className="text-2xl font-semibold my-4">SHOP</h1>
                     <ul className=" font-semibold">
                         <li><NavLink to="/mencart" exact='true'>
-                                MEN's GLASSES
+                                Men's Glasses
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/womencart" exact='true'>
-                                WOMEN'S GLASSES
+                                Women's Glasses
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/" exact='true'>
-                                SUNGLASSES
+                                Children Glasses
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/" exact='true'>
-                                SUNGLASSES
+                                Sun Glasses
                             </NavLink>
                         </li>
                     </ul>

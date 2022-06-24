@@ -5,6 +5,9 @@ import ProductDataService from '../../firebase/services/product.services';
 import { uploadAFile } from "../../firebase/utils/uploadFile";
 import { TailSpin } from  'react-loader-spinner';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -91,9 +94,45 @@ const Form = ({formText, product, price}) => {
         try{
             await ProductDataService.addProduct(newProduct)
             setSpinner(false)
+            formText === 'Add Product' ? toast.success('Product added SuccessFully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) : toast.success('Product updated SuccessFully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+
+            
         }catch(err){
             console.log(err)
             setSpinner(false)
+            formText === 'Add Product' ? toast.error('Unable to add Product', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }) : toast.error('Unable to Update Product', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
         }
 
 
@@ -112,6 +151,7 @@ const Form = ({formText, product, price}) => {
         setShape('')
         setTempleMaterial('')
         setSpinner(false)
+        setImage(null)
 
         
     }
@@ -184,7 +224,7 @@ const Form = ({formText, product, price}) => {
                 <label>Product Image</label>
                 <input type="file" className="mt-1" onChange={(e) => setImage(e.target.files[0])} />
             </div>
-            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="mx-32"><TailSpin color="white" height={30} width={80} /></div> : formText}
+            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="w-full "><TailSpin color="white" height={30} width={250} /></div> : formText}
             </button>
             
         </form>

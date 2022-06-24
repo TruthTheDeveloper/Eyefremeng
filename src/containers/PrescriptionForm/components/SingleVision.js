@@ -477,7 +477,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
     const lenseTypeHandler = ( select, price) => {
         // console.log(e.target.value, 'value')
-        setTotalPrice(productPrice + price)
+        setTotalPrice(parseFloat(productPrice) + price)
         setlensType(select)
         setLensePrice(price)
        

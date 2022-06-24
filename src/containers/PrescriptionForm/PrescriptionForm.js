@@ -75,7 +75,7 @@ const PrescriptionForm = () => {
             <div className=" lg:grid grid-cols-2">
                 <div className="">
                     <div className="flex justify-center">
-                    {productDetail.image ? <img src={productDetail.image} className="w-96 h-72"/> :<TailSpin color="#3730A3" height={80} width={80} />}
+                    {productDetail.image ? <img src={productDetail.image} className="w-96 h-72"/> :<div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}
                         
                         
                     </div>

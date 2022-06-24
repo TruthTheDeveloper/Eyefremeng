@@ -6,7 +6,7 @@ import { TailSpin } from  'react-loader-spinner';
 const WomenCart = () => {
 
     const [womenProduct, setWomenProduct] = useState([])
-    const [loadData, setLoadData] = useState()
+    const [loadData, setLoadData] = useState([])
 
     useEffect(() => {
 
@@ -55,7 +55,7 @@ const WomenCart = () => {
                     )
                 })}
             </div>
-            <button className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg" onClick={() => loadMore(loadData)}>Load More</button>
+            {loadData.length >= 9 && <button className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg" onClick={() => loadMore(loadData)}>Load More</button>}
         </section>
     )
 }
