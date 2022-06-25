@@ -4,7 +4,7 @@ import Banner from "./components/Banner";
 import ProductServices from "../../firebase/services/product.services";
 
 import { useEffect, useState } from "react";
-import { TailSpin } from  'react-loader-spinner'
+import { TailSpin } from  'react-loader-spinner';
 
 
 const MenCart = () => {
