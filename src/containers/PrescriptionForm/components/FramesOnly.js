@@ -14,7 +14,7 @@ const FramesOnly = ({productImage,productName, productDescription, productPrice,
     const [dataQty, setDataQty] = useState(data?.qty)
     const [clicked, setClicked] = useState(false)
     const [updateClicked, setUpdateClicked] = useState(false)
-    const [totalPrice, setTotalPrice] = useState(productPrice)
+    const [totalPrice, setTotalPrice] = useState(parseFloat(productPrice))
     const [unitPrice, setUnitPrice] = useState(totalPrice)
 
 

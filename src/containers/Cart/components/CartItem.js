@@ -64,11 +64,11 @@ const CartItem = () => {
                 <p className="border py-3 text-right font-semibold text-lg pr-2">Total</p>
                 <div className="flex justify-between border py-4 px-2">
                     <p>Subtotal</p>
-                    <p>#{initialState.subTotal}</p>
+                    <p>₦{initialState.subTotal}</p>
                 </div>
                 <div className="flex justify-between border py-4 px-2">
                     <p>GrandTotal</p>
-                    <p>#{initialState.grandTotal}</p>
+                    <p>₦{initialState.grandTotal}</p>
                 </div>
                 <button className="border py-3 bg-slate-800 w-full text-orange-500" onClick={navigateToCheckout}>
                     <p>Proceed to Checkout</p>

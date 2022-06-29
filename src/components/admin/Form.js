@@ -285,7 +285,7 @@ const Form = ({formText, product, price}) => {
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setbridgeWidth(e.target.value)} value={bridgeWidth}/>
             </div>
             <div>
-                <label>temple Width</label>
+                <label>temple length</label>
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleWidth(e.target.value)} value={templeWidth}/>
             </div>
             <div className=" my-4">

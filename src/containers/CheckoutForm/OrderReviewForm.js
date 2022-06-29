@@ -40,7 +40,6 @@ const OrderReviewForm = () => {
                     <ReviewItem
                         productImage={item.productImage}
                         productName={item.productName}
-                        description={item.productDescription}
                         price={item.productPrice}
                         qty={item.qty}
                     />

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-const ReviewItem = ({productName, description,price, qty, productImage}) => {
+const ReviewItem = ({productName,price, qty, productImage}) => {
 
     const navigate = useNavigate()
 
     const detailHandler = () => {
-        navigate('/cart')
+        navigate('/productdetail')
     }
 
     return(
@@ -18,7 +18,6 @@ const ReviewItem = ({productName, description,price, qty, productImage}) => {
                 </div>
                 <div className= "basis-1/2 text-center md:m-12  md:text-right py-4 text-indigo-800">
                     <h1>{productName}</h1>
-                        <p>{description}</p>
                         <p>#{price}</p>
                         <div>
                             <p>Qty</p>

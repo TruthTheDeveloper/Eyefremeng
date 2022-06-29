@@ -135,6 +135,7 @@ const App = () => {
           <Route path="prescriptionForm" element={prescriptionForm} />
           <Route path="cart" element={cart} />
           <Route path="orders" element={<Order/>}/>
+          <Route path=":cartId" element={cart} />
           
 
           <Route path="/checkoutForm" element={checkoutForm}>

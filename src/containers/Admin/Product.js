@@ -74,7 +74,7 @@ const Product = () => {
                                 key={item.id}
                                 id={item.id}
                                 name={item.productName}
-                                image={item.image}
+                                image={item.frontView}
                                 price={item.productPrice}
                             />
                         )

@@ -1,13 +1,10 @@
 import {useContext, useEffect} from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import MiniCartDetailPd from './MiniCartDetailPd';
-import MiniCartDetailAdd from './MiniCartDetailAdd';
-import AuthContext from "../../../context/auth-context";
-
-
+import MiniCartDetailAdd from '../Cart/components/MiniCartDetailAdd'
+import MiniCartDetailPd from '../Cart/components/MiniCartDetailPd';
 
 
 const CartDetail = ({
@@ -40,24 +37,8 @@ const CartDetail = ({
     console.log(leftSphere, rightSphere, 'sphere')
 
     const navigate = useNavigate();
-    const {cartId} = useParams()
-
-    const {initialState,setInitialState} = useContext(AuthContext)
 
 
-    console.log(Add, 'add')
-
-    console.log(initialState?.items, 'iiiii')
-
-    useEffect(() => {
-        console.log(initialState?.items)
-        console.log(cartId, 'jdsdfjksdf')
-
-        !cartId && setInitialState({...initialState, grandTotal:initialState?.grandTotal + productPrice, subTotal:initialState?.subTotal + productPrice})
-    },[setInitialState])
-
-
-        
 
     let displayPrescriptionDetail = null
 
@@ -99,15 +80,6 @@ const CartDetail = ({
         displayPrescriptionDetail = null
     }
 
-    const deleteItem = () => {
-      const remove =   initialState.items.filter(el => el.id !== id)
-      console.log(remove, 'remove')
-      setInitialState({...initialState, items:remove})
-    }
-
-    const editItem = () => {
-        navigate(`/prescriptionForm/${id}`)
-    }
     
     return(
             <>
@@ -161,16 +133,6 @@ const CartDetail = ({
             </div>
             <div>
                 <p className="text-sm my-3">{remark}</p>
-            </div>
-            <div className="flex justify-end border py-4 pr-4  lg:mb-24">
-                <button className="flex border border-sky-500 py-1 px-4 mx-1 rounded-md" onClick={editItem}>
-                    <FontAwesomeIcon icon={faPencil} className="text-sky-500 my-1 mr-2 text-lg"/>
-                    <p>Edit</p>
-                </button>
-                <button className="border border-red-500 py-1 px-4 flex mx-1 rounded-md" onClick={deleteItem}>
-                    <FontAwesomeIcon icon={faTrash} className="text-red-500 mr-2 my-1  text-lg"/>
-                    <p>Delete</p>
-                </button>
             </div>
             </>
     )

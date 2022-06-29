@@ -132,11 +132,11 @@ const PaymentForm = () => {
         }
 
 
-        const paymentOnDeliverySelector = () => {
-            setPaymentMethod("pay On Delivery")
-            setInitialState({...initialState, paymentMethod, date:today})
+        // const paymentOnDeliverySelector = () => {
+        //     setPaymentMethod("pay On Delivery")
+        //     setInitialState({...initialState, paymentMethod, date:today})
             
-        }
+        // }
 
         const paymentSuccesful = async () => {
 
@@ -218,7 +218,7 @@ const PaymentForm = () => {
                     <p className="px-2 py-1 text-lg font-semibold">Make Payment</p>
                 </div>
             </div>
-            <div className="flex my-12 border border-slate-300 p-5">
+            {/* <div className="flex my-12 border border-slate-300 p-5">
                 <div>
                     <input type="radio" name="lense" onChange={paymentOnDeliverySelector} />
                 </div>
@@ -226,7 +226,7 @@ const PaymentForm = () => {
                     <h1>Pay On Delivery <span className="text-indigo-800">$0.00</span></h1>
                     <p>Post Parcel : Delivery date 10-45 days approximately, 2-4 weeks in average, estimated under normal circumstances, probably delayed during holidays or by some events e.g. COVID-19.</p>
                 </div>
-            </div>
+            </div> */}
             <div className="flex mt-12 mb-6  border border-slate-300 p-5">
                 <div>
                     <input type="radio" name="lense" onChange={payOnlineSelector}/>
