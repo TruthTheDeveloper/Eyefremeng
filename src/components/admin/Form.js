@@ -72,9 +72,19 @@ const Form = ({formText, product, price}) => {
         const front = frontView ? await uploadAFile(frontView) : null
         const left = leftView ? await uploadAFile(leftView) : null
         const right = rightView ? await uploadAFile(rightView) : null
-        // if(productName === '' || productPrice === null || frontView === null || leftView === null || rightView === null ||  category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
-        //     return;
-        // }
+        if(productName === '' || productPrice === null || front === null || left === null || right === null ||  category === null || description === '' || framesize === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === ''){
+            toast.error('Unable to add Product, make sure all fields are filled', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+            setSpinner(false)
+            return;
+        }
 
 
 
@@ -134,7 +144,7 @@ const Form = ({formText, product, price}) => {
         }catch(err){
             console.log(err)
             setSpinner(false)
-            toast.error('Unable to add Product', {
+            toast.error('Unable to add Product, contact developer for possible fix', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -151,9 +161,19 @@ const Form = ({formText, product, price}) => {
         const front = frontView ? await uploadAFile(frontView) : null
         const left = leftView ? await uploadAFile(leftView) : null
         const right = rightView ? await uploadAFile(rightView) : null
-        // if(productName === '' || productPrice === null || frontView === null || leftView === null || rightView === null || category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
-        //     return;
-        // }
+        if(productName === '' || productPrice === null || front === null || left === null || right === null || category === null || description === '' || framesize === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' ){
+            toast.error('Unable to Update Product, make sure all fields are filled', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+            setSpinner(false)
+            return;
+        }
 
         const updateProduct = {
             productName,
@@ -212,7 +232,7 @@ const Form = ({formText, product, price}) => {
 
             
             setSpinner(false)
-            toast.error('Unable to Update Product, make sure all fields are filled', {
+            toast.error('Unable to Update Product, contact developer for possible fix', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
