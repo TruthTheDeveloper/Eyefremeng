@@ -123,7 +123,7 @@ const PrescriptionForm = () => {
                         <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-bridge-width.svg" />
                     </div>
                     <div className="my-2">
-                        <p>temple Width: {productDetail.templeWidth}</p>
+                        <p>temple length: {productDetail.templeWidth}</p>
                         <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-temple-length.svg" />
                     </div>
                 </div>
