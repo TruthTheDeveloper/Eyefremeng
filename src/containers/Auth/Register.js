@@ -1,11 +1,14 @@
 import {useNavigate} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../firebase/firebase-config";
 import { doc, setDoc } from "firebase/firestore"; 
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from  'react-loader-spinner';
+
+import AuthContext from '../../context/auth-context';
+
 
 
 const Register = () => {
@@ -27,6 +30,9 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [confirmPasswordValidationError, setConfirmPasswordValidationError] = useState(false)
     const [spinner, setSpinner] = useState(false)
+
+
+    const {initialState, setInitialState} = useContext(AuthContext)
 
     const auth = getAuth();
 
@@ -55,11 +61,14 @@ const Register = () => {
         }
 
         if(email !== '' && password !== '' && firstName !== '' && lastName){
+            console.log('jsdhsdjksdjsdkjska')
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user.uid)
+                localStorage.setItem('uid', JSON.stringify(user.uid))
+                setInitialState({userId:JSON.parse(localStorage.getItem('uid'))})
 
                 setSpinner(false)
             
@@ -69,6 +78,8 @@ const Register = () => {
                 })
 
                 console.log(user)
+
+    
 
                 localStorage.setItem('token', JSON.stringify(user.accessToken))
                 
@@ -91,9 +102,10 @@ const Register = () => {
             })
             .catch((error) => {
                 setSpinner(false)
+                console.log(error.code)
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                toast.error('unable to register please confirm authentication credentials', {
+                toast.error(error.code, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,

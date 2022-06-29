@@ -10,7 +10,7 @@ import BifocalVisionLensForm from './otherVision/BifocalVisionLensForm';
 import { useNavigate  } from "react-router-dom";
 
 
-const Bifocal = ({productName, productDescription, productPrice,data}) => {
+const Bifocal = ({productImage, productName, productDescription, productPrice,data}) => {
     let navigate = useNavigate();
     const {initialState, setInitialState} = useContext(AuthContext)
 
@@ -144,6 +144,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -194,6 +195,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
         const file = image ? await uploadAFile(image) : null
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -289,6 +291,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
         const file = image ? await uploadAFile(image) : null
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -341,6 +344,7 @@ const Bifocal = ({productName, productDescription, productPrice,data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,

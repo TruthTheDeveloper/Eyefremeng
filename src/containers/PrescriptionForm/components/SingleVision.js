@@ -13,7 +13,7 @@ import { useNavigate  } from "react-router-dom";
 
 
 
-const SingleVision = ({productName, productDescription, productPrice, data}) => {
+const SingleVision = ({productImage, productName, productDescription, productPrice, data}) => {
 
     let navigate = useNavigate();
 
@@ -151,6 +151,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
         
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -206,6 +207,7 @@ const SingleVision = ({productName, productDescription, productPrice, data}) => 
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,

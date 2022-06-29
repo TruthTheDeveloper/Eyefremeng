@@ -7,7 +7,9 @@ import {
     updateDoc,
     doc,
     getDoc,
-    deleteDoc
+    deleteDoc,
+    query,
+    where
 } from "firebase/firestore";
 
 
@@ -33,6 +35,12 @@ class orderDataService {
         return getDoc(orderDoc)
         
     };
+
+    getUserOrder = (id) => {
+        const q = query(orderCollectionRef, where('userId',  "==",  `${id}`))
+        return getDocs(q)
+    }
+    
 
     deleteOrder = (id) => {
         const orderDoc = doc(db, "orders", id);

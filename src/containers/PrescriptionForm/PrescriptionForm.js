@@ -1,19 +1,13 @@
 import Form from "./components/Form";
-import LensForm from "./components/LensForm";
 import Item from "./components/Item";
-import Modal from '../../components/Modal';
 
-import { useEffect, useState, useContext } from "react";
+
+import { useEffect, useState} from "react";
 import ProductServices from "../../firebase/services/product.services";
-import AuthContext from "../../context/auth-context";
 import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
-import ReviewModal from "../../components/ReviewModal";
 
 import { TailSpin } from  'react-loader-spinner';
-//Icons
-
-
 
 
 const PrescriptionForm = () => {
@@ -22,17 +16,19 @@ const PrescriptionForm = () => {
     const [relatedProduct, setRelatedProduct] = useState([])
 
     const [relatedProductClick, setRelatedProductClick] = useState(false)
+    const [view, setView] = useState()
 
     const formId = useParams()
 
-    
-
-    
 
     useEffect(() => {
         getProductDetail()
         result()
     },[formId])
+
+    useEffect(() => {
+        setView(productDetail.frontView)
+    },[productDetail])
 
 
 
@@ -48,9 +44,6 @@ const PrescriptionForm = () => {
         
     }
 
-    // useEffect(() => {
-    //     console.log(productDetail)
-    // },[productDetail])
 
     const getProductDetail = async () => {
         const data = await ProductServices.getProduct(JSON.parse(localStorage.getItem('id')))
@@ -63,43 +56,59 @@ const PrescriptionForm = () => {
         setRelatedProductClick(prev => !prev)
     }
 
+    const setRightView = () => {
+        setView(productDetail.rightView)
+        
 
-    // const getForm = async () => {
-    //     const data = 
-    // }
+    }
 
-    console.log(productDetail.productPrice, 'ppdpppssd')
+    const setLeftView = () => {
+        setView(productDetail.leftView)
+
+    }
+
+    const setFrontView = () => {
+        setView(productDetail.frontView)
+
+    }
+
+
+    console.log(productDetail.frontView)
 
     return(
         <section className=" pt-16">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
+                    <div className="flex justify-center w-full">
+                    {productDetail.frontView ? <img src={view} className=" h-72" alt="glass"/> : <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
+                    </div>
                     <div className="flex justify-center">
-                    {productDetail.image ? <img src={productDetail.image} className="w-96 h-72"/> :<div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}
-                        
-                        
+                        <div className="h-6 w-6 border-2 border-black rounded-full bg-indigo-800 m-2 cursor-pointer" onClick={() => setRightView()} ></div>
+                        <div className="h-6 w-6 border-2 border-black rounded-full bg-red-800 m-2 cursor-pointer" onClick={() => setLeftView()}></div>
+                        <div className="h-6 w-6 border-2 border-black rounded-full bg-green-800 m-2 cursor-pointer" onClick={() => setFrontView()}></div>
                     </div>
                     <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
                     
                         <div>
                             {/* <h1>{productDetail.description}</h1> */}
-                            <h1>{productDetail.productName}</h1>
-                            <p className="text-indigo-800  text-2xl font-semibold my-6"># {productDetail.productPrice}</p>
+                            
                         </div>
                     </div>
-                    <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice}/>
+                    <Form productName={productDetail.productName} productDescription={productDetail.description} productPrice={productDetail.productPrice} productImage={productDetail.frontView}/>
                     <GlassReview relatedProductClick={relatedProductClick} />
                     {/* <LensForm/> */}
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">
+                    <h1 className="text-indigo-800 text-3xl ">{productDetail.productName}</h1>
+                    <p className="text-indigo-800  text-2xl font-semibold my-6"># {productDetail.productPrice}</p>
                     <h1 className="font-semibold text-xl lg:text-2xl py-3">Description</h1>
-                    <p className="text-sm lg:text-base text-slate-500">{productDetail.description}</p>
+                    <p className="text-sm lg:text-base text-slate-800 font-semibold w-96">{productDetail.description}</p>
                     <ul className="my-6">
                         <li className="my-1">Size: 54-18-145 <span className="text-orange-500">size chart</span></li>
-                        <li className="my-1">Front Material: {productDetail.frontMaterial}</li>
+                        {/* <li className="my-1">Front Material: {productDetail.frontMaterial}</li>
                         <li className="my-1">Temple Material: {productDetail.templeMaterial}</li>
                         <li className="my-1">Rim Type: {productDetail.rimType}</li>
-                        <li className="my-1">Shape: {productDetail.shape}</li>
+                        <li className="my-1">Shape: {productDetail.shape}</li> */}
                     </ul>
                     <div>
                         <p>lens width:{productDetail.lensWidth} </p>
@@ -129,7 +138,7 @@ const PrescriptionForm = () => {
                             key={item.id }
                             id={item.id}
                             name={item.productName}
-                            image={item.image}
+                            image={item.frontView}
                             price={item.productPrice}
                             relatedProductClickHandler={relatedProductClickHandler}
                         />

@@ -5,7 +5,7 @@ import { useNavigate  } from "react-router-dom";
 import AuthContext from '../../../context/auth-context';
 import {v4} from 'uuid';
 
-const FramesOnly = ({productName, productDescription, productPrice, data}) => {
+const FramesOnly = ({productImage,productName, productDescription, productPrice, data}) => {
     let navigate = useNavigate();
 
     const {initialState, setInitialState } = useContext(AuthContext)
@@ -58,6 +58,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -84,6 +85,7 @@ const FramesOnly = ({productName, productDescription, productPrice, data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,

@@ -35,7 +35,8 @@ import Orders from './containers/Admin/Orders';
 import Product from './containers/Admin/Product';
 import Subscriber from './containers/Admin/Subscriber';
 import UpdateProduct from './containers/Admin/UpdateProduct';
-import DashboardHoc from './hoc/DashboardHoc'
+import DashboardHoc from './hoc/DashboardHoc';
+import Order from './containers/Order/Order';
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect,useState } from 'react';
@@ -46,6 +47,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const App = () => {
 
   const [initialState, setInitialState] = useState({
+    userId:JSON.parse(localStorage.getItem('uid')),
     items:[],
     address:'',
     subTotal:0,
@@ -99,6 +101,14 @@ const App = () => {
     <OrderReviewForm/>
   </AuthContext.Provider>
 
+  const register = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <Register/>
+  </AuthContext.Provider>
+
+  const login = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <Login/>
+  </AuthContext.Provider>
+
 
   return( 
     <>
@@ -124,6 +134,8 @@ const App = () => {
           <Route path="mencart" element={<MenCart/>} />
           <Route path="prescriptionForm" element={prescriptionForm} />
           <Route path="cart" element={cart} />
+          <Route path="orders" element={<Order/>}/>
+          
 
           <Route path="/checkoutForm" element={checkoutForm}>
             <Route path="shipmentMethod" element={shipmentMethod} />
@@ -146,8 +158,8 @@ const App = () => {
           <Route path="termsuse" element={<TermsUse/>} />
 
 
-          <Route path="/register" element={<Register/>} />
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={register} />
+          <Route path="/login" element={login}/>
         
 
           {/*admin */}

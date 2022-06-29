@@ -49,6 +49,7 @@ const PaymentForm = () => {
       useEffect(() => {
 
         console.log(initialState)
+        
 
       },[initialState])
       
@@ -59,6 +60,7 @@ const PaymentForm = () => {
             if(paymentMethod === ''){
                 console.log('payon delivery')
                 setPaymentValidationError('Please select a payment method')
+
             }else{
                 
                 try{
@@ -74,7 +76,9 @@ const PaymentForm = () => {
                         progress: undefined,
                         });
 
-                    setInitialState({...initialState, 
+                    navigate('/checkoutForm/orders')
+
+                    setInitialState({...initialState,
                         items:[],
                         address:'',
                         subTotal:15000,

@@ -23,7 +23,7 @@ import AuthContext from '../../../context/auth-context';
 
 
 
-const Form = ({productName, productDescription, productPrice}) => {
+const Form = ({productName, productDescription, productPrice, productImage}) => {
 
     const {initialState, setInitialState} = useContext(AuthContext)
 
@@ -56,36 +56,36 @@ const Form = ({productName, productDescription, productPrice}) => {
 
 
     if(selectedPrescriptionOption.value === 'Single Vision'){
-        formDetail = <SingleVision productName={productName} productDescription={productDescription} productPrice={productPrice}/>
+        formDetail = <SingleVision productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice}/>
         
          
     }else if(selectedPrescriptionOption.value === 'Bifocal(with line)'){
-        formDetail = <Bifocal productName={productName} productDescription={productDescription} productPrice={productPrice}/>
+        formDetail = <Bifocal productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice}/>
         
     }else if(selectedPrescriptionOption.value === 'Progressive'){
-        formDetail = <Progressive productName={productName} productDescription={productDescription} productPrice={productPrice}/>
+        formDetail = <Progressive productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice}/>
         
     }else if(selectedPrescriptionOption.value === 'Non Prescription'){
-        formDetail = <NonPrescriptional productName={productName} productDescription={productDescription} productPrice={productPrice}/>
+        formDetail = <NonPrescriptional productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice}/>
         
 
     }else if(selectedPrescriptionOption.value === 'Frames Only'){
-        formDetail = <FramesOnly productName={productName} productDescription={productDescription} productPrice={productPrice}/>
+        formDetail = <FramesOnly productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice}/>
 
     }else if(formEditDetail[0]?.prescriptionType === 'Single Vision'){
-        formDetail = <SingleVision productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+        formDetail = <SingleVision productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
 
     }else if(formEditDetail[0]?.prescriptionType === 'Bifocal(with line)'){
-        formDetail = <Bifocal productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+        formDetail = <Bifocal productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
 
     }else if(formEditDetail[0]?.prescriptionType === 'Progressive'){
-        formDetail = <Progressive productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+        formDetail = <Progressive productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
 
     }else if(formEditDetail[0]?.prescriptionType === 'Non Prescriptional'){
         
         formDetail = <NonPrescriptional productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
     }else if(formEditDetail[0]?.prescriptionType === 'Frames Only'){
-        formDetail = <FramesOnly productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
+        formDetail = <FramesOnly productImage={productImage} productName={productName} productDescription={productDescription} productPrice={productPrice} data={formEditDetail[0]}/>
     }
     
     

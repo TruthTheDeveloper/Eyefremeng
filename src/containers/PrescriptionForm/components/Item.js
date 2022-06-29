@@ -24,7 +24,7 @@ const Item = ({id, name,image, price, relatedProductClickHandler}) => {
 
     return (
         <div className="text-center cursor-pointer border hover:shadow-lg m-5" onClick={itemInfo} >
-            <img src={image} className="w-96 h-72"/>
+            <img src={image} className="w-full "/>
             <p>{name}</p>
             <p className="text-indigo-800 font-semibold py-2 text-xl">{`#${price}`}</p>
         </div>

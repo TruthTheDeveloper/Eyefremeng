@@ -17,7 +17,8 @@ const Footer = () => {
                 <div className="basis-1/4 mx-4 lg:mx-8">
                     <h1 className="text-2xl font-semibold my-4">SHOP</h1>
                     <ul className=" font-semibold">
-                        <li><NavLink to="/mencart" exact='true'>
+                        <li>
+                            <NavLink to="/mencart" exact='true'>
                                 Men's Glasses
                             </NavLink>
                         </li>
@@ -71,7 +72,7 @@ const Footer = () => {
                                 Return and Exchange
                             </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink to="/privacypolicy" exact='true'>
                                 Privacy Policy
                             </NavLink>
@@ -80,7 +81,7 @@ const Footer = () => {
                             <NavLink to="/termsuse" exact='true'>
                                 Terms and Condition of Use
                             </NavLink>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div className="flex lg:justify-center justify-start mx-4 basis-1/4" style={{color:"white"}}>
@@ -95,9 +96,16 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="text-center font-semibold">
                 <hr className="w-full " style={{border:"0.5px solid #002365"}}/>
-                <p className="text-center font-semibold pt-6" style={{color:"#002365"}}>Copyright @2022| Eyefremeng</p>
+                <p className=" pt-6" style={{color:"#002365"}}>Copyright @2022| Eyefremeng</p>
+                            <NavLink to="/privacypolicy" exact='true'>
+                                Privacy Policy
+                            </NavLink><br/>
+                            <NavLink to="/termsuse" exact='true'>
+                                Terms and Condition of Use
+                            </NavLink>
+                    
             </div>
         </footer>
     )

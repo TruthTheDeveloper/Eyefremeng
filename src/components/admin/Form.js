@@ -25,7 +25,6 @@ const Form = ({formText, product, price}) => {
     const [category, setCategory] = useState(null);
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
-    const [image, setImage] = useState(null);
     const [description, setDescription] = useState('')
     const [framesize, setFramesize] = useState('')
     const [frontMaterial, setFrontMaterial] = useState('')
@@ -37,14 +36,23 @@ const Form = ({formText, product, price}) => {
     const [templeMaterial, setTempleMaterial] = useState('')
     const [shape, setShape] = useState('')
     const [spinner, setSpinner] = useState(false)
+    const [rightView, setRightView] = useState(null)
+    const [leftView, setLeftView] = useState(false)
+    const [frontView, setFrontView] = useState(null)
+    
 
     useEffect(() => {
 
+        console.log(product, 'pro')
+
         if(product){
+            console.log(product.category, '----category')
             setCategory(product.category )
             setProductName(product.productName)
             setProductPrice(product.productPrice)
-            setImage(product.image)
+            setFrontView(product.frontView)
+            setLeftView(product.leftView)
+            setRightView(product.rightView)
             setDescription(product.description)
             setFramesize(product.framesize)
             setFrontMaterial(product.frontMaterial)
@@ -60,23 +68,22 @@ const Form = ({formText, product, price}) => {
     },[product])
 
 
-    const addProductSubmitHandler = async(e) => {
-        e.preventDefault();
-        setSpinner(true)
-        // console.log(productName, productPrice, image, category)
-        const file = image ? await uploadAFile(image) : null
+    const addProduct = async () => {
+        const front = frontView ? await uploadAFile(frontView) : null
+        const left = leftView ? await uploadAFile(leftView) : null
+        const right = rightView ? await uploadAFile(rightView) : null
+        // if(productName === '' || productPrice === null || frontView === null || leftView === null || rightView === null ||  category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
+        //     return;
+        // }
 
-
-       
-        if(productName === '' || productPrice === null || image === null || category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
-            return;
-        }
 
 
         const newProduct = {
             productName,
             productPrice,
-            image:file,
+            frontView:front,
+            leftView:left,
+            rightView:right,
             category:category.value,
             description,
             framesize, 
@@ -91,10 +98,13 @@ const Form = ({formText, product, price}) => {
 
         }
 
+        console.log(newProduct)
+
+
         try{
-            await ProductDataService.addProduct(newProduct)
             setSpinner(false)
-            formText === 'Add Product' ? toast.success('Product added SuccessFully', {
+            await ProductDataService.addProduct(newProduct)
+            toast.success('Product added SuccessFully', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -102,21 +112,29 @@ const Form = ({formText, product, price}) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                }) : toast.success('Product updated SuccessFully', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    })
+                })
 
-            
+                setCategory('')
+                setProductName('')
+                setProductPrice('')
+                setFrontView(null)
+                setLeftView(null)
+                setRightView(null)
+                setDescription('')
+                setFramesize('')
+                setFrontMaterial('')
+                setlensWidth('')
+                setLensHeight('')
+                setbridgeWidth('')
+                setTempleWidth('')
+                setRimType('')
+                setShape('')
+                setTempleMaterial('')
+                setSpinner(false)
         }catch(err){
             console.log(err)
             setSpinner(false)
-            formText === 'Add Product' ? toast.error('Unable to add Product', {
+            toast.error('Unable to add Product', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -124,34 +142,100 @@ const Form = ({formText, product, price}) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                }) : toast.error('Unable to Update Product', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    });
+                });
+        }
+    }
+
+
+    const updateProduct = async () => {
+        const front = frontView ? await uploadAFile(frontView) : null
+        const left = leftView ? await uploadAFile(leftView) : null
+        const right = rightView ? await uploadAFile(rightView) : null
+        // if(productName === '' || productPrice === null || frontView === null || leftView === null || rightView === null || category === null || description === '' || framesize === ''|| frontMaterial === '' || lensWidth === '' || lensHeight === '' || bridgeWidth === ''|| templeWidth === '' || rimType === '' || shape === '' || templeMaterial === ''){
+        //     return;
+        // }
+
+        const updateProduct = {
+            productName,
+            productPrice,
+            frontView:front,
+            leftView:left,
+            rightView:right,
+            category:category,
+            description,
+            framesize, 
+            frontMaterial,
+            lensWidth,
+            lensHeight, 
+            bridgeWidth,
+            templeWidth,
+            rimType,
+            shape,
+            templeMaterial
+
         }
 
 
-        setCategory('')
-        setProductName('')
-        setProductPrice('')
-        setImage()
-        setDescription('')
-        setFramesize('')
-        setFrontMaterial('')
-        setlensWidth('')
-        setLensHeight('')
-        setbridgeWidth('')
-        setTempleWidth('')
-        setRimType('')
-        setShape('')
-        setTempleMaterial('')
-        setSpinner(false)
-        setImage(null)
+        try{
+            setSpinner(false)
+            await ProductDataService.updateProduct(JSON.parse(localStorage.getItem('id')), updateProduct)
+            toast.success('Product update SuccessFully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+
+                setCategory('')
+                setProductName('')
+                setProductPrice('')
+                setFrontView(null)
+                setLeftView(null)
+                setRightView(null)
+                setDescription('')
+                setFramesize('')
+                setFrontMaterial('')
+                setlensWidth('')
+                setLensHeight('')
+                setbridgeWidth('')
+                setTempleWidth('')
+                setRimType('')
+                setShape('')
+                setTempleMaterial('')
+                setSpinner(false)
+        }catch(err){
+            console.log(updateProduct, 'update')
+            console.log(err)
+
+            
+            setSpinner(false)
+            toast.error('Unable to Update Product, make sure all fields are filled', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }
+
+    }
+
+
+    const addProductSubmitHandler = async(e) => {
+        e.preventDefault();
+        setSpinner(true)
+        // console.log(productName, productPrice, image, category)
+        
+
+        formText === 'Add Product' ? addProduct() : updateProduct()
+       
+        
+        
 
         
     }
@@ -189,14 +273,6 @@ const Form = ({formText, product, price}) => {
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFramesize(e.target.value)} value={framesize}/>
             </div>
             <div>
-                <label>Front Material</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setFrontMaterial(e.target.value)} value={frontMaterial}/>
-            </div>
-            <div>
-                <label>Temple Material</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleMaterial(e.target.value)} value={templeMaterial}/>
-            </div>
-            <div>
                 <label>lens Width</label>
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setlensWidth(e.target.value)} value={lensWidth}/>
             </div>
@@ -212,17 +288,17 @@ const Form = ({formText, product, price}) => {
                 <label>temple Width</label>
                 <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setTempleWidth(e.target.value)} value={templeWidth}/>
             </div>
-            <div>
-                <label>Rim Type</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setRimType(e.target.value)} value={rimType}/>
-            </div>
-            <div>
-                <label>Shape</label>
-                <input type="text" className="h-8 w-full mt-1 border border-slate-400 outline-none p-2" onChange={(e) => setShape(e.target.value)} value={shape}/>
+            <div className=" my-4">
+                <label>Image Front View</label>
+                <input type="file" className="mt-1" onChange={(e) => setFrontView(e.target.files[0])} />
             </div>
             <div className=" my-4">
-                <label>Product Image</label>
-                <input type="file" className="mt-1" onChange={(e) => setImage(e.target.files[0])} />
+                <label>Image Left View</label>
+                <input type="file" className="mt-1" onChange={(e) => setLeftView(e.target.files[0])} />
+            </div>
+            <div className=" my-4">
+                <label>Image Right View</label>
+                <input type="file" className="mt-1" onChange={(e) => setRightView(e.target.files[0])} />
             </div>
             <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="w-full "><TailSpin color="white" height={30} width={250} /></div> : formText}
             </button>

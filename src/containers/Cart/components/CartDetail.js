@@ -11,6 +11,7 @@ import AuthContext from "../../../context/auth-context";
 const CartDetail = ({
     id,
     lenseType,
+    productImage,
     productName,
     productPrice,
     productDescription,
@@ -107,7 +108,7 @@ const CartDetail = ({
             <div className=" ">
                 <div className="md:grid grid-cols-2">
                     <div className="text-center py-4 text-indigo-800">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
+                        <img src={productImage} />
                         <h1>{productName}</h1>
                         <p>{productDescription}</p>
                     </div>

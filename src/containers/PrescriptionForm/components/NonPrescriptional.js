@@ -6,7 +6,7 @@ import {v4} from 'uuid';
 import { useNavigate  } from "react-router-dom";
 import NonPrescriptionalVisionLensForm from './otherVision/NonPresctiptionalVisionLensForm';
 
-const NonPrescriptional = ({productName, productDescription, productPrice, data}) => {
+const NonPrescriptional = ({productImage, productName, productDescription, productPrice, data}) => {
 
     let navigate = useNavigate();
     
@@ -74,6 +74,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
     const validateInput = () => {
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -103,6 +104,7 @@ const NonPrescriptional = ({productName, productDescription, productPrice, data}
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,

@@ -38,6 +38,7 @@ const OrderReviewForm = () => {
             {initialState.items.map((item) => {
                 return(
                     <ReviewItem
+                        productImage={item.productImage}
                         productName={item.productName}
                         description={item.productDescription}
                         price={item.productPrice}

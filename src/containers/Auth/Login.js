@@ -1,9 +1,10 @@
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from  'react-loader-spinner';
+import AuthContext from '../../context/auth-context';
 
 const Login = () => {
 
@@ -14,7 +15,7 @@ const Login = () => {
     const [passwordValidationError, setPaswordValidationError] = useState(false)
     const [spinner, setSpinner] = useState(false)
 
-
+    const {initialState, setInitialState} = useContext(AuthContext)
     const navigate = useNavigate()
     
     
@@ -37,6 +38,8 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log(user)
                 localStorage.setItem('token', JSON.stringify(user.accessToken))
+                localStorage.setItem('uid', JSON.stringify(user.uid))
+                setInitialState({userId:JSON.parse(localStorage.getItem('uid'))})
 
                 setSpinner(false)
 

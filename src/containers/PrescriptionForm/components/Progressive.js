@@ -10,7 +10,7 @@ import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 import { useNavigate  } from "react-router-dom";
 import ProgressiveVisionLensForm from './otherVision/ProgressiveVisionLensForm';
 
-const Progressive = ({productName, productDescription, productPrice, data}) => {
+const Progressive = ({productImage, productName, productDescription, productPrice, data}) => {
 
     let navigate = useNavigate();
 
@@ -145,6 +145,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
         
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -198,6 +199,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -290,6 +292,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,
@@ -342,6 +345,7 @@ const Progressive = ({productName, productDescription, productPrice, data}) => {
 
         const prescription = {
             id:v4(),
+            productImage:productImage,
             productName:productName,
             productDescription:productDescription,
             productPrice:totalPrice,

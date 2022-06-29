@@ -24,6 +24,7 @@ const CartItem = () => {
                         <CartDetail 
                             key={index}
                             id={item.id}
+                            productImage={item.productImage}
                             productName={item.productName}
                             productPrice={item.productPrice}
                             productDescription={item.productDescription}

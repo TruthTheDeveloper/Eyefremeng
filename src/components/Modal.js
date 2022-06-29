@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from  'react-loader-spinner';
+import AuthContext from "../context/auth-context";
 
 const Modal = ({loginModal, loginModalHandler, backdropHandler}) => {
     const [email, setEmail] = useState('')
@@ -15,6 +16,7 @@ const Modal = ({loginModal, loginModalHandler, backdropHandler}) => {
     const [passwordValidationError, setPaswordValidationError] = useState(false)
 
     const [spinner, setSpinner] = useState(false)
+    const {initialState, setInitialState} = useContext(AuthContext)
 
     const navigate = useNavigate()
     const auth = getAuth();
@@ -45,6 +47,8 @@ const Modal = ({loginModal, loginModalHandler, backdropHandler}) => {
                 localStorage.setItem('token', JSON.stringify(user.accessToken))
                 localStorage.setItem('uid', JSON.stringify(user.uid))
                 setSpinner(false)
+
+                setInitialState({userId:JSON.parse(localStorage.getItem('uid'))})
 
                 
                 toast.success('Congratulations you ve succesfully Logged In', {

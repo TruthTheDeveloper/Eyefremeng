@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ReviewItem = ({productName, description,price, qty}) => {
+const ReviewItem = ({productName, description,price, qty, productImage}) => {
 
     const navigate = useNavigate()
 
@@ -12,7 +12,7 @@ const ReviewItem = ({productName, description,price, qty}) => {
         <div className="md:flex bg-white w-full  border border-2 my-6 shadow-sm rounded-md">
                 <div className="text-center md:py-12  text-indigo-800">
                     <div className="w-72 mx-auto">
-                        <img src="https://eyeframeng.com/wp-content/uploads/2020/12/Theo-WD9511.jpg" />
+                        <img src={productImage} />
                         
                     </div>
                 </div>

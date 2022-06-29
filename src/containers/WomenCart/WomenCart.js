@@ -42,14 +42,16 @@ const WomenCart = () => {
             {/* <div className="bg-orange-300 text-center font-semibold text-lg py-6 lg:py-3 lg:text-2xl">
                 <h1>WomenCart</h1>
             </div> */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {womenProduct.map((item, index ) => { 
                     return(
                         <WomenItem
                             key={item.id }
                             id={item.id}
                             name={item.productName}
-                            image={item.image}
+                            frontView={item.frontView}
+                            leftView={item.leftView}
+                            rightView={item.rightView}
                             price={item.productPrice}
                         />
                     )

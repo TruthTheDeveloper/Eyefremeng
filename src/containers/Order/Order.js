@@ -1,0 +1,73 @@
+import {useState, useEffect} from 'react';
+import OrderServices from '../../firebase/services/order.services';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate  } from "react-router-dom";
+import CartDetail from '../Cart/components/CartDetail';
+
+const Order = () => {
+    let navigate = useNavigate();
+
+    const [order, setOrder] = useState([])
+
+    useEffect(() => {
+        getUserOrder()
+    },[])
+
+    const getUserOrder = async () => {
+        const data = await OrderServices.getUserOrder(JSON.parse(localStorage.getItem('uid')))
+        console.log(data.docs.map((doc) => ({...doc.data(), id:doc.id})), 'sdsdsd')
+        setOrder(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+        
+    }
+
+    return(
+        <section className="py-24 mx-4 ">
+            <div className="md:w-8/12 lg:mx-auto xl:w-6/12 ">
+                <div className=" text-2xl py-2">
+                    <h1>My Orders</h1>
+                </div>
+                <div className="py-2">
+                    {order.length < 1 ? <h1>No Orders Found</h1>: order.items.map((item, index) => {
+                    return(
+                        <CartDetail 
+                            key={index}
+                            id={item.id}
+                            productImage={item.productImage}
+                            productName={item.productName}
+                            productPrice={item.productPrice}
+                            productDescription={item.productDescription}
+                            prescriptionType={item.prescriptionType}
+                            leftSphere={item?.leftOD?.sphere}
+                            leftAxis={item?.leftOD?.axis}
+                            leftCylinder={item?.leftOD?.cylinder}
+                            leftAdd={item?.leftOD?.add}
+                            rightSphere={item?.rightOD?.sphere}
+                            rightAxis={item?.rightOD?.axis}
+                            rightCylinder={item?.rightOD?.cylinder}
+                            rightAdd={item?.rightOD?.add}
+                            subTotal={item.subTotal}
+                            unitPrice={item.unitPrice}
+                            usageOption={item.usageOption}
+                            pdType={item.pdType}
+                            pD={item.pD}
+                            pDD={item.pDD}
+                            lenseType={item.lenseType}
+                            qty={item.qty}
+                            Add={item.Add}
+                            remark={item.remark}
+                        />
+                    )
+                })}
+                </div>
+                <button className="py-2 my-3  border border-2 px-6 rounded-md" onClick={() => navigate(-1)}>
+                    <FontAwesomeIcon icon={faArrowLeft} className="px-2"/>
+                        back
+                    </button>
+                </div>
+        </section>
+    )
+
+}
+
+export default Order;
