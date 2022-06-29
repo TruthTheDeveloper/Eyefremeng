@@ -34,7 +34,7 @@ const WomenItem = ({name,frontView,leftView,rightView, price, id}) => {
 
     return(
         <div className="text-center  cursor-pointer border hover:shadow-lg m-5 w-full " onClick={itemInfo}>
-            <img src={frontView} className="  w-full  "/>
+            <img src={view} className="  w-full  "/>
             <p>{name}</p>
             <div className="flex justify-center">
                 <div className="h-6 w-6 border-2 border-black rounded-full bg-indigo-800 m-2 cursor-pointer" onClick={(e) => setRightView(e)} ></div>

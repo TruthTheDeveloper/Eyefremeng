@@ -16,10 +16,13 @@ const Order = () => {
 
     const getUserOrder = async () => {
         const data = await OrderServices.getUserOrder(JSON.parse(localStorage.getItem('uid')))
+        // console.log(data.docs)
         console.log(data.docs.map((doc) => ({...doc.data(), id:doc.id})), 'sdsdsd')
         setOrder(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
         
     }
+
+    console.log(order[0], 'order')
 
     return(
         <section className="py-24 mx-4 ">
@@ -28,14 +31,14 @@ const Order = () => {
                     <h1>My Orders</h1>
                 </div>
                 <div className="py-2">
-                    {order.length < 1 ? <h1>No Orders Found</h1>: order.items.map((item, index) => {
+                    {order.length < 1 ? <h1>No Orders Found</h1>: order[0].items.map((item, index) => {
                     return(
                         <CartDetail 
                             key={index}
-                            id={item.id}
-                            productImage={item.productImage}
-                            productName={item.productName}
-                            productPrice={item.productPrice}
+                            id={item?.id}
+                            productImage={item?.productImage}
+                            productName={item?.productName}
+                            productPrice={item?.productPrice}
                             productDescription={item.productDescription}
                             prescriptionType={item.prescriptionType}
                             leftSphere={item?.leftOD?.sphere}
@@ -46,16 +49,16 @@ const Order = () => {
                             rightAxis={item?.rightOD?.axis}
                             rightCylinder={item?.rightOD?.cylinder}
                             rightAdd={item?.rightOD?.add}
-                            subTotal={item.subTotal}
+                            subTotal={item?.subTotal}
                             unitPrice={item.unitPrice}
-                            usageOption={item.usageOption}
-                            pdType={item.pdType}
-                            pD={item.pD}
-                            pDD={item.pDD}
-                            lenseType={item.lenseType}
+                            usageOption={item?.usageOption}
+                            pdType={item?.pdType}
+                            pD={item?.pD}
+                            pDD={item?.pDD}
+                            lenseType={item?.lenseType}
                             qty={item.qty}
-                            Add={item.Add}
-                            remark={item.remark}
+                            Add={item?.Add}
+                            remark={item?.remark}
                         />
                     )
                 })}

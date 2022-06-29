@@ -44,10 +44,10 @@ const CartDetail = ({
 
     console.log(Add, 'add')
 
-    console.log(initialState.items, 'iiiii')
+    // console.log(initialState.items, 'iiiii')
 
     useEffect(() => {
-        console.log(initialState.items)
+        // console.log(initialState.items)
 
         setInitialState({...initialState, grandTotal:initialState.grandTotal + productPrice, subTotal:initialState.subTotal + productPrice})
         
