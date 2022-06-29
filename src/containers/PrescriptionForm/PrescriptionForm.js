@@ -104,7 +104,7 @@ const PrescriptionForm = () => {
                     <h1 className="font-semibold text-xl lg:text-2xl py-3">Description</h1>
                     <p className="text-sm lg:text-base text-slate-800 font-semibold w-96">{productDetail.description}</p>
                     <ul className="my-6">
-                        <li className="my-1">Size: 54-18-145 <span className="text-orange-500">size chart</span></li>
+                        <li className="my-1">Frame Size: {productDetail.frameSize}</li>
                         {/* <li className="my-1">Front Material: {productDetail.frontMaterial}</li>
                         <li className="my-1">Temple Material: {productDetail.templeMaterial}</li>
                         <li className="my-1">Rim Type: {productDetail.rimType}</li>

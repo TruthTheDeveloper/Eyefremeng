@@ -300,7 +300,7 @@ const Form = ({formText, product, price}) => {
                 <label>Image Right View</label>
                 <input type="file" className="mt-1" onChange={(e) => setRightView(e.target.files[0])} />
             </div>
-            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="w-full "><TailSpin color="white" height={30} width={250} /></div> : formText}
+            <button className=" my-6 mx-auto flex px-8 py-2 rounded-md bg-indigo-800 text-white" onClick={addProductSubmitHandler}>{spinner ? <div className="w-full "><TailSpin color="white" height={30} width={220} /></div> : formText}
             </button>
             
         </form>
