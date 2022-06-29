@@ -100,7 +100,7 @@ const PrescriptionForm = () => {
                 </div>
                 <div className="mx-3 md:mx-16 lg:mt-24">
                     <h1 className="text-indigo-800 text-3xl ">{productDetail.productName}</h1>
-                    <p className="text-indigo-800  text-2xl font-semibold my-6"># {productDetail.productPrice}</p>
+                    <p className="text-indigo-800  text-2xl font-semibold my-6">₦ {productDetail.productPrice}</p>
                     <h1 className="font-semibold text-xl lg:text-2xl py-3">Description</h1>
                     <p className="text-sm lg:text-base text-slate-800 font-semibold w-96">{productDetail.description}</p>
                     <ul className="my-6">
