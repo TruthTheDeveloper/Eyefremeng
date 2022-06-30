@@ -73,9 +73,10 @@ const PrescriptionForm = () => {
     }
 
 
-    console.log(productDetail.frontView)
+    console.log(productDetail)
 
     return(
+       
         <section className=" pt-16">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
@@ -83,10 +84,21 @@ const PrescriptionForm = () => {
                     {productDetail.frontView ? <img src={view} className=" h-72" alt="glass"/> : <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
                     <div className="flex justify-center">
-                        <div className="h-6 w-6 border-2 border-black rounded-full bg-indigo-800 m-2 cursor-pointer" onClick={() => setRightView()} ></div>
-                        <div className="h-6 w-6 border-2 border-black rounded-full bg-red-800 m-2 cursor-pointer" onClick={() => setLeftView()}></div>
-                        <div className="h-6 w-6 border-2 border-black rounded-full bg-green-800 m-2 cursor-pointer" onClick={() => setFrontView()}></div>
+                    <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
+                            <img className="w-full" src={productDetail.leftView
+                                } />
+                        </div>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setRightView()} >
+                            <img className="w-full" src={productDetail.frontView
+                            } />
+                        </div>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setFrontView()}>
+                            <img className="w-full" src={productDetail.rightView
+                            } />
+                        </div>
                     </div>
+
+                    
                     <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
                     
                         <div>
@@ -104,7 +116,7 @@ const PrescriptionForm = () => {
                     <h1 className="font-semibold text-xl lg:text-2xl py-3">Description</h1>
                     <p className="text-sm lg:text-base text-slate-800 font-semibold w-96">{productDetail.description}</p>
                     <ul className="my-6">
-                        <li className="my-1">Frame Size: {productDetail.frameSize}</li>
+                        <li className="my-1">Frame Size: {productDetail.framesize}</li>
                         {/* <li className="my-1">Front Material: {productDetail.frontMaterial}</li>
                         <li className="my-1">Temple Material: {productDetail.templeMaterial}</li>
                         <li className="my-1">Rim Type: {productDetail.rimType}</li>

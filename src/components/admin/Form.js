@@ -86,6 +86,9 @@ const Form = ({formText, product, price}) => {
             return;
         }
 
+        console.log(category, 'from add')
+
+
 
 
         const newProduct = {
@@ -174,6 +177,8 @@ const Form = ({formText, product, price}) => {
             setSpinner(false)
             return;
         }
+
+        console.log(category, 'from update')
 
         const updateProduct = {
             productName,

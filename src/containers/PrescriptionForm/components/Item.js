@@ -26,7 +26,7 @@ const Item = ({id, name,image, price, relatedProductClickHandler}) => {
         <div className="text-center cursor-pointer border hover:shadow-lg m-5" onClick={itemInfo} >
             <img src={image} className="w-full "/>
             <p>{name}</p>
-            <p className="text-indigo-800 font-semibold py-2 text-xl">{`#${price}`}</p>
+            <p className="text-indigo-800 font-semibold py-2 text-xl">{`₦${price}`}</p>
         </div>
     )
 

@@ -46,11 +46,20 @@ const MenItem = ({name,frontView,leftView,rightView, price, id}) => {
             <img src={view} className="w-full"/>
             <p>{name}</p>
             <div className="flex justify-center">
-                <div className="h-6 w-6 border-2 border-black rounded-full bg-indigo-800 m-2 cursor-pointer" onClick={(e) => setRightView(e)} ></div>
-                <div className="h-6 w-6 border-2 border-black rounded-full bg-red-800 m-2 cursor-pointer" onClick={(e) => setLeftView(e)}></div>
-                <div className="h-6 w-6 border-2 border-black rounded-full bg-green-800 m-2 cursor-pointer" onClick={(e) => setFrontView(e)}></div>
+            <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={(e) => setLeftView(e)}>
+                    <img className="w-full" src={leftView
+                    } />
+                </div>
+                <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={(e) => setFrontView(e)}>
+                    <img className="w-full" src={frontView
+                    } />
+                </div>
+                <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={(e) => setRightView(e)}>
+                    <img className="w-full" src={rightView
+                    } />
+                </div>
             </div>
-            <p className="text-indigo-800 font-semibold py-2 text-xl">{`#${price}`}</p>
+            <p className="text-indigo-800 font-semibold py-2 text-xl">{`₦${price}`}</p>
         </div>
     )
 }
