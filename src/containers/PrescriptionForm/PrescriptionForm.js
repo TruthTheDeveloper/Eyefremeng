@@ -8,14 +8,7 @@ import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
 
 import { TailSpin } from  'react-loader-spinner';
-import {
-    Magnifier,
-    GlassMagnifier,
-    SideBySideMagnifier,
-    PictureInPictureMagnifier,
-    MOUSE_ACTIVATION,
-    TOUCH_ACTIVATION
-  } from "react-image-magnifiers";
+import ReactImageMagnify from 'react-image-magnify';
 
 const PrescriptionForm = () => {
 
@@ -89,13 +82,24 @@ const PrescriptionForm = () => {
             <div className=" lg:grid grid-cols-2">
                 <div className="">
                     <div className="flex justify-center w-full">
-                    {productDetail.frontView ? <div className=" h-72"><Magnifier
-                        imageSrc={view}
-                        imageAlt="Example"
-                        largeImageSrc={view} // Optional
-                        mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
-                        touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
-                        /> </div>: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
+                    {productDetail.frontView ? <div className=" "><ReactImageMagnify  
+                    enlargedImageContainerStyle={{objectFit: 'fill'}}
+                    enlargedImageStyle={{objectFit: 'fill'}}
+                    enlargedImageContainerDimensions={{width:'100%', height:'100%'}} 
+                        smallImage= {{
+                            alt: 'Wristwatch by Ted Baker London',
+                            isFluidWidth: true,
+                            src: view
+                            
+                        }}
+                        largeImage= {{
+                            src: view,
+                            width: 1000,
+                            height: 1000,
+                            sizes: 'contain'
+                            
+                        }}
+                     /></div>: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
                     <div className="flex justify-center">
                     <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
