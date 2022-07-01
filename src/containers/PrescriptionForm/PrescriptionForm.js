@@ -8,7 +8,14 @@ import {useParams} from "react-router-dom";
 import GlassReview from "./components/GlassReview";
 
 import { TailSpin } from  'react-loader-spinner';
-
+import {
+    Magnifier,
+    GlassMagnifier,
+    SideBySideMagnifier,
+    PictureInPictureMagnifier,
+    MOUSE_ACTIVATION,
+    TOUCH_ACTIVATION
+  } from "react-image-magnifiers";
 
 const PrescriptionForm = () => {
 
@@ -76,15 +83,23 @@ const PrescriptionForm = () => {
     console.log(productDetail)
 
     return(
+        // <img src={view} className=" h-72" alt="glass"/>
        
         <section className=" pt-16">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
                     <div className="flex justify-center w-full">
-                    {productDetail.frontView ? <img src={view} className=" h-72" alt="glass"/> : <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
+                    {productDetail.frontView ? <div className=" h-72"><Magnifier
+                        imageSrc={view}
+                        imageAlt="Example"
+                        largeImageSrc={view} // Optional
+                        mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
+                        touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
+                        /> </div>: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
                     <div className="flex justify-center">
                     <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
+                        
                             <img className="w-full" src={productDetail.leftView
                                 } />
                         </div>
@@ -97,14 +112,14 @@ const PrescriptionForm = () => {
                             } />
                         </div>
                     </div>
-                    <div className="flex justify-center">
+                    {/* <div className="flex justify-center">
                     <div className="h-12 w-16   rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
                         </div>
                         <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setFrontView()} >
                         </div>
                         <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setRightView()}>
                         </div>
-                    </div>
+                    </div> */}
 
                     
                     <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
