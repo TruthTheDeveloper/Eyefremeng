@@ -88,13 +88,21 @@ const PrescriptionForm = () => {
                             <img className="w-full" src={productDetail.leftView
                                 } />
                         </div>
-                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setRightView()} >
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setFrontView()} >
                             <img className="w-full" src={productDetail.frontView
                             } />
                         </div>
-                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setFrontView()}>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setRightView()}>
                             <img className="w-full" src={productDetail.rightView
                             } />
+                        </div>
+                    </div>
+                    <div className="flex justify-center">
+                    <div className="h-12 w-16   rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
+                        </div>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setFrontView()} >
+                        </div>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setRightView()}>
                         </div>
                     </div>
 
