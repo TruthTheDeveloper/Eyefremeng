@@ -107,31 +107,31 @@ const BifocalVisionLensForm = ({validateInput, inputValid, incrementQty, decreme
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Quality 1.5 index lenses with anti reflective coating (AR)', 7000)}/>
                     <label>
-                    Quality 1.5 index lenses with anti reflective coating (AR)  <span className="text-indigo-800 font-semibold">#7000 </span>
+                    Quality 1.5 index lenses with anti reflective coating (AR)  <span className="text-indigo-800 font-semibold">₦7000 </span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Quality 1.59 index lenses with UV protective, anti reflective coating', 12600)}/>
                     <label>
-                    Quality 1.59 index lenses with UV protective, anti reflective coating <span className="text-indigo-800 font-semibold">#12600</span>
+                    Quality 1.59 index lenses with UV protective, anti reflective coating <span className="text-indigo-800 font-semibold">₦12600</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Quality 1.60 index thin lenses with UV-protective, anti-reflective coatings', 22500)}/>
                     <label>
-                    Quality 1.60 index thin lenses with UV-protective, anti-reflective coatings<span className="text-indigo-800 font-semibold">#22500</span>
+                    Quality 1.60 index thin lenses with UV-protective, anti-reflective coatings<span className="text-indigo-800 font-semibold">₦22500</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating', 22500)}/>
                     <label>
-                    Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating <span className="text-indigo-800 font-semibold">#22500</span>
+                    Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating <span className="text-indigo-800 font-semibold">₦22500</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating',45000 )}/>
                     <label>
-                    Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating <span className="text-indigo-800 font-semibold">#45000</span>
+                    Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating <span className="text-indigo-800 font-semibold">₦45000</span>
                     </label>
                 </div>
             </Collapse>
@@ -146,25 +146,25 @@ const BifocalVisionLensForm = ({validateInput, inputValid, incrementQty, decreme
             <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('gray outdoor', 23000)}/>
                     <label>
-                        gray outdoor <span className="text-indigo-800 font-semibold">#23000</span>
+                        gray outdoor <span className="text-indigo-800 font-semibold">₦23000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense"  className="mx-2" onChange={() => lenseTypeHandler('clear indoor',23000)}/>
                     <label>
-                    clear indoor <span className="text-indigo-800 font-semibold">#23000</span>
+                    clear indoor <span className="text-indigo-800 font-semibold">₦23000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('brown outdoor',23000)}/>
                     <label>
-                    brown outdoor <span className="text-indigo-800 font-semibold">#23000</span>
+                    brown outdoor <span className="text-indigo-800 font-semibold">₦23000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('brown lense', 23000)}/>
                     <label>
-                    clear indoor <span className="text-indigo-800 font-semibold">#23000</span>
+                    clear indoor <span className="text-indigo-800 font-semibold">₦23000</span>
                     </label>
                 </div>
                 </Collapse>

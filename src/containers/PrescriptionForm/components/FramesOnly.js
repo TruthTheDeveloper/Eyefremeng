@@ -14,7 +14,7 @@ const FramesOnly = ({productImage,productName, productDescription, productPrice,
     const [dataQty, setDataQty] = useState(data?.qty)
     const [clicked, setClicked] = useState(false)
     const [updateClicked, setUpdateClicked] = useState(false)
-    const [totalPrice, setTotalPrice] = useState(parseFloat(productPrice))
+    const [totalPrice, setTotalPrice] = useState(parseInt(productPrice))
     const [unitPrice, setUnitPrice] = useState(totalPrice)
 
 
@@ -147,7 +147,7 @@ const FramesOnly = ({productImage,productName, productDescription, productPrice,
 
     return(
         <div className="my-4">
-                <p className="my-8 text-2xl font-semibold text-indigo-800">#{totalPrice}</p>
+                <p className="my-8 text-2xl font-semibold text-indigo-800">₦{totalPrice}</p>
                 <div className="flex">
                 {data ?
                             <>

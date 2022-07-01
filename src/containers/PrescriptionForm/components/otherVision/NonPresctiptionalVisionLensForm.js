@@ -111,13 +111,13 @@ const NonPrescriptionalVisionLensForm = ({validateInput, inputValid, incrementQt
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lense',5000 )}/>
                     <label>
-                    (1.56 index form lenses) <span className="text-indigo-800 font-semibold">#5000</span>
+                    (1.56 index form lenses) <span className="text-indigo-800 font-semibold">₦5000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lenses with Blue Light Blocking for computer screen', 8000)}/>
                     <label>
-                    (1.56 index form lenses with Blue Light Blocking for computer screen) <span className="text-indigo-800 font-semibold">#8000</span>
+                    (1.56 index form lenses with Blue Light Blocking for computer screen) <span className="text-indigo-800 font-semibold">₦8000</span>
                     </label>
                 </div>
             </Collapse>
@@ -131,13 +131,13 @@ const NonPrescriptionalVisionLensForm = ({validateInput, inputValid, incrementQt
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form photochromic brown',8000 )}/>
                     <label>
-                    (1.56 index form photochromic brown)<span className="text-indigo-800 font-semibold"> #8000</span>
+                    (1.56 index form photochromic brown)<span className="text-indigo-800 font-semibold"> ₦8000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form photochromic brown', 8000)}/>
                     <label>
-                    (1.56 index form photochromic brown)<span className="text-indigo-800 font-semibold"> #8000</span>
+                    (1.56 index form photochromic brown)<span className="text-indigo-800 font-semibold"> ₦8000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
@@ -150,7 +150,7 @@ const NonPrescriptionalVisionLensForm = ({validateInput, inputValid, incrementQt
             </article>
             {lenseValidationError && <p className="text-red-500 text-sm font-semibold my-2">Please select one of the above field</p>}
             <div className="my-4">
-                <p className="my-8 text-2xl font-semibold text-indigo-800">#{productPrice}</p>
+                <p className="my-8 text-2xl font-semibold text-indigo-800">₦{productPrice}</p>
                 <div className="flex">
 
                     

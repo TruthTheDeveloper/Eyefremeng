@@ -109,49 +109,49 @@ const ProgressiveVisionLensForm = ({validateInput, inputValid, incrementQty, dec
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form progressive', 8000)}/>
                     <label>
-                    (1.56 index form progressive) <span className="text-indigo-800 font-semibold">#8000</span>
+                    (1.56 index form progressive) <span className="text-indigo-800 font-semibold">₦8000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form progressive with Blue Light Blocking for computer screen',17000 )}/>
                     <label>
-                    (1.56 index form progressive with Blue Light Blocking for computer screen)  <span className="text-indigo-800 font-semibold">#17000</span>
+                    (1.56 index form progressive with Blue Light Blocking for computer screen)  <span className="text-indigo-800 font-semibold">₦17000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form progressive',15000 )}/>
                     <label>
-                    (1.61 index form progressive) <span className="text-indigo-800 font-semibold">#15000</span>
+                    (1.61 index form progressive) <span className="text-indigo-800 font-semibold">₦15000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form lenses with Blue Light Blocking for computer screen use', 22000)}/>
                     <label>
-                    (1.61 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold">#22000</span>
+                    (1.61 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold">₦22000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form progressive', 38000)}/>
                     <label>
-                    (1.67 index form progressive) <span className="text-indigo-800 font-semibold"> #38000</span>
+                    (1.67 index form progressive) <span className="text-indigo-800 font-semibold"> ₦38000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form progressive with Blue Light Blocking for computer screen', 45000)}/>
                     <label>
-                    (1.67 index form progressive with Blue Light Blocking for computer screen) <span className="text-indigo-800 font-semibold"> #45000</span>
+                    (1.67 index form progressive with Blue Light Blocking for computer screen) <span className="text-indigo-800 font-semibold"> ₦45000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.74 index form progressive', 50000)}/>
                     <label>
-                    (1.74 index form progressive)<span className="text-indigo-800 font-semibold">#50000 </span>
+                    (1.74 index form progressive)<span className="text-indigo-800 font-semibold">₦50000 </span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.74 index form progressive with Blue Light Blocking for computer screen', 54000)}/>
                     <label>
-                    (1.74 index form progressive with Blue Light Blocking for computer screen)<span className="text-indigo-800 font-semibold"> #54000</span>
+                    (1.74 index form progressive with Blue Light Blocking for computer screen)<span className="text-indigo-800 font-semibold"> ₦54000</span>
                     </label>
                 </div>
             </Collapse>
@@ -166,43 +166,43 @@ const ProgressiveVisionLensForm = ({validateInput, inputValid, incrementQty, dec
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form progressive photochromic brown', 17000)}/>
                     <label>
-                    (1.56 index form progressive photochromic brown)<span className="text-indigo-800 font-semibold">#17000 </span>
+                    (1.56 index form progressive photochromic brown)<span className="text-indigo-800 font-semibold">₦17000 </span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form progressive photochromic gray', 17000)}/>
                     <label>
-                    (1.56 index form progressive photochromic gray) <span className="text-indigo-800 font-semibold">#17000</span>
+                    (1.56 index form progressive photochromic gray) <span className="text-indigo-800 font-semibold">₦17000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form progressive photochromic with Blue Light Blocking', 23000)}/>
                     <label>
-                    (1.56 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold"> #23000 </span>
+                    (1.56 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold"> ₦23000 </span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form progressive photochromic brown', 26000)}/>
                     <label>
-                    (1.61 index form progressive photochromic brown)<span className="text-indigo-800 font-semibold"> #26000</span>
+                    (1.61 index form progressive photochromic brown)<span className="text-indigo-800 font-semibold"> ₦26000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form progressive photochromic with Blue Light Blocking', 45000 )}/>
                     <label>
-                    (1.61 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold">  #45000</span>
+                    (1.61 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold">  ₦45000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form progressive photochromic', 27000)}/>
                     <label>
-                    (1.67 index form progressive photochromic)<span className="text-indigo-800 font-semibold"> #27000</span>
+                    (1.67 index form progressive photochromic)<span className="text-indigo-800 font-semibold"> ₦27000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form progressive photochromic with Blue Light Blocking',47000)}/>
                     <label>
-                    (1.67 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold"> #47000</span> 
+                    (1.67 index form progressive photochromic with Blue Light Blocking)<span className="text-indigo-800 font-semibold"> ₦47000</span> 
                     </label>
                 </div>
             </Collapse>
