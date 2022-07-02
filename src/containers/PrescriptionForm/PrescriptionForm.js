@@ -82,11 +82,13 @@ const PrescriptionForm = () => {
         <section className=" pt-16">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
-                    <div className="flex justify-center ">{productDetail.frontView ? 
+                    <div className="flex justify-center bg-opacity-100 ">{productDetail.frontView ? 
                         <ReactImageMagnify
                 imageProps={{
                   alt: 'image',
                   src: view,
+                //   width:'150%',
+                
                   
                 }}
                 magnifiedImageProps={{
@@ -95,15 +97,19 @@ const PrescriptionForm = () => {
                   width: 1500,
                 }}
                 magnifyContainerProps={{
-                  height: "100%",
-                  width: "100%",
-                }}
+                    height: "100%",
+                    width: "110%",
+                  }}
+                // magnifyContainerProps={{
+                //   height: "100%",
+                //   width: "100%",
+                // }}
                 onActivationChanged={function noRefCheck() {}}
                 onDetectedEnvironmentChanged={function noRefCheck() {}}
                 onPositionChanged={function noRefCheck() {}}
                 portalProps={{
                   horizontalOffset: 10,
-                  id: "portal-test-id",
+                //   id: "portal-test-id",
                 }}
               />: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
@@ -143,17 +149,13 @@ const PrescriptionForm = () => {
                     <GlassReview relatedProductClick={relatedProductClick} />
                     {/* <LensForm/> */}
                 </div>
-                <div className="mx-3 md:mx-16 lg:mt-24">
+                <div className="w-full mx-3 md:mx-32  lg:pt-16">
                     <h1 className="text-indigo-800 text-3xl ">{productDetail.productName}</h1>
                     <p className="text-indigo-800  text-2xl font-semibold my-6">₦ {productDetail.productPrice}</p>
                     <h1 className="font-semibold text-xl lg:text-2xl py-3">Description</h1>
                     <p className="text-sm lg:text-base text-slate-800  w-full">{productDetail.description}</p>
                     <ul className="my-6">
                         <li className="my-1">Frame Size: {productDetail.framesize}</li>
-                        {/* <li className="my-1">Front Material: {productDetail.frontMaterial}</li>
-                        <li className="my-1">Temple Material: {productDetail.templeMaterial}</li>
-                        <li className="my-1">Rim Type: {productDetail.rimType}</li>
-                        <li className="my-1">Shape: {productDetail.shape}</li> */}
                     </ul>
                     <div>
                         <p>lens width:{productDetail.lensWidth} </p>
