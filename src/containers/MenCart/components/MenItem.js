@@ -42,7 +42,7 @@ const MenItem = ({name,frontView,leftView,rightView, price, id}) => {
     }
 
     return(
-        <div className="text-center cursor-pointer border hover:shadow-lg m-5 w-full" onClick={itemInfo}>
+        <div className="text-center cursor-pointer border hover:shadow-lg  w-full" onClick={itemInfo}>
             <img src={view} className="w-full"/>
             <p>{name}</p>
             <div className="flex justify-center">
