@@ -37,13 +37,13 @@ const WomenCart = () => {
     }
 
     return(
-        <section className="py-12  lg:py-16 lg:mx-24">
+        <section className="py-12 overflow-x-hidden  lg:py-16 lg:mx-24 mx-0 px-0">
             <Banner/>
             {womenProduct.length === 0 && <div className="mx-auto my-24 flex justify-center"><TailSpin color="#3730A3" height={80} width={80} /></div>}
             {/* <div className="bg-orange-300 text-center font-semibold text-lg py-6 lg:py-3 lg:text-2xl">
                 <h1>WomenCart</h1>
             </div> */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 m-5">
             {womenProduct.map((item, index ) => { 
                     return(
                         <WomenItem
