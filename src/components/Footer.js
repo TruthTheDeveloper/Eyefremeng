@@ -44,17 +44,17 @@ const Footer = () => {
                     <ul className=" font-semibold">
                         <li>
                             <NavLink to="/faceshape"  yle={{ color: 'red' }} exact='true'>
-                                WHAT'S MY FACE SHAPE?
+                                Whats my Face Shape?
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/pd" exact='true'>
-                            HOW TO MEASURE YOUR PUPILLARY DISTANCE(PD)
+                            How to measure your pupilary distance(Pd)
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/framesize" exact='true'>
-                                HOW TO FIND YOUR EYEGLASEES FRAMES SIZE
+                                How to find your eyeglasses frame size
                             </NavLink>
                         </li>
                     </ul>
@@ -98,7 +98,7 @@ const Footer = () => {
             </div>
             <div className="text-center font-semibold">
                 <hr className="w-full " style={{border:"0.5px solid #002365"}}/>
-                <p className=" pt-6" style={{color:"#002365"}}>Copyright @2022| Eyefremeng</p>
+                <p className=" pt-6" style={{color:"#002365"}}>2019-2020 (c) Eyeframeng</p>
                             <NavLink to="/privacypolicy" exact='true'>
                                 Privacy Policy
                             </NavLink><br/>

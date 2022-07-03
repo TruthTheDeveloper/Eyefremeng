@@ -47,82 +47,29 @@ const PaymentForm = () => {
 
       useEffect(() => {
 
-        console.log(initialState)
+        console.log(initialState, 'initial')
         
 
       },[initialState])
 
 
       const sendOrderEmail = () => {
-        axios.post('local')
+        axios.post('http://localhost:5000/sendMessage',{
+            name:'Eyefremeng',
+            title:`Order for the purchase of ${initialState.items[0].productName}`,
+            content:'Thank you for shopping with us',
+            emails:'henrysempire111@gmail.com',
+            html: `<div>
+                <h1 style={{'color':'black', 'fontSize':'2rem'}}> Congratulation You Succesfully place An Order for ${initialState.items[0].productName}</h1>
+                <img style={{'height':'10rem', 'width':'15rem'}} src=${initialState.items[0].productImage}/>
+            </div>`
+
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
       }
       
 
-        const payOnDeliveryHandler = async () => {
-            // setDisabledSecondInput(false)
-            console.log('papa')
-                
-                try{
-                    await orderServices.addOrder(initialState)
-                    console.log('tototot')
-                    toast.success('🦄 Congratulations you succesfully place an order!', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        });
-
-                    navigate('/checkoutForm/orders')
-
-                    sendOrderEmail()
-
-                    setInitialState({...initialState,
-                        items:[],
-                        address:'',
-                        subTotal:15000,
-                        grandTotal:1500,
-                        firstName:'',
-                        lastName:'',
-                        Address:'',
-                        city:'',
-                        state:'',
-                        postalCode:'',
-                        telephone:'',
-                        withinLagos:null,
-                        paymentMethod:''
-                    })
-                }catch(err){
-                    toast.error('🦄 unable to place order, please contact support or try again', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        });
-
-                        setInitialState({...initialState, 
-                            items:[],
-                            address:'',
-                            subTotal:15000,
-                            grandTotal:1500,
-                            firstName:'',
-                            lastName:'',
-                            Address:'',
-                            city:'',
-                            state:'',
-                            postalCode:'',
-                            telephone:'',
-                            withinLagos:null,
-                            paymentMethod:''
-                        })
-                }
-            
-        }
 
 
     
@@ -147,21 +94,23 @@ const PaymentForm = () => {
                     draggable: true,
                     progress: undefined,
                     });
-                    setInitialState({...initialState, 
-                        items:[],
-                        address:'',
-                        subTotal:15000,
-                        grandTotal:1500,
-                        firstName:'',
-                        lastName:'',
-                        Address:'',
-                        city:'',
-                        state:'',
-                        postalCode:'',
-                        telephone:'',
-                        withinLagos:null,
-                        paymentMethod:''
-                    })
+
+                    sendOrderEmail()
+                    // setInitialState({...initialState, 
+                    //     items:[],
+                    //     address:'',
+                    //     subTotal:15000,
+                    //     grandTotal:1500,
+                    //     firstName:'',
+                    //     lastName:'',
+                    //     Address:'',
+                    //     city:'',
+                    //     state:'',
+                    //     postalCode:'',
+                    //     telephone:'',
+                    //     withinLagos:null,
+                    //     paymentMethod:''
+                    // })
             }catch(err){
                 toast.error('🦄 unable to place order please contact support or try again', {
                     position: "top-right",
@@ -173,21 +122,21 @@ const PaymentForm = () => {
                     progress: undefined,
                     });
 
-                    setInitialState({...initialState, 
-                        items:[],
-                        address:'',
-                        subTotal:15000,
-                        grandTotal:1500,
-                        firstName:'',
-                        lastName:'',
-                        Address:'',
-                        city:'',
-                        state:'',
-                        postalCode:'',
-                        telephone:'',
-                        withinLagos:null,
-                        paymentMethod:''
-                    })
+                    // setInitialState({...initialState, 
+                    //     items:[],
+                    //     address:'',
+                    //     subTotal:15000,
+                    //     grandTotal:1500,
+                    //     firstName:'',
+                    //     lastName:'',
+                    //     Address:'',
+                    //     city:'',
+                    //     state:'',
+                    //     postalCode:'',
+                    //     telephone:'',
+                    //     withinLagos:null,
+                    //     paymentMethod:''
+                    // })
                 console.log(err)
             }
             
@@ -231,18 +180,7 @@ const PaymentForm = () => {
             </div>
             <div>
                 
-            <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={() => {
-                        handleFlutterPayment({
-                            callback: (response) => {
-                            console.log(response);
-                                paymentSuccesful()
-                                closePaymentModal() // this will close the modal programmatically
-                            },
-                            onClose: () => {},
-                        });
-
-                        
-                        }}
+            <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={paymentSuccesful}
                 >
                     Continue
                     <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
@@ -257,3 +195,4 @@ const PaymentForm = () => {
 }
 
 export default PaymentForm;
+
