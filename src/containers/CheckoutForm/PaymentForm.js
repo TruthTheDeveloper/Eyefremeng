@@ -9,14 +9,13 @@ import orderServices from '../../firebase/services/order.services';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const PaymentForm = () => {
     let navigate = useNavigate()
 
 
 
-    const [paymentMethod, setPaymentMethod] = useState('')
-    const [paymentValidationError, setPaymentValidationError] = useState('')
     const {initialState, setInitialState} = useContext(AuthContext)
 
     const config = {
@@ -28,7 +27,7 @@ const PaymentForm = () => {
         customer: {
           email: 'user@gmail.com',
           phonenumber: '07064586146',
-          name: 'joel ugwumadu',
+          name: `${initialState.firstName} ${initialState.lastName}`,
         },
         customizations: {
           title: 'my Payment Title',
@@ -52,16 +51,16 @@ const PaymentForm = () => {
         
 
       },[initialState])
+
+
+      const sendOrderEmail = () => {
+        axios.post('local')
+      }
       
 
         const payOnDeliveryHandler = async () => {
             // setDisabledSecondInput(false)
             console.log('papa')
-            if(paymentMethod === ''){
-                console.log('payon delivery')
-                setPaymentValidationError('Please select a payment method')
-
-            }else{
                 
                 try{
                     await orderServices.addOrder(initialState)
@@ -77,6 +76,8 @@ const PaymentForm = () => {
                         });
 
                     navigate('/checkoutForm/orders')
+
+                    sendOrderEmail()
 
                     setInitialState({...initialState,
                         items:[],
@@ -120,16 +121,11 @@ const PaymentForm = () => {
                             paymentMethod:''
                         })
                 }
-            }
+            
         }
 
 
-        const payOnlineSelector = () => {
-            setPaymentMethod("pay Online")
-            setInitialState({...initialState, paymentMethod, date:today})
-            
-            
-        }
+    
 
 
         // const paymentOnDeliverySelector = () => {
@@ -228,18 +224,14 @@ const PaymentForm = () => {
                 </div>
             </div> */}
             <div className="flex mt-12 mb-6  border border-slate-300 p-5">
-                <div>
-                    <input type="radio" name="lense" onChange={payOnlineSelector}/>
-                </div>
                 <div className="mx-3">
                     <h1>Pay Online <span className="text-indigo-800">$30.00</span></h1>
                     <p>Express : Delivery date 3-10 days approximately, excluding the custom clearance</p>
                 </div>
             </div>
-                {paymentMethod === "" ? <p className="text-red-500 text-sm">{paymentValidationError}</p> : null}
             <div>
                 
-                {paymentMethod === "pay Online" ? <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={() => {
+            <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={() => {
                         handleFlutterPayment({
                             callback: (response) => {
                             console.log(response);
@@ -254,10 +246,7 @@ const PaymentForm = () => {
                 >
                     Continue
                     <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
-                </button>:<button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={payOnDeliveryHandler}>
-                    Continue
-                    <FontAwesomeIcon icon={faArrowRight} className="px-2"/>
-                </button>}
+                </button>
                 <button className="py-2 my-3 border-2 border-slate-300 px-6 rounded-md mx-3" onClick={() => navigate(-1)}>
                     back
                     <FontAwesomeIcon icon={faArrowLeft} className="px-2" />
