@@ -79,7 +79,7 @@ const PrescriptionForm = () => {
     return(
         // <img src={view} className=" h-72" alt="glass"/>
        
-        <section className=" pt-16">
+        <section className=" pt-16 overflow-x-hidden">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
                     <div className="flex justify-center bg-opacity-100 ">{productDetail.frontView ? 
@@ -114,7 +114,7 @@ const PrescriptionForm = () => {
               />: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
                     <div className="flex justify-center">
-                    <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
+                        <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
                         
                             <img className="w-full" src={productDetail.leftView
                                 } />

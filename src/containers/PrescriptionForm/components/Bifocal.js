@@ -598,7 +598,7 @@ const Bifocal = ({productImage, productName, productDescription, productPrice,da
                 console.log('got')
                 prescriptionFormSummary = <MiniCartDetailAdd
                     pdType={'double'} 
-                    leftSphere={selectedDataLeftAxisOption.value}
+                    leftSphere={selectedDataLeftOdOption.value}
                     leftAxis={selectedDataLeftAxisOption.value}
                     leftCylinder={selectedDataLeftCylinderOption.value}
                     leftAdd={selectedDataLeftADD.value}
@@ -635,7 +635,7 @@ const Bifocal = ({productImage, productName, productDescription, productPrice,da
         if(twoSinglePD === true){
             prescriptionFormSummary = <MiniCartDetailAdd
                     pdType={'double'} 
-                    leftSphere={selectedLeftAxisOption.value}
+                    leftSphere={selectedLeftOdOption.value}
                     leftAxis={selectedLeftAxisOption.value}
                     leftCylinder={selectedLeftCylinderOption.value}
                     leftAdd={selectedLeftADD.value}
@@ -652,7 +652,7 @@ const Bifocal = ({productImage, productName, productDescription, productPrice,da
         }else{
             prescriptionFormSummary = <MiniCartDetailAdd
                 pdType={'single'} 
-                leftSphere={selectedLeftAxisOption.value}
+                leftSphere={selectedLeftOdOption.value}
                 leftAxis={selectedLeftAxisOption.value}
                 leftCylinder={selectedLeftCylinderOption.value}
                 leftAdd={selectedLeftADD.value}

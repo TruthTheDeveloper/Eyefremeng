@@ -18,7 +18,7 @@ const MiniCartDetailAdd = ({
     remark,
 }) => {
 
-    console.log(leftAdd, 'ple')
+    console.log(leftSphere, 'ple')
 
     return(
         <>{ pdType === 'double' ? <><div className=" border border-2 my-4">

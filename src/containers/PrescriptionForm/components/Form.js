@@ -90,7 +90,7 @@ const Form = ({productName, productDescription, productPrice, productImage}) => 
     
     
     return(
-        <div className="mx-3 md:mx-16">
+        <div className="mx-3 md:mx-16 overflow-x-hidden">
             <div className="flex text-xl my-3 font-semibold bg-indigo-900 py-3 px-3">
                 <FontAwesomeIcon icon={faEdit} className="text-orange-400 mr-2 text-2xl"/>
                 <h1 className="text-white">Add a Prescription</h1>
