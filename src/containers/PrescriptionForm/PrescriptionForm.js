@@ -82,7 +82,7 @@ const PrescriptionForm = () => {
         <section className=" pt-16 overflow-x-hidden">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
-                    <div className="flex justify-center bg-opacity-100 ">{productDetail.frontView ? 
+                    <div className="flex justify-center ">{productDetail.frontView ? 
                         <ReactImageMagnify
                 imageProps={{
                   alt: 'image',
@@ -109,7 +109,7 @@ const PrescriptionForm = () => {
                 onPositionChanged={function noRefCheck() {}}
                 portalProps={{
                   horizontalOffset: 10,
-                //   id: "portal-test-id",
+                  id: "portal-test-id",
                 }}
               />: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
