@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext} from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
-import { category } from '../options/options'; 
+// import { category } from '../options/options'; 
 import DoublePdForm from './DoublePdForm';
 import SinglePdForm from './SinglePdForm';
 // import RightOd from './singleVision/RightOd';
@@ -21,7 +21,13 @@ import { useParams  } from "react-router-dom";
 import AuthContext from '../../../context/auth-context';
 
 
-
+const category = [
+    { value: 'Single Vision', label: 'Single Vision' },
+    { value: 'Bifocal(with line)', label: 'Bifocal(with line)' },
+    { value: 'Progressive', label: 'Progressive' },
+    { value: 'Non Prescription', label: 'Non Prescription' },
+    { value: 'Frames Only', label: 'Frames Only' },
+];
 
 const Form = ({productName, productDescription, productPrice, productImage}) => {
 

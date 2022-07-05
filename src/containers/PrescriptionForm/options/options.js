@@ -116,7 +116,7 @@ export const category = [
     { value: 'Progressive', label: 'Progressive' },
     { value: 'Non Prescription', label: 'Non Prescription' },
     { value: 'Frames Only', label: 'Frames Only' },
-  ];
+];
 
 
 export const usage = [

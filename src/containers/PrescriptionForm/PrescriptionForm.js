@@ -82,36 +82,32 @@ const PrescriptionForm = () => {
         <section className=" pt-16 overflow-x-hidden">
             <div className=" lg:grid grid-cols-2">
                 <div className="">
-                    <div className="flex justify-center ">{productDetail.frontView ? 
+                    <div className="flex justify-center">{productDetail.frontView ? 
                         <ReactImageMagnify
-                imageProps={{
-                  alt: 'image',
-                  src: view,
-                //   width:'150%',
-                
-                  
-                }}
-                magnifiedImageProps={{
-                  height: 500,
-                  src: view,
-                  width: 1500,
-                }}
-                magnifyContainerProps={{
-                    height: "100%",
-                    width: "110%",
-                  }}
-                // magnifyContainerProps={{
-                //   height: "100%",
-                //   width: "100%",
-                // }}
-                onActivationChanged={function noRefCheck() {}}
-                onDetectedEnvironmentChanged={function noRefCheck() {}}
-                onPositionChanged={function noRefCheck() {}}
-                portalProps={{
-                  horizontalOffset: 10,
-                  id: "portal-test-id",
-                }}
-              />: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
+                        imageProps={{
+                          alt: 'image',
+                          src: view,
+                        //   height: "36vw",
+                        //   width: "36vw",
+                        }}
+                        magnifiedImageProps={{
+                          height: 500,
+                          src: view,
+                          width: 1000,
+
+                        }}
+                        magnifyContainerProps={{
+                          height: "100%",
+                          width: "120%",
+                        }}
+                        onActivationChanged={function noRefCheck() {}}
+                        onDetectedEnvironmentChanged={function noRefCheck() {}}
+                        onPositionChanged={function noRefCheck() {}}
+                        portalProps={{
+                          horizontalOffset: 10,
+                          id: "portal-test-id",
+                        }}
+                      />: <div className="py-12"><TailSpin color="#3730A3" height={80} width={80} /></div>}  
                     </div>
                     <div className="flex justify-center">
                         <div className="h-12 w-16  rounded-full m-2 cursor-pointer" onClick={() => setLeftView()}>
