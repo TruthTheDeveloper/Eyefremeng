@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext} from 'react';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';// <-- import styles to be used
-// import { category } from '../options/options'; 
+import { category } from '../options/options'; 
 import DoublePdForm from './DoublePdForm';
 import SinglePdForm from './SinglePdForm';
 // import RightOd from './singleVision/RightOd';
@@ -21,13 +21,7 @@ import { useParams  } from "react-router-dom";
 import AuthContext from '../../../context/auth-context';
 
 
-const category = [
-    { value: 'Single Vision', label: 'Single Vision' },
-    { value: 'Bifocal(with line)', label: 'Bifocal(with line)' },
-    { value: 'Progressive', label: 'Progressive' },
-    { value: 'Non Prescription', label: 'Non Prescription' },
-    { value: 'Frames Only', label: 'Frames Only' },
-];
+
 
 const Form = ({productName, productDescription, productPrice, productImage}) => {
 
@@ -58,6 +52,7 @@ const Form = ({productName, productDescription, productPrice, productImage}) => 
 
 
     console.log(formEditDetail[0]?.prescriptionType, 'edit')
+    console.log(selectedPrescriptionOption, 'edite')
     
 
 
@@ -96,12 +91,12 @@ const Form = ({productName, productDescription, productPrice, productImage}) => 
     
     
     return(
-        <div className="mx-3 md:mx-16 overflow-x-hidden">
+        <div className="mx-3 md:mx-16 ">
             <div className="flex text-xl my-3 font-semibold bg-indigo-900 py-3 px-3">
                 <FontAwesomeIcon icon={faEdit} className="text-orange-400 mr-2 text-2xl"/>
                 <h1 className="text-white">Add a Prescription</h1>
             </div>
-            {formEditDetail ? <div className="px-3 border-2 py-3">
+            {formEditDetail  ? <div className="px-3 border-2 py-3">
                 <Select
                     placeholder={formEditDetail[0]?.prescriptionType}
                     defaultValue={formEditDetail[0]?.prescriptionType}
