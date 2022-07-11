@@ -32,8 +32,10 @@ const ShipmentMethodForm = () => {
           if(shipmentLocation === ""){
             console.log('navigationHandler')
               setShipmentValidationError('Please select a shipment location')
+              setInitialState({...initialState, grandTotal:initialState.grandTotal + 2500, subTotal:initialState.subTotal + 2500})
           }else{
             setShipmentValidationError('')
+            setInitialState({...initialState, grandTotal:initialState.grandTotal + 4000, subTotal:initialState.subTotal + 4000})
             navigate('/checkoutForm/review')
           }
           
@@ -56,8 +58,7 @@ const ShipmentMethodForm = () => {
                     <input type="radio" name="lense" onChange={shipmentLocationHandler}/>
                 </div>
                 <div className="mx-3 ">
-                    <h1>Shipmment within lagos <span className="text-indigo-800">$0.00</span></h1>
-                    <p>Post Parcel : Delivery date 10-45 days approximately, 2-4 weeks in average, estimated under normal circumstances, probably delayed during holidays or by some events e.g. COVID-19.</p>
+                    <h1>Shipmment within lagos <span className="text-indigo-800">₦2,500</span> Estimated date within 1-2 days exclude Sundays.</h1>
                 </div>
             </div>
             <div className="flex mt-12 mb-6 border border-slate-300 p-5">
@@ -65,8 +66,16 @@ const ShipmentMethodForm = () => {
                     <input type="radio" name="lense" onChange={shipmentLocationHandlerTwo}/>
                 </div>
                 <div className="mx-3">
-                    <h1>Shipment Outside lagos <span className="text-indigo-800">$30.00</span></h1>
-                    <p>Express : Delivery date 3-10 days approximately, excluding the custom clearance</p>
+                    <p>Shipment outside Lagos/others states in Nigeria: <span className="text-indigo-800">₦4,000</span> . Estimated date within 2- 4 day, exclude Sundays. </p>
+                </div>
+            </div>
+            <div className="flex mt-12 mb-6 border border-slate-300 p-5">
+                <div className="mx-3">
+                    <p className="text-indigo-800 my-2">Please read our shipping policy below</p>
+                    <p className="my-2">Shipping Policy : <br/>
+                    Orders placed on the eyeframeng.com site can be shipped to the nationwide Nigeria and most international countries.</p>
+                    <p className="my-2">Please allow 1-10 days to receive your order.</p>
+                    <p className="my-2">Orders placed before 1pm WAT Monday-Saturday will be shipped same day. Orders placed after 1pm WAT will be shipped the following day, excluding Sundays.</p>
                 </div>
             </div>
             {shipmentLocation === "" ? <p className="text-red-500 text-sm">{shipmentValidationError}</p> : null}

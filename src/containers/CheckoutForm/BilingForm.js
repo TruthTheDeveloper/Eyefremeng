@@ -10,26 +10,29 @@ const BilingForm = () => {
 
     const {initialState, setInitialState} = useContext(AuthContext)
 
-    const [firstName, setFirstName] = useState('')
+    const [firstName, setFirstName] = useState(initialState.firstName)
     const [firstNameValidationError, setFirstNameValidationError] = useState('')
 
-    const [lastName, setLastName] = useState('')
+    const [lastName, setLastName] = useState(initialState.lastName)
     const [lastNameValidationError, setLastNameValidationError] = useState('')
 
-    const [address, setAddress] = useState('')
+    const [address, setAddress] = useState(initialState.address)
     const [addressValidationError, setAddressValidationError] = useState('')
 
-    const [city, setCity] = useState('')
+    const [city, setCity] = useState(initialState.city)
     const [cityValidationError, setCityValidationError] = useState('')
 
-    const [state, setState] = useState('')
+    const [state, setState] = useState(initialState.state)
     const [stateValidationError, setStateValidationError] = useState('')
 
-    const [postalCode, setpostalCode] = useState('')
+    const [postalCode, setpostalCode] = useState(initialState.postalCode)
     const [postalCodeValidationError, setPostalCodeValidationError] = useState('')
 
-    const [telephone, setTelephone] = useState(null)
+    const [telephone, setTelephone] = useState(initialState.telephone)
     const [telephoneValidationError, setTelephoneValiadtionError] = useState('')
+
+    const [email, setEmail] = useState(initialState.email)
+    const [emailValidationError, setEmailValidationError] = useState('')
 
 
     const shipment = (e) => {
@@ -42,6 +45,7 @@ const BilingForm = () => {
         state === "" ? setStateValidationError('Please input state/province') : setStateValidationError('')
         postalCode === "" ? setPostalCodeValidationError('Please input postal Code') : setPostalCodeValidationError('')
         telephone === null ? setTelephoneValiadtionError('Please input teelphone address') : setTelephoneValiadtionError('')
+        email === null ? setEmailValidationError('Please input Email') : setEmailValidationError('')
 
 
         firstName !== "" &&
@@ -57,7 +61,7 @@ const BilingForm = () => {
 
 
     const addDetailsToState = () => {
-        setInitialState({...initialState, address, firstName, lastName, telephone, city, state, postalCode})
+        setInitialState({...initialState, address, firstName, lastName, telephone, city, state, postalCode, email})
         console.log('navigate')
         navigate("/checkoutForm/shipmentMethod")
     }
@@ -74,49 +78,49 @@ const BilingForm = () => {
                     <div className="md:flex md:my-4">
                         <div className="px-4 my-4 md:my-0 md:w-full">
                             <label>First Name</label><br/>
-                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setFirstName(e.target.value)}/>
+                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                             {firstNameValidationError && <p className="text-red-500 text-sm">{firstNameValidationError}</p>}
                         </div>
                         <div className="md:w-full px-4">
                             <label>Last Name</label><br/>
-                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setLastName(e.target.value)}/>
+                            <input value={lastName} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setLastName(e.target.value)}/>
                             {lastNameValidationError && <p className="text-red-500 text-sm">{lastNameValidationError}</p>}
                         </div>
                     </div>
                     <div className="px-4 ">
                         <label>Address</label><br/>
-                        <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setAddress(e.target.value)}/>
+                        <input value={address} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setAddress(e.target.value)}/>
                         {addressValidationError && <p className="text-red-500 text-sm">{addressValidationError}</p>}
-                        <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm"/>
+                    </div>
+                    <div className="px-4 ">
+                        <label>Email</label><br/>
+                        <input value={email} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setEmail(e.target.value)}/>
+                        {emailValidationError && <p className="text-red-500 text-sm">{emailValidationError}</p>}
                     </div>
                     <div className="md:flex">
                         <div className="px-4 w-full">
                             <label>City</label><br/>
-                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setCity(e.target.value)}/>
+                            <input value={city} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setCity(e.target.value)}/>
                             {cityValidationError && <p className="text-red-500 text-sm">{cityValidationError}</p>}
                         </div>
                         <div className="px-4 w-full">
                             <label>State/Province</label><br/>
-                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setState(e.target.value)}/>
+                            <input value={state} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setState(e.target.value)}/>
                             {stateValidationError && <p className="text-red-500 text-sm">{stateValidationError}</p>}
                         </div>
                         <div className="px-4 w-full">
                             <label>Zip/Postal code</label><br/>
-                            <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setpostalCode(e.target.value)}/>
+                            <input value={postalCode} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" onChange={(e) => setpostalCode(e.target.value)}/>
                             {postalCodeValidationError && <p className="text-red-500 text-sm">{postalCodeValidationError}</p>}
                         </div>
                     </div>
                     <div className="px-4 py-8">
                         <label>Telephone</label><br/>
-                        <input className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" type="number" onChange={(e) => setTelephone(e.target.value)}/>
+                        <input value={telephone} className="w-full my-2 h-10 p-2 outline-none border-2 border-slate-300 rounded-sm" type="number" onChange={(e) => setTelephone(e.target.value)}/>
                         {telephoneValidationError && <p className="text-red-500 text-sm">{telephoneValidationError}</p>}
                     </div>
                 </div>
                 <div>
-                    <div className="flex">
-                        <div><input  type="radio"/></div>
-                        <p className="mx-2">Same Shipping Address</p>
-                    </div>
                     <div className="flex flex-col w-44">
                     <button className="py-2 my-3 bg-indigo-800 text-white px-6 rounded-md" onClick={shipment}>
                         Continue

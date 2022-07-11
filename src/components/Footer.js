@@ -34,7 +34,7 @@ const Footer = () => {
                         </li>
                         <li>
                             <NavLink to="/" exact='true'>
-                                Sun Glasses
+                                SunGlasses
                             </NavLink>
                         </li>
                     </ul>
@@ -72,6 +72,11 @@ const Footer = () => {
                                 Return and Exchange
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/shippingpolicy" exact='true'>
+                                Shipping Policy
+                            </NavLink>
+                        </li>
                         {/* <li>
                             <NavLink to="/privacypolicy" exact='true'>
                                 Privacy Policy
@@ -84,15 +89,18 @@ const Footer = () => {
                         </li> */}
                     </ul>
                 </div>
-                <div className="flex lg:justify-center justify-start mx-4 basis-1/4" style={{color:"white"}}>
-                    <div  className="mx-2">
-                        <a href=""><FontAwesomeIcon icon={faTwitter} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
-                    </div>
-                    <div  className="mx-2">
-                       <a href="https://www.instagram.com/eyeframeng/"> <FontAwesomeIcon icon={faInstagram} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
-                    </div>
-                    <div  className="mx-2">
-                        <a href="https://web.facebook.com/eyeframeng"><FontAwesomeIcon icon={faFacebook} className=" text-4xl mt-16 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
+                <div >
+                    <h1 className="text-2xl font-semibold"> Connect with us </h1>
+                    <div className="flex lg:justify-center justify-start  basis-1/4" style={{color:"white"}}>
+                        <div  className="mx-2">
+                            <a href=""><FontAwesomeIcon icon={faTwitter} className=" text-4xl mt-8 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
+                        </div>
+                        <div  className="mx-2">
+                        <a href="https://www.instagram.com/eyeframeng/"> <FontAwesomeIcon icon={faInstagram} className=" text-4xl mt-8 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
+                        </div>
+                        <div  className="mx-2">
+                            <a href="https://web.facebook.com/eyeframeng"><FontAwesomeIcon icon={faFacebook} className=" text-4xl mt-8 px-4 py-2 rounded-lg" style={{backgroundColor:"#002365"}}/></a>
+                        </div>
                     </div>
                 </div>
             </div>

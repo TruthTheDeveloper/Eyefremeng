@@ -9,6 +9,7 @@ import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 import { useNavigate  } from "react-router-dom";
 import ProgressiveVisionLensForm from './otherVision/ProgressiveVisionLensForm';
+import { formatToCurrency,  formatPriceToNumber  } from '../../../utilities/priceFormatter';
 
 const Progressive = ({productImage, productName, productDescription, productPrice, data}) => {
 
@@ -106,7 +107,12 @@ const Progressive = ({productImage, productName, productDescription, productPric
 
     const [selectedDataLeftADD, setSelectedDataLeftADD] = useState({value:data?.leftOD.add})
 
-        
+    useEffect(() => {
+        setTotalPrice(formatPriceToNumber(productPrice))
+    },[])
+
+
+
 
         useEffect(() => {
             // console.log(data, 'data', data?.twoSinglePd, 'pd-pd' )
@@ -140,6 +146,7 @@ const Progressive = ({productImage, productName, productDescription, productPric
 
 
     const addToCartTwoPD = async () => {
+        totalPrice.replace(/\s+$/, '').replace(/[^A-Z0-9/.']+/ig, "-").replace(/[^A-Z0-9-.']+/ig, '\'')
 
         const file = image ? await uploadAFile(image) : null 
         
@@ -194,6 +201,7 @@ const Progressive = ({productImage, productName, productDescription, productPric
 
 
     const addToCartOnePD = async () => {
+        totalPrice.replace(/\s+$/, '').replace(/[^A-Z0-9/.']+/ig, "-").replace(/[^A-Z0-9-.']+/ig, '\'')
 
         const file = image ? await uploadAFile(image) : null 
 
@@ -287,6 +295,7 @@ const Progressive = ({productImage, productName, productDescription, productPric
 
 
     const updateToCartTwoPD = async () => {
+        totalPrice.replace(/\s+$/, '').replace(/[^A-Z0-9/.']+/ig, "-").replace(/[^A-Z0-9-.']+/ig, '\'')
 
         const file = image ? await uploadAFile(image) : null 
 
@@ -340,6 +349,7 @@ const Progressive = ({productImage, productName, productDescription, productPric
     }
 
     const updateToCartOnePD = async () => {
+        totalPrice.replace(/\s+$/, '').replace(/[^A-Z0-9/.']+/ig, "-").replace(/[^A-Z0-9-.']+/ig, '\'')
 
         const file = image ? await uploadAFile(image) : null 
 
@@ -457,7 +467,8 @@ const Progressive = ({productImage, productName, productDescription, productPric
     const lenseTypeHandler = (select, price) => {
         setlensType(select)
         setLensePrice(price)
-        setTotalPrice(productPrice + price)
+        const amount = formatPriceToNumber(productPrice)
+        setTotalPrice(amount + price)
     }
 
     const confirmedHandler = () => {

@@ -9,6 +9,7 @@ import PrescriptionDetailForm from './singleVision/PrescriptionDetailForm';
 import {v4} from 'uuid';
 
 import { useNavigate  } from "react-router-dom";
+import { formatToCurrency,  formatPriceToNumber  } from '../../../utilities/priceFormatter';
 
 
 
@@ -77,7 +78,12 @@ const SingleVision = ({productImage, productName, productDescription, productPri
     const [lensePrice, setLensePrice] = useState(null)
     const [unitPrice, setUnitPrice] = useState(totalPrice)
 
-    // const [price, setPrice] = useState(null)
+
+    useEffect(() => {
+        setTotalPrice(formatPriceToNumber(productPrice))
+    },[])
+
+
 
     //////////////UPDATE////////////////////////
 
@@ -108,6 +114,8 @@ const SingleVision = ({productImage, productName, productDescription, productPri
     const [dataQty, setDataQty] = useState(data?.qty)
 
     const [inputValidData, setInputValidData] = useState(false)
+
+
 
 
     useEffect(() => {
@@ -357,7 +365,6 @@ const SingleVision = ({productImage, productName, productDescription, productPri
 
     const updateToCartOnePD = async () => {
         console.log('update one single pd')
-
         const file = image ? await uploadAFile(image) : null 
          
         const prescription = {
@@ -478,8 +485,9 @@ const SingleVision = ({productImage, productName, productDescription, productPri
 
 
     const lenseTypeHandler = ( select, price) => {
+        const amount = formatPriceToNumber(productPrice)
         // console.log(e.target.value, 'value')
-        setTotalPrice(parseFloat(productPrice) + price)
+        setTotalPrice(amount + price)
         setlensType(select)
         setLensePrice(price)
        

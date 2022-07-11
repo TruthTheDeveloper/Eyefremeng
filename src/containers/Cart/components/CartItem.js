@@ -1,7 +1,9 @@
 import {useContext} from 'react';
 import CartDetail from './CartDetail';
 import AuthContext from './../../../context/auth-context';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import { formatToCurrency
+} from '../../../utilities/priceFormatter';
 const CartItem = () => {
     const {initialState, } = useContext(AuthContext)
 
@@ -64,11 +66,11 @@ const CartItem = () => {
                 <p className="border py-3 text-right font-semibold text-lg pr-2">Total</p>
                 <div className="flex justify-between border py-4 px-2">
                     <p>Subtotal</p>
-                    <p>₦{initialState.subTotal}</p>
+                    <p>₦{formatToCurrency(initialState.subTotal)}</p>
                 </div>
                 <div className="flex justify-between border py-4 px-2">
                     <p>GrandTotal</p>
-                    <p>₦{initialState.grandTotal}</p>
+                    <p>₦{formatToCurrency(initialState.grandTotal)}</p>
                 </div>
                 <button className="border py-3 bg-slate-800 w-full text-orange-500" onClick={navigateToCheckout}>
                     <p>Proceed to Checkout</p>

@@ -27,6 +27,7 @@ const Form = ({productName, productDescription, productPrice, productImage}) => 
 
     const {initialState, setInitialState} = useContext(AuthContext)
 
+
     let {formId} = useParams()
 
     let formEditDetail = null
@@ -34,7 +35,6 @@ const Form = ({productName, productDescription, productPrice, productImage}) => 
     const remove =   initialState.items.filter(el => el.id === formId)
     formEditDetail = remove
 
-    
 
 
         console.log(productName, productDescription, productPrice, '---------')

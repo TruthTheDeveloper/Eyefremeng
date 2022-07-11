@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import MiniCartDetailPd from './MiniCartDetailPd';
 import MiniCartDetailAdd from './MiniCartDetailAdd';
 import AuthContext from "../../../context/auth-context";
+import { formatToCurrency
+  } from '../../../utilities/priceFormatter';
 
 
 
@@ -43,6 +45,10 @@ const CartDetail = ({
     const {cartId} = useParams()
 
     const {initialState,setInitialState} = useContext(AuthContext)
+
+
+
+    
 
 
     console.log(Add, 'add')
@@ -151,10 +157,10 @@ const CartDetail = ({
                             <p className="border-2 p-2 mx-4 text-center ">{qty}</p>
                         </div>
                         <div>
-                        <p className="text-indigo-800 font-semibold text-center my-2">₦{unitPrice}</p>
+                        <p className="text-indigo-800 font-semibold text-center my-2">₦{formatToCurrency(unitPrice)}</p>
                         </div>
                         <div>
-                        <p className="text-orange-500 font-semibold text-center my-2">₦{productPrice}</p>
+                        <p className="text-orange-500 font-semibold text-center my-2">₦{formatToCurrency(productPrice)}</p>
                         </div>
                     </div>
                 </div>

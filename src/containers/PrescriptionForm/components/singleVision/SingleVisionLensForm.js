@@ -5,6 +5,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';//
 import { useNavigate  } from "react-router-dom";
 
 import Collapse from "react-collapsible-wrapper";
+import { formatToCurrency } from "../../../../utilities/priceFormatter";
 
 const SingleVisionLensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler, data, validateUpdate, decrementDataQty, incrementDataQty, inputValidData, dataQty, productPrice}) => {
     const [isOpenClear, setIsOpenClear] = useState(false);
@@ -109,49 +110,49 @@ const SingleVisionLensForm = ({validateInput, inputValid, incrementQty, decremen
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lenses', 5000 )}/>
                     <label>
-                        (1.56 index form lenses) <span className="text-indigo-800 font-semibold">₦5000</span>
+                        (1.56 index form lenses) <span className="text-indigo-800 font-semibold mx-4">₦5,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lenses with Blue Light Blocking For computer screen use', 9000)}/>
                     <label>
-                        (1.56 index form lenses with Blue Light Blocking For computer screen use) <span className="text-indigo-800 font-semibold">₦9000</span>
+                        (1.56 index form lenses with Blue Light Blocking For computer screen use) <span className="text-indigo-800 font-semibold mx-8">₦9,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form lenses', 6000)}/>
                     <label>
-                        (1.61 index form lenses) <span className="text-indigo-800 font-semibold">₦6000</span>
+                        (1.61 index form lenses) <span className="text-indigo-800 font-semibold mx-8">₦6,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form lenses with Blue Light Blocking for computer screen use', 12000)}/>
                     <label>
-                        (1.61 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold">₦12000</span>
+                        (1.61 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold mx-8">₦12,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form lenses', 7000)}/>
                     <label>
-                        (1.67 index form lenses) <span className="text-indigo-800 font-semibold">₦7000</span>
+                        (1.67 index form lenses) <span className="text-indigo-800 font-semibold mx-8">₦7,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form lenses with Blue Light Blocking for computer screen use', 13000)}/>
                     <label>
-                        (1.67 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold">₦13000</span>
+                        (1.67 index form lenses with Blue Light Blocking for computer screen use) <span className="text-indigo-800 font-semibold mx-8">₦13,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.74 index form lenses',8000)}/>
                     <label>
-                        (1.74 index form lenses) <span className="text-indigo-800 font-semibold">₦8000</span>
+                        (1.74 index form lenses) <span className="text-indigo-800 font-semibold mx-8">₦8,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.74 index form lenses with Blue Light Blocking for computer use', 15000)}/>
                     <label>
-                        (1.74 index form lenses with Blue Light Blocking for computer use)<span className="text-indigo-800 font-semibold"> ₦15000</span>
+                        (1.74 index form lenses with Blue Light Blocking for computer use)<span className="text-indigo-800 font-semibold   mx-8"> ₦15,000</span>
                     </label>
                 </div>
             </Collapse>
@@ -166,50 +167,50 @@ const SingleVisionLensForm = ({validateInput, inputValid, incrementQty, decremen
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lenses Photochromic brown', 8000)}/>
                     <label>
-                        (1.56 index form lenses Photochromic brown) <span className="text-indigo-800 font-semibold">₦8000</span>
+                        (1.56 index form lenses Photochromic brown) <span className="text-indigo-800 font-semibold mx-8">₦8,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form lenses Photochromic gray', 8000)}/>
                     <label>
-                        (1.56 index form lenses Photochromic gray) <span className="text-indigo-800 font-semibold">₦8000</span>
+                        (1.56 index form lenses Photochromic gray) <span className="text-indigo-800 font-semibold mx-8">₦8,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.56 index form Photochromic gray with Blue Light Blocking', 10000)}/>
                     <label>
-                        (1.56 index form Photochromic gray with Blue Light Blocking) <span className="text-indigo-800 font-semibold">₦10000</span>
+                        (1.56 index form Photochromic gray with Blue Light Blocking) <span className="text-indigo-800 font-semibold mx-8">₦10,000</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form Photochromic gray lenses', 10500 )}/>
                     <label>
-                        (1.61 index form Photochromic gray lenses)<span className="text-indigo-800 font-semibold"> ₦10500</span>
+                        (1.61 index form Photochromic gray lenses)<span className="text-indigo-800 font-semibold mx-8"> ₦10,500</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.61 index form Photochromic gray with Blue Light Blocking', 13500)}/>
                     <label>
-                        (1.61 index form Photochromic gray with Blue Light Blocking)<span className="text-indigo-800 font-semibold">  ₦13500</span>
+                        (1.61 index form Photochromic gray with Blue Light Blocking)<span className="text-indigo-800 font-semibold mx-8">  ₦13,500</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index form Photochromic gray lenses', 12500)}/>
                     <label>
-                        (1.67 index form Photochromic gray lenses)<span className="text-indigo-800 font-semibold"> ₦12500</span>
+                        (1.67 index form Photochromic gray lenses)<span className="text-indigo-800 font-semibold mx-8"> ₦12,500</span>
                     </label>
                 </div>
                 <div className="border-2 py-4">
                     <input type="radio" name="lense" className="mx-2" onChange={() => lenseTypeHandler('1.67 index Photochromic gray with Blue Light Blocking', 16500)}/>
                     <label>
-                    (1.67 index Photochromic gray with Blue Light Blocking)<span className="text-indigo-800 font-semibold">₦16500</span> 
+                    (1.67 index Photochromic gray with Blue Light Blocking)<span className="text-indigo-800 font-semibold mx-8">₦16,500</span> 
                     </label>
                 </div>
             </Collapse>
             </article>
             {lenseValidationError && <p className="text-red-500 text-sm font-semibold my-2">Please select one of the above field</p>}
             <div className="my-4">
-                <p className="my-8 text-2xl font-semibold text-indigo-800">#{productPrice}</p>
+                <p className="my-8 text-2xl font-semibold text-indigo-800">₦{formatToCurrency(productPrice)}</p>
                 <div className="flex">
                     {data ?
                             <>

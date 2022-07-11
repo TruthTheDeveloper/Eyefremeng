@@ -7,6 +7,7 @@ import MiniCartDetailAdd from './MiniCartAddDetail';
 import {v4} from 'uuid';
 import PrescriptionDetailForm from './otherVision/PrescriptionDetailForm';
 import BifocalVisionLensForm from './otherVision/BifocalVisionLensForm';
+import { formatToCurrency,  formatPriceToNumber  } from '../../../utilities/priceFormatter';
 import { useNavigate  } from "react-router-dom";
 
 
@@ -71,6 +72,14 @@ const Bifocal = ({productImage, productName, productDescription, productPrice,da
     const [totalPrice, setTotalPrice] = useState(productPrice)
     const [lensePrice, setLensePrice] = useState(null)
     const [unitPrice, setUnitPrice] = useState(totalPrice)
+
+
+    useEffect(() => {
+        setTotalPrice(formatPriceToNumber(productPrice))
+    },[])
+
+
+
 
 
     //////////////UPDATE////////////////////////
@@ -455,7 +464,8 @@ const Bifocal = ({productImage, productName, productDescription, productPrice,da
     const lenseTypeHandler = (select, price) => {
         setlensType(select)
         setLensePrice(price)
-        setTotalPrice(parseFloat(productPrice)  + price)
+        const amount = formatPriceToNumber(productPrice)
+        setTotalPrice(amount + price)
     }
 
     const confirmedHandler = () => {

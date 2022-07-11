@@ -11,6 +11,7 @@ import PaymentForm from './containers/CheckoutForm/PaymentForm';
 import BilingForm from './containers/CheckoutForm/BilingForm';
 import ShipmentMethodForm from './containers/CheckoutForm/ShipmentMethodForm';
 import OrderReviewForm from './containers/CheckoutForm/OrderReviewForm';
+import DeliverySummary from './containers/CheckoutForm/DeliverySummary';
 
 import Register from './containers/Auth/Register';
 import Login from './containers/Auth/Login';
@@ -25,6 +26,7 @@ import ContactUs from './containers/AboutUs/ContactUs';
 import PrivacyPolicy from './containers/AboutUs/PrivacyPolicy';
 import ReturnExchange from './containers/AboutUs/ReturnExchange';
 import TermsUse from './containers/AboutUs/TermsUse';
+import ShippingPolicy from './containers/AboutUs/ShippingPolicy';
 
 
 //Admin
@@ -43,6 +45,7 @@ import { useEffect,useState } from 'react';
 
 import AuthContext from './context/auth-context';
 
+
 import { ToastContainer, toast } from 'react-toastify';
 const App = () => {
 
@@ -54,7 +57,6 @@ const App = () => {
     grandTotal:0,
     firstName:'',
     lastName:'',
-    Address:'',
     productName:'',
     city:'',
     state:'',
@@ -62,7 +64,8 @@ const App = () => {
     telephone:'',
     withinLagos:null,
     paymentMethod:'',
-    date:null
+    date:null,
+    email:''
   })
 
 
@@ -109,6 +112,12 @@ const App = () => {
     <Login/>
   </AuthContext.Provider>
 
+  const deliverySummary = <AuthContext.Provider value={{initialState, setInitialState}}>
+    <DeliverySummary/>
+  </AuthContext.Provider>
+
+
+
 
   return( 
     <>
@@ -143,6 +152,7 @@ const App = () => {
             <Route path="paymentMethod" element={paymentForm} />
             <Route path="bilingForm" element={billingForm}/>
             <Route path="review" element={reviewOrder}/>
+            <Route path="deliverySummary" element={deliverySummary} />
           </Route>
 
           <Route path="shopTrend" element={<ShopTrend/>}/>
@@ -157,6 +167,7 @@ const App = () => {
           <Route path="privacypolicy" element={<PrivacyPolicy/>} />
           <Route path="returnexchange" element={<ReturnExchange/>} />
           <Route path="termsuse" element={<TermsUse/>} />
+          <Route path="shippingpolicy" element={<ShippingPolicy/>} />
 
 
           <Route path="/register" element={register} />

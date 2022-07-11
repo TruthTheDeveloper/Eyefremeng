@@ -33,6 +33,8 @@ const PrescriptionForm = () => {
 
 
 
+    
+
 
     const result = async () => {
         if(JSON.parse(localStorage.getItem('cart')) === 'men'){
@@ -44,6 +46,9 @@ const PrescriptionForm = () => {
         }
         
     }
+
+
+    
 
 
     const getProductDetail = async () => {
@@ -181,7 +186,9 @@ const PrescriptionForm = () => {
                             key={item.id }
                             id={item.id}
                             name={item.productName}
-                            image={item.frontView}
+                            frontView={item.frontView}
+                            leftView={item.leftView}
+                            rightView={item.rightView}
                             price={item.productPrice}
                             relatedProductClickHandler={relatedProductClickHandler}
                         />

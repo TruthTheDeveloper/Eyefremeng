@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';//
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';//
 import { useNavigate  } from "react-router-dom";
+import { formatToCurrency } from "../../../../utilities/priceFormatter";
 
 import Collapse from "react-collapsible-wrapper";
 const BifocalVisionLensForm = ({validateInput, inputValid, incrementQty, decrementQty, qty, lenseType, lenseTypeHandler, data, validateUpdate, decrementDataQty, incrementDataQty, inputValidData, dataQty, productPrice}) => {
@@ -171,7 +172,7 @@ const BifocalVisionLensForm = ({validateInput, inputValid, incrementQty, decreme
             </article>
             {lenseValidationError && <p className="text-red-500 text-sm font-semibold my-2">Please select one of the above field</p>}
             <div className="my-4">
-                <p className="my-8 text-2xl font-semibold text-indigo-800">#{productPrice}</p>
+                <p className="my-8 text-2xl font-semibold text-indigo-800">₦{formatToCurrency(productPrice)}</p>
                 <div className="flex">
                     {data ?
                             <>

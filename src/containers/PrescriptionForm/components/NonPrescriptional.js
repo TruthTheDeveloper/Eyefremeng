@@ -5,6 +5,8 @@ import {v4} from 'uuid';
 
 import { useNavigate  } from "react-router-dom";
 import NonPrescriptionalVisionLensForm from './otherVision/NonPresctiptionalVisionLensForm';
+import { formatToCurrency,  formatPriceToNumber  } from '../../../utilities/priceFormatter';
+
 
 const NonPrescriptional = ({productImage, productName, productDescription, productPrice, data}) => {
 
@@ -21,6 +23,13 @@ const NonPrescriptional = ({productImage, productName, productDescription, produ
     const [clicked, setClicked] = useState(false)
     const [totalPrice, setTotalPrice] = useState(productPrice)
     const [lensePrice, setLensePrice] = useState(null)
+
+
+    useEffect(() => {
+        setTotalPrice(formatPriceToNumber(productPrice))
+    },[])
+
+
 
 
     useEffect(() => {
@@ -67,7 +76,8 @@ const NonPrescriptional = ({productImage, productName, productDescription, produ
     const lenseTypeHandler = (select, price) => {
         setlensType(select)
         setLensePrice(price)
-        setTotalPrice(parseFloat(productPrice) + price)
+        const amount = formatPriceToNumber(productPrice)
+        setTotalPrice(amount + price)
     }
 
 

@@ -17,12 +17,9 @@ const ReviewItem = ({productName,price, qty, productImage}) => {
                     </div>
                 </div>
                 <div className= "basis-1/2 text-center md:m-12  md:text-right py-4 text-indigo-800">
-                    <h1>{productName}</h1>
-                        <p>#{price}</p>
-                        <div>
-                            <p>Qty</p>
-                            <p>{qty}</p>
-                        </div>
+                    <h1>product name: {productName}</h1>
+                        <p>price ₦{price}</p>
+                            <p>qty {qty}</p>
                         <button className="text-white bg-indigo-800 py-2 px-8 my-2 rounded-md" onClick={detailHandler}>detail</button>
                 </div>
             </div>
