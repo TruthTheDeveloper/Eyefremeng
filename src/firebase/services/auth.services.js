@@ -1,42 +1,39 @@
-import {db} from "../firebase-config";
+import { db } from "../firebase-config";
 
 import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    doc,
-    getDoc,
-    deleteDoc
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  getDoc,
+  deleteDoc,
 } from "firebase/firestore";
-
 
 const userCollectionRef = collection(db, "users");
 
-
 class UserDataService {
-    adduser = (newUser) => {
-        return addDoc(userCollectionRef, newUser)
-    };
+  adduser = (newUser) => {
+    return addDoc(userCollectionRef, newUser);
+  };
 
-    updateuser = (id, updatedUser) => {
-        const userDoc = doc(db, "users", id);
-        return updateDoc(userDoc, updatedUser)
-    };
+  updateuser = (id, updatedUser) => {
+    const userDoc = doc(db, "users", id);
+    return updateDoc(userDoc, updatedUser);
+  };
 
-    getAlluser = () => {
-        return getDocs(userCollectionRef)
-    };
+  getAlluser = () => {
+    return getDocs(userCollectionRef);
+  };
 
-    getUser = (id) => {
-        const userDoc = doc(db, "users", id);
-        return getDoc(userDoc)
-        
-    };
+  getUser = (id) => {
+    const userDoc = doc(db, "users", id);
+    return getDoc(userDoc);
+  };
 
-    deleteuser = (id) => {
-        const userDoc = doc(db, "users", id);
-        return deleteDoc(userDoc)
-    };
+  deleteuser = (id) => {
+    const userDoc = doc(db, "users", id);
+    return deleteDoc(userDoc);
+  };
 }
 export default new UserDataService();

@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x:  hidden !important;
+  overflow-x: hidden !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -15,47 +15,48 @@ code {
 @tailwind components;
 @tailwind utilities;
 
-
-.header_background_image{
+.header_background_image {
   background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-PH-1-scaled.jpg);
   background-size: cover;
-  background-position:center;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
 /* media queries */
 @media (min-width: 600px) {
-  .header_background_image{
+  .header_background_image {
     background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-1.jpg);
     background-size: cover;
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
   }
 }
 
-.mission_background_image{
-  background: linear-gradient(to right, #f1b1b1 , #82e6e8),url(https://eyeframeng.com/wp-content/uploads/2021/02/2020-eyewear-eyeglass-color-style-trends-david-kind.jpg);
+.mission_background_image {
+  background: linear-gradient(to right, #f1b1b1, #82e6e8),
+    url(https://eyeframeng.com/wp-content/uploads/2021/02/2020-eyewear-eyeglass-color-style-trends-david-kind.jpg);
   background-size: cover;
-  background-position:center;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
-.cart_banner{
+.cart_banner {
   background: url(https://eyeframeng.com/wp-content/uploads/2021/02/IMG_0241-1-scaled.jpg);
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.cart_banne_man{
+.cart_banne_man {
   background: url(https://eyeframeng.com/wp-content/uploads/2021/02/IMG_0121-1-scaled.jpg);
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-
-[data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+[data-theme="compact"]
+  .site-collapse-custom-collapse
+  .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
   margin-bottom: 24px;
   overflow: hidden;
@@ -64,19 +65,25 @@ code {
   border-radius: 2px;
 }
 
-
-
-.rsd_anime{
+.rsd_anime {
   animation: slide-right 0.5s ease forwards;
 }
 @keyframes slide-right {
-  0%{transform: translateX(-200px);}
-  100%{transform: translateX(0px);}
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
-.lsd_anime{
+.lsd_anime {
   animation: slide-left 0.5s ease forwards;
 }
 @keyframes slide-left {
-  0%{transform: translateX(200px);}
-  100%{transform: translateX(0px);}
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }

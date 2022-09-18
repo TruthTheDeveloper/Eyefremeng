@@ -16,15 +16,13 @@ const firebaseConfig = {
   storageBucket: "eyefremeng.appspot.com",
   messagingSenderId: "135863098826",
   appId: "1:135863098826:web:5b01eca42906d8da5a0333",
-  measurementId: "G-4C5D883W7H"
+  measurementId: "G-4C5D883W7H",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const storage = getStorage(app)
+export const storage = getStorage(app);
 
-export const db = getFirestore(app)
+export const db = getFirestore(app);
 export const auth = getAuth(app);
-
-

@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { formatToCurrency } from "../../../../utilities/priceFormatter";
 
 import Collapse from "react-collapsible-wrapper";
-const BifocalVisionLensForm = ({
+
+const NonPrescriptionalVisionLensForm = ({
   validateInput,
   inputValid,
   incrementQty,
@@ -18,16 +19,22 @@ const BifocalVisionLensForm = ({
   validateUpdate,
   decrementDataQty,
   incrementDataQty,
+  productPrice,
   inputValidData,
   dataQty,
-  productPrice,
 }) => {
+
   const [isOpenClear, setIsOpenClear] = useState(false);
   const [isOpenphotoChromic, setIsOpenphotoChromic] = useState(false);
   const [isOpenphotoPolarized, setIsOpenphotoPolarized] = useState(false);
   const [isOpenAntiReflective, setIsOpenAntiReflective] = useState(false);
 
   const [lenseValidationError, setlenseValidationError] = useState(false);
+
+  
+
+
+  
 
   let navigate = useNavigate();
 
@@ -58,16 +65,11 @@ const BifocalVisionLensForm = ({
     if (lenseType === "") {
       setlenseValidationError(true);
     }
-
-    // if(inputValid && lenseType !== ''){
-    //     navigate("/cart")
-    // }else if(lenseType === ''){
-    //     setlenseValidationError(true)
-    // }
   };
 
   const updateItem = (e) => {
     e.preventDefault();
+
     validateUpdate();
 
     if (lenseType === "") {
@@ -94,9 +96,9 @@ const BifocalVisionLensForm = ({
           onClick={clearButtonHandler}
           className="py-6 mt-2  w-full bg-orange-300 border text-left text-xl pl-3 font-semibold"
         >
-          Clear
+          <a>Clear</a>
           <p className="text-sm">
-            (Traditional, transparent lenses perfect for everyday use){" "}
+            Clear (Traditional, transparent lenses perfect for everyday use)
           </p>
           {/* <a></a> */}
         </button>
@@ -106,16 +108,11 @@ const BifocalVisionLensForm = ({
               type="radio"
               name="lense"
               className="mx-2"
-              onChange={() =>
-                lenseTypeHandler(
-                  "Quality 1.5 index lenses with anti reflective coating (AR)",
-                  7000
-                )
-              }
+              onChange={() => lenseTypeHandler("1.56 index form lense", 5000)}
             />
             <label>
-              Quality 1.5 index lenses with anti reflective coating (AR){" "}
-              <span className="text-indigo-800 font-semibold">₦7000 </span>
+              (1.56 index form lenses){" "}
+              <span className="text-indigo-800 font-semibold">₦5000</span>
             </label>
           </div>
           <div className="border-2 py-4">
@@ -125,69 +122,15 @@ const BifocalVisionLensForm = ({
               className="mx-2"
               onChange={() =>
                 lenseTypeHandler(
-                  "Quality 1.59 index lenses with UV protective, anti reflective coating",
-                  12600
+                  "1.56 index form lenses with Blue Light Blocking for computer screen",
+                  8000
                 )
               }
             />
             <label>
-              Quality 1.59 index lenses with UV protective, anti reflective
-              coating{" "}
-              <span className="text-indigo-800 font-semibold">₦12600</span>
-            </label>
-          </div>
-          <div className="border-2 py-4">
-            <input
-              type="radio"
-              name="lense"
-              className="mx-2"
-              onChange={() =>
-                lenseTypeHandler(
-                  "Quality 1.60 index thin lenses with UV-protective, anti-reflective coatings",
-                  22500
-                )
-              }
-            />
-            <label>
-              Quality 1.60 index thin lenses with UV-protective, anti-reflective
-              coatings
-              <span className="text-indigo-800 font-semibold">₦22500</span>
-            </label>
-          </div>
-          <div className="border-2 py-4">
-            <input
-              type="radio"
-              name="lense"
-              className="mx-2"
-              onChange={() =>
-                lenseTypeHandler(
-                  "Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating",
-                  22500
-                )
-              }
-            />
-            <label>
-              Premium 1.6 index thin, features anti-reflective, UV blocking,
-              anti-scratch coating{" "}
-              <span className="text-indigo-800 font-semibold">₦22500</span>
-            </label>
-          </div>
-          <div className="border-2 py-4">
-            <input
-              type="radio"
-              name="lense"
-              className="mx-2"
-              onChange={() =>
-                lenseTypeHandler(
-                  "Premium 1.6 index thin, features anti-reflective, UV blocking, anti-scratch coating",
-                  45000
-                )
-              }
-            />
-            <label>
-              Premium 1.6 index thin, features anti-reflective, UV blocking,
-              anti-scratch coating{" "}
-              <span className="text-indigo-800 font-semibold">₦45000</span>
+              (1.56 index form lenses with Blue Light Blocking for computer
+              screen){" "}
+              <span className="text-indigo-800 font-semibold">₦8000</span>
             </label>
           </div>
         </Collapse>
@@ -209,11 +152,13 @@ const BifocalVisionLensForm = ({
               type="radio"
               name="lense"
               className="mx-2"
-              onChange={() => lenseTypeHandler("gray outdoor", 23000)}
+              onChange={() =>
+                lenseTypeHandler("1.56 index form photochromic brown", 8000)
+              }
             />
             <label>
-              gray outdoor{" "}
-              <span className="text-indigo-800 font-semibold">₦23000</span>
+              (1.56 index form photochromic brown)
+              <span className="text-indigo-800 font-semibold"> ₦8000</span>
             </label>
           </div>
           <div className="border-2 py-4">
@@ -221,11 +166,13 @@ const BifocalVisionLensForm = ({
               type="radio"
               name="lense"
               className="mx-2"
-              onChange={() => lenseTypeHandler("clear indoor", 23000)}
+              onChange={() =>
+                lenseTypeHandler("1.56 index form photochromic brown", 8000)
+              }
             />
             <label>
-              clear indoor{" "}
-              <span className="text-indigo-800 font-semibold">₦23000</span>
+              (1.56 index form photochromic brown)
+              <span className="text-indigo-800 font-semibold"> ₦8000</span>
             </label>
           </div>
           <div className="border-2 py-4">
@@ -233,23 +180,16 @@ const BifocalVisionLensForm = ({
               type="radio"
               name="lense"
               className="mx-2"
-              onChange={() => lenseTypeHandler("brown outdoor", 23000)}
+              onChange={() =>
+                lenseTypeHandler(
+                  "1.56 index form photochromic gray with Blue Light Blocking",
+                  10000
+                )
+              }
             />
             <label>
-              brown outdoor{" "}
-              <span className="text-indigo-800 font-semibold">₦23000</span>
-            </label>
-          </div>
-          <div className="border-2 py-4">
-            <input
-              type="radio"
-              name="lense"
-              className="mx-2"
-              onChange={() => lenseTypeHandler("brown lense", 23000)}
-            />
-            <label>
-              clear indoor{" "}
-              <span className="text-indigo-800 font-semibold">₦23000</span>
+              (1.56 index form photochromic gray with Blue Light Blocking){" "}
+              <span className="text-indigo-800 font-semibold"> N10000</span>
             </label>
           </div>
         </Collapse>
@@ -261,7 +201,7 @@ const BifocalVisionLensForm = ({
       )}
       <div className="my-4">
         <p className="my-8 text-2xl font-semibold text-indigo-800">
-          ₦{formatToCurrency(productPrice)}
+          ₦{formatToCurrency(+productPrice)}
         </p>
         <div className="flex">
           {data ? (
@@ -327,4 +267,4 @@ const BifocalVisionLensForm = ({
   );
 };
 
-export default BifocalVisionLensForm;
+export default NonPrescriptionalVisionLensForm;
