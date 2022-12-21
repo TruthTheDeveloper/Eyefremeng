@@ -51,7 +51,7 @@ const Navbar = () => {
           )}
         </div>
         <ul
-          className="ml-auto my-5 mr-10 text-lg font-semibold hidden lg:flex "
+          className="ml-auto my-5 mr-10 text-base font-semibold hidden lg:flex "
           style={{ color: "#002265" }}
         >
           <li className="mx-4">
@@ -94,7 +94,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink to="/cart">
-              <img src={cart} className="w-10 mx-4 cursor-pointer" />
+              <img src={cart} className="w-10 mx-4 cursor-pointer"  alt="cart icon"/>
             </NavLink>
           </li>
         </ul>
