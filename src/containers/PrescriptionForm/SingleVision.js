@@ -158,7 +158,7 @@ const SingleVision = ({
 
   useEffect(() => {
     setTotalPrice(formatPriceToNumber(productPrice));
-  }, []);
+  }, [productPrice]);
 
 
   useEffect(() => {
