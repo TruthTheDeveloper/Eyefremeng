@@ -159,21 +159,41 @@ const PrescriptionForm = () => {
           <ul className="my-6">
             <li className="my-1">Frame Size: {productDetail.framesize}</li>
           </ul>
-          <div>
-            <p>lens width:{productDetail.lensWidth} </p>
+          <div className="flex ">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-width.svg" />
+            <p className="ml-4 capitalize">
+              lens width{" "}
+              <span className="text-blue-400 font-bold">
+                {productDetail.lensWidth}
+              </span>{" "}
+            </p>
           </div>
-          <div className="my-2">
-            <p>lens height: {productDetail.lensHeight}</p>
+          <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-height-1.svg" />
+            <p className="ml-4 capitalize">
+              lens height{" "}
+              <span className="text-blue-400 font-bold">
+                {productDetail.lensHeight}
+              </span>
+            </p>
           </div>
-          <div className="my-2">
-            <p>bridge Width: {productDetail.bridgeWidth}</p>
+          <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-bridge-width.svg" />
+            <p className="ml-4 capitalize">
+              bridge Width{" "}
+              <span className="text-blue-400 font-bold">
+                {productDetail.bridgeWidth}
+              </span>
+            </p>
           </div>
-          <div className="my-2">
-            <p>temple length: {productDetail.templeWidth}</p>
+          <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-temple-length.svg" />
+            <p className="ml-4 capitalize">
+              temple length{" "}
+              <span className="text-blue-400 font-bold">
+                {productDetail.templeWidth}
+              </span>
+            </p>
           </div>
         </div>
       </div>

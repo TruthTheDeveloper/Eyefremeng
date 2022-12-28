@@ -57,7 +57,7 @@ const Navbar = () => {
           <li className="mx-4">
             <NavLink
               className={(navData) =>
-                `${navData.isActive ? "bg-active text-black" : "text-inActive"}`
+                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
               }
               to="/"
               exact="true"
@@ -69,7 +69,7 @@ const Navbar = () => {
             <NavLink
               to="/mencart"
               className={(navData) =>
-                `${navData.isActive ? "bg-active text-black" : "text-inActive"}`
+                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
               }
               exact="true"
             >
@@ -80,21 +80,31 @@ const Navbar = () => {
             <NavLink
               to="/womencart"
               className={(navData) =>
-                `${navData.isActive ? "bg-active text-black" : "text-inActive"}`
+                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
               }
               exact="true"
             >
               Women's Glasses
             </NavLink>
           </li>
-          <li>
-            <NavLink className="mx-4" to="/" exact="true">
+          <li className="mx-4">
+            <NavLink
+              className={(navData) =>
+                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
+              }
+              to="/childrencart"
+              exact
+            >
               Children Glasses
             </NavLink>
           </li>
           <li>
             <NavLink to="/cart">
-              <img src={cart} className="w-10 mx-4 cursor-pointer"  alt="cart icon"/>
+              <img
+                src={cart}
+                className="w-10 mx-4 cursor-pointer"
+                alt="cart icon"
+              />
             </NavLink>
           </li>
         </ul>
@@ -119,7 +129,9 @@ const Navbar = () => {
               <NavLink to="/womencart">Women's Glasses</NavLink>
             </li>
             <li className="my-1 ml-4" onClick={() => setCloseNav(true)}>
-              <NavLink to="/">Children Glasses</NavLink>
+              <NavLink to="/childrencart" exact>
+                Children Glasses
+              </NavLink>
             </li>
           </ul>
         </div>
