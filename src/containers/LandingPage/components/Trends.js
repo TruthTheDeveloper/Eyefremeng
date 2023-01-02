@@ -12,7 +12,7 @@ const Trends = () => {
   return (
     <>
       <div className="text-center my-6" style={{ color: "#002365" }}>
-        <h1 className="my-5 lg:text-6xl font-semibold text-4xl">
+        <h1 className="my-5 lg:text-5xl font-semibold text-4xl">
           Quality Assurance
         </h1>
         <p className="lg:text-2xl py-5 text-xl">

@@ -69,7 +69,7 @@ const ContactUs = () => {
       style={{ color: "#002365" }}
     >
       <div className="my-8">
-        <h1 className="lg:text-6xl text-4xl md:text-5xl py-5 font-semibold">
+        <h1 className="lg:text-5xl text-4xl text-4xl py-5 font-semibold">
           Stay in touch
         </h1>
         <p className="text-xl">Keep up to date with our exclusive offer</p>
