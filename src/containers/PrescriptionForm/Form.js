@@ -132,7 +132,7 @@ const Form = ({
   }
 
   return (
-    <div className="mx-3 md:mx-16 ">
+    <div className="mx-1 lg:mx-16 w-full">
       <div className="flex text-xl my-3 font-semibold bg-indigo-900 py-3 px-3">
         <FontAwesomeIcon
           icon={faEdit}

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons"; // <-- import styles to be used
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-//React Componenets
+//React Components
 import { useState } from "react";
 
 //React router
@@ -69,7 +69,7 @@ const Navbar = () => {
             <NavLink
               to="/mencart"
               className={(navData) =>
-                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
               }
               exact="true"
             >
@@ -80,7 +80,7 @@ const Navbar = () => {
             <NavLink
               to="/womencart"
               className={(navData) =>
-                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
               }
               exact="true"
             >
@@ -90,7 +90,7 @@ const Navbar = () => {
           <li className="mx-4">
             <NavLink
               className={(navData) =>
-                `${navData.isActive ? "text-inActive" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
               }
               to="/childrencart"
               exact

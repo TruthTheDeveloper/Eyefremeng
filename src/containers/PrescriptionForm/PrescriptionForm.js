@@ -134,6 +134,7 @@ const PrescriptionForm = () => {
           <div className="text-xl font-semibold ml-5 md:text-center md:text-2xl mt-3 text-indigo-800">
             <div>{/* <h1>{productDetail.description}</h1> */}</div>
           </div>
+          <div className="hidden lg:block">
           <Form
             productName={productDetail.productName}
             productDescription={productDetail.description}
@@ -142,6 +143,7 @@ const PrescriptionForm = () => {
           />
           <GlassReview relatedProductClick={relatedProductClick} />
           {/* <LensForm/> */}
+          </div>
         </div>
         <div className="w-full mx-3 md:mx-32  lg:pt-16">
           <h1 className="text-indigo-800 text-3xl ">
@@ -162,7 +164,6 @@ const PrescriptionForm = () => {
           <div className="flex ">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-width.svg" />
             <p className="ml-4 capitalize">
-              lens width{" "}
               <span className="text-blue-400 font-bold">
                 {productDetail.lensWidth}
               </span>{" "}
@@ -171,7 +172,6 @@ const PrescriptionForm = () => {
           <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-height-1.svg" />
             <p className="ml-4 capitalize">
-              lens height{" "}
               <span className="text-blue-400 font-bold">
                 {productDetail.lensHeight}
               </span>
@@ -180,7 +180,6 @@ const PrescriptionForm = () => {
           <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-bridge-width.svg" />
             <p className="ml-4 capitalize">
-              bridge Width{" "}
               <span className="text-blue-400 font-bold">
                 {productDetail.bridgeWidth}
               </span>
@@ -189,11 +188,20 @@ const PrescriptionForm = () => {
           <div className="flex my-2">
             <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-temple-length.svg" />
             <p className="ml-4 capitalize">
-              temple length{" "}
               <span className="text-blue-400 font-bold">
                 {productDetail.templeWidth}
               </span>
             </p>
+          </div>
+          <div className="block w-[90%] lg:hidden">
+            <Form
+                productName={productDetail.productName}
+                productDescription={productDetail.description}
+                productPrice={productDetail.productPrice}
+                productImage={productDetail.frontView}
+            />
+            <GlassReview relatedProductClick={relatedProductClick} />
+            {/* <LensForm/> */}
           </div>
         </div>
       </div>
