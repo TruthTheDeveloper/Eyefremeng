@@ -15,7 +15,7 @@ const Guide = () => {
       >
         How to order your prescription glasses
       </h1>
-      <div className="flex flex-col md:flex-row justify-center my-16 md:mx-6 lg:mx-32 ">
+      <div className="grid grid-cols-2 lg:grid-cols-4 my-16 md:mx-6 lg:mx-32 ">
         <div className=" w-36 mx-auto">
           <img
             className="w-20 mx-auto"
