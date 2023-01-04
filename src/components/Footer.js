@@ -91,17 +91,20 @@ const Footer = () => {
                         </li> */}
           </ul>
         </div>
-        <div>
-          <h1 className="text-2xl font-semibold"> Connect with us </h1>
+        <div className="mt-2 lg:mt-0">
+          <h1 className="text-2xl hidden lg:block font-semibold whitespace-pre">
+            {" "}
+            Connect with us{" "}
+          </h1>
           <div
-            className="flex lg:justify-center justify-start  basis-1/4"
+            className="flex justify-center basis-1/4"
             style={{ color: "white" }}
           >
             <div className="mx-2">
               <a href="">
                 <FontAwesomeIcon
                   icon={faTwitter}
-                  className=" text-4xl mt-8 px-4 py-2 rounded-lg"
+                  className=" text-2xl mt-8  p-2 rounded-lg"
                   style={{ backgroundColor: "#002365" }}
                 />
               </a>
@@ -111,7 +114,7 @@ const Footer = () => {
                 {" "}
                 <FontAwesomeIcon
                   icon={faInstagram}
-                  className=" text-4xl mt-8 px-4 py-2 rounded-lg"
+                  className=" text-2xl mt-8 p-2 rounded-lg"
                   style={{ backgroundColor: "#002365" }}
                 />
               </a>
@@ -120,7 +123,7 @@ const Footer = () => {
               <a href="https://web.facebook.com/eyeframeng">
                 <FontAwesomeIcon
                   icon={faFacebook}
-                  className=" text-4xl mt-8 px-4 py-2 rounded-lg"
+                  className=" text-2xl mt-8 p-2 rounded-lg"
                   style={{ backgroundColor: "#002365" }}
                 />
               </a>
