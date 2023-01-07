@@ -29,7 +29,7 @@ const WomenItem = ({ name, frontView, leftView, rightView, price, id }) => {
 
   return (
     <div
-      className="text-center  cursor-pointer border hover:shadow-lg  w-full overflow-x-hidden"
+      className="text-center  cursor-pointer border rounded-lg hover:shadow-lg  w-full overflow-x-hidden"
       onClick={itemInfo}
     >
       <img src={view} className="  w-full  " />

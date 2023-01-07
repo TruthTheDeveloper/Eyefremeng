@@ -69,7 +69,7 @@ const Navbar = () => {
             <NavLink
               to="/mencart"
               className={(navData) =>
-                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2 border-[#003765]" : "bg-active text-black"}`
               }
               exact="true"
             >
@@ -80,7 +80,7 @@ const Navbar = () => {
             <NavLink
               to="/womencart"
               className={(navData) =>
-                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2 border-[#003765]" : "bg-active text-black"}`
               }
               exact="true"
             >
@@ -90,7 +90,7 @@ const Navbar = () => {
           <li className="mx-4">
             <NavLink
               className={(navData) =>
-                `${navData.isActive ? "text-inActive pb-2 border-b-2" : "bg-active text-black"}`
+                `${navData.isActive ? "text-inActive pb-2 border-b-2 border-[#003765]" : "bg-active text-black"}`
               }
               to="/childrencart"
               exact

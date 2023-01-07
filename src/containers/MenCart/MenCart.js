@@ -53,7 +53,7 @@ const MenCart = () => {
           );
         })}
       </div>
-      {loadData.length >= 9 && (
+      {loadData?.length >= 9 && (
         <button
           className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg"
           onClick={() => loadMore(loadData)}
