@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons"; // <-- import styles to be used
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
+import Logo from "../assets/logo.PNG"
+
 //React Components
 import { useState } from "react";
 
@@ -21,7 +23,7 @@ const Navbar = () => {
         <div className="w-36 md:w-40 lg:w-44 my-1 lg:my-3 mx-4 ">
           <NavLink to="/">
             <img
-              src="https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png"
+              src={Logo}
               alt="logo"
             />
           </NavLink>

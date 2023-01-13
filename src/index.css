@@ -16,7 +16,7 @@ code {
 @tailwind utilities;
 
 .header_background_image {
-  background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-PH-1-scaled.jpg);
+  background: url(assets/EYEFRAME-HOMEPAGE-PH-1-scaled.PNG);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,7 +25,7 @@ code {
 /* media queries */
 @media (min-width: 600px) {
   .header_background_image {
-    background: url(https://eyeframeng.com/wp-content/uploads/2021/04/EYEFRAME-HOMEPAGE-1.jpg);
+    background: url(assets/EYEFRAME-HOMEPAGE-PH-1-scaled.PNG);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
