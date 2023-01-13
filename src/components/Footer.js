@@ -36,7 +36,7 @@ const Footer = () => {
             </li>
             <li>
               <NavLink to="/" exact="true">
-                SunGlasses
+                Sunglasses
               </NavLink>
             </li>
           </ul>
