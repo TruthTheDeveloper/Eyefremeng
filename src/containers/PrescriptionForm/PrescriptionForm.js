@@ -9,6 +9,12 @@ import GlassReview from "./components/GlassReview";
 import { TailSpin } from "react-loader-spinner";
 import ReactImageMagnify from "@blacklab/react-image-magnify";
 
+//images
+import LensWidth from "../../assets/lens-width.jpeg";
+import LensHeight from "../../assets/lens-height.jpeg";
+import BridgeWidth from "../../assets/bridge-width.jpeg";
+import TempleWidth from "../../assets/temple-length.jpeg";
+
 const PrescriptionForm = () => {
   const [productDetail, setProductDetail] = useState({});
   const [relatedProduct, setRelatedProduct] = useState([]);
@@ -135,14 +141,14 @@ const PrescriptionForm = () => {
             <div>{/* <h1>{productDetail.description}</h1> */}</div>
           </div>
           <div className="hidden lg:block">
-          <Form
-            productName={productDetail.productName}
-            productDescription={productDetail.description}
-            productPrice={productDetail.productPrice}
-            productImage={productDetail.frontView}
-          />
-          <GlassReview relatedProductClick={relatedProductClick} />
-          {/* <LensForm/> */}
+            <Form
+              productName={productDetail.productName}
+              productDescription={productDetail.description}
+              productPrice={productDetail.productPrice}
+              productImage={productDetail.frontView}
+            />
+            <GlassReview relatedProductClick={relatedProductClick} />
+            {/* <LensForm/> */}
           </div>
         </div>
         <div className="w-full mx-3 md:mx-32  lg:pt-16">
@@ -162,7 +168,7 @@ const PrescriptionForm = () => {
             <li className="my-1">Frame Size: {productDetail.framesize}</li>
           </ul>
           <div className="flex ">
-            <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-width.svg" />
+            <img src={LensWidth} alt="lens width" className="w-[150px]" />
             <p className="ml-4 capitalize">
               <span className="text-blue-400 font-bold">
                 {productDetail.lensWidth}
@@ -170,7 +176,7 @@ const PrescriptionForm = () => {
             </p>
           </div>
           <div className="flex my-2">
-            <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-lens-height-1.svg" />
+            <img src={LensHeight} className="w-[150px]" alt="lens Height" />
             <p className="ml-4 capitalize">
               <span className="text-blue-400 font-bold">
                 {productDetail.lensHeight}
@@ -178,7 +184,7 @@ const PrescriptionForm = () => {
             </p>
           </div>
           <div className="flex my-2">
-            <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-bridge-width.svg" />
+            <img src={BridgeWidth} alt="Bridge width" className="w-[150px]" />
             <p className="ml-4 capitalize">
               <span className="text-blue-400 font-bold">
                 {productDetail.bridgeWidth}
@@ -186,7 +192,7 @@ const PrescriptionForm = () => {
             </p>
           </div>
           <div className="flex my-2">
-            <img src="https://eyeframeng.com/wp-content/uploads/2020/11/icon-temple-length.svg" />
+            <img src={TempleWidth} alt="Temple Width" className="w-[150px]" />
             <p className="ml-4 capitalize">
               <span className="text-blue-400 font-bold">
                 {productDetail.templeWidth}
@@ -195,10 +201,10 @@ const PrescriptionForm = () => {
           </div>
           <div className="block w-[90%] lg:hidden">
             <Form
-                productName={productDetail.productName}
-                productDescription={productDetail.description}
-                productPrice={productDetail.productPrice}
-                productImage={productDetail.frontView}
+              productName={productDetail.productName}
+              productDescription={productDetail.description}
+              productPrice={productDetail.productPrice}
+              productImage={productDetail.frontView}
             />
             <GlassReview relatedProductClick={relatedProductClick} />
             {/* <LensForm/> */}
