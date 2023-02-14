@@ -38,7 +38,7 @@ const MenCart = () => {
           <TailSpin color="#3730A3" height={80} width={80} />
         </div>
       )}
-      <div className="grid md:grid-cols-2 m-5 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-2 m-5 lg:grid-cols-3 gap-5">
         {menProduct.map((item, index) => {
           return (
             <MenItem
