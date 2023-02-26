@@ -11,8 +11,8 @@ const MenCart = () => {
   const [loadData, setLoadData] = useState([]);
 
   useEffect(() => {
-    result()
-  },[])
+    result();
+  }, []);
 
   const result = async () => {
     const data = await ProductServices.getMenCart();
@@ -30,6 +30,7 @@ const MenCart = () => {
     setMenProduct((prev) => [...prev, ...ans]);
   };
 
+  console.log(loadData);
   return (
     <section className="py-12 lg:py-16 lg:mx-24">
       <Banner />
@@ -39,7 +40,7 @@ const MenCart = () => {
         </div>
       )}
       <div className="grid grid-cols-2 m-5 lg:grid-cols-3 gap-5">
-        {menProduct.map((item, index) => {
+        {menProduct.map((item) => {
           return (
             <MenItem
               key={item.id}
@@ -53,7 +54,7 @@ const MenCart = () => {
           );
         })}
       </div>
-      {loadData?.length >= 9 && (
+      {loadData?.docs?.length >= 9 && (
         <button
           className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg"
           onClick={() => loadMore(loadData)}

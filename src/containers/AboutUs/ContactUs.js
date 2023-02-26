@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import emailData from "../../emailKey";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 const ContactUs = () => {
   // const [formData, setFormData] = useState({
   //     name:"",
