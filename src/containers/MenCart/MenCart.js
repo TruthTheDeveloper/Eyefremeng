@@ -30,7 +30,6 @@ const MenCart = () => {
     setMenProduct((prev) => [...prev, ...ans]);
   };
 
-  console.log(loadData);
   return (
     <section className="py-12 lg:py-16 lg:mx-24">
       <Banner />

@@ -9,8 +9,8 @@ const WomenCart = () => {
   const [loadData, setLoadData] = useState([]);
 
   useEffect(() => {
-    result()
-  },[])
+    result();
+  }, []);
 
   const result = async () => {
     const data = await ProductServices.getWomenCart();
@@ -53,7 +53,7 @@ const WomenCart = () => {
           );
         })}
       </div>
-      {loadData.length >= 9 && (
+      {loadData?.docs?.length >= 9 && (
         <button
           className="bg-orange-300 py-4 px-8 flex mt-12 mx-auto rounded-md text-lg"
           onClick={() => loadMore(loadData)}
