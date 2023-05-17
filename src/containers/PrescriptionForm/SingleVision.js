@@ -8,9 +8,7 @@ import PrescriptionDetailForm from "./components/singleVision/PrescriptionDetail
 import { v4 } from "uuid";
 
 import { useNavigate } from "react-router-dom";
-import {
-  formatPriceToNumber,
-} from "../../utilities/priceFormatter";
+import { formatPriceToNumber } from "../../utilities/priceFormatter";
 
 const SingleVision = ({
   productImage,
@@ -22,8 +20,6 @@ const SingleVision = ({
   let navigate = useNavigate();
 
   const { initialState, setInitialState } = useContext(AuthContext);
-
-
 
   ///////////////   INPUT STATE   ////////////
   const [selectedRightOdOption, setSelectedRightOdOption] = useState({
@@ -90,9 +86,6 @@ const SingleVision = ({
 
   const [twoSinglePD, setTwoSinglePd] = useState(false);
 
-
-
-
   ///////////     ///////////////
   const [inputValid, setInputValid] = useState(false);
 
@@ -109,8 +102,6 @@ const SingleVision = ({
   const [totalPrice, setTotalPrice] = useState(productPrice);
   const [lensePrice, setLensePrice] = useState(null);
   const [unitPrice, setUnitPrice] = useState(totalPrice);
-
-
 
   //////////////UPDATE////////////////////////
 
@@ -154,15 +145,11 @@ const SingleVision = ({
 
   const [inputValidData, setInputValidData] = useState(false);
 
-
-
   useEffect(() => {
     setTotalPrice(formatPriceToNumber(productPrice));
   }, [productPrice]);
 
-
   useEffect(() => {
-
     if (inputValidData && lenseType !== "" && clicked) {
       const remove = initialState.items.filter((el) => el.id !== data?.id);
       setInitialState({ ...initialState, items: remove });
@@ -316,7 +303,7 @@ const SingleVision = ({
         usageOption.value !== null &&
         addToCartTwoPD();
     } else {
-        selectedRightOdOption.value !== null &&
+      selectedRightOdOption.value !== null &&
         selectedRightAxisOption.value !== null &&
         selectedRightCylinderOption.value !== null &&
         selectedLeftOdOption.value !== null &&
@@ -477,7 +464,7 @@ const SingleVision = ({
 
   const lenseTypeHandler = (select, price) => {
     const amount = formatPriceToNumber(productPrice);
-    setTotalPrice(amount + price);
+    setTotalPrice(parseInt(amount) + parseInt(price));
     setlensType(select);
     setLensePrice(price);
   };
@@ -536,7 +523,6 @@ const SingleVision = ({
       // rightAdd={''}
     />
   );
-  
 
   // for Updating the form
   if (data) {
@@ -594,7 +580,6 @@ const SingleVision = ({
       />
     );
   }
-
 
   // if confirmed button was clicked and we are updating the form
   if (confirmed && data) {
@@ -672,7 +657,6 @@ const SingleVision = ({
       );
     }
   }
-  
 
   const prescriptionSummary = (e) => {
     e.preventDefault();

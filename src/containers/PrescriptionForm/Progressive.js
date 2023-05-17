@@ -8,9 +8,7 @@ import { v4 } from "uuid";
 import PrescriptionDetailForm from "./components/otherVision/PrescriptionDetailForm";
 import { useNavigate } from "react-router-dom";
 import ProgressiveVisionLensForm from "./components/otherVision/ProgressiveVisionLensForm";
-import {
-  formatPriceToNumber,
-} from "../../utilities/priceFormatter";
+import { formatPriceToNumber } from "../../utilities/priceFormatter";
 
 const Progressive = ({
   productImage,
@@ -94,7 +92,6 @@ const Progressive = ({
 
   const [inputValid, setInputValid] = useState(false);
   const [qty, setQty] = useState(1);
-  
 
   const [lenseType, setlensType] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -155,7 +152,7 @@ const Progressive = ({
 
   useEffect(() => {
     setTotalPrice(formatPriceToNumber(productPrice));
-  }, []);
+  }, [productPrice]);
 
   useEffect(() => {
     if (inputValidData && lenseType !== "" && clicked) {
@@ -508,7 +505,7 @@ const Progressive = ({
     setlensType(select);
     setLensePrice(price);
     const amount = formatPriceToNumber(productPrice);
-    setTotalPrice(amount + price);
+    setTotalPrice(parseInt(amount) + parseInt(price));
   };
 
   const confirmedHandler = () => {

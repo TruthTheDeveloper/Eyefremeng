@@ -4,9 +4,7 @@ import { v4 } from "uuid";
 
 import { useNavigate } from "react-router-dom";
 import NonPrescriptionalVisionLensForm from "./components/otherVision/NonPrescriptionalVisionLensForm";
-import {
-  formatPriceToNumber,
-} from "../../utilities/priceFormatter";
+import { formatPriceToNumber } from "../../utilities/priceFormatter";
 
 const NonPrescriptional = ({
   productImage,
@@ -26,10 +24,8 @@ const NonPrescriptional = ({
 
   const [dataQty, setDataQty] = useState(data?.qty);
   const [clicked, setClicked] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(productPrice);
+  const [totalPrice, setTotalPrice] = useState("");
   const [lensePrice, setLensePrice] = useState(null);
-
- 
 
   useEffect(() => {
     if (lenseType !== "" && clicked) {
@@ -50,7 +46,7 @@ const NonPrescriptional = ({
 
   useEffect(() => {
     setTotalPrice(formatPriceToNumber(productPrice));
-  }, [])
+  }, [productPrice]);
 
   useEffect(() => {
     if (inputValid && lenseType !== "" && clicked) {
@@ -75,8 +71,8 @@ const NonPrescriptional = ({
   const lenseTypeHandler = (select, price) => {
     setlensType(select);
     setLensePrice(price);
-    const amount = formatPriceToNumber(productPrice);
-    setTotalPrice(amount + price);
+    let total = parseInt(productPrice) + parseInt(price);
+    setTotalPrice(formatPriceToNumber(total.toString()));
   };
 
   const validateInput = () => {

@@ -8,7 +8,7 @@ import { v4 } from "uuid";
 import PrescriptionDetailForm from "./components/otherVision/PrescriptionDetailForm";
 import BifocalVisionLensForm from "./components/otherVision/BifocalVisionLensForm";
 import {
-  formatToCurrency,
+  // formatToCurrency,
   formatPriceToNumber,
 } from "../../utilities/priceFormatter";
 import { useNavigate } from "react-router-dom";
@@ -108,7 +108,7 @@ const Bifocal = ({
 
   useEffect(() => {
     setTotalPrice(formatPriceToNumber(productPrice));
-  }, []);
+  }, [productPrice]);
 
   //////////////UPDATE////////////////////////
 
@@ -492,7 +492,7 @@ const Bifocal = ({
     setlensType(select);
     setLensePrice(price);
     const amount = formatPriceToNumber(productPrice);
-    setTotalPrice(amount + price);
+    setTotalPrice(parseInt(amount) + parseInt(price));
   };
 
   const confirmedHandler = () => {

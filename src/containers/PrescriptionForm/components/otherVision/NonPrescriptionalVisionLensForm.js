@@ -23,18 +23,12 @@ const NonPrescriptionalVisionLensForm = ({
   inputValidData,
   dataQty,
 }) => {
-
   const [isOpenClear, setIsOpenClear] = useState(false);
   const [isOpenphotoChromic, setIsOpenphotoChromic] = useState(false);
   const [isOpenphotoPolarized, setIsOpenphotoPolarized] = useState(false);
   const [isOpenAntiReflective, setIsOpenAntiReflective] = useState(false);
 
   const [lenseValidationError, setlenseValidationError] = useState(false);
-
-  
-
-
-  
 
   let navigate = useNavigate();
 
@@ -77,6 +71,7 @@ const NonPrescriptionalVisionLensForm = ({
     }
   };
 
+  console.log(productPrice);
   return (
     <form className="">
       <div className=" text-xl my-3 font-semibold bg-indigo-900 py-3 px-3">
