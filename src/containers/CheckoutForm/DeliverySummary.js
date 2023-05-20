@@ -6,6 +6,7 @@ import orderServices from "../../firebase/services/order.services";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 
 const DeliverySummary = () => {
@@ -14,11 +15,10 @@ const DeliverySummary = () => {
   const { initialState, setInitialState } = useContext(AuthContext);
   const [transactionId, setTransactionId] = useState("TENSUSA-6500");
 
-  console.log(initialState);
   const config = {
-    public_key: "FLWPUBK_TEST-9eb73455cf2d82576c04a0c5a44dae9a-X",
+    public_key: "FLWPUBK-4eba292c06879c74ecdfe47c09fe8ac2-X",
     tx_ref: Date.now(),
-    amount: 2000,
+    amount: initialState?.grandTotal,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
@@ -33,96 +33,59 @@ const DeliverySummary = () => {
     },
   };
 
-  const sendOrderEmail = () => {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = today.getFullYear();
-
-    today = mm + "/" + dd + "/" + yyyy;
-
-    axios
-      .post("https://eyefremeng-nodemailer.herokuapp.com/sendMessage", {
-        name: "Eyefremeng",
-        title: `Order for the purchase of ${initialState?.items[0]?.productName} and more`,
-        content: "Thank you for shopping with us ur order have been placed",
-        emails:
-          "henrysempire111@gmail.com, tolaniogunfuyi45@gmail.com, iwaloyeo@gmail.com",
-        productName: initialState.items[0].productName,
-        date: today,
-        payload: initialState,
-        transactionId: transactionId,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const emailContent = {
+    to_email:
+      "henrysempire111@gmail.com, tolaniogunfuyi45@gmail.com, iwaloyeo@gmail.com",
+    from_name: "Eyefremeng",
+    message: `Order for the purchase of ${initialState?.items[0]?.productName} and more`,
+    to_name: "Eyefremeng",
   };
+  const sendEmail = (emailContent) => {
+    // EmailJS service configuration
+    const serviceID = "service_n5era4x";
+    const templateID = "template_qzflqja";
+    const userID = "Rj-faOSuJ52bV2aEo";
+
+    // Send email using EmailJS
+    emailjs
+      .send(serviceID, templateID, emailContent, userID)
+      .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+  };
+  // const sendOrderEmail = () => {
+  //   var today = new Date();
+  //   var dd = String(today.getDate()).padStart(2, "0");
+  //   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  //   var yyyy = today.getFullYear();
+
+  //   today = mm + "/" + dd + "/" + yyyy;
+
+  //   axios
+  //     .post("https://eyefremeng-nodemailer.herokuapp.com/sendMessage", {
+  //       name: "Eyefremeng",
+  //       title: `Order for the purchase of ${initialState?.items[0]?.productName} and more`,
+  //       content: "Thank you for shopping with us ur order have been placed",
+  //       emails:
+  //         "henrysempire111@gmail.com, tolaniogunfuyi45@gmail.com, iwaloyeo@gmail.com",
+  //       productName: initialState.items[0].productName,
+  //       date: today,
+  //       payload: initialState,
+  //       transactionId: transactionId,
+  //     })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // };
   const handleFlutterPayment = useFlutterwave(config);
 
   const paymentSuccesfull = () => {
-    // try {
-    //   await orderServices.addOrder(initialState);
-    //   toast.success("🦄 Congratulations you succesfully place an order!", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-
-    //   sendOrderEmail();
-    //   // setInitialState({...initialState,
-    //   //     items:[],
-    //   //     address:'',
-    //   //     subTotal:15000,
-    //   //     grandTotal:1500,
-    //   //     firstName:'',
-    //   //     lastName:'',
-    //   //     Address:'',
-    //   //     city:'',
-    //   //     state:'',
-    //   //     postalCode:'',
-    //   //     telephone:'',
-    //   //     withinLagos:null,
-    //   //     paymentMethod:''
-    //   // })
-    // } catch (err) {
-    //   toast.error(
-    //     "🦄 unable to place order please contact support or try again",
-    //     {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     }
-    //   );
-    //   // setInitialState({...initialState,
-    //   //     items:[],
-    //   //     address:'',
-    //   //     subTotal:15000,
-    //   //     grandTotal:1500,
-    //   //     firstName:'',
-    //   //     lastName:'',
-    //   //     Address:'',
-    //   //     city:'',
-    //   //     state:'',
-    //   //     postalCode:'',
-    //   //     telephone:'',
-    //   //     withinLagos:null,
-    //   //     paymentMethod:''
-    //   // })
-    //   console.log(err);
-    // }
     handleFlutterPayment({
-      callback: (response) => {
+      callback: async (response) => {
         console.log(response);
-        closePaymentModal();
-      },
-      onClose: async () => {
+        sendEmail(emailContent);
         try {
           await orderServices.addOrder(initialState);
           toast.success("🦄 Congratulations you succesfully place an order!", {
@@ -134,23 +97,6 @@ const DeliverySummary = () => {
             draggable: true,
             progress: undefined,
           });
-
-          sendOrderEmail();
-          // setInitialState({...initialState,
-          //     items:[],
-          //     address:'',
-          //     subTotal:15000,
-          //     grandTotal:1500,
-          //     firstName:'',
-          //     lastName:'',
-          //     Address:'',
-          //     city:'',
-          //     state:'',
-          //     postalCode:'',
-          //     telephone:'',
-          //     withinLagos:null,
-          //     paymentMethod:''
-          // })
         } catch (err) {
           toast.error(
             "🦄 unable to place order please contact support or try again",
@@ -164,23 +110,9 @@ const DeliverySummary = () => {
               progress: undefined,
             }
           );
-          // setInitialState({...initialState,
-          //     items:[],
-          //     address:'',
-          //     subTotal:15000,
-          //     grandTotal:1500,
-          //     firstName:'',
-          //     lastName:'',
-          //     Address:'',
-          //     city:'',
-          //     state:'',
-          //     postalCode:'',
-          //     telephone:'',
-          //     withinLagos:null,
-          //     paymentMethod:''
-          // })
           console.log(err);
         }
+        closePaymentModal();
       },
     });
   };

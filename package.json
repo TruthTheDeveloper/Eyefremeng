@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@blacklab/react-image-magnify": "^4.1.1",
-    "@emailjs/browser": "^3.6.2",
+    "@emailjs/browser": "^3.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
