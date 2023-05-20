@@ -43,10 +43,10 @@ const CartDetail = ({
     !cartId &&
       setInitialState({
         ...initialState,
-        grandTotal: initialState?.grandTotal + productPrice,
-        subTotal: initialState?.subTotal + productPrice,
+        grandTotal: parseInt(initialState?.grandTotal) + parseInt(productPrice),
+        subTotal: parseInt(initialState?.subTotal) + parseInt(productPrice),
       });
-  }, [setInitialState]);
+  }, [setInitialState, cartId]);
 
   let displayPrescriptionDetail = null;
 

@@ -14,10 +14,11 @@ const DeliverySummary = () => {
   const { initialState, setInitialState } = useContext(AuthContext);
   const [transactionId, setTransactionId] = useState("TENSUSA-6500");
 
+  console.log(initialState);
   const config = {
-    public_key: "FLWPUBK-4eba292c06879c74ecdfe47c09fe8ac2-X",
+    public_key: "FLWPUBK_TEST-9eb73455cf2d82576c04a0c5a44dae9a-X",
     tx_ref: Date.now(),
-    amount: initialState.grandTotal,
+    amount: 2000,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
@@ -28,7 +29,7 @@ const DeliverySummary = () => {
     customizations: {
       title: `Pay for ${initialState.items[0]?.productName} and others `,
       description: "Payment for items in cart",
-      logo: "https://eyeframeng.com/wp-content/uploads/2020/11/cropped-eyeframeng-logo-1-1536x460-1.png",
+      logo: "https://res.cloudinary.com/dekillerj/image/upload/v1684356605/logo.1af168f01a808fb66ead.png",
     },
   };
 
@@ -43,9 +44,10 @@ const DeliverySummary = () => {
     axios
       .post("https://eyefremeng-nodemailer.herokuapp.com/sendMessage", {
         name: "Eyefremeng",
-        title: `Order for the purchase of ${initialState.items[0].productName} and more`,
+        title: `Order for the purchase of ${initialState?.items[0]?.productName} and more`,
         content: "Thank you for shopping with us ur order have been placed",
-        emails: "henrysempire111@gmail.com, tolaniogunfuyi45@gmail.com",
+        emails:
+          "henrysempire111@gmail.com, tolaniogunfuyi45@gmail.com, iwaloyeo@gmail.com",
         productName: initialState.items[0].productName,
         date: today,
         payload: initialState,
@@ -56,66 +58,131 @@ const DeliverySummary = () => {
   };
   const handleFlutterPayment = useFlutterwave(config);
 
-  const paymentSuccesfull = async () => {
-    try {
-      await orderServices.addOrder(initialState);
-      toast.success("🦄 Congratulations you succesfully place an order!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+  const paymentSuccesfull = () => {
+    // try {
+    //   await orderServices.addOrder(initialState);
+    //   toast.success("🦄 Congratulations you succesfully place an order!", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
 
-      sendOrderEmail();
-      // setInitialState({...initialState,
-      //     items:[],
-      //     address:'',
-      //     subTotal:15000,
-      //     grandTotal:1500,
-      //     firstName:'',
-      //     lastName:'',
-      //     Address:'',
-      //     city:'',
-      //     state:'',
-      //     postalCode:'',
-      //     telephone:'',
-      //     withinLagos:null,
-      //     paymentMethod:''
-      // })
-    } catch (err) {
-      toast.error(
-        "🦄 unable to place order please contact support or try again",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+    //   sendOrderEmail();
+    //   // setInitialState({...initialState,
+    //   //     items:[],
+    //   //     address:'',
+    //   //     subTotal:15000,
+    //   //     grandTotal:1500,
+    //   //     firstName:'',
+    //   //     lastName:'',
+    //   //     Address:'',
+    //   //     city:'',
+    //   //     state:'',
+    //   //     postalCode:'',
+    //   //     telephone:'',
+    //   //     withinLagos:null,
+    //   //     paymentMethod:''
+    //   // })
+    // } catch (err) {
+    //   toast.error(
+    //     "🦄 unable to place order please contact support or try again",
+    //     {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     }
+    //   );
+    //   // setInitialState({...initialState,
+    //   //     items:[],
+    //   //     address:'',
+    //   //     subTotal:15000,
+    //   //     grandTotal:1500,
+    //   //     firstName:'',
+    //   //     lastName:'',
+    //   //     Address:'',
+    //   //     city:'',
+    //   //     state:'',
+    //   //     postalCode:'',
+    //   //     telephone:'',
+    //   //     withinLagos:null,
+    //   //     paymentMethod:''
+    //   // })
+    //   console.log(err);
+    // }
+    handleFlutterPayment({
+      callback: (response) => {
+        console.log(response);
+        closePaymentModal();
+      },
+      onClose: async () => {
+        try {
+          await orderServices.addOrder(initialState);
+          toast.success("🦄 Congratulations you succesfully place an order!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+
+          sendOrderEmail();
+          // setInitialState({...initialState,
+          //     items:[],
+          //     address:'',
+          //     subTotal:15000,
+          //     grandTotal:1500,
+          //     firstName:'',
+          //     lastName:'',
+          //     Address:'',
+          //     city:'',
+          //     state:'',
+          //     postalCode:'',
+          //     telephone:'',
+          //     withinLagos:null,
+          //     paymentMethod:''
+          // })
+        } catch (err) {
+          toast.error(
+            "🦄 unable to place order please contact support or try again",
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+          // setInitialState({...initialState,
+          //     items:[],
+          //     address:'',
+          //     subTotal:15000,
+          //     grandTotal:1500,
+          //     firstName:'',
+          //     lastName:'',
+          //     Address:'',
+          //     city:'',
+          //     state:'',
+          //     postalCode:'',
+          //     telephone:'',
+          //     withinLagos:null,
+          //     paymentMethod:''
+          // })
+          console.log(err);
         }
-      );
-
-      // setInitialState({...initialState,
-      //     items:[],
-      //     address:'',
-      //     subTotal:15000,
-      //     grandTotal:1500,
-      //     firstName:'',
-      //     lastName:'',
-      //     Address:'',
-      //     city:'',
-      //     state:'',
-      //     postalCode:'',
-      //     telephone:'',
-      //     withinLagos:null,
-      //     paymentMethod:''
-      // })
-      console.log(err);
-    }
+      },
+    });
   };
 
   return (
