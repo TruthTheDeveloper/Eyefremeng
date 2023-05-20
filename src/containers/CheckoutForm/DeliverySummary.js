@@ -1,11 +1,10 @@
 import AuthContext from "../../context/auth-context";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import orderServices from "../../firebase/services/order.services";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +12,7 @@ const DeliverySummary = () => {
   let navigate = useNavigate();
 
   const { initialState, setInitialState } = useContext(AuthContext);
-  const [transactionId, setTransactionId] = useState("TENSUSA-6500");
+  // const [transactionId, setTransactionId] = useState("TENSUSA-6500");
 
   const config = {
     public_key: "FLWPUBK-4eba292c06879c74ecdfe47c09fe8ac2-X",
